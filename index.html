@@ -4,18 +4,27 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Up Immigration – Your New Life in Canada Starts Here</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="preload"
 			as="image"
 			href="/img/Larissa-holding-passport.webp"
 			type="image/webp" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="preload"
+			as="image"
+			href="/img/Larissa-holding-passport-mobile.webp"
+			type="image/webp"
+			media="(max-width: 991px)" />
+
 		<link
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
 			rel="stylesheet" />
+
 		<link rel="preload" href="/style.css" as="style" />
 		<link rel="stylesheet" href="/style.css" />
+
 		<script src="/script.js" defer></script>
 	</head>
 	<body>
@@ -231,14 +240,23 @@
 						</div>
 					</div>
 					<div class="right">
-						<img
-							class="hero-image"
-							src="/img/Larissa-holding-passport.webp"
-							alt="A photo of Larissa holding a Canadian passport"
-							fetchpriority="high"
-							decoding="async"
-							width="1000"
-							height="1000" />
+						<picture>
+							<!-- Desktop (>= 992px) usa a versão grande -->
+							<source
+								srcset="/img/Larissa-holding-passport-desktop.webp"
+								media="(min-width: 992px)"
+								type="image/webp" />
+
+							<!-- Mobile usa a versão pequena (fallback) -->
+							<img
+								class="hero-image"
+								src="/img/Larissa-holding-passport-mobile.webp"
+								alt="A photo of Larissa holding a Canadian passport"
+								fetchpriority="high"
+								decoding="async"
+								width="1000"
+								height="1000" />
+						</picture>
 					</div>
 				</div>
 			</section>
