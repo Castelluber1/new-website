@@ -10,11 +10,14 @@
 			rel="preload"
 			as="image"
 			href="/img/Larissa-holding-passport.webp"
-			type="image/webp" />
+			type="image/webp"
+			media="(min-width: 992px)" />
+
 		<link
 			rel="preload"
 			as="image"
 			href="/img/Larissa-holding-passport-mobile.webp"
+			type="image/webp"
 			type="image/webp"
 			media="(max-width: 991px)" />
 
@@ -35,6 +38,8 @@
 					<img
 						src="/img/Up_Immigration_logo.webp"
 						alt="UP Immigration Consulting"
+						width="114"
+						height="50"
 						decoding="async" />
 				</a>
 
@@ -243,7 +248,7 @@
 						<picture>
 							<!-- Desktop (>= 992px) usa a versão grande -->
 							<source
-								srcset="/img/Larissa-holding-passport-desktop.webp"
+								srcset="/img/Larissa-holding-passport.webp"
 								media="(min-width: 992px)"
 								type="image/webp" />
 
@@ -305,7 +310,12 @@
 						<!-- Col 1: pontos -->
 						<ul class="about-highlights">
 							<li>
-								<img src="/img/RCIC-logo.webp" alt="RCIC Licensed" />
+								<img
+									src="/img/RCIC-logo.webp"
+									alt="RCIC logo, credential used for Licensed Consultants"
+									fetchpriority="low"
+									loading="lazy"
+									decoding="async" />
 								<div>
 									Certified by the College of Immigration and Citizenship
 									Consultants with the highest standards of professionalism and
