@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Additional Services</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<style>
+		:root {
+			--brand: #b8001c;
+			--brand-hover: #8a0015;
+			--dark: #0a0c0f;
+			--muted: #62656f;
+			--border: #e6e8ec;
+			--card-bg: #ffffff;
+			--radius: 14px;
+			--shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+			--shadow-hover: 0 16px 34px rgba(0, 0, 0, 0.12);
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+		html,
+		body {
+			margin: 0;
+		}
+		body {
+			font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial,
+				sans-serif;
+			color: var(--dark);
+			background: #fff;
+			line-height: 1.55;
+		}
+
+		/* Section + container */
+		.services-section {
+			padding: 80px 16px;
+		}
+		.container {
+			max-width: 80rem;
+			margin: 0 auto;
+		}
+
+		/* Header */
+		.section-header {
+			text-align: center;
+			margin-bottom: 4rem;
+		}
+		.section-header h2 {
+			margin: 0 0 0.5rem;
+			font-size: clamp(1.875rem, 2.5vw, 2.25rem);
+			font-weight: 700;
+			color: var(--dark);
+		}
+		.section-header p {
+			margin: 0 auto;
+			max-width: 38rem;
+			font-size: 1.125rem;
+			color: var(--muted);
+		}
+
+		/* Grid */
+		.card-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		@media (min-width: 768px) {
+			.card-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+
+		/* Card */
+		.card {
+			background: var(--card-bg);
+			color: var(--dark);
+			border: 1px solid var(--border);
+			border-radius: var(--radius);
+			box-shadow: var(--shadow);
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+		.card:hover {
+			transform: translateY(-4px);
+			box-shadow: var(--shadow-hover);
+		}
+
+		.card-body {
+			padding: 1.5rem;
+		}
+		.card-content {
+			padding: 1.5rem;
+			padding-top: 0;
+		}
+
+		.card-icon {
+			width: 48px;
+			height: 48px;
+			background: color-mix(in srgb, var(--brand) 10%, white);
+			border-radius: 12px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 1rem;
+			transition: background 0.2s ease, color 0.2s ease;
+			color: var(--brand); /* affects SVG (currentColor) */
+		}
+		.card:hover .card-icon {
+			background: var(--brand);
+			color: #fff;
+		}
+
+		.card h3 {
+			margin: 0;
+			font-weight: 600;
+			letter-spacing: 0.2px;
+			font-size: 1.25rem;
+			color: var(--dark);
+		}
+
+		.desc {
+			color: var(--muted);
+			font-size: 0.95rem;
+			margin: 0 0 1rem;
+		}
+
+		/* Inline button link */
+		.btn-inline {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			height: 36px;
+			padding: 0;
+			border-radius: 8px;
+			font-size: 0.9rem;
+			font-weight: 600;
+			color: var(--brand);
+			text-decoration: none;
+			transition: color 0.15s ease, background 0.15s ease;
+			outline: none;
+		}
+		.btn-inline:hover {
+			color: var(--brand-hover);
+		}
+		.btn-inline:focus-visible {
+			outline: 2px solid color-mix(in srgb, var(--brand) 50%, transparent);
+			outline-offset: 2px;
+		}
+		.btn-inline .arrow {
+			width: 16px;
+			height: 16px;
+			flex-shrink: 0;
+		}
+	</style>
+	<body>
+		<section class="services-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Additional Services</h2>
+					<p>Comprehensive immigration solutions for every situation</p>
+				</div>
+
+				<div class="card-grid">
+					<!-- Card 1 -->
+					<article class="card">
+						<div class="card-body">
+							<div class="card-icon">
+								<!-- Heart icon -->
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true">
+									<path
+										d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+								</svg>
+							</div>
+							<h3>Family Sponsorship</h3>
+						</div>
+						<div class="card-content">
+							<p class="desc">
+								Sponsor your spouse, children, parents or grandparents
+							</p>
+							<a
+								class="btn-inline"
+								href="/services/family"
+								data-discover="true">
+								Learn More
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="arrow"
+									aria-hidden="true">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</article>
+
+					<!-- Card 2 -->
+					<article class="card">
+						<div class="card-body">
+							<div class="card-icon">
+								<!-- File-text icon -->
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true">
+									<path
+										d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+									<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+									<path d="M10 9H8"></path>
+									<path d="M16 13H8"></path>
+									<path d="M16 17H8"></path>
+								</svg>
+							</div>
+							<h3>LMIA Services</h3>
+						</div>
+						<div class="card-content">
+							<p class="desc">Labour Market Impact Assessment for employers</p>
+							<a class="btn-inline" href="/services/lmia" data-discover="true">
+								Learn More
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="arrow"
+									aria-hidden="true">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</article>
+
+					<!-- Card 3 -->
+					<article class="card">
+						<div class="card-body">
+							<div class="card-icon">
+								<!-- Shield icon -->
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true">
+									<path
+										d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+								</svg>
+							</div>
+							<h3>Humanitarian &amp; Compassionate</h3>
+						</div>
+						<div class="card-content">
+							<p class="desc">
+								H&amp;C applications for exceptional circumstances
+							</p>
+							<a
+								class="btn-inline"
+								href="/services/humanitarian"
+								data-discover="true">
+								Learn More
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									class="arrow"
+									aria-hidden="true">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

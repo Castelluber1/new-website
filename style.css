@@ -7,6 +7,7 @@
 	--muted: #62656f;
 	--radius: 12px;
 	--header-h: 70px;
+	--blue: linear-gradient(180deg, #0e2a47 0%, #163a63 100%);
 }
 *,
 *::before,
@@ -152,7 +153,7 @@ h1 {
 .nav-right .cta-btn {
 	padding: 0.4rem 0.9rem;
 	font-size: 0.9rem;
-	letter-spacing: 0.2cap;
+	/* letter-spacing: 0.2cap; */
 }
 
 #hero .badges {
@@ -197,7 +198,7 @@ h1 {
 	pointer-events: none; /* não intercepta cliques */
 }
 #hero .left {
-	width: 55%;
+	width: 60%;
 	align-items: center;
 	/* padding: 4rem 2rem; */
 	/* padding-left: 200px; /* Removido no v2 */
@@ -393,7 +394,7 @@ h1 {
 }
 /* Footer */
 footer {
-	background: var(--dark);
+	background: var(--blue);
 	color: var(--light);
 	padding: 3rem 2rem;
 }
@@ -979,23 +980,6 @@ h2.subpage {
 	object-fit: contain;
 }
 
-/* Highlight active section */
-/* #about.active {
-	background: #333;
-	transition: background 2s;
-} */
-/* #about.active h2,
-#testimonials.active h2 {
-	color: #fff;
-	transition: background 2s;
-} */
-
-#testimonials.active {
-	background: linear-gradient(180deg, #0e2a47 0%, #163a63 100%);
-	transition: background 3s;
-	color: #fff;
-}
-
 /* foto */
 #about .about-photo img {
 	width: 100%;
@@ -1266,7 +1250,6 @@ div.reviews {
 .reviews-footer a {
 	font-size: 22px;
 	font-weight: 500;
-	color: #f7f8fa;
 	text-decoration: none;
 	font-family: poppins, sans-serif;
 }
@@ -1562,7 +1545,8 @@ div.reviews {
 	padding: 0px;
 	text-align: left;
 	align-items: flex-start;
-	background-image: url(/img/Vancouver-bg-draw.webp);
+	/* background-image: url(/img/Vancouver-bg-draw.webp); */
+	background-image: url(/img/van.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: bottom;
@@ -1575,7 +1559,7 @@ div.reviews {
 }
 
 .mask.active {
-	background: rgba(255, 255, 255, 0.9);
+	background: rgba(247, 248, 250, 0.9);
 }
 
 .timeline {
@@ -1801,6 +1785,7 @@ div.reviews {
 
 .container.mw900 {
 	padding: 0;
+	max-width: 900px;
 }
 .highlight {
 	text-align: center;
@@ -1988,13 +1973,13 @@ p.statb {
 .reason-list {
 	display: grid;
 	grid-template-columns: 1fr 1fr; /* duas colunas iguais */
-	gap: 0.5rem 10%; /* espaço vertical e horizontal */
-	max-width: 600px;
+	gap: 0.5rem 5%; /* espaço vertical e horizontal */
+	max-width: 750px;
 	width: 100%;
 	margin: 20px auto;
 	padding: 0;
 	list-style: none;
-	justify-items: center;
+	justify-items: start;
 }
 
 .reason-list li {
@@ -2039,7 +2024,8 @@ p.statb {
 }
 
 .credential-text {
-	font-size: 2rem;
+	font-size: clamp(1.2rem, 1.8rem, 1.9rem);
+
 	color: #333;
 	line-height: 1.6;
 	margin-bottom: 20px;
@@ -2098,6 +2084,7 @@ p.statb {
 	color: var(--muted);
 	max-width: 80%;
 	margin: 40px auto;
+	text-align: center;
 }
 
 .hiw-steps {
@@ -2788,6 +2775,7 @@ a.btn-inline {
 .team-body {
 	padding: 1.25rem 1.25rem 1rem;
 	background: var(--gray);
+	height: -webkit-fill-available;
 }
 .team-body h3 {
 	margin: 0 0 0.25rem;
@@ -3061,4 +3049,80 @@ a.btn-inline {
 	.wa-float {
 		transition: none;
 	}
+}
+
+/* //////////////// */
+/* ===== Seção “Conhecendo a Larissa” ===== */
+.bio-larissa .bio-wrap {
+	display: grid;
+	grid-template-columns: 360px 1fr; /* foto | conteúdo */
+	gap: 24px;
+	align-items: start;
+}
+@media (max-width: 900px) {
+	.bio-larissa .bio-wrap {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Foto com cantos suaves */
+.bio-larissa .bio-photo {
+	margin: 0;
+	width: 100%;
+	max-width: 360px;
+	border-radius: 14px;
+	overflow: hidden;
+	background: #f3f4f6;
+	box-shadow: 0 1px 0 #eef2f7 inset;
+}
+.bio-larissa .bio-photo img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+/* Intro grande e limpa (sem bullets) */
+.bio-larissa .bio-intro {
+	margin: 0 0 12px;
+	font-size: clamp(16px, 1.4vw, 18px);
+	line-height: 1.6;
+	color: #374151;
+}
+
+/* Duas colunas internas */
+.bio-larissa .bio-columns {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 18px 24px;
+}
+@media (max-width: 640px) {
+	.bio-larissa .bio-columns {
+		grid-template-columns: 1fr;
+	}
+}
+
+.bio-larissa .bio-col h3 {
+	margin: 8px 0 8px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.bio-larissa .bio-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	color: #374151;
+	line-height: 1.6;
+}
+
+/* CTAs alinhados à esquerda, com respiro */
+.bio-larissa .bio-cta {
+	margin-top: 14px;
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
 }

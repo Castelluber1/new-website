@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="pt-BR">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 		<title>Blog — Up Immigration</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com" rel="preconnect" />
+		<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
 			rel="stylesheet" />
-		<link rel="stylesheet" href="style.css" />
-		<script src="script.js" defer></script>
+		<link href="../style.css" rel="stylesheet" />
+		<script defer="" src="../script.js"></script>
 		<style>
 			:root {
 				--brand: #b8001c;
@@ -287,85 +288,89 @@
 			} /* keep title link above overlay if you add one */
 		</style>
 	</head>
-	<div data-include="../sections/header.html"></div>
+	<div data-include="sections/header.html"></div>
 	<body>
 		<!-- Hero Section -->
 		<section class="blog-hero">
 			<div class="blog-hero-content">
-				<h1>Immigration Insights & Updates</h1>
+				<h1>Insights e Atualizações de Imigração</h1>
 				<p>
-					Expert guidance, success stories, and the latest news to help you
-					navigate your Canadian immigration journey
+					Orientação especializada, histórias de sucesso e as últimas notícias
+					para ajudar você a navegar sua jornada de imigração para o Canadá
 				</p>
 			</div>
 		</section>
-
 		<!-- Category Filter -->
 		<div class="category-filter">
 			<div class="filter-container">
 				<button class="filter-btn active" data-category="all">
-					All Articles
+					Todos os Artigos
 				</button>
-				<button class="filter-btn" data-category="study">Study Permits</button>
-				<button class="filter-btn" data-category="work">Work Permits</button>
+				<button class="filter-btn" data-category="study">
+					Vistos de Estudo
+				</button>
+				<button class="filter-btn" data-category="work">
+					Vistos de Trabalho
+				</button>
 				<button class="filter-btn" data-category="pr">
-					Permanent Residence
+					Residência Permanente
 				</button>
 				<button class="filter-btn" data-category="tips">
-					Immigration Tips
+					Dicas de Imigração
 				</button>
-				<button class="filter-btn" data-category="news">Latest News</button>
+				<button class="filter-btn" data-category="news">
+					Últimas Notícias
+				</button>
 			</div>
 		</div>
 		<div class="blog-container">
 			<!-- ===== Latest Articles ===== -->
 			<div class="section-header">
-				<h2 class="section-title">Latest Articles</h2>
+				<h2 class="section-title">Artigos Recentes</h2>
 			</div>
-
 			<div class="blog-grid">
 				<!-- 1) Oct 04, 2025 -->
 				<article class="blog-card" data-category="study" data-date="2025-10-04">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/checklist.webp"
 							alt="Study Permit checklist"
-							loading="lazy" />
-						<span class="blog-category">Study</span>
+							loading="lazy"
+							src="../img-blog/checklist.webp" />
+						<span class="blog-category">Estudo</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/study-permit-checklist.html"
-								>Study in Canada: Essential Study Permit Checklist</a
+							<a href="../blog-posts/checklist-visto-de-estudo.html"
+								>Estudar no Canadá: Checklist Essencial do Visto de Estudo</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							Documents, proof of funds, timelines—everything to prepare so you
-							avoid delays or additional document requests.
+							Documentos, comprovação financeira, prazos — tudo para você se
+							preparar e evitar atrasos ou pedidos adicionais de documentos
+							(ADR).
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>6 min read</span>
+							<span class="time-ago"></span><span>Leitura de 6 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Study in Canada — Essential Study Permit Checklist"
 						class="stretched-link"
-						href="blog-posts/study-permit-checklist.html"
-						aria-label="Read: Study in Canada — Essential Study Permit Checklist"></a>
+						href="../blog-posts/checklist-visto-de-estudo.html"></a>
 				</article>
-
 				<!-- 2) Oct 02, 2025 -->
 				<article class="blog-card" data-category="tips" data-date="2025-10-02">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/status-restauration.webp"
 							alt="Restoration of status guide"
-							loading="lazy" />
-						<span class="blog-category">Tips</span>
+							loading="lazy"
+							src="../img-blog/status-restauration.webp" />
+						<span class="blog-category">Dicas</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/restauracao-de-status.html"
-								>Restoration of Status: What to Do</a
+							<a href="../blog-posts/restauracao-de-status.html"
+								>Restauração de Status: O que Fazer</a
 							>
 						</h3>
 						<p class="blog-excerpt">
@@ -373,28 +378,27 @@
 							a clear explanation letter to IRCC.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>7 min read</span>
+							<span class="time-ago"></span><span>Leitura de 7 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Restoration of Status — What to Do"
 						class="stretched-link"
-						href="blog-posts/restauracao-de-status.html"
-						aria-label="Read: Restoration of Status — What to Do"></a>
+						href="../blog-posts/restauracao-de-status.html"></a>
 				</article>
-
 				<!-- 3) Sep 30, 2025 -->
 				<article class="blog-card" data-category="tips" data-date="2025-09-30">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/funds.webp"
 							alt="Proof of funds tips"
-							loading="lazy" />
-						<span class="blog-category">Tips</span>
+							loading="lazy"
+							src="../img-blog/funds.webp" />
+						<span class="blog-category">Dicas</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/proof-of-funds-2025.html"
-								>Proof of Funds 2025: How to Show Your Money</a
+							<a href="../blog-posts/comprovacao-financeira-2025.html"
+								>Comprovação Financeira 2025: Como Apresentar</a
 							>
 						</h3>
 						<p class="blog-excerpt">
@@ -402,54 +406,52 @@
 							and the common mistakes that trigger ADRs.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>6 min read</span>
+							<span class="time-ago"></span><span>Leitura de 6 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Proof of Funds 2025 — How to Show Your Money"
 						class="stretched-link"
-						href="/blog-posts/proof-of-funds-2025.html"
-						aria-label="Read: Proof of Funds 2025 — How to Show Your Money"></a>
+						href="../blog-posts/comprovacao-financeira-2025.html"></a>
 				</article>
-
 				<!-- 4) Sep 28, 2025 -->
 				<article class="blog-card" data-category="pr" data-date="2025-09-28">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/All_Provinces_and_Territories+(1).webp"
 							alt="PNP overview"
-							loading="lazy" />
-						<span class="blog-category">Permanent Residence</span>
+							loading="lazy"
+							src="../img-blog/All_Provinces_and_Territories+(1).webp" />
+						<span class="blog-category">Residência Permanente</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/pnp-por-provincia.html"
-								>PNP by Province: A Practical Overview</a
+							<a href="../blog-posts/pnp-por-provincia.html"
+								>PNP por Província: Visão Prática</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							When to consider provincial nominations, frequent criteria, and
-							how to align with your CRS and occupation.
+							Quando considerar nomeações provinciais, critérios frequentes e
+							como alinhar com seu CRS e ocupação.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>8 min read</span>
+							<span class="time-ago"></span><span>Leitura de 8 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: PNP by Province — A Practical Overview"
 						class="stretched-link"
-						href="/blog-posts/pnp-por-provincia.html"
-						aria-label="Read: PNP by Province — A Practical Overview"></a>
+						href="../blog-posts/pnp-por-provincia.html"></a>
 				</article>
-
 				<!-- 5) Sep 26, 2025 -->
 				<article class="blog-card" data-category="work" data-date="2025-09-26">
 					<div class="blog-card-image">
-						<img src="/img-blog/pgwp.webp" alt="PGWP guide" loading="lazy" />
-						<span class="blog-category">Work</span>
+						<img alt="PGWP guide" loading="lazy" src="../img-blog/pgwp.webp" />
+						<span class="blog-category">Trabalho</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/pgwp-guia-completo.html"
-								>PGWP: Complete Guide for New Graduates</a
+							<a href="../blog-posts/pgwp-guia-completo.html"
+								>PGWP: Guia Completo para Recém-formados</a
 							>
 						</h3>
 						<p class="blog-excerpt">
@@ -457,28 +459,27 @@
 							quietly ruin eligibility.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>7 min read</span>
+							<span class="time-ago"></span><span>Leitura de 7 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: PGWP — Complete Guide for New Graduates"
 						class="stretched-link"
-						href="/blog-posts/pgwp-guia-completo.html"
-						aria-label="Read: PGWP — Complete Guide for New Graduates"></a>
+						href="../blog-posts/pgwp-guia-completo.html"></a>
 				</article>
-
 				<!-- 6) Sep 24, 2025 (NEW) -->
 				<article class="blog-card" data-category="pr" data-date="2025-09-24">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/express-entry.webp"
 							alt="Express Entry CRS"
-							loading="lazy" />
-						<span class="blog-category">Permanent Residence</span>
+							loading="lazy"
+							src="../img-blog/express-entry.webp" />
+						<span class="blog-category">Residência Permanente</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/express-entry-crs.html"
-								>Express Entry: CRS, Profiles & Common Mistakes</a
+							<a href="../blog-posts/express-entry-crs.html"
+								>Express Entry: CRS, Perfis e Erros Comuns</a
 							>
 						</h3>
 						<p class="blog-excerpt">
@@ -486,203 +487,194 @@
 							that keep candidates from getting an ITA.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>5 min read</span>
+							<span class="time-ago"></span><span>Leitura de 5 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Express Entry — CRS, Profiles &amp; Common Mistakes"
 						class="stretched-link"
-						href="/blog-posts/express-entry-crs.html"
-						aria-label="Read: Express Entry — CRS, Profiles & Common Mistakes"></a>
+						href="../blog-posts/express-entry-crs.html"></a>
 				</article>
 			</div>
-
 			<!-- ===== Top Reads ===== -->
 			<div class="section-header">
-				<h2 class="section-title">Top Reads</h2>
+				<h2 class="section-title">Mais Lidos</h2>
 			</div>
-
 			<div class="blog-grid">
 				<!-- 1) Sep 22, 2025 -->
 				<article class="blog-card" data-category="work" data-date="2025-09-22">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/spouse work permit.webp"
 							alt="Spousal open work permit"
-							loading="lazy" />
-						<span class="blog-category">Work</span>
+							loading="lazy"
+							src="../img-blog/spouse work permit.webp" />
+						<span class="blog-category">Trabalho</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/open-work-permit-conjuge.html"
-								>Spousal Open Work Permit for Students/Workers</a
+							<a href="../blog-posts/open-work-permit-conjuge.html"
+								>Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							Eligibility rules, key documents, and how to prove the
-							relationship and the principal’s valid status.
+							Regras de elegibilidade, documentos-chave e como comprovar o
+							relacionamento e o status válido do principal.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>5 min read</span>
+							<span class="time-ago"></span><span>Leitura de 5 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Spousal Open Work Permit for Students/Workers"
 						class="stretched-link"
-						href="/blog-posts/open-work-permit-conjuge.html"
-						aria-label="Read: Spousal Open Work Permit for Students/Workers"></a>
+						href="../blog-posts/open-work-permit-conjuge.html"></a>
 				</article>
-
 				<!-- 2) Sep 20, 2025 -->
 				<article class="blog-card" data-category="work" data-date="2025-09-20">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/workpermit.webp"
 							alt="Work permit inside vs outside Canada"
-							loading="lazy" />
-						<span class="blog-category">Work</span>
+							loading="lazy"
+							src="../img-blog/workpermit.webp" />
+						<span class="blog-category">Trabalho</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/work-permit-dentro-fora.html"
-								>Work Permit: Apply Inside vs Outside Canada</a
+							<a href="../blog-posts/work-permit-dentro-fora.html"
+								>Work Permit: Aplicar de Dentro vs. Fora do Canadá</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							Pathway differences, permit types (closed, open, PGWP), and the
-							key eligibility checkpoints for each route.
+							Diferenças de caminho, tipos de permissão (fechada, aberta, PGWP)
+							e pontos de elegibilidade para cada rota.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>7 min read</span>
+							<span class="time-ago"></span><span>Leitura de 7 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Work Permit — Apply Inside vs Outside Canada"
 						class="stretched-link"
-						href="/blog-posts/work-permit-dentro-fora.html"
-						aria-label="Read: Work Permit — Apply Inside vs Outside Canada"></a>
+						href="../blog-posts/work-permit-dentro-fora.html"></a>
 				</article>
-
 				<article class="blog-card" data-category="study" data-date="2025-09-18">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/trabalhar e estudar.webp"
 							alt="Work and study rules"
-							loading="lazy" />
-						<span class="blog-category">Study</span>
+							loading="lazy"
+							src="../img-blog/trabalhar e estudar.webp" />
+						<span class="blog-category">Estudo</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/trabalhar-e-estudar.html"
-								>Can You Work and Study? Rules & Limits</a
+							<a href="../blog-posts/trabalhar-e-estudar.html"
+								>Posso Trabalhar e Estudar? Regras e Limites</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							Hour limits, academic breaks, and the natural path toward the PGWP
-							after graduation.
+							Limites de horas, pausas acadêmicas e o caminho natural para o
+							PGWP após a graduação.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>5 min read</span>
+							<span class="time-ago"></span><span>Leitura de 5 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Can You Work and Study? Rules &amp; Limits"
 						class="stretched-link"
-						href="/blog-posts/trabalhar-e-estudar.html"
-						aria-label="Read: Can You Work and Study? Rules & Limits"></a>
+						href="../blog-posts/trabalhar-e-estudar.html"></a>
 				</article>
-
 				<!-- 4) Sep 16, 2025 -->
 				<article class="blog-card" data-category="study" data-date="2025-09-16">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/checklist.webp"
 							alt="Study plan tips"
-							loading="lazy" />
-						<span class="blog-category">Study</span>
+							loading="lazy"
+							src="../img-blog/checklist.webp" />
+						<span class="blog-category">Estudo</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="blog-posts/study-plan-que-convence.html"
-								>Study Plan: How to Write a Convincing Statement</a
+							<a href="../blog-posts/study-plan-que-convence.html"
+								>Study Plan: Como Escrever uma Declaração Convincente</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							Ideal structure, course-to-career connection, and ways to
-							demonstrate strong home-country ties.
+							Estrutura ideal, conexão curso-carreira e formas de demonstrar
+							laços sólidos com o país de origem.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>6 min read</span>
+							<span class="time-ago"></span><span>Leitura de 6 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Study Plan — How to Write a Convincing Statement"
 						class="stretched-link"
-						href="blog-posts/study-plan-que-convence.html"
-						aria-label="Read: Study Plan — How to Write a Convincing Statement"></a>
+						href="../blog-posts/study-plan-que-convence.html"></a>
 				</article>
-
 				<!-- 5) Sep 14, 2025 (NEW) -->
 				<article class="blog-card" data-category="tips" data-date="2025-09-14">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/people-signing-docs.small.webp"
 							alt="Resume mistakes"
-							loading="lazy" />
-						<span class="blog-category">Tips</span>
+							loading="lazy"
+							src="../img-blog/people-signing-docs.small.webp" />
+						<span class="blog-category">Dicas</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
 							<a
-								href="/blog-posts/5-Mistakes-Newcomers-Make-on-Their-Resume.html"
-								>5 Mistakes Newcomers Make on Their Resume</a
+								href="../blog-posts/5-erros-comuns-no-curriculo-de-recem-chegados.html"
+								>5 Erros que Recém-chegados Cometem no Currículo</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							The most common resume errors in Canada—and how to fix them to get
-							more interviews.
+							Os erros de currículo mais comuns no Canadá — e como corrigi-los
+							para conseguir mais entrevistas.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>4 min read</span>
+							<span class="time-ago"></span><span>Leitura de 4 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: 5 Mistakes Newcomers Make on Their Resume"
 						class="stretched-link"
-						href="/blog-posts/5-Mistakes-Newcomers-Make-on-Their-Resume.html"
-						aria-label="Read: 5 Mistakes Newcomers Make on Their Resume"></a>
+						href="../blog-posts/5-erros-comuns-no-curriculo-de-recem-chegados.html"></a>
 				</article>
-
 				<!-- 6) Sep 12, 2025 (NEW) -->
 				<article class="blog-card" data-category="tips" data-date="2025-09-12">
 					<div class="blog-card-image">
 						<img
-							src="/img-blog/biometrics.webp"
 							alt="Biometrics and medicals"
-							loading="lazy" />
-						<span class="blog-category">Tips</span>
+							loading="lazy"
+							src="../img-blog/biometrics.webp" />
+						<span class="blog-category">Dicas</span>
 					</div>
 					<div class="blog-card-content">
 						<h3 class="blog-title">
-							<a href="/blog-posts/biometria-exames-medicos.html"
-								>Biometrics & Medicals: What to Expect</a
+							<a href="../blog-posts/biometria-exames-medicos.html"
+								>Biometria e Exames Médicos: O que Esperar</a
 							>
 						</h3>
 						<p class="blog-excerpt">
-							Typical sequence, documents to bring, and realistic timelines for
-							results.
+							Sequência típica, documentos a levar e prazos realistas para
+							resultados.
 						</p>
 						<div class="blog-meta">
-							<span class="time-ago"></span><span>6 min read</span>
+							<span class="time-ago"></span><span>Leitura de 6 min</span>
 						</div>
 					</div>
 					<a
+						aria-label="Read: Biometrics &amp; Medicals — What to Expect"
 						class="stretched-link"
-						href="/blog-posts/biometria-exames-medicos.html"
-						aria-label="Read: Biometrics & Medicals — What to Expect"></a>
+						href="../blog-posts/biometria-exames-medicos.html"></a>
 				</article>
 			</div>
-
 			<!-- Load More -->
 			<div class="load-more-section">
-				<button class="load-more-btn">Load More Articles</button>
+				<button class="load-more-btn">Carregar Mais Artigos</button>
 			</div>
 		</div>
-
 		<script>
 			// Calculate relative time
 			function getRelativeTime(dateString) {
