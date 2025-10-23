@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>
+			Express Entry — Permanent Residence in Canada | UP Immigration
+		</title>
+		<meta
+			name="description"
+			content="Understand Express Entry with clarity. Learn how CRS works, what IRCC looks for, and how UP Immigration builds a plan to reach permanent residence." />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+			rel="stylesheet" />
+
+		<style>
+			:root {
+				--brand: #b8001c;
+				--brand-dark: #8f0016;
+				--ink: #151515;
+				--muted: #6b7280;
+				--bg: #ffffff;
+				--bg-soft: #fafafa;
+				--card: #ffffff;
+				--border: #e5e7eb;
+				--focus: #1d4ed8;
+				--radius: 16px;
+				--shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				background: var(--bg);
+				color: var(--ink);
+				font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+					sans-serif;
+				line-height: 1.6;
+			}
+			img {
+				max-width: 100%;
+				display: block;
+			}
+			a {
+				color: var(--brand);
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
+			.container {
+				max-width: 1120px;
+				margin: 0 auto;
+				padding: 0 20px;
+			}
+			.btn {
+				display: inline-block;
+				padding: 14px 22px;
+				border-radius: 999px;
+				font-weight: 600;
+				letter-spacing: 0.2px;
+				border: 2px solid var(--brand);
+				transition: 0.2s;
+				cursor: pointer;
+				text-align: center;
+			}
+			.btn-primary {
+				background: var(--brand);
+				color: #fff;
+				border-color: var(--brand);
+			}
+			.btn-primary:hover {
+				background: var(--brand-dark);
+				border-color: var(--brand-dark);
+			}
+			.btn-ghost {
+				background: transparent;
+				color: var(--brand);
+			}
+			.btn-ghost:hover {
+				background: #fff;
+			}
+			.section {
+				padding: 64px 0;
+			}
+			.section.soft {
+				background: var(--bg-soft);
+			}
+			.section-header {
+				margin-bottom: 28px;
+			}
+			.section-header h2 {
+				font-size: 32px;
+				line-height: 1.2;
+				margin: 0 0 10px;
+			}
+			.section-header p {
+				color: var(--muted);
+				margin: 0;
+			}
+			.hero {
+				padding: 96px 0;
+				background: radial-gradient(
+						1200px 600px at 80% -10%,
+						rgba(184, 0, 28, 0.08),
+						transparent 60%
+					),
+					radial-gradient(
+						1000px 500px at -10% -30%,
+						rgba(184, 0, 28, 0.06),
+						transparent 60%
+					);
+			}
+			.hero h1 {
+				font-size: 40px;
+				line-height: 1.15;
+				margin: 0 0 16px;
+			}
+			.hero p {
+				color: var(--muted);
+				max-width: 720px;
+				margin: 0 0 28px;
+			}
+			.cta-row {
+				display: flex;
+				gap: 14px;
+				flex-wrap: wrap;
+			}
+			.grid {
+				display: grid;
+				gap: 24px;
+			}
+			@media (min-width: 900px) {
+				.grid.two {
+					grid-template-columns: 1.1fr 0.9fr;
+				}
+				.grid.three {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				.grid.four {
+					grid-template-columns: repeat(4, 1fr);
+				}
+			}
+			.card {
+				background: var(--card);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 24px;
+				box-shadow: var(--shadow);
+			}
+			.muted {
+				color: var(--muted);
+			}
+			.quote {
+				font-size: 16px;
+				background: #fff;
+				border-left: 4px solid var(--brand);
+				padding: 16px 18px;
+				border-radius: 8px;
+			}
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 12px;
+				color: #fff;
+				background: var(--brand);
+				padding: 8px 12px;
+				border-radius: 999px;
+			}
+			.list {
+				margin: 0;
+				padding-left: 18px;
+			}
+			.list li {
+				margin: 6px 0;
+			}
+			.flow {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+			}
+			.flow .pill {
+				flex: 1 1 220px;
+				background: #fff;
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				padding: 16px;
+			}
+			.kpi {
+				display: flex;
+				align-items: center;
+				gap: 14px;
+			}
+			.kpi strong {
+				font-size: 28px;
+			}
+			.avatar {
+				display: flex;
+				gap: 16px;
+				align-items: center;
+			}
+			.avatar img {
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 2px solid var(--border);
+			}
+			.timeline {
+				display: grid;
+				gap: 16px;
+			}
+			.step {
+				display: flex;
+				gap: 14px;
+			}
+			.step .num {
+				min-width: 36px;
+				height: 36px;
+				border-radius: 50%;
+				background: var(--brand);
+				color: #fff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 700;
+			}
+			.tile {
+				background: #fff;
+				border: 1px solid var(--border);
+				border-radius: 14px;
+				padding: 18px;
+				text-align: center;
+			}
+			.tile h4 {
+				margin: 10px 0 6px;
+			}
+			.faq details {
+				background: #fff;
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				padding: 16px;
+			}
+			.faq summary {
+				font-weight: 600;
+				cursor: pointer;
+				outline: none;
+			}
+			.faq details + details {
+				margin-top: 12px;
+			}
+			.cta-final {
+				text-align: center;
+				padding: 72px 0;
+			}
+			.sr-only {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+			/* Focus states */
+			.btn:focus,
+			a:focus,
+			button:focus,
+			summary:focus {
+				outline: 3px solid var(--focus);
+				outline-offset: 2px;
+				border-radius: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Optional: replace with your include header -->
+		<header class="hero" role="banner" aria-label="Hero">
+			<div class="container">
+				<span class="badge" aria-label="Express Entry guide"
+					>Express Entry guide</span
+				>
+				<h1>
+					Your pathway to permanent residence in Canada starts with clarity
+				</h1>
+				<p>
+					Express Entry is Canada’s main immigration system for skilled workers.
+					Here you will learn what IRCC looks for, how the CRS score works, and
+					how to position your profile for an invitation.
+				</p>
+				<div class="cta-row" role="group" aria-label="Primary actions">
+					<a class="btn btn-primary" href="#book">Book consultation $175 CAD</a>
+					<a class="btn btn-ghost" href="#learn"
+						>Learn how Express Entry works</a
+					>
+				</div>
+			</div>
+		</header>
+
+		<!-- Common frustrations -->
+		<section
+			class="section"
+			id="frustrations"
+			aria-labelledby="frustrations-title">
+			<div class="container grid two">
+				<div>
+					<div class="section-header">
+						<h2 id="frustrations-title">You are not alone</h2>
+						<p class="muted">Three common concerns we hear every week</p>
+					</div>
+					<div class="grid">
+						<div class="quote">
+							I studied, worked, speak English, but I still do not know if I
+							qualify.
+						</div>
+						<div class="quote">
+							I tried simulators and each one shows a different result.
+						</div>
+						<div class="quote">
+							I am afraid to invest time and money and later learn I do not have
+							enough points.
+						</div>
+					</div>
+				</div>
+				<aside class="card" aria-label="Why this happens">
+					<h3 style="margin: 0 0 8px">Why this happens</h3>
+					<p class="muted">
+						Express Entry calculates a CRS score using age, education, work
+						history, and language. Without a proper review, people make choices
+						that lower their score or delay their plan.
+					</p>
+					<ul class="list">
+						<li>Missed points from language or ECA</li>
+						<li>Wrong assumptions about work experience</li>
+						<li>No plan for provincial options or spousal factors</li>
+					</ul>
+				</aside>
+			</div>
+		</section>
+
+		<!-- How it works -->
+		<section class="section soft" id="learn" aria-labelledby="works-title">
+			<div class="container">
+				<div class="section-header">
+					<h2 id="works-title">How Express Entry works</h2>
+					<p class="muted">
+						A selection system that manages three federal pathways
+					</p>
+				</div>
+
+				<div class="flow" role="list" aria-label="Programs">
+					<div class="pill" role="listitem">
+						<strong>Federal Skilled Worker</strong>
+						<p class="muted" style="margin: 6px 0 0">
+							For professionals with foreign work experience.
+						</p>
+					</div>
+					<div class="pill" role="listitem">
+						<strong>Canadian Experience Class</strong>
+						<p class="muted" style="margin: 6px 0 0">
+							For those who worked or studied in Canada.
+						</p>
+					</div>
+					<div class="pill" role="listitem">
+						<strong>Federal Skilled Trades</strong>
+						<p class="muted" style="margin: 6px 0 0">
+							For technical and trade workers.
+						</p>
+					</div>
+				</div>
+
+				<div class="card" style="margin-top: 22px">
+					<h3 style="margin-top: 0">CRS score and the pool</h3>
+					<p class="muted">
+						You enter the pool and your profile is ranked with the Comprehensive
+						Ranking System. The goal is to enter with the strongest possible
+						profile.
+					</p>
+					<div class="kpi" aria-label="Score example">
+						<strong aria-hidden="true">420 → 475</strong>
+						<span class="muted"
+							>Example of improvement after language upgrade and ECA
+							review</span
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- What makes the difference -->
+		<section class="section" aria-labelledby="difference-title">
+			<div class="container grid two">
+				<div>
+					<div class="section-header">
+						<h2 id="difference-title">Small changes create big gains</h2>
+						<p class="muted">Even modest updates can add 50 to 100 points</p>
+					</div>
+					<ul class="list">
+						<li>Retake IELTS or CELPIP to lift language score</li>
+						<li>Reassess your diploma with the correct ECA choice</li>
+						<li>Gain eligible Canadian work experience where possible</li>
+						<li>Explore provincial nomination options</li>
+						<li>Optimize spousal points and documentation</li>
+					</ul>
+				</div>
+				<aside class="card" aria-label="Before and after">
+					<h3 style="margin: 0 0 8px">Before and after</h3>
+					<p class="muted">
+						Make the invite more likely by fixing the right points first. We
+						will show you which moves matter for your profile.
+					</p>
+					<div class="kpi">
+						<strong>Months not years</strong>
+						<span class="muted">is the result when the profile is ready</span>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<!-- How we help -->
+		<section class="section soft" aria-labelledby="help-title">
+			<div class="container grid two">
+				<div>
+					<div class="section-header">
+						<h2 id="help-title">How we help</h2>
+						<p class="muted">Clear steps and a practical plan</p>
+					</div>
+					<div class="timeline">
+						<div class="step">
+							<div class="num" aria-hidden="true">1</div>
+							<div>
+								<strong>Profile review</strong>
+								<p class="muted" style="margin: 6px 0 0">
+									We review education, work history, language, and goals.
+								</p>
+							</div>
+						</div>
+						<div class="step">
+							<div class="num" aria-hidden="true">2</div>
+							<div>
+								<strong>Real score simulation</strong>
+								<p class="muted" style="margin: 6px 0 0">
+									We simulate your CRS with current rules and real scenarios.
+								</p>
+							</div>
+						</div>
+						<div class="step">
+							<div class="num" aria-hidden="true">3</div>
+							<div>
+								<strong>Path to more points</strong>
+								<p class="muted" style="margin: 6px 0 0">
+									We identify what to improve and in which order.
+								</p>
+							</div>
+						</div>
+						<div class="step">
+							<div class="num" aria-hidden="true">4</div>
+							<div>
+								<strong>Action plan</strong>
+								<p class="muted" style="margin: 6px 0 0">
+									You leave with a clear plan to reach eligibility and the
+									invite.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<aside class="card" aria-label="Consultant">
+					<div class="avatar">
+						<img
+							src="img/larissa-headshot.webp"
+							alt="Larissa Castelluber, RCIC" />
+						<div>
+							<strong>Larissa Castelluber</strong>
+							<p class="muted" style="margin: 4px 0 0">
+								Regulated Canadian Immigration Consultant
+							</p>
+						</div>
+					</div>
+					<hr
+						style="
+							border: none;
+							border-top: 1px solid var(--border);
+							margin: 16px 0;
+						" />
+					<p class="muted">
+						Seven plus years in global mobility and Canadian immigration. Clear
+						guidance, consistent delivery, and a plan that fits your life.
+					</p>
+					<div class="kpi">
+						<strong>Consultation</strong> <span class="muted">$175 CAD</span>
+					</div>
+					<div class="cta-row" style="margin-top: 12px">
+						<a class="btn btn-primary" href="#book">Book now</a>
+						<a class="btn btn-ghost" href="#faq">View common questions</a>
+					</div>
+				</aside>
+			</div>
+		</section>
+
+		<!-- Who this is for -->
+		<section class="section" aria-labelledby="for-title">
+			<div class="container">
+				<div class="section-header">
+					<h2 id="for-title">Who this is for</h2>
+					<p class="muted">See yourself in one of these groups</p>
+				</div>
+				<div class="grid four">
+					<div class="tile">
+						<img src="img/icon-professionals.svg" alt="" aria-hidden="true" />
+						<h4>Professionals</h4>
+						<p class="muted">
+							Higher education and work experience seeking a path to PR.
+						</p>
+					</div>
+					<div class="tile">
+						<img src="img/icon-students.svg" alt="" aria-hidden="true" />
+						<h4>Students</h4>
+						<p class="muted">Planning for PR after a study program and PGWP.</p>
+					</div>
+					<div class="tile">
+						<img src="img/icon-couples.svg" alt="" aria-hidden="true" />
+						<h4>Couples</h4>
+						<p class="muted">
+							A plan that considers both profiles and spousal points.
+						</p>
+					</div>
+					<div class="tile">
+						<img src="img/icon-planners.svg" alt="" aria-hidden="true" />
+						<h4>Planners</h4>
+						<p class="muted">
+							Clarity on where you are now and what to do next.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Not ready yet -->
+		<section class="section soft" aria-labelledby="ebook-title">
+			<div class="container grid two">
+				<div class="card">
+					<img
+						src="img/ebook-express-entry.webp"
+						alt="Express Entry guide cover" />
+				</div>
+				<div>
+					<div class="section-header">
+						<h2 id="ebook-title">Still learning about the process</h2>
+						<p class="muted">Start small and build confidence</p>
+					</div>
+					<ul class="list">
+						<li>How CRS points are calculated</li>
+						<li>What is different across FSW, CEC, and PNP</li>
+						<li>Mistakes that reduce your score</li>
+						<li>What to prepare now for future success</li>
+					</ul>
+					<div class="cta-row" style="margin-top: 10px">
+						<a class="btn btn-primary" href="#ebook"
+							>Download the Express Entry guide R$29,90</a
+						>
+						<a class="btn btn-ghost" href="#book">Or book your consultation</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="section" id="faq" aria-labelledby="faq-title">
+			<div class="container">
+				<div class="section-header">
+					<h2 id="faq-title">Common questions</h2>
+					<p class="muted">Short answers for faster decisions</p>
+				</div>
+				<div class="faq">
+					<details>
+						<summary>What is a good CRS score</summary>
+						<p class="muted">
+							It depends on the draw type and program. The goal is to lift your
+							score to sit above recent cutoffs or to add a provincial option
+							that issues a nomination.
+						</p>
+					</details>
+					<details>
+						<summary>Can I apply with my spouse</summary>
+						<p class="muted">
+							Yes. Spousal factors can add points or change strategy. We review
+							both profiles to choose the lead applicant and the best plan.
+						</p>
+					</details>
+					<details>
+						<summary>How long does it take</summary>
+						<p class="muted">
+							Timelines vary. The fastest path is to improve your score before
+							you enter the pool, so you are ready when an invite comes.
+						</p>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<!-- Final call to action -->
+		<section class="cta-final soft" id="book" aria-labelledby="cta-title">
+			<div class="container">
+				<h2 id="cta-title" style="margin: 0 0 10px">
+					Start with clarity, not confusion
+				</h2>
+				<p class="muted" style="margin: 0 0 22px">
+					Discover your real options with a professional assessment.
+				</p>
+				<div class="cta-row" style="justify-content: center">
+					<a class="btn btn-primary" href="/book">Book consultation $175 CAD</a>
+					<a class="btn btn-ghost" href="#ebook">Download the guide</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Optional: replace with your include footer -->
+		<footer class="section" role="contentinfo" aria-label="Footer">
+			<div class="container" style="text-align: center">
+				<p class="muted">
+					UP Immigration Consulting. This page is for general information. For
+					advice specific to your case, please book a consultation.
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>

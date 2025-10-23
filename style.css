@@ -37,6 +37,9 @@ a {
 .pb20 {
 	padding-bottom: 20px;
 }
+.pb30 {
+	padding-bottom: 30px;
+}
 header {
 	position: fixed;
 	top: 0;
@@ -934,6 +937,9 @@ h2 {
 h2.subpage {
 	font-size: clamp(2.4rem, 4vw, 2.7rem);
 }
+h3.subpage {
+	font-size: clamp(2rem, 2vw, 2rem);
+}
 .subpage {
 	text-align: center;
 }
@@ -1811,7 +1817,9 @@ div.reviews {
 .faq .faq-item h3 {
 	font-size: 1.2rem;
 	margin-bottom: 0.5rem;
-	color: var(--brand);
+	/* color: var(--brand); */
+	color: #333;
+	font-weight: 600;
 }
 .faq .faq-item p {
 	color: var(--muted);
@@ -1836,7 +1844,6 @@ div.reviews {
 /* FAQ QUESTIONS */
 .faq {
 	padding: 60px 20px;
-	background: var(--light);
 }
 
 .faq h2 {
@@ -1847,7 +1854,7 @@ div.reviews {
 	margin-bottom: 20px;
 	border-radius: var(--radius);
 	background: #fff;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 	transition: all 0.3s ease;
 	overflow: hidden;
 }
@@ -2024,7 +2031,7 @@ p.statb {
 }
 
 .credential-text {
-	font-size: clamp(1.2rem, 1.8rem, 1.9rem);
+	font-size: clamp(1.2rem, 1.6rem, 1.9rem);
 
 	color: #333;
 	line-height: 1.6;
@@ -2414,6 +2421,9 @@ p.statb {
 	.card-grid {
 		grid-template-columns: repeat(3, 1fr);
 	}
+	.category .card-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 /* Card */
@@ -2511,6 +2521,12 @@ p.statb {
 	margin-bottom: 0.5rem;
 	color: var(--dark);
 }
+.wp-card h4 {
+	font-size: 1.2rem;
+	margin-bottom: 0rem;
+	color: var(--dark);
+	padding-top: 25px;
+}
 .wp-card p {
 	color: var(--muted);
 	/* margin-bottom: 2rem; */
@@ -2544,6 +2560,21 @@ p.statb {
 	background-position: center;
 	background-size: cover;
 }
+.page-humanitarian {
+	background-image: url("/img/holding-hands-hospital.webp"); /* troque pela imagem correta */
+	background-position: center;
+	background-size: cover;
+}
+.page-consultation {
+	background-image: url("/img/two-people-in-a-meeting.png"); /* troque pela imagem correta */
+	background-position: center;
+	background-size: cover;
+}
+.page-owp {
+	background-image: url("/img/workers-outside-office.webp"); /* troque pela imagem correta */
+	background-position: top;
+	background-size: cover;
+}
 
 .page-contact {
 	background: url("/img/contact-bg.webp");
@@ -2551,8 +2582,6 @@ p.statb {
 	background-size: cover;
 	background-position: center;
 }
-
-/* TESTE -------------------------------------------------------- */
 
 .services-section .contact-card {
 	background: #fff; /* var(--light) existe, mas aqui vai direto para evitar dependência */
@@ -3125,4 +3154,119 @@ a.btn-inline {
 	display: flex;
 	gap: 12px;
 	flex-wrap: wrap;
+}
+
+/* humanitarian */
+
+/* Secondary page pattern — clean, scan-friendly */
+.sec {
+	padding: 48px 0;
+}
+.sec__header h2 {
+	margin: 0;
+}
+.sec__header .lead {
+	margin: 8px 0 20px;
+	color: #555;
+}
+
+/* 3 simple columns on desktop, stack on mobile */
+.grid-3 {
+	display: grid;
+	gap: 16px;
+}
+@media (min-width: 960px) {
+	.grid-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* Column blocks */
+.level {
+	background: #fff;
+	border: 1px solid #e8e8e8;
+	border-radius: 12px;
+	padding: 16px 16px 12px;
+}
+.level h3 {
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+/* Bullets with subtle separators for scanability */
+.bullets {
+	list-style: disc;
+	padding-left: 18px;
+	margin: 0;
+}
+.bullets li {
+	padding: 6px 0;
+	border-top: 1px solid #f2f2f2;
+}
+.bullets li:first-child {
+	border-top: 0;
+}
+
+/* Micro note */
+.micro-note {
+	margin-top: 10px;
+	color: #777;
+	font-size: 14px;
+}
+/* pagina de consulta */
+.expect-grid {
+	display: grid;
+	gap: 16px;
+	align-items: start;
+}
+@media (min-width: 900px) {
+	.expect-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+.expect-grid li {
+	display: grid;
+	gap: 18px;
+	align-items: start;
+	background: #fff0;
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	border-radius: 12px;
+	padding: 12px 14px 12px 20px;
+	background-color: #ffffff;
+	height: 100%;
+	width: 100%;
+	max-width: 350px;
+}
+.expect-grid .chk {
+	color: #1ea97c;
+	line-height: 1;
+}
+.expect-grid strong {
+	display: block;
+	margin-bottom: 4px;
+	line-height: 1.25;
+}
+.expect-grid .content {
+	color: #333;
+	opacity: 0.9;
+}
+.expect-cta {
+	text-align: center;
+	margin-top: 22px;
+}
+
+/* spousal-section */ /* common-mistakes */
+#common-mistakes .card-grid {
+	gap: 1rem;
+}
+
+#common-mistakes h3 {
+	font-size: 1.5rem;
+	margin-bottom: 0px;
+}
+#common-mistakes .wp-card {
+	grid-template-columns: 2fr;
+	max-width: 450px;
+	margin: auto;
+	padding: 1.3rem;
 }
