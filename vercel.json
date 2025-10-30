@@ -1,6 +1,8 @@
 {
+	"version": 2,
 	"cleanUrls": true,
 	"trailingSlash": false,
+
 	"rewrites": [
 		{
 			"source": "/permanentresidence",
@@ -21,10 +23,6 @@
 			"source": "/immigration/immigration-consultation",
 			"destination": "/immigration/immigration-consultation.html"
 		},
-		{
-			"source": "/immigration-/immigration-consultation",
-			"destination": "/immigration/immigration-consultation.html"
-		},
 
 		{
 			"source": "/blog/5-erros-comuns-no-curriculo-de-recem-chegado",
@@ -39,15 +37,6 @@
 			"destination": "/blog/comprovacao-financeira-2025.html"
 		},
 
-		{ "source": "/blog/:slug", "destination": "/blog/:slug.html" },
-		{ "source": "/:slug", "destination": "/:slug.html" }
-	],
-
-	"redirects": [
-		{
-			"source": "/immigration-/immigration-consultation",
-			"destination": "/immigration/immigration-consultation",
-			"permanent": true
-		}
+		{ "source": "/blog/:slug", "destination": "/blog/:slug.html" }
 	]
 }
