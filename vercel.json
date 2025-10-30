@@ -1,42 +1,4 @@
 {
-	"version": 2,
 	"cleanUrls": true,
-	"trailingSlash": false,
-
-	"rewrites": [
-		{
-			"source": "/permanentresidence",
-			"destination": "/permanentresidence.html"
-		},
-		{ "source": "/workpermit", "destination": "/workpermit.html" },
-		{ "source": "/studypermit", "destination": "/studypermit.html" },
-		{
-			"source": "/spousal-sponsorship",
-			"destination": "/spousal-sponsorship.html"
-		},
-		{
-			"source": "/provincial-nominee-program",
-			"destination": "/provincial-nominee-program.html"
-		},
-
-		{
-			"source": "/immigration/immigration-consultation",
-			"destination": "/immigration/immigration-consultation.html"
-		},
-
-		{
-			"source": "/blog/5-erros-comuns-no-curriculo-de-recem-chegado",
-			"destination": "/blog/5-erros-comuns-no-curriculo-de-recem-chegado.html"
-		},
-		{
-			"source": "/blog/checklist-visto-de-estudo",
-			"destination": "/blog/checklist-visto-de-estudo.html"
-		},
-		{
-			"source": "/blog/comprovacao-financeira-2025",
-			"destination": "/blog/comprovacao-financeira-2025.html"
-		},
-
-		{ "source": "/blog/:slug", "destination": "/blog/:slug.html" }
-	]
+	"trailingSlash": false
 }
