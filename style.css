@@ -593,7 +593,12 @@ footer .social a:hover {
 
 	/* opcional: esconder as badges no mobile */
 	#hero .badges {
-		display: none;
+		/* display: none; */
+		margin: 50px 20px 0;
+		gap: 1rem;
+	}
+	#hero .badge {
+		flex: 1 1 30%;
 	}
 }
 
