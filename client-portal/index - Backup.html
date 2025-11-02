@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Portal de Imigração - Status do Cliente</title>
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 		<style>
 			@keyframes fadeIn {
 				from {
@@ -47,20 +46,20 @@
 						Portal de Imigração
 					</h1>
 					<p class="text-gray-600">
-						Acesse sua conta para ver o status do seu processo!
+						Acesse sua conta para ver o status do seu processo
 					</p>
 				</div>
 
 				<div class="space-y-6">
 					<div>
 						<label class="block text-sm font-medium text-gray-700 mb-2"
-							>Email</label
+							>Usuário</label
 						>
 						<input
-							type="email"
-							id="email"
+							type="text"
+							id="username"
 							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-							placeholder="Digite seu email" />
+							placeholder="Digite seu usuário" />
 					</div>
 
 					<div>
@@ -93,7 +92,6 @@
 
 					<button
 						onclick="handleLogin()"
-						id="loginBtn"
 						class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
 						Entrar
 					</button>
@@ -101,11 +99,11 @@
 
 				<div class="mt-6 p-4 bg-gray-50 rounded-lg">
 					<p class="text-sm text-gray-600 font-semibold mb-2">
-						Configure seu Supabase:
+						Contas de teste:
 					</p>
-					<p class="text-xs text-gray-500">
-						Adicione suas credenciais no código JavaScript
-					</p>
+					<p class="text-xs text-gray-500">joao.silva / senha123</p>
+					<p class="text-xs text-gray-500">maria.santos / senha456</p>
+					<p class="text-xs text-gray-500">carlos.oliveira / senha789</p>
 				</div>
 			</div>
 		</div>
@@ -308,94 +306,134 @@
 		</div>
 
 		<script>
-			// ========================================
-			// SUPABASE CONFIGURATION
-			// ========================================
-			// Replace these with your actual Supabase credentials
-			const SUPABASE_URL = "https://lqyvatogkwndlpsetwie.supabase.co";
-			const SUPABASE_ANON_KEY =
-				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxeXZhdG9na3duZGxwc2V0d2llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTkwODAsImV4cCI6MjA3NzQ5NTA4MH0.-OOYSpIt9YcLiMt2RTlfY7KUQWHMnELf1OczPpb-2II";
-
-			// Initialize Supabase client
-			const supabase = window.supabase.createClient(
-				SUPABASE_URL,
-				SUPABASE_ANON_KEY
-			);
+			// Database
+			const clientDatabase = {
+				"joao.silva": {
+					password: "senha123",
+					nome: "João Silva",
+					email: "joao.silva@email.com",
+					telefone: "+55 11 98765-4321",
+					processo: "Visto de Trabalho - Canadá",
+					status: "em_progresso",
+					etapa: "Análise de Documentos",
+					progresso: 60,
+					dataInicio: "15/08/2024",
+					previsaoConclusao: "15/12/2024",
+					documentos: [
+						{ nome: "Passaporte", status: "aprovado" },
+						{ nome: "Certidão de Nascimento", status: "aprovado" },
+						{ nome: "Comprovante de Residência", status: "pendente" },
+						{ nome: "Carta de Emprego", status: "em_analise" },
+					],
+					historico: [
+						{ data: "15/08/2024", evento: "Processo iniciado" },
+						{ data: "22/08/2024", evento: "Documentos iniciais recebidos" },
+						{ data: "10/09/2024", evento: "Passaporte aprovado" },
+						{
+							data: "25/09/2024",
+							evento: "Aguardando comprovante de residência",
+						},
+					],
+					proximosPassos: [
+						"Enviar comprovante de residência atualizado",
+						"Agendar entrevista no consulado",
+						"Realizar exames médicos",
+					],
+				},
+				"maria.santos": {
+					password: "senha456",
+					nome: "Maria Santos",
+					email: "maria.santos@email.com",
+					telefone: "+55 21 91234-5678",
+					processo: "Residência Permanente - Portugal",
+					status: "concluido",
+					etapa: "Aprovado",
+					progresso: 100,
+					dataInicio: "10/05/2024",
+					previsaoConclusao: "10/10/2024",
+					documentos: [
+						{ nome: "Passaporte", status: "aprovado" },
+						{ nome: "Certidão de Casamento", status: "aprovado" },
+						{ nome: "Antecedentes Criminais", status: "aprovado" },
+						{ nome: "Comprovante Financeiro", status: "aprovado" },
+					],
+					historico: [
+						{ data: "10/05/2024", evento: "Processo iniciado" },
+						{ data: "20/06/2024", evento: "Todos documentos aprovados" },
+						{ data: "15/08/2024", evento: "Processo enviado ao consulado" },
+						{ data: "10/10/2024", evento: "Residência aprovada!" },
+					],
+					proximosPassos: [
+						"Retirar cartão de residência no SEF",
+						"Registrar endereço em Portugal",
+					],
+				},
+				"carlos.oliveira": {
+					password: "senha789",
+					nome: "Carlos Oliveira",
+					email: "carlos.oliveira@email.com",
+					telefone: "+55 85 99876-5432",
+					processo: "Visto de Estudante - Austrália",
+					status: "pendente",
+					etapa: "Documentação Inicial",
+					progresso: 25,
+					dataInicio: "01/10/2024",
+					previsaoConclusao: "01/03/2025",
+					documentos: [
+						{ nome: "Passaporte", status: "aprovado" },
+						{ nome: "Carta de Aceitação da Universidade", status: "pendente" },
+						{ nome: "Comprovante Financeiro", status: "pendente" },
+						{ nome: "Seguro Saúde", status: "pendente" },
+					],
+					historico: [
+						{ data: "01/10/2024", evento: "Processo iniciado" },
+						{ data: "10/10/2024", evento: "Passaporte recebido e aprovado" },
+						{ data: "20/10/2024", evento: "Aguardando documentos adicionais" },
+					],
+					proximosPassos: [
+						"Enviar carta de aceitação da universidade",
+						"Providenciar comprovante financeiro (mínimo AUD 21,041)",
+						"Contratar seguro saúde internacional",
+					],
+				},
+			};
 
 			let currentClient = null;
-			let currentUser = null;
 
-			// ========================================
-			// AUTHENTICATION FUNCTIONS
-			// ========================================
-			async function handleLogin() {
-				const email = document.getElementById("email").value;
+			function handleLogin() {
+				const username = document.getElementById("username").value;
 				const password = document.getElementById("password").value;
 				const errorMessage = document.getElementById("errorMessage");
 				const errorText = document.getElementById("errorText");
-				const loginBtn = document.getElementById("loginBtn");
 
-				if (!email || !password) {
-					errorText.textContent = "Por favor, preencha todos os campos";
+				const client = clientDatabase[username];
+
+				if (!client) {
+					errorText.textContent = "Usuário não encontrado";
 					errorMessage.classList.remove("hidden");
 					return;
 				}
 
-				loginBtn.disabled = true;
-				loginBtn.textContent = "Entrando...";
-
-				try {
-					// Sign in with Supabase Auth
-					const { data: authData, error: authError } =
-						await supabase.auth.signInWithPassword({
-							email: email,
-							password: password,
-						});
-
-					if (authError) {
-						throw authError;
-					}
-
-					currentUser = authData.user;
-
-					// Fetch client data
-					const { data: clientData, error: clientError } = await supabase
-						.from("clientes")
-						.select("*")
-						.eq("user_id", currentUser.id)
-						.single();
-
-					if (clientError) {
-						throw new Error("Dados do cliente não encontrados");
-					}
-
-					currentClient = clientData;
-					errorMessage.classList.add("hidden");
-					await showDashboard();
-				} catch (error) {
-					console.error("Login error:", error);
-					errorText.textContent = error.message || "Erro ao fazer login";
+				if (client.password !== password) {
+					errorText.textContent = "Senha incorreta";
 					errorMessage.classList.remove("hidden");
-				} finally {
-					loginBtn.disabled = false;
-					loginBtn.textContent = "Entrar";
+					return;
 				}
+
+				currentClient = client;
+				errorMessage.classList.add("hidden");
+				showDashboard();
 			}
 
-			async function handleLogout() {
-				await supabase.auth.signOut();
+			function handleLogout() {
 				currentClient = null;
-				currentUser = null;
-				document.getElementById("email").value = "";
+				document.getElementById("username").value = "";
 				document.getElementById("password").value = "";
 				document.getElementById("loginScreen").classList.remove("hidden");
 				document.getElementById("dashboardScreen").classList.add("hidden");
 			}
 
-			// ========================================
-			// DASHBOARD FUNCTIONS
-			// ========================================
-			async function showDashboard() {
+			function showDashboard() {
 				document.getElementById("loginScreen").classList.add("hidden");
 				document.getElementById("dashboardScreen").classList.remove("hidden");
 
@@ -412,12 +450,10 @@
 				document.getElementById(
 					"progressPercent"
 				).textContent = `${currentClient.progresso}%`;
-				document.getElementById("startDate").textContent = formatDate(
-					currentClient.data_inicio
-				);
-				document.getElementById("endDate").textContent = formatDate(
-					currentClient.previsao_conclusao
-				);
+				document.getElementById("startDate").textContent =
+					currentClient.dataInicio;
+				document.getElementById("endDate").textContent =
+					currentClient.previsaoConclusao;
 
 				const statusBadge = document.getElementById("statusBadge");
 				const progressBar = document.getElementById("progressBar");
@@ -451,134 +487,69 @@
 				document.getElementById("clientPhone").textContent =
 					currentClient.telefone;
 
-				// Load related data
-				await loadNextSteps();
-				await loadDocuments();
-				await loadHistory();
+				// Update next steps
+				const nextSteps = document.getElementById("nextSteps");
+				nextSteps.innerHTML = "";
+				currentClient.proximosPassos.forEach((passo, index) => {
+					nextSteps.innerHTML += `
+                    <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            ${index + 1}
+                        </div>
+                        <p class="text-gray-700">${passo}</p>
+                    </div>
+                `;
+				});
+
+				// Update documents
+				const documentsContent = document.getElementById("documentsContent");
+				documentsContent.innerHTML = "";
+				currentClient.documentos.forEach((doc) => {
+					const statusInfo = getDocStatusInfo(doc.status);
+					documentsContent.innerHTML += `
+                    <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-indigo-300 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <span class="font-medium text-gray-900">${doc.nome}</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-3 py-1 rounded-full ${statusInfo.color}">
+                            ${statusInfo.icon}
+                            <span class="text-sm font-semibold capitalize">${statusInfo.text}</span>
+                        </div>
+                    </div>
+                `;
+				});
+
+				// Update history
+				const historyContent = document.getElementById("historyContent");
+				historyContent.innerHTML = "";
+				currentClient.historico.forEach((item, index) => {
+					const isLast = index === currentClient.historico.length - 1;
+					historyContent.innerHTML += `
+                    <div class="flex gap-4">
+                        <div class="flex flex-col items-center">
+                            <div class="w-3 h-3 bg-indigo-600 rounded-full"></div>
+                            ${
+															!isLast
+																? '<div class="w-0.5 flex-1 bg-gray-300 my-1"></div>'
+																: ""
+														}
+                        </div>
+                        <div class="pb-6">
+                            <p class="text-sm text-gray-500 mb-1">${
+															item.data
+														}</p>
+                            <p class="text-gray-900 font-medium">${
+															item.evento
+														}</p>
+                        </div>
+                    </div>
+                `;
+				});
 			}
 
-			async function loadNextSteps() {
-				try {
-					const { data, error } = await supabase
-						.from("proximos_passos")
-						.select("*")
-						.eq("cliente_id", currentClient.id)
-						.order("ordem", { ascending: true });
-
-					if (error) throw error;
-
-					const nextSteps = document.getElementById("nextSteps");
-					nextSteps.innerHTML = "";
-
-					if (data && data.length > 0) {
-						data.forEach((passo, index) => {
-							nextSteps.innerHTML += `
-                            <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
-                                <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
-                                    ${index + 1}
-                                </div>
-                                <p class="text-gray-700">${passo.descricao}</p>
-                            </div>
-                        `;
-						});
-					} else {
-						nextSteps.innerHTML =
-							'<p class="text-gray-500">Nenhum próximo passo pendente.</p>';
-					}
-				} catch (error) {
-					console.error("Error loading next steps:", error);
-				}
-			}
-
-			async function loadDocuments() {
-				try {
-					const { data, error } = await supabase
-						.from("documentos")
-						.select("*")
-						.eq("cliente_id", currentClient.id)
-						.order("nome", { ascending: true });
-
-					if (error) throw error;
-
-					const documentsContent = document.getElementById("documentsContent");
-					documentsContent.innerHTML = "";
-
-					if (data && data.length > 0) {
-						data.forEach((doc) => {
-							const statusInfo = getDocStatusInfo(doc.status);
-							documentsContent.innerHTML += `
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:border-indigo-300 transition-colors">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                    </svg>
-                                    <span class="font-medium text-gray-900">${doc.nome}</span>
-                                </div>
-                                <div class="flex items-center gap-2 px-3 py-1 rounded-full ${statusInfo.color}">
-                                    ${statusInfo.icon}
-                                    <span class="text-sm font-semibold capitalize">${statusInfo.text}</span>
-                                </div>
-                            </div>
-                        `;
-						});
-					} else {
-						documentsContent.innerHTML =
-							'<p class="text-gray-500">Nenhum documento cadastrado.</p>';
-					}
-				} catch (error) {
-					console.error("Error loading documents:", error);
-				}
-			}
-
-			async function loadHistory() {
-				try {
-					const { data, error } = await supabase
-						.from("historico")
-						.select("*")
-						.eq("cliente_id", currentClient.id)
-						.order("data", { ascending: false });
-
-					if (error) throw error;
-
-					const historyContent = document.getElementById("historyContent");
-					historyContent.innerHTML = "";
-
-					if (data && data.length > 0) {
-						data.forEach((item, index) => {
-							const isLast = index === data.length - 1;
-							historyContent.innerHTML += `
-                            <div class="flex gap-4">
-                                <div class="flex flex-col items-center">
-                                    <div class="w-3 h-3 bg-indigo-600 rounded-full"></div>
-                                    ${
-																			!isLast
-																				? '<div class="w-0.5 flex-1 bg-gray-300 my-1"></div>'
-																				: ""
-																		}
-                                </div>
-                                <div class="pb-6">
-                                    <p class="text-sm text-gray-500 mb-1">${formatDate(
-																			item.data
-																		)}</p>
-                                    <p class="text-gray-900 font-medium">${
-																			item.evento
-																		}</p>
-                                </div>
-                            </div>
-                        `;
-						});
-					} else {
-						historyContent.innerHTML =
-							'<p class="text-gray-500">Nenhum histórico disponível.</p>';
-					}
-				} catch (error) {
-					console.error("Error loading history:", error);
-				}
-			}
-
-			// ========================================
-			// HELPER FUNCTIONS
-			// ========================================
 			function getDocStatusInfo(status) {
 				const icons = {
 					aprovado: `<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -605,19 +576,14 @@
 				};
 
 				return {
-					icon: icons[status] || icons.pendente,
-					color: colors[status] || colors.pendente,
-					text: texts[status] || "Desconhecido",
+					icon: icons[status],
+					color: colors[status],
+					text: texts[status],
 				};
 			}
 
-			function formatDate(dateString) {
-				if (!dateString) return "N/A";
-				const date = new Date(dateString);
-				return date.toLocaleDateString("pt-BR");
-			}
-
 			function switchTab(tab) {
+				// Update tab buttons
 				const tabs = ["overview", "documents", "history"];
 				tabs.forEach((t) => {
 					const btn = document.getElementById(
@@ -637,9 +603,7 @@
 				});
 			}
 
-			// ========================================
-			// EVENT LISTENERS
-			// ========================================
+			// Allow Enter key to login
 			document
 				.getElementById("password")
 				.addEventListener("keypress", function (e) {
@@ -647,24 +611,6 @@
 						handleLogin();
 					}
 				});
-
-			// Check for existing session on load
-			supabase.auth.getSession().then(({ data: { session } }) => {
-				if (session) {
-					currentUser = session.user;
-					supabase
-						.from("clientes")
-						.select("*")
-						.eq("user_id", currentUser.id)
-						.single()
-						.then(({ data }) => {
-							if (data) {
-								currentClient = data;
-								showDashboard();
-							}
-						});
-				}
-			});
 		</script>
 	</body>
 </html>
