@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Visa Document Checklist</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			:root {
+				--brand: #b8001c;
+				--brand-dark: #8a0015;
+			}
+			.flying-menu {
+				transition: all 0.3s ease;
+			}
+			.flying-menu.hidden-menu {
+				opacity: 0;
+				transform: translateY(-1rem);
+				pointer-events: none;
+			}
+			.progress-bar {
+				transition: width 0.5s ease;
+			}
+			.checkbox-item:hover {
+				background-color: #f9fafb;
+			}
+			.section-card {
+				animation: fadeIn 0.3s ease;
+			}
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+		</style>
+	</head>
+	<body class="min-h-screen bg-gray-100">
+		<!-- Flying Menu Button -->
+		<button
+			id="menuToggle"
+			class="fixed top-6 right-6 z-50 bg-[var(--brand)] text-white p-4 rounded-full shadow-lg hover:bg-[var(--brand-dark)] transition-all hover:scale-110">
+			<svg
+				id="menuIcon"
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<line x1="3" y1="12" x2="21" y2="12"></line>
+				<line x1="3" y1="6" x2="21" y2="6"></line>
+				<line x1="3" y1="18" x2="21" y2="18"></line>
+			</svg>
+			<svg
+				id="closeIcon"
+				class="hidden"
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round">
+				<line x1="18" y1="6" x2="6" y2="18"></line>
+				<line x1="6" y1="6" x2="18" y2="18"></line>
+			</svg>
+		</button>
+
+		<!-- Flying Dropdown Menu -->
+		<div
+			id="flyingMenu"
+			class="flying-menu hidden-menu fixed top-24 right-6 z-40 bg-white rounded-2xl shadow-2xl"
+			style="width: 360px; max-height: 80vh; overflow-y: auto">
+			<div class="p-6">
+				<h3
+					class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="text-[var(--brand)]">
+						<path
+							d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+						<polyline points="14 2 14 8 20 8"></polyline>
+						<polyline points="9 15 12 12 15 15"></polyline>
+					</svg>
+					Application Details
+				</h3>
+
+				<div class="space-y-4">
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-1"
+							>How can we help you?</label
+						>
+						<select
+							id="helpType"
+							class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)] focus:border-transparent">
+							<option value="">Select...</option>
+							<option>Visitor Visa</option>
+							<option>Study Permit</option>
+							<option>Open Work Permit</option>
+							<option>Closed Work Permit</option>
+							<option>Permanent Residence</option>
+							<option>Permanent Residence Renewal</option>
+							<option>PGWP - Post Graduate Work Permit</option>
+							<option>Spousal Sponsorship</option>
+							<option>LMIA</option>
+							<option>Study Permit - Previous Refusal</option>
+							<option>Work Permit - Previous Refusal</option>
+							<option>Visitor Visa - Previous Refusal</option>
+							<option>Visitor Visa - Restoration of Status</option>
+							<option>Study Permit - Restoration of Status</option>
+							<option>Work Permit - Restoration of Status</option>
+						</select>
+					</div>
+
+					<div class="grid grid-cols-2 gap-3">
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-1"
+								>Married</label
+							>
+							<select
+								id="married"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+								<option value="">Select...</option>
+								<option>Yes</option>
+								<option>No</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-1"
+								>Kids</label
+							>
+							<select
+								id="kids"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+								<option value="">Select...</option>
+								<option>Yes</option>
+								<option>No</option>
+							</select>
+						</div>
+					</div>
+
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-1"
+							>OWP</label
+						>
+						<select
+							id="owp"
+							class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+							<option value="">Select...</option>
+							<option>Student Spouse</option>
+							<option>Close WP - Spouse</option>
+							<option>PGWP Spouse</option>
+						</select>
+					</div>
+
+					<div class="grid grid-cols-2 gap-3">
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-1"
+								>Previous Refusal</label
+							>
+							<select
+								id="previousRefusal"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+								<option value="">Select...</option>
+								<option>Yes</option>
+								<option>No</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-1"
+								>Application</label
+							>
+							<select
+								id="application"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+								<option value="">Select...</option>
+								<option>Inland</option>
+								<option>Outland</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="grid grid-cols-2 gap-3">
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-1"
+								>PAL</label
+							>
+							<select
+								id="pal"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+								<option value="">Select...</option>
+								<option>Yes</option>
+								<option>No</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-sm font-medium text-gray-700 mb-1"
+								>Restoration</label
+							>
+							<select
+								id="restoration"
+								class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand)]">
+								<option value="">Select...</option>
+								<option>Yes</option>
+								<option>No</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main Content -->
+		<div class="max-w-4xl mx-auto px-6 py-12">
+			<div class="text-center mb-12">
+				<h1 class="text-4xl font-bold text-gray-900 mb-3">
+					Visa Document Checklist
+				</h1>
+				<p class="text-gray-600">
+					Track your required documents for immigration
+				</p>
+			</div>
+
+			<!-- Progress Bar -->
+			<div
+				id="progressSection"
+				class="bg-white rounded-2xl shadow-lg p-6 mb-8 hidden">
+				<div class="flex justify-between items-center mb-3">
+					<span class="text-sm font-medium text-gray-700">Progress</span>
+					<span class="text-sm font-bold text-[var(--brand)]" id="progressText"
+						>0 of 0 documents</span
+					>
+				</div>
+				<div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+					<div
+						id="progressBar"
+						class="progress-bar h-full bg-[var(--brand)] rounded-full"
+						style="width: 0%"></div>
+				</div>
+			</div>
+
+			<!-- Document Sections -->
+			<div id="documentSections" class="space-y-6"></div>
+
+			<!-- Empty State -->
+			<div
+				id="emptyState"
+				class="bg-white rounded-2xl shadow-lg p-12 text-center">
+				<svg
+					class="mx-auto mb-4 text-gray-400"
+					xmlns="http://www.w3.org/2000/svg"
+					width="48"
+					height="48"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round">
+					<path
+						d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+					<polyline points="14 2 14 8 20 8"></polyline>
+					<line x1="16" y1="13" x2="8" y2="13"></line>
+					<line x1="16" y1="17" x2="8" y2="17"></line>
+					<polyline points="10 9 9 9 8 9"></polyline>
+				</svg>
+				<p class="text-gray-600">
+					Select your application details from the menu above to see your
+					required documents.
+				</p>
+			</div>
+		</div>
+
+		<script>
+			const documents = {
+				"Personal Documents": [
+					{ id: "passport", label: "Copy of passport pages" },
+					{ id: "photo", label: "Digital photo" },
+					{ id: "permit", label: "Copy of current Permit" },
+					{ id: "marriage-certificate", label: "Marriage certificate" },
+					{ id: "birth-certificate", label: "Birth certificate of the child" },
+				],
+
+				"Academic Documents": [
+					{
+						id: "loa",
+						label: "Letter of Acceptance (LOA) from the institution",
+					},
+					{
+						id: "enrollment-proof",
+						label: "Proof of enrollment or current studies",
+					},
+					{ id: "pal", label: "Provincial Attestation Letter (PAL)" },
+					{
+						id: "school-receipt",
+						label: "Tuition payment receipt issued by the school",
+					},
+					{
+						id: "coop-letter",
+						label: "Co-op Letter",
+					},
+				],
+				"Financial Documents": [
+					{
+						id: "bank-statements",
+						label: "Bank statements for the last 4 months",
+					},
+				],
+				"Sponsor Documents": [
+					{
+						id: "sponsor-bank-statements",
+						label: "Bank statements for the last 4 months",
+					},
+					{ id: "sponsor-support-letter", label: "Sponsor support letter" },
+					{
+						id: "sponsor-income",
+						label: "Income tax return, pay stubs, or employer letter",
+					},
+				],
+				"Professional Documents": [
+					{ id: "lmia", label: "Document with the LMIA or Exemption number" },
+					{ id: "job-offer", label: "Signed job offer" },
+					{ id: "job-contract", label: "Employment contract" },
+					{
+						id: "education-certificates",
+						label: "Academic certificates and diplomas",
+					},
+					{ id: "resume", label: "Resume" },
+					{ id: "language-proficiency", label: "Language proficiency test" },
+				],
+				"Partner's Support Documents": [
+					{ id: "pgwp-spouse-proof", label: "Copy of spouse's PGWP" },
+					{ id: "pgwp-spouse-employment", label: "Current employment letter" },
+					{
+						id: "pgwp-spouse-payslips",
+						label: "Payslips for the last 3–4 months",
+					},
+					{
+						id: "pgwp-spouse-eligibility",
+						label: "Proof that spouse work eligibility",
+					},
+					{
+						id: "cwp-spouse-permit",
+						label: "Copy of spouse's Closed Work Permit",
+					},
+					{
+						id: "cwp-spouse-employment",
+						label: "Employment letter tied to the Closed Work Permit",
+					},
+					{
+						id: "cwp-spouse-payslips",
+						label: "Payslips for the last 3–4 months",
+					},
+					{
+						id: "cwp-spouse-lmia",
+						label: "LMIA or LMIA-exempt confirmation number",
+					},
+					{ id: "study-spouse-permit", label: "Copy of spouse's Study Permit" },
+					{ id: "study-spouse-loa", label: "Letter of enrolment/acceptance" },
+					{ id: "study-spouse-tuition", label: "Proof of payment of tuition" },
+					{ id: "study-spouse-attendance", label: "Proof of attendance" },
+				],
+				"Proof of Ties to Home Country": [
+					{
+						id: "intent-letter",
+						label: "Letter of Intent or Letter of Explanation",
+					},
+					{ id: "ties-proof", label: "Proof of ties" },
+					{ id: "residence-proof", label: "Proof of residence" },
+				],
+				"Additional Documents for Previous Refusal": [
+					{
+						id: "refusal-letter",
+						label: "Copy of the refusal letter from IRCC",
+					},
+					{
+						id: "explanation-letter",
+						label: "Explanation letter addressing refusal reasons",
+					},
+					{
+						id: "add-evidence",
+						label: "Evidence that strengthens your application",
+					},
+					{ id: "travel-history", label: "International travel history" },
+				],
+
+				"Additional Documents for Loss of Status": [
+					{
+						id: "restoration-letter",
+						label: "Letter of Explanation - why the expired status",
+					},
+				],
+
+				"Official Forms": [
+					{ id: "representative", label: "IMM 5476 – Use of Representative" },
+					{ id: "family-form", label: "IMM 5645 – Family Information Form" },
+				],
+			};
+
+			let checkedDocs = {};
+			let menuOpen = false;
+
+			// Menu Toggle
+			document
+				.getElementById("menuToggle")
+				.addEventListener("click", function () {
+					menuOpen = !menuOpen;
+					const menu = document.getElementById("flyingMenu");
+					const menuIcon = document.getElementById("menuIcon");
+					const closeIcon = document.getElementById("closeIcon");
+
+					if (menuOpen) {
+						menu.classList.remove("hidden-menu");
+						menuIcon.classList.add("hidden");
+						closeIcon.classList.remove("hidden");
+					} else {
+						menu.classList.add("hidden-menu");
+						menuIcon.classList.remove("hidden");
+						closeIcon.classList.add("hidden");
+					}
+				});
+
+			// Form Change Handlers
+			const formFields = [
+				"helpType",
+				"married",
+				"kids",
+				"owp",
+				"previousRefusal",
+				"application",
+				"pal",
+				"restoration",
+			];
+			formFields.forEach((field) => {
+				document
+					.getElementById(field)
+					.addEventListener("change", updateDocuments);
+			});
+
+			function getFormData() {
+				return {
+					helpType: document.getElementById("helpType").value,
+					married: document.getElementById("married").value,
+					kids: document.getElementById("kids").value,
+					owp: document.getElementById("owp").value,
+					previousRefusal: document.getElementById("previousRefusal").value,
+					application: document.getElementById("application").value,
+					pal: document.getElementById("pal").value,
+					restoration: document.getElementById("restoration").value,
+				};
+			}
+			// Override Logic for Checklists unavailable
+			const OVERRIDE_SERVICES = [
+				"Permanent Residence",
+				"Permanent Residence Renewal",
+				"Spousal Sponsorship",
+				"LMIA",
+			];
+			const OVERRIDE_TOKEN = "__OVERRIDE__";
+			const OVERRIDE_MESSAGE = "Checlist not Available";
+
+			function getVisibleDocuments() {
+				const form = getFormData();
+				const visible = ["passport", "photo", "representative"];
+				//unavailable checklists
+				if (OVERRIDE_SERVICES.includes(form.helpType)) {
+					return [OVERRIDE_TOKEN];
+				}
+
+				if (form.helpType === "Open Work Permit" && !form.owp) {
+					return [OVERRIDE_TOKEN]; // cai no bloco de override já existente
+				}
+
+				if (form.helpType?.includes("Study") && form.pal !== "No") {
+					visible.push("pal");
+				}
+				if (
+					form.helpType?.includes("Study") &&
+					form.application === "Outland"
+				) {
+					visible.push("pal");
+				}
+
+				if (form.married === "Yes") {
+					visible.push("marriage-certificate");
+				}
+
+				if (form.kids === "Yes") {
+					visible.push("birth-certificate");
+				}
+
+				if (form.application !== "Outland") {
+					visible.push("permit");
+				}
+
+				if (form.previousRefusal === "Yes") {
+					visible.push("refusal-letter", "explanation-letter", "add-evidence");
+				}
+
+				if (
+					form.previousRefusal === "Yes" &&
+					form.helpType?.includes("Visitor")
+				) {
+					visible.push("travel-history");
+				}
+
+				if (
+					form.application !== "Inland" &&
+					form.helpType?.includes("Visitor")
+				) {
+					visible.push("travel-history");
+				}
+
+				if (form.application === "Outland") {
+					visible.push(
+						"intent-letter",
+						"ties-proof",
+						"residence-proof",
+						"family-form"
+					);
+				}
+
+				if (
+					form.restoration === "Yes" ||
+					form.helpType?.toLowerCase().includes("restoration")
+				) {
+					visible.push("restoration-letter");
+				}
+
+				if (form.helpType?.toLowerCase().includes("study")) {
+					visible.push(
+						"loa",
+						"enrollment-proof",
+						"school-receipt",
+						"coop-letter",
+						"bank-statements",
+						"sponsor-bank-statements",
+						"sponsor-support-letter",
+						"sponsor-income"
+					);
+				}
+
+				if (
+					form.helpType?.toLowerCase().includes("work") &&
+					form.helpType?.toLowerCase().includes("closed")
+				) {
+					visible.push(
+						"lmia",
+						"job-offer",
+						"job-contract",
+						"education-certificates",
+						"resume",
+						"language-proficiency"
+					);
+				}
+
+				if (
+					form.helpType?.toLowerCase().includes("open") &&
+					form.owp === "PGWP Spouse"
+				) {
+					visible.push(
+						"pgwp-spouse-proof",
+						"pgwp-spouse-employment",
+						"pgwp-spouse-payslips",
+						"pgwp-spouse-eligibility",
+						"marriage-certificate"
+					);
+				}
+
+				if (
+					form.helpType?.toLowerCase().includes("open") &&
+					form.owp === "Close WP - Spouse"
+				) {
+					visible.push(
+						"cwp-spouse-permit",
+						"cwp-spouse-employment",
+						"cwp-spouse-payslips",
+						"cwp-spouse-lmia",
+						"marriage-certificate"
+					);
+				}
+
+				if (
+					form.helpType?.toLowerCase().includes("open") &&
+					form.owp === "Student Spouse"
+				) {
+					visible.push(
+						"study-spouse-permit",
+						"study-spouse-loa",
+						"study-spouse-tuition",
+						"study-spouse-attendance",
+						"marriage-certificate"
+					);
+				}
+
+				return visible;
+			}
+
+			function updateDocuments() {
+				const visibleDocs = getVisibleDocuments();
+				const sectionsContainer = document.getElementById("documentSections");
+				const emptyState = document.getElementById("emptyState");
+				const progressSection = document.getElementById("progressSection");
+
+				sectionsContainer.innerHTML = "";
+				//unavailable checklists override
+				if (visibleDocs.includes(OVERRIDE_TOKEN)) {
+					document.getElementById("documentSections").innerHTML = "";
+					const emptyState = document.getElementById("emptyState");
+					emptyState.querySelector("p").textContent = OVERRIDE_MESSAGE;
+					emptyState.classList.remove("hidden");
+					document.getElementById("progressSection").classList.add("hidden");
+					return;
+				}
+
+				if (visibleDocs.length === 0) {
+					emptyState.classList.remove("hidden");
+					progressSection.classList.add("hidden");
+					return;
+				}
+
+				emptyState.classList.add("hidden");
+				progressSection.classList.remove("hidden");
+
+				Object.entries(documents).forEach(([section, docs]) => {
+					const sectionDocs = docs.filter((doc) =>
+						visibleDocs.includes(doc.id)
+					);
+					if (sectionDocs.length === 0) return;
+
+					const sectionDiv = document.createElement("div");
+					sectionDiv.className =
+						"section-card bg-white rounded-2xl shadow-lg overflow-hidden";
+
+					let docsHTML = "";
+					sectionDocs.forEach((doc) => {
+						const isChecked = checkedDocs[doc.id] ? "checked" : "";
+						const strikethrough = checkedDocs[doc.id]
+							? "line-through text-gray-400"
+							: "";
+						docsHTML += `
+			                     <label class="checkbox-item flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors group">
+			                         <input type="checkbox" ${isChecked} data-doc-id="${doc.id}" class="mt-1 w-5 h-5 text-[var(--brand)] rounded focus:ring-2 focus:ring-[var(--brand)]">
+			                         <span class="text-gray-700 group-hover:text-gray-900 ${strikethrough}">${doc.label}</span>
+			                     </label>
+			                 `;
+					});
+
+					sectionDiv.innerHTML = `
+			                 <div class="bg-[var(--brand)] px-6 py-4">
+			                     <h2 class="text-xl font-bold text-white">${section}</h2>
+			                 </div>
+			                 <div class="p-6">
+			                     <div class="space-y-3">
+			                         ${docsHTML}
+			                     </div>
+			                 </div>
+			             `;
+
+					sectionsContainer.appendChild(sectionDiv);
+				});
+
+				// Add checkbox event listeners
+				document
+					.querySelectorAll('input[type="checkbox"][data-doc-id]')
+					.forEach((checkbox) => {
+						checkbox.addEventListener("change", function () {
+							checkedDocs[this.dataset.docId] = this.checked;
+							updateProgress();
+							updateCheckboxStyles(this);
+						});
+					});
+
+				updateProgress();
+			}
+
+			function updateCheckboxStyles(checkbox) {
+				const label = checkbox.nextElementSibling;
+				if (checkbox.checked) {
+					label.classList.add("line-through", "text-gray-400");
+				} else {
+					label.classList.remove("line-through", "text-gray-400");
+				}
+			}
+
+			function updateProgress() {
+				const visibleDocs = getVisibleDocuments();
+				const totalDocs = visibleDocs.length;
+				const completedDocs = Object.keys(checkedDocs).filter(
+					(key) => checkedDocs[key] && visibleDocs.includes(key)
+				).length;
+				const progress = totalDocs > 0 ? (completedDocs / totalDocs) * 100 : 0;
+
+				document.getElementById(
+					"progressText"
+				).textContent = `${completedDocs} of ${totalDocs} documents`;
+				document.getElementById("progressBar").style.width = `${progress}%`;
+			}
+
+			// Initialize
+			updateDocuments();
+		</script>
+	</body>
+</html>

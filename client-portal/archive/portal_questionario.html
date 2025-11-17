@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal de Imigração - com Questionário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      @keyframes fadeIn { from { opacity:0; transform: translateY(10px);} to { opacity:1; transform: translateY(0);}}
+      .fade-in { animation: fadeIn .3s ease-out;}
+      .tab-active { color: #4f46e5; border-bottom: 2px solid #4f46e5;}
+      .badge { padding:.25rem .75rem; border-radius:9999px; font-weight:600; }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Login -->
+    <div id="loginScreen" class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 fade-in">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-full mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">Portal de Imigração</h1>
+          <p class="text-gray-600">Acesse sua conta para ver e atualizar seu processo.</p>
+        </div>
+        <div class="space-y-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Digite seu email" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+            <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="Digite sua senha" />
+          </div>
+          <div id="errorMessage" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span id="errorText"></span>
+          </div>
+          <button onclick="handleLogin()" id="loginBtn" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">Entrar</button>
+        </div>
+        <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+          <p class="text-sm text-gray-600 font-semibold mb-2">Configure seu Supabase:</p>
+          <p class="text-xs text-gray-500">Adicione suas credenciais no código JavaScript</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardScreen" class="hidden min-h-screen">
+      <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h1 class="text-2xl font-bold text-gray-900" id="clientName"></h1>
+                <p class="text-sm text-gray-500" id="processType"></p>
+              </div>
+            </div>
+            <button onclick="handleLogout()" class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+              </svg>
+              Sair
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <!-- Tabs -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden fade-in">
+          <div class="border-b border-gray-200">
+            <div class="flex flex-wrap">
+              <button onclick="switchTab('overview')" id="tabOverview" class="px-6 py-4 font-semibold transition-colors tab-active">Visão Geral</button>
+              <button onclick="switchTab('documents')" id="tabDocuments" class="px-6 py-4 font-semibold transition-colors text-gray-500 hover:text-gray-700">Documentos</button>
+              <button onclick="switchTab('history')" id="tabHistory" class="px-6 py-4 font-semibold transition-colors text-gray-500 hover:text-gray-700">Histórico</button>
+              <button onclick="switchTab('questionario')" id="tabQuestionario" class="px-6 py-4 font-semibold transition-colors text-gray-500 hover:text-gray-700">Questionário</button>
+            </div>
+          </div>
+
+          <div class="p-6">
+            <!-- Questionário -->
+            <div id="questionarioContent" class="">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Dados Pessoais -->
+                <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <h3 class="font-semibold text-gray-900 mb-4">Dados Pessoais</h3>
+                  <div class="space-y-4">
+                    <div><label class="text-sm text-gray-600">Nome completo</label><input id="q_nome" class="mt-1 w-full border rounded-lg px-3 py-2" placeholder="Como no passaporte" /></div>
+                    <div><label class="text-sm text-gray-600">Data de nascimento</label><input type="date" id="q_nascimento" class="mt-1 w-full border rounded-lg px-3 py-2" /></div>
+                    <div><label class="text-sm text-gray-600">Nacionalidade</label><input id="q_nacionalidade" class="mt-1 w-full border rounded-lg px-3 py-2" placeholder="Ex.: Brasil" /></div>
+                    <div><label class="text-sm text-gray-600">Telefone / WhatsApp</label><input id="q_whats" class="mt-1 w-full border rounded-lg px-3 py-2" /></div>
+                  </div>
+                </div>
+                <!-- Status Atual no Canadá -->
+                <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <h3 class="font-semibold text-gray-900 mb-4">Status Atual no Canadá</h3>
+                  <div class="space-y-4">
+                    <div><label class="text-sm text-gray-600">Está no Canadá?</label>
+                      <select id="q_no_canada" class="mt-1 w-full border rounded-lg px-3 py-2">
+                        <option value="">Selecione</option><option value="Sim">Sim</option><option value="Não">Não</option>
+                      </select>
+                    </div>
+                    <div><label class="text-sm text-gray-600">Tipo de visto atual</label>
+                      <select id="q_visto_atual" class="mt-1 w-full border rounded-lg px-3 py-2">
+                        <option value="">Selecione</option><option>Study Permit</option><option>Visitor Visa</option><option>Work Permit</option><option>PR / Outras</option>
+                      </select>
+                    </div>
+                    <div><label class="text-sm text-gray-600">Validade do visto atual</label><input type="date" id="q_visto_expira" class="mt-1 w-full border rounded-lg px-3 py-2" /></div>
+                    <div><label class="text-sm text-gray-600">Biometria nos últimos 10 anos?</label>
+                      <select id="q_biometria" class="mt-1 w-full border rounded-lg px-3 py-2">
+                        <option value="">Selecione</option><option>Sim</option><option>Não</option><option>Não sei</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <!-- Planos -->
+                <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <h3 class="font-semibold text-gray-900 mb-4">Planos de Estudo / Aplicação</h3>
+                  <div class="space-y-4">
+                    <div><label class="text-sm text-gray-600">Programa / Instituição</label><input id="q_programa" class="mt-1 w-full border rounded-lg px-3 py-2" placeholder="Ex.: Business Diploma – Sprott Shaw" /></div>
+                    <div><label class="text-sm text-gray-600">Previsão de início</label><input id="q_inicio" class="mt-1 w-full border rounded-lg px-3 py-2" placeholder="MM/AAAA" /></div>
+                    <div><label class="text-sm text-gray-600">Possui LOA?</label>
+                      <select id="q_loa" class="mt-1 w-full border rounded-lg px-3 py-2"><option value="">Selecione</option><option>Sim</option><option>Não</option></select>
+                    </div>
+                    <div><label class="text-sm text-gray-600">Fonte de recursos</label>
+                      <select id="q_fonte" class="mt-1 w-full border rounded-lg px-3 py-2"><option value="">Selecione</option><option>Recursos próprios</option><option>Patrocinador</option><option>Bolsa</option></select>
+                    </div>
+                    <div><label class="text-sm text-gray-600">Valor disponível (CAD)</label><input type="number" min="0" id="q_valor" class="mt-1 w-full border rounded-lg px-3 py-2" /></div>
+                  </div>
+                </div>
+                <!-- Histórico -->
+                <div class="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <h3 class="font-semibold text-gray-900 mb-4">Histórico e Contexto</h3>
+                  <div class="space-y-4">
+                    <div><label class="text-sm text-gray-600">Já teve visto negado?</label>
+                      <select id="q_negado" class="mt-1 w-full border rounded-lg px-3 py-2"><option value="">Selecione</option><option>Sim</option><option>Não</option></select>
+                    </div>
+                    <div><label class="text-sm text-gray-600">Motivo principal do pedido</label>
+                      <select id="q_motivo" class="mt-1 w-full border rounded-lg px-3 py-2"><option value="">Selecione</option><option>Estudos</option><option>Renovação</option><option>Acompanhar cônjuge</option><option>Outro</option></select>
+                    </div>
+                    <div><label class="text-sm text-gray-600">Observações adicionais</label><textarea id="q_obs" rows="4" class="mt-1 w-full border rounded-lg px-3 py-2" placeholder="Contexto que ajude nossa análise"></textarea></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 flex items-center gap-3">
+                <button id="btnSaveQ" onclick="saveQuestionario()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-3 rounded-lg">Salvar Questionário</button>
+                <span id="saveBadge" class="hidden badge bg-green-100 text-green-700">Salvo</span>
+                <span id="saveError" class="hidden badge bg-red-100 text-red-700">Erro ao salvar</span>
+              </div>
+            </div>
+
+            <!-- Placeholder for other tabs -->
+            <div id="overviewContent" class="hidden"></div>
+            <div id="documentsContent" class="hidden"></div>
+            <div id="historyContent" class="hidden"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SUPABASE_URL = "https://lqyvatogkwndlpsetwie.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxeXZhdG9na3duZGxwc2V0d2llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTkwODAsImV4cCI6MjA3NzQ5NTA4MH0.-OOYSpIt9YcLiMt2RTlfY7KUQWHMnELf1OczPpb-2II";
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      let currentClient = null;
+      let currentUser = null;
+
+      async function handleLogin(){
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("errorMessage");
+        const errorText = document.getElementById("errorText");
+        const loginBtn = document.getElementById("loginBtn");
+
+        if(!email || !password){
+          errorText.textContent = "Por favor, preencha todos os campos";
+          errorMessage.classList.remove("hidden"); return;
+        }
+        loginBtn.disabled = true; loginBtn.textContent = "Entrando...";
+
+        try{
+          const { data: authData, error: authError } = await supabase.auth.signInWithPassword({ email, password });
+          if(authError) throw authError;
+          currentUser = authData.user;
+
+          const { data: clientData, error: clientError } = await supabase.from("clientes").select("*").eq("user_id", currentUser.id).single();
+          if(clientError) throw new Error("Dados do cliente não encontrados");
+
+          currentClient = clientData;
+          document.getElementById("loginScreen").classList.add("hidden");
+          document.getElementById("dashboardScreen").classList.remove("hidden");
+          switchTab("questionario");
+          await prefillQuestionario();
+        }catch(err){
+          errorText.textContent = err.message || "Erro ao fazer login";
+          errorMessage.classList.remove("hidden");
+        }finally{
+          loginBtn.disabled = false; loginBtn.textContent = "Entrar";
+        }
+      }
+
+      async function handleLogout(){
+        await supabase.auth.signOut();
+        currentClient = null; currentUser = null;
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+        document.getElementById("loginScreen").classList.remove("hidden");
+        document.getElementById("dashboardScreen").classList.add("hidden");
+      }
+
+      function switchTab(tab){
+        const tabs = ["overview","documents","history","questionario"];
+        tabs.forEach((t)=>{
+          const btn = document.getElementById(`tab${t.charAt(0).toUpperCase()+t.slice(1)}`);
+          const content = document.getElementById(`${t}Content`);
+          if (!btn || !content) return;
+          if(t===tab){
+            btn.classList.add("tab-active"); btn.classList.remove("text-gray-500");
+            content.classList.remove("hidden");
+          }else{
+            btn.classList.remove("tab-active"); btn.classList.add("text-gray-500");
+            content.classList.add("hidden");
+          }
+        });
+      }
+
+      function q(id){ return document.getElementById(id)?.value?.trim() ?? ""; }
+
+      async function saveQuestionario(){
+        if(!currentClient) return;
+        const rows = [
+          { cliente_id: currentClient.id, campo: "nome", valor: q("q_nome"), categoria: "Dados Pessoais" },
+          { cliente_id: currentClient.id, campo: "nascimento", valor: q("q_nascimento"), categoria: "Dados Pessoais" },
+          { cliente_id: currentClient.id, campo: "nacionalidade", valor: q("q_nacionalidade"), categoria: "Dados Pessoais" },
+          { cliente_id: currentClient.id, campo: "whatsapp", valor: q("q_whats"), categoria: "Dados Pessoais" },
+          { cliente_id: currentClient.id, campo: "esta_no_canada", valor: q("q_no_canada"), categoria: "Status Atual no Canadá" },
+          { cliente_id: currentClient.id, campo: "visto_atual", valor: q("q_visto_atual"), categoria: "Status Atual no Canadá" },
+          { cliente_id: currentClient.id, campo: "visto_expira", valor: q("q_visto_expira"), categoria: "Status Atual no Canadá" },
+          { cliente_id: currentClient.id, campo: "biometria_10_anos", valor: q("q_biometria"), categoria: "Status Atual no Canadá" },
+          { cliente_id: currentClient.id, campo: "programa", valor: q("q_programa"), categoria: "Planos" },
+          { cliente_id: currentClient.id, campo: "inicio_previsto", valor: q("q_inicio"), categoria: "Planos" },
+          { cliente_id: currentClient.id, campo: "possui_loa", valor: q("q_loa"), categoria: "Planos" },
+          { cliente_id: currentClient.id, campo: "fonte_recursos", valor: q("q_fonte"), categoria: "Planos" },
+          { cliente_id: currentClient.id, campo: "valor_disponivel_cad", valor: q("q_valor"), categoria: "Planos" },
+          { cliente_id: currentClient.id, campo: "negado", valor: q("q_negado"), categoria: "Histórico" },
+          { cliente_id: currentClient.id, campo: "motivo_principal", valor: q("q_motivo"), categoria: "Histórico" },
+          { cliente_id: currentClient.id, campo: "observacoes", valor: q("q_obs"), categoria: "Histórico" },
+        ].map(r => ({ ...r, updated_at: new Date().toISOString() }));
+
+        try{
+          const { error } = await supabase.from("questionario").upsert(rows, { onConflict: "cliente_id,campo" });
+          const ok = !error;
+          document.getElementById("saveBadge").classList.toggle("hidden", !ok===true);
+          document.getElementById("saveError").classList.toggle("hidden", ok===true);
+          if(error) { console.error(error); return; }
+          const badge = document.getElementById("saveBadge");
+          badge.classList.remove("hidden");
+          setTimeout(()=>badge.classList.add("hidden"), 2000);
+        }catch(err){
+          console.error(err);
+          const badgeErr = document.getElementById("saveError");
+          badgeErr.classList.remove("hidden");
+          setTimeout(()=>badgeErr.classList.add("hidden"), 3000);
+        }
+      }
+
+      async function prefillQuestionario(){
+        if(!currentClient) return;
+        try{
+          const { data } = await supabase.from("questionario").select("*").eq("cliente_id", currentClient.id);
+          if(!data) return;
+          const by = Object.fromEntries(data.map(d => [d.campo, d.valor || ""]));
+          const set = (id,v)=>{ const el = document.getElementById(id); if(el) el.value = v || ""; };
+          set("q_nome", by["nome"]);
+          set("q_nascimento", by["nascimento"]);
+          set("q_nacionalidade", by["nacionalidade"]);
+          set("q_whats", by["whatsapp"]);
+          set("q_no_canada", by["esta_no_canada"]);
+          set("q_visto_atual", by["visto_atual"]);
+          set("q_visto_expira", by["visto_expira"]);
+          set("q_biometria", by["biometria_10_anos"]);
+          set("q_programa", by["programa"]);
+          set("q_inicio", by["inicio_previsto"]);
+          set("q_loa", by["possui_loa"]);
+          set("q_fonte", by["fonte_recursos"]);
+          set("q_valor", by["valor_disponivel_cad"]);
+          set("q_negado", by["negado"]);
+          set("q_motivo", by["motivo_principal"]);
+          set("q_obs", by["observacoes"]);
+        }catch(e){ console.error(e); }
+      }
+
+      document.getElementById("password").addEventListener("keypress", (e)=>{ if(e.key==="Enter"){ handleLogin(); }});
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          currentUser = session.user;
+          supabase.from("clientes").select("*").eq("user_id", currentUser.id).single().then(({ data }) => {
+            if (data) { currentClient = data; switchTab("questionario"); prefillQuestionario(); }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

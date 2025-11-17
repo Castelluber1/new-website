@@ -1,0 +1,139 @@
+<div class="header">
+	<h1>Hello, Caio</h1>
+	<p>We are taking care of your case</p>
+</div>
+
+<div class="main-wrapper">
+	<!-- LEFT COLUMN -->
+	<div class="left-column">
+		<!-- STATS ROW -->
+		<div class="stats-row">
+			<div class="card stat-card progress">
+				<div class="stat-container">
+					<div class="stat-label">PROGRESS</div>
+					<div class="progress-circle">
+						<svg viewBox="0 0 120 120">
+							<defs>
+								<linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+									<stop
+										offset="0%"
+										style="stop-color: #2563eb; stop-opacity: 1" />
+									<stop
+										offset="100%"
+										style="stop-color: #1e40af; stop-opacity: 1" />
+								</linearGradient>
+							</defs>
+							<circle
+								cx="60"
+								cy="60"
+								r="54"
+								fill="none"
+								stroke="#e2e8f0"
+								stroke-width="6"></circle>
+							<circle
+								cx="60"
+								cy="60"
+								r="54"
+								fill="none"
+								stroke="url(#grad1)"
+								stroke-width="6"
+								stroke-linecap="round"
+								style="
+									stroke-dasharray: 226 376;
+									animation: fillProgress 1.5s ease-out forwards;
+								"></circle>
+						</svg>
+						<div class="progress-center">
+							<div class="progress-text">60%</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card stat-card">
+				<div class="stat-container">
+					<div class="stat-label">APPLICATION STAGE</div>
+					<h2 class="application-stage-document">Documentation</h2>
+					<p class="application-stage-description">
+						Your documentation is being reviewed by our team and we will update
+						you shortly
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- BOTTOM STATS ROW -->
+		<div class="stats-row">
+			<div class="card stat-card">
+				<div class="stat-container">
+					<div class="stat-label">START DATE</div>
+					<div class="stat-number">06/15/25</div>
+				</div>
+			</div>
+			<div class="card stat-card">
+				<div class="stat-container">
+					<div class="stat-label">ESTIMATED SUBMISSION</div>
+					<div class="stat-number">08/15/25</div>
+				</div>
+			</div>
+			<div class="card stat-card missing-docs">
+				<div class="stat-container">
+					<div class="stat-label">MISSING DOCUMENTS</div>
+					<div class="stat-number">2</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- RIGHT COLUMN -->
+	<div class="right-column">
+		<!-- STAGES CARD -->
+		<div class="stages-card">
+			<div class="stat-label">STAGE OVERVIEW</div>
+
+			<div class="stages-list">
+				<!-- STAGE 1: COMPLETED -->
+				<div class="stage-item completed">
+					<div class="stage-icon">✓</div>
+					<div class="stage-name">Contract</div>
+					<div class="stage-duration">1 day</div>
+				</div>
+
+				<!-- STAGE 2: COMPLETED -->
+				<div class="stage-item completed">
+					<div class="stage-icon">✓</div>
+					<div class="stage-name">Invoice</div>
+					<div class="stage-duration">1 day</div>
+				</div>
+
+				<!-- STAGE 3: ACTIVE -->
+				<div class="stage-item active">
+					<div class="stage-icon">✓</div>
+					<div class="stage-name">Documentation</div>
+					<div class="stage-duration">7 days</div>
+				</div>
+
+				<!-- STAGE 4: UPCOMING -->
+				<div class="stage-item upcoming">
+					<div class="stage-icon">5</div>
+					<div class="stage-name">Review</div>
+					<div class="stage-duration">2 days</div>
+				</div>
+
+				<!-- STAGE 5: UPCOMING -->
+				<div class="stage-item upcoming">
+					<div class="stage-icon">6</div>
+					<div class="stage-name">Submission</div>
+					<div class="stage-duration">5 days</div>
+				</div>
+
+				<!-- STAGE 6: UPCOMING -->
+				<div class="stage-item upcoming">
+					<div class="stage-icon">7</div>
+					<div class="stage-name">Final Decision</div>
+					<div class="stage-duration">Loading</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

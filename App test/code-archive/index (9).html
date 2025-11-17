@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UP Immigration — Document Checklist Tester</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Flying sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Filters</h2>
+      <button class="toggle" id="toggleSidebar" aria-label="Toggle filters">☰</button>
+    </div>
+    <form id="filter-form">
+      <label>
+        <span>How can we help you?</span>
+        <select name="How can we help you?">
+          <option value="">Select...</option>
+          <option>Visitor Visa</option>
+          <option>Study Permit</option>
+          <option>Open Work Permit</option>
+          <option>Closed Work Permit</option>
+          <option>Permanent Residence</option>
+          <option>Permanent Residence Renewal</option>
+          <option>PGWP - Post Graduate Work Permit</option>
+          <option>Spousal Sponsorship</option>
+          <option>LMIA</option>
+          <option>Study Permit - Previous Refusal</option>
+          <option>Work Permit - Previous Refusal</option>
+          <option>Visitor Visa - Previous Refusal</option>
+          <option>Visitor Visa - Restoration of Status</option>
+          <option>Study Permit - Restoration of Status</option>
+          <option>Work Permit - Restoration of Status</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Married</span>
+        <select name="Married">
+          <option value="">Select...</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Kids</span>
+        <select name="Kids">
+          <option value="">Select...</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+
+      <label>
+        <span>OWP</span>
+        <select name="OWP">
+          <option value="">Select...</option>
+          <option>Student Spouse</option>
+          <option>Close WP - Spouse</option>
+          <option>PGWP Spouse</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Previous Refusal</span>
+        <select name="Previous Refusal">
+          <option value="">Select...</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Application</span>
+        <select name="Application">
+          <option value="">Select...</option>
+          <option>Inland</option>
+          <option>Outland</option>
+        </select>
+      </label>
+
+      <label>
+        <span>PAL</span>
+        <select name="PAL">
+          <option value="">Select...</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Restoration</span>
+        <select name="Restoration">
+          <option value="">Select...</option>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </label>
+
+      <div class="actions">
+        <button type="submit" class="apply">Apply Rules</button>
+        <button type="button" class="reset" id="resetBtn">Reset</button>
+      </div>
+
+      <div class="debug">
+        <div><strong>Visible docs:</strong></div>
+        <pre id="debugOut">[]</pre>
+      </div>
+    </form>
+  </aside>
+
+  <!-- Page content -->
+  <main class="content">
+    <header class="page-header">
+      <h1>Document Checklist</h1>
+      <p class="muted">Sections auto-hide when no items match your filters.</p>
+    </header>
+
+    <!-- SECTIONS -->
+    <section class="doc-section" id="Personal Documents">
+      <h2>Personal Documents</h2>
+      <ul>
+        <li data-document="passport"><input type="checkbox" /> Copy of passport pages</li>
+        <li data-document="photo"><input type="checkbox" /> Digital photo</li>
+        <li data-document="current-permit"><input type="checkbox" /> Copy of current Permit</li>
+        <li data-document="marriage-certificate"><input type="checkbox" /> Marriage certificate</li>
+        <li data-document="birth-certificate"><input type="checkbox" /> Birth certificate of the child</li>
+        <li data-document="extension-letter"><input type="checkbox" /> Letter explaining reason for extension</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Official Form">
+      <h2>Official Forms</h2>
+      <ul>
+        <li data-document="representative"><input type="checkbox" /> IMM 5476 – Use of Representative</li>
+        <li data-document="family-form"><input type="checkbox" /> IMM 5645 – Family Information Form</li>
+        <li data-document="custodianship"><input type="checkbox" /> IMM 5646 – Custodianship Declaration</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Additional Documents for Previous Refusal">
+      <h2>Additional Documents for Previous Refusal</h2>
+      <ul>
+        <li data-document="refusal-letter"><input type="checkbox" /> Copy of the refusal letter from IRCC</li>
+        <li data-document="explanation-letter"><input type="checkbox" /> Explanation letter addressing refusal reasons</li>
+        <li data-document="add-evidence"><input type="checkbox" /> Evidence that strengthens your application</li>
+        <li data-document="travel-history"><input type="checkbox" /> International travel history</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Proof of Ties to Home Country">
+      <h2>Proof of Ties to Home Country</h2>
+      <ul>
+        <li data-document="intent-letter"><input type="checkbox" /> Letter of Intent or Letter of Explanation</li>
+        <li data-document="ties-proof"><input type="checkbox" /> Proof of ties</li>
+        <li data-document="residence-proof"><input type="checkbox" /> Proof of residence</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Additional Documents for Loss of Status">
+      <h2>Additional Documents for Loss of Status</h2>
+      <ul>
+        <li data-document="restoration-letter"><input type="checkbox" /> Letter of Explanation - why the expired status</li>
+        <li data-document="restoration-statement"><input type="checkbox" /> Statement requesting restoration of status</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Academic Documents">
+      <h2>Academic Documents</h2>
+      <ul>
+        <li data-document="loa"><input type="checkbox" /> Letter of Acceptance (LOA) from the institution</li>
+        <li data-document="enrollment-proof"><input type="checkbox" /> Proof of enrollment or current studies</li>
+        <li data-document="pal"><input type="checkbox" /> Provincial Attestation Letter (PAL)</li>
+        <li data-document="school-receipt"><input type="checkbox" /> Tuition payment receipt issued by the school</li>
+        <li data-document="tuition-first-year"><input type="checkbox" /> Proof of first-year tuition payment</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Proof of Financial Support">
+      <h2>Proof of Financial Support</h2>
+      <ul>
+        <li data-document="bank-statements"><input type="checkbox" /> Bank statements for the last 4 months</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Sponsor Documents">
+      <h2>Sponsor Documents</h2>
+      <ul>
+        <li data-document="sponsor-bank-statements"><input type="checkbox" /> Bank statements for the last 4 months</li>
+        <li data-document="sponsor-support-letter"><input type="checkbox" /> Sponsor support letter</li>
+        <li data-document="sponsor-income"><input type="checkbox" /> Income tax return, pay stubs, or employer letter</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Professional Documents">
+      <h2>Professional Documents</h2>
+      <ul>
+        <li data-document="lmia"><input type="checkbox" /> Document with the LMIA or Exemption number</li>
+        <li data-document="job-offer"><input type="checkbox" /> Signed job offer</li>
+        <li data-document="job-contract"><input type="checkbox" /> Employment contract</li>
+        <li data-document="education-certificates"><input type="checkbox" /> Academic certificates and diplomas</li>
+        <li data-document="resume"><input type="checkbox" /> Resume</li>
+        <li data-document="language-proficiency"><input type="checkbox" /> English proficiency test</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Partner’s Support Documents">
+      <h2>Partner’s Support Documents</h2>
+      <ul>
+        <li data-document="pgwp-spouse-proof"><input type="checkbox" /> Copy of spouse’s PGWP</li>
+        <li data-document="pgwp-spouse-employment"><input type="checkbox" /> Current employment letter</li>
+        <li data-document="pgwp-spouse-payslips"><input type="checkbox" /> Payslips for the last 3–4 months</li>
+        <li data-document="pgwp-spouse-eligibility"><input type="checkbox" /> Proof that spouse work eligibility</li>
+        <li data-document="cwp-spouse-permit"><input type="checkbox" /> Copy of spouse’s Closed Work Permit</li>
+        <li data-document="cwp-spouse-employment"><input type="checkbox" /> Employment letter is tied to the Closed Work Permit</li>
+        <li data-document="cwp-spouse-payslips"><input type="checkbox" /> Payslips for the last 3–4 months</li>
+        <li data-document="cwp-spouse-lmia"><input type="checkbox" /> LMIA or LMIA-exempt confirmation number</li>
+        <li data-document="study-spouse-permit"><input type="checkbox" /> Copy of spouse’s Study Permit</li>
+        <li data-document="study-spouse-loa"><input type="checkbox" /> Letter of enrolment/acceptance</li>
+        <li data-document="study-spouse-tuition"><input type="checkbox" /> Proof of payment of tuition</li>
+        <li data-document="study-spouse-attendance"><input type="checkbox" /> Proof of attendance</li>
+      </ul>
+    </section>
+
+    <section class="doc-section" id="Support Documents">
+      <h2>Support Documents</h2>
+      <ul>
+        <li data-document="bridging-status"><input type="checkbox" /> Proof of current status</li>
+        <li data-document="bridging-employment"><input type="checkbox" /> Proof of current employment</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="rules.js"></script>
+</body>
+</html>

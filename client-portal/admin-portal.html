@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Portal Admin - UP Immigration</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	</head>
+	<body class="bg-gray-100">
+		<!-- Login Screen -->
+		<div
+			id="loginScreen"
+			class="min-h-screen bg-gradient-to-br from-red-50 to-pink-100 flex items-center justify-center p-4">
+			<div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+				<div class="text-center mb-8">
+					<div
+						class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
+						style="background-color: #b8001c">
+						<svg
+							class="w-8 h-8 text-white"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+						</svg>
+					</div>
+					<h1 class="text-3xl font-bold text-gray-800 mb-2">Portal Admin</h1>
+					<p class="text-gray-600">Gerenciamento de Clientes</p>
+				</div>
+
+				<div class="space-y-6">
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-2"
+							>Email</label
+						>
+						<input
+							type="email"
+							id="adminEmail"
+							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+							style="--tw-ring-color: #b8001c"
+							placeholder="admin@upimmigration.ca" />
+					</div>
+
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-2"
+							>Senha</label
+						>
+						<input
+							type="password"
+							id="adminPassword"
+							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+							style="--tw-ring-color: #b8001c"
+							placeholder="Digite sua senha" />
+					</div>
+
+					<div
+						id="loginError"
+						class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+						<span id="loginErrorText"></span>
+					</div>
+
+					<button
+						onclick="handleAdminLogin()"
+						id="loginBtn"
+						class="w-full text-white py-3 rounded-lg font-semibold transition-colors"
+						style="background-color: #b8001c"
+						onmouseover="this.style.backgroundColor='#8B0015'"
+						onmouseout="this.style.backgroundColor='#B8001C'">
+						Entrar
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Admin Dashboard -->
+		<div id="adminDashboard" class="hidden min-h-screen">
+			<!-- Header -->
+			<header class="bg-white shadow-sm border-b border-gray-200">
+				<div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+					<div class="flex justify-between items-center">
+						<div class="flex items-center gap-4">
+							<div
+								class="w-12 h-12 rounded-lg flex items-center justify-center"
+								style="background-color: #b8001c">
+								<svg
+									class="w-6 h-6 text-white"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+								</svg>
+							</div>
+							<div>
+								<h1 class="text-2xl font-bold text-gray-900">Portal Admin</h1>
+								<p class="text-sm text-gray-500">Gerenciamento de Clientes</p>
+							</div>
+						</div>
+						<button
+							onclick="handleAdminLogout()"
+							class="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+							<svg
+								class="w-5 h-5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+							</svg>
+							Sair
+						</button>
+					</div>
+				</div>
+			</header>
+
+			<div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+				<!-- Search Box -->
+				<div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+					<div class="flex gap-4">
+						<div class="flex-1">
+							<label class="block text-sm font-medium text-gray-700 mb-2"
+								>🔍 Buscar Cliente</label
+							>
+							<input
+								type="text"
+								id="searchClient"
+								class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+								style="--tw-ring-color: #b8001c"
+								placeholder="Digite o nome ou email do cliente..." />
+						</div>
+						<div class="flex items-end">
+							<button
+								onclick="searchClient()"
+								class="px-6 py-3 text-white rounded-lg font-semibold transition-colors"
+								style="background-color: #b8001c"
+								onmouseover="this.style.backgroundColor='#8B0015'"
+								onmouseout="this.style.backgroundColor='#B8001C'">
+								Buscar
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- Client Info (Hidden initially) -->
+				<div id="clientInfoSection" class="hidden">
+					<!-- Client Header -->
+					<div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+						<div class="flex items-start justify-between mb-6">
+							<div class="flex-1">
+								<h2
+									class="text-2xl font-bold text-gray-900 mb-4"
+									id="clientNameAdmin"></h2>
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<div>
+										<label class="text-sm text-gray-500">Email</label>
+										<input
+											type="email"
+											id="editEmail"
+											class="w-full px-3 py-2 border border-gray-300 rounded-lg mt-1" />
+									</div>
+									<div>
+										<label class="text-sm text-gray-500">Telefone</label>
+										<input
+											type="text"
+											id="editTelefone"
+											class="w-full px-3 py-2 border border-gray-300 rounded-lg mt-1" />
+									</div>
+									<div>
+										<label class="text-sm text-gray-500">Processo</label>
+										<input
+											type="text"
+											id="editProcesso"
+											class="w-full px-3 py-2 border border-gray-300 rounded-lg mt-1" />
+									</div>
+									<div>
+										<label class="text-sm text-gray-500">Status</label>
+										<select
+											id="editStatus"
+											class="w-full px-3 py-2 border border-gray-300 rounded-lg mt-1">
+											<option value="pendente">Pendente</option>
+											<option value="em_progresso">Em Progresso</option>
+											<option value="concluido">Concluído</option>
+										</select>
+									</div>
+									<div>
+										<label class="text-sm text-gray-500">Progresso (%)</label>
+										<input
+											type="number"
+											id="editProgresso"
+											min="0"
+											max="100"
+											class="w-full px-3 py-2 border border-gray-300 rounded-lg mt-1" />
+									</div>
+									<div>
+										<label class="text-sm text-gray-500">Etapa</label>
+										<input
+											type="text"
+											id="editEtapa"
+											class="w-full px-3 py-2 border border-gray-300 rounded-lg mt-1" />
+									</div>
+								</div>
+								<button
+									onclick="saveClientChanges()"
+									class="mt-4 px-6 py-2 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors">
+									💾 Salvar Alterações
+								</button>
+							</div>
+						</div>
+
+						<div class="mt-6">
+							<div class="flex justify-between text-sm text-gray-600 mb-2">
+								<span>Progresso do Processo</span>
+								<span id="progressPercentAdmin"></span>
+							</div>
+							<div class="w-full bg-gray-200 rounded-full h-3">
+								<div
+									id="progressBarAdmin"
+									class="h-3 rounded-full transition-all duration-500"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Documents Management -->
+					<div class="bg-white rounded-xl shadow-lg p-6">
+						<div class="flex justify-between items-center mb-4">
+							<h3 class="text-xl font-bold text-gray-900">
+								📄 Gerenciamento de Documentos
+							</h3>
+							<button
+								onclick="showAddDocumentModal()"
+								class="px-4 py-2 text-white rounded-lg font-semibold transition-colors"
+								style="background-color: #b8001c"
+								onmouseover="this.style.backgroundColor='#8B0015'"
+								onmouseout="this.style.backgroundColor='#B8001C'">
+								+ Adicionar Documento
+							</button>
+						</div>
+						<div id="documentsListAdmin" class="space-y-3"></div>
+					</div>
+				</div>
+
+				<!-- No Results Message -->
+				<div id="noResultsMessage" class="hidden text-center py-12">
+					<svg
+						class="w-16 h-16 text-gray-400 mx-auto mb-4"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+					</svg>
+					<p class="text-gray-600 text-lg">Nenhum cliente encontrado</p>
+					<p class="text-gray-500 text-sm">
+						Tente buscar por outro nome ou email
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Add Document Modal -->
+		<div
+			id="addDocumentModal"
+			class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+			<div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-6">
+				<h3 class="text-2xl font-bold text-gray-900 mb-4">
+					Adicionar Novo Documento
+				</h3>
+				<div class="space-y-4">
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-2"
+							>Nome do Documento</label
+						>
+						<input
+							type="text"
+							id="newDocName"
+							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+							style="--tw-ring-color: #b8001c"
+							placeholder="Ex: Comprovante Financeiro" />
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700 mb-2"
+							>Status Inicial</label
+						>
+						<select
+							id="newDocStatus"
+							class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+							style="--tw-ring-color: #b8001c">
+							<option value="pendente">Pendente</option>
+							<option value="em_analise">Em Análise</option>
+							<option value="aprovado">Aprovado</option>
+						</select>
+					</div>
+					<div class="flex gap-3 mt-6">
+						<button
+							onclick="addNewDocument()"
+							class="flex-1 px-6 py-3 text-white rounded-lg font-semibold transition-colors"
+							style="background-color: #b8001c"
+							onmouseover="this.style.backgroundColor='#8B0015'"
+							onmouseout="this.style.backgroundColor='#B8001C'">
+							Adicionar
+						</button>
+						<button
+							onclick="hideAddDocumentModal()"
+							class="flex-1 px-6 py-3 bg-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-400 transition-colors">
+							Cancelar
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const SUPABASE_URL = "https://lqyvatogkwndlpsetwie.supabase.co";
+			const SUPABASE_ANON_KEY =
+				"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxeXZhdG9na3duZGxwc2V0d2llIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTkwODAsImV4cCI6MjA3NzQ5NTA4MH0.-OOYSpIt9YcLiMt2RTlfY7KUQWHMnELf1OczPpb-2II";
+
+			const supabase = window.supabase.createClient(
+				SUPABASE_URL,
+				SUPABASE_ANON_KEY
+			);
+			let currentClientData = null;
+
+			async function handleAdminLogin() {
+				const email = document.getElementById("adminEmail").value;
+				const password = document.getElementById("adminPassword").value;
+				const loginError = document.getElementById("loginError");
+				const loginErrorText = document.getElementById("loginErrorText");
+				const loginBtn = document.getElementById("loginBtn");
+
+				if (!email || !password) {
+					loginErrorText.textContent = "Por favor, preencha todos os campos";
+					loginError.classList.remove("hidden");
+					return;
+				}
+
+				loginBtn.disabled = true;
+				loginBtn.textContent = "Entrando...";
+
+				try {
+					const { data, error } = await supabase.auth.signInWithPassword({
+						email: email,
+						password: password,
+					});
+
+					if (error) throw error;
+
+					loginError.classList.add("hidden");
+					document.getElementById("loginScreen").classList.add("hidden");
+					document.getElementById("adminDashboard").classList.remove("hidden");
+				} catch (error) {
+					loginErrorText.textContent = error.message || "Erro ao fazer login";
+					loginError.classList.remove("hidden");
+				} finally {
+					loginBtn.disabled = false;
+					loginBtn.textContent = "Entrar";
+				}
+			}
+
+			async function handleAdminLogout() {
+				await supabase.auth.signOut();
+				document.getElementById("loginScreen").classList.remove("hidden");
+				document.getElementById("adminDashboard").classList.add("hidden");
+				document.getElementById("clientInfoSection").classList.add("hidden");
+				document.getElementById("adminEmail").value = "";
+				document.getElementById("adminPassword").value = "";
+			}
+
+			async function searchClient() {
+				const searchTerm = document.getElementById("searchClient").value.trim();
+
+				if (!searchTerm) {
+					alert("Por favor, digite um nome ou email para buscar");
+					return;
+				}
+
+				try {
+					const { data, error } = await supabase
+						.from("clientes")
+						.select("*")
+						.or(`nome.ilike.%${searchTerm}%,email.ilike.%${searchTerm}%`)
+						.limit(1)
+						.single();
+
+					if (error || !data) {
+						document
+							.getElementById("clientInfoSection")
+							.classList.add("hidden");
+						document
+							.getElementById("noResultsMessage")
+							.classList.remove("hidden");
+						return;
+					}
+
+					currentClientData = data;
+					document.getElementById("noResultsMessage").classList.add("hidden");
+					await displayClientInfo(data);
+				} catch (error) {
+					console.error("Error searching client:", error);
+					document.getElementById("clientInfoSection").classList.add("hidden");
+					document
+						.getElementById("noResultsMessage")
+						.classList.remove("hidden");
+				}
+			}
+
+			async function displayClientInfo(client) {
+				document.getElementById("clientInfoSection").classList.remove("hidden");
+				document.getElementById("clientNameAdmin").textContent = client.nome;
+
+				// Populate edit fields
+				document.getElementById("editEmail").value = client.email;
+				document.getElementById("editTelefone").value = client.telefone || "";
+				document.getElementById("editProcesso").value = client.processo;
+				document.getElementById("editStatus").value = client.status;
+				document.getElementById("editProgresso").value = client.progresso;
+				document.getElementById("editEtapa").value = client.etapa;
+
+				document.getElementById(
+					"progressPercentAdmin"
+				).textContent = `${client.progresso}%`;
+
+				const progressBar = document.getElementById("progressBarAdmin");
+				let progressColor = "";
+
+				if (client.status === "concluido") {
+					progressColor = "bg-green-500";
+				} else if (client.status === "em_progresso") {
+					progressColor = "bg-blue-500";
+				} else {
+					progressColor = "bg-yellow-500";
+				}
+
+				progressBar.className = `h-3 rounded-full transition-all duration-500 ${progressColor}`;
+				progressBar.style.width = `${client.progresso}%`;
+
+				await loadDocumentsAdmin(client.id);
+			}
+
+			async function saveClientChanges() {
+				if (!currentClientData) return;
+
+				const updates = {
+					email: document.getElementById("editEmail").value,
+					telefone: document.getElementById("editTelefone").value,
+					processo: document.getElementById("editProcesso").value,
+					status: document.getElementById("editStatus").value,
+					progresso: parseInt(document.getElementById("editProgresso").value),
+					etapa: document.getElementById("editEtapa").value,
+				};
+
+				try {
+					const { error } = await supabase
+						.from("clientes")
+						.update(updates)
+						.eq("id", currentClientData.id);
+
+					if (error) throw error;
+
+					currentClientData = { ...currentClientData, ...updates };
+					await displayClientInfo(currentClientData);
+					alert("✅ Alterações salvas com sucesso!");
+				} catch (error) {
+					console.error("Error updating client:", error);
+					alert("❌ Erro ao salvar alterações");
+				}
+			}
+
+			async function loadDocumentsAdmin(clientId) {
+				try {
+					const { data, error } = await supabase
+						.from("documentos")
+						.select("*")
+						.eq("cliente_id", clientId)
+						.order("nome", { ascending: true });
+
+					if (error) throw error;
+
+					const documentsList = document.getElementById("documentsListAdmin");
+					documentsList.innerHTML = "";
+
+					if (data && data.length > 0) {
+						data.forEach((doc) => {
+							const statusInfo = getDocStatusInfo(doc.status);
+							documentsList.innerHTML += `
+                            <div class="flex items-center justify-between p-4 border-2 border-gray-200 rounded-lg transition-colors" onmouseover="this.style.borderColor='#B8001C'" onmouseout="this.style.borderColor='rgb(229, 231, 235)'">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    <div>
+                                        <p class="font-semibold text-gray-900">${
+																					doc.nome
+																				}</p>
+                                        <p class="text-sm text-gray-500">Status: ${
+																					statusInfo.text
+																				}</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    ${
+																			doc.status !== "pendente"
+																				? `<button onclick="updateDocStatus('${doc.id}', 'pendente')" class="px-3 py-1.5 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm font-medium">Pendente</button>`
+																				: ""
+																		}
+                                    ${
+																			doc.status !== "em_analise"
+																				? `<button onclick="updateDocStatus('${doc.id}', 'em_analise')" class="px-3 py-1.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium">Em Análise</button>`
+																				: ""
+																		}
+                                    ${
+																			doc.status !== "aprovado"
+																				? `<button onclick="updateDocStatus('${doc.id}', 'aprovado')" class="px-3 py-1.5 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-medium">Aprovado</button>`
+																				: ""
+																		}
+                                    <button onclick="deleteDocument('${
+																			doc.id
+																		}')" class="px-3 py-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-sm font-medium">🗑️</button>
+                                </div>
+                            </div>
+                        `;
+						});
+					} else {
+						documentsList.innerHTML =
+							'<p class="text-gray-500 text-center py-8">Nenhum documento cadastrado.</p>';
+					}
+				} catch (error) {
+					console.error("Error loading documents:", error);
+				}
+			}
+
+			async function updateDocStatus(docId, newStatus) {
+				try {
+					const { error } = await supabase
+						.from("documentos")
+						.update({ status: newStatus })
+						.eq("id", docId);
+
+					if (error) throw error;
+
+					await loadDocumentsAdmin(currentClientData.id);
+				} catch (error) {
+					console.error("Error updating document:", error);
+					alert("Erro ao atualizar status");
+				}
+			}
+
+			async function deleteDocument(docId) {
+				if (!confirm("Tem certeza que deseja deletar este documento?")) return;
+
+				try {
+					const { error } = await supabase
+						.from("documentos")
+						.delete()
+						.eq("id", docId);
+
+					if (error) throw error;
+
+					await loadDocumentsAdmin(currentClientData.id);
+					alert("✅ Documento deletado com sucesso!");
+				} catch (error) {
+					console.error("Error deleting document:", error);
+					alert("❌ Erro ao deletar documento");
+				}
+			}
+
+			function showAddDocumentModal() {
+				document.getElementById("addDocumentModal").classList.remove("hidden");
+				document.getElementById("newDocName").value = "";
+				document.getElementById("newDocStatus").value = "pendente";
+			}
+
+			function hideAddDocumentModal() {
+				document.getElementById("addDocumentModal").classList.add("hidden");
+			}
+
+			async function addNewDocument() {
+				const docName = document.getElementById("newDocName").value.trim();
+				const docStatus = document.getElementById("newDocStatus").value;
+
+				if (!docName) {
+					alert("Por favor, digite o nome do documento");
+					return;
+				}
+
+				try {
+					const { error } = await supabase.from("documentos").insert({
+						cliente_id: currentClientData.id,
+						nome: docName,
+						status: docStatus,
+					});
+
+					if (error) throw error;
+
+					hideAddDocumentModal();
+					await loadDocumentsAdmin(currentClientData.id);
+					alert("✅ Documento adicionado com sucesso!");
+				} catch (error) {
+					console.error("Error adding document:", error);
+					alert("❌ Erro ao adicionar documento");
+				}
+			}
+
+			function getDocStatusInfo(status) {
+				const texts = {
+					aprovado: "Aprovado",
+					em_analise: "Em Análise",
+					pendente: "Pendente",
+				};
+
+				return {
+					text: texts[status] || "Desconhecido",
+				};
+			}
+
+			document
+				.getElementById("searchClient")
+				.addEventListener("keypress", function (e) {
+					if (e.key === "Enter") {
+						searchClient();
+					}
+				});
+
+			document
+				.getElementById("adminPassword")
+				.addEventListener("keypress", function (e) {
+					if (e.key === "Enter") {
+						handleAdminLogin();
+					}
+				});
+		</script>
+	</body>
+</html>

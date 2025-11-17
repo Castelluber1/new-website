@@ -1,0 +1,388 @@
+<div class="header">
+	<h1>Settings</h1>
+	<p>Manage your account and preferences</p>
+</div>
+
+	<!-- NOTIFICATION SETTINGS -->
+	<div class="settings-section">
+		<h2 class="settings-section-title">Notifications</h2>
+		<div class="settings-group">
+			<div class="settings-toggle-item">
+				<div class="settings-label">
+					<h3>Email Notifications</h3>
+					<p>Receive updates about your application status</p>
+				</div>
+				<label class="toggle-switch">
+					<input type="checkbox" checked />
+					<span class="toggle-slider"></span>
+				</label>
+			</div>
+
+			<div class="settings-toggle-item">
+				<div class="settings-label">
+					<h3>SMS Alerts</h3>
+					<p>Get important alerts via text message</p>
+				</div>
+				<label class="toggle-switch">
+					<input type="checkbox" checked />
+					<span class="toggle-slider"></span>
+				</label>
+			</div>
+
+			<div class="settings-toggle-item">
+				<div class="settings-label">
+					<h3>Missing Documents Reminders</h3>
+					<p>Be reminded about pending documents</p>
+				</div>
+				<label class="toggle-switch">
+					<input type="checkbox" checked />
+					<span class="toggle-slider"></span>
+				</label>
+			</div>
+
+			<div class="settings-toggle-item">
+				<div class="settings-label">
+					<h3>Stage Updates</h3>
+					<p>Get notified when your application moves to the next stage</p>
+				</div>
+				<label class="toggle-switch">
+					<input type="checkbox" checked />
+					<span class="toggle-slider"></span>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<!-- LANGUAGE & PREFERENCES -->
+	<div class="settings-section">
+		<h2 class="settings-section-title">Preferences</h2>
+		<div class="settings-group">
+			<div class="settings-item">
+				<div class="settings-label">
+					<h3>Language</h3>
+					<p>Choose your preferred language</p>
+				</div>
+				<select class="settings-select">
+					<option>English</option>
+					<option>Português</option>
+					<option>Español</option>
+					<option>Français</option>
+				</select>
+			</div>
+
+			<div class="settings-item">
+				<div class="settings-label">
+					<h3>Time Zone</h3>
+					<p>For accurate application deadlines</p>
+				</div>
+				<select class="settings-select">
+					<option>Eastern Time (ET)</option>
+					<option>Central Time (CT)</option>
+					<option>Mountain Time (MT)</option>
+					<option>Pacific Time (PT)</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<!-- SECURITY -->
+	<div class="settings-section">
+		<h2 class="settings-section-title">Security</h2>
+		<div class="settings-group">
+			<div class="settings-item-action">
+				<div class="settings-label">
+					<h3>Change Password</h3>
+					<p>Update your login password</p>
+				</div>
+				<button class="btn-secondary">Change</button>
+			</div>
+
+			<div class="settings-item-action">
+				<div class="settings-label">
+					<h3>Two-Factor Authentication</h3>
+					<p>Add an extra layer of security</p>
+				</div>
+				<button class="btn-secondary">Enable</button>
+			</div>
+
+			<div class="settings-item-action">
+				<div class="settings-label">
+					<h3>Active Sessions</h3>
+					<p>Manage devices accessing your account</p>
+				</div>
+				<button class="btn-secondary">View</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- DANGER ZONE -->
+	<div class="settings-section settings-section-danger">
+		<h2 class="settings-section-title">Danger Zone</h2>
+		<div class="settings-group">
+			<div class="settings-item-action">
+				<div class="settings-label">
+					<h3>Delete Account</h3>
+					<p>Permanently delete your account and all data</p>
+				</div>
+				<button class="btn-danger">Delete</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- ACTION BUTTONS -->
+	<div class="settings-actions">
+		<button class="btn-primary">Save Changes</button>
+		<button class="btn-secondary">Cancel</button>
+	</div>
+</div>
+
+<style>
+	.header {
+		margin-bottom: 2.5rem;
+	}
+
+	.header h1 {
+		font-size: 2rem;
+		font-weight: 700;
+		color: #0f172a;
+		margin-bottom: 0.5rem;
+		letter-spacing: -0.5px;
+	}
+
+	.header p {
+		font-size: 1rem;
+		color: #64748b;
+		font-weight: 400;
+	}
+
+	.settings-container {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.settings-section {
+		background: white;
+		border-radius: 14px;
+		border: 1px solid rgba(148, 163, 184, 0.1);
+		padding: 2rem;
+		margin-bottom: 1.5rem;
+		box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+	}
+
+	.settings-section-danger {
+		background: linear-gradient(
+			135deg,
+			rgba(239, 68, 68, 0.02) 0%,
+			rgba(239, 68, 68, 0.01) 100%
+		);
+		border-color: rgba(239, 68, 68, 0.2);
+	}
+
+	.settings-section-title {
+		font-size: 1.125rem;
+		font-weight: 700;
+		color: #0f172a;
+		margin: 0 0 1.5rem 0;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+	}
+
+	.settings-group {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.settings-item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.settings-item-action {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem;
+		background: #f8fafc;
+		border-radius: 8px;
+		border: 1px solid rgba(148, 163, 184, 0.1);
+	}
+
+	.settings-toggle-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem;
+		background: #f8fafc;
+		border-radius: 8px;
+		border: 1px solid rgba(148, 163, 184, 0.1);
+		transition: all 0.3s ease;
+	}
+
+	.settings-toggle-item:hover {
+		background: #f1f5f9;
+		border-color: rgba(148, 163, 184, 0.2);
+	}
+
+	.settings-label h3 {
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #0f172a;
+		margin: 0 0 0.25rem 0;
+	}
+
+	.settings-label p {
+		font-size: 0.85rem;
+		color: #64748b;
+		margin: 0;
+	}
+
+	.settings-input,
+	.settings-textarea,
+	.settings-select {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		border: 1px solid rgba(148, 163, 184, 0.2);
+		border-radius: 8px;
+		font-size: 0.9rem;
+		color: #0f172a;
+		font-family: inherit;
+		transition: all 0.3s ease;
+	}
+
+	.settings-input:focus,
+	.settings-textarea:focus,
+	.settings-select:focus {
+		outline: none;
+		border-color: #2563eb;
+		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+	}
+
+	.settings-textarea {
+		resize: vertical;
+	}
+
+	/* TOGGLE SWITCH */
+	.toggle-switch {
+		position: relative;
+		display: inline-block;
+		width: 50px;
+		height: 28px;
+	}
+
+	.toggle-switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.toggle-slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #cbd5e1;
+		transition: 0.3s;
+		border-radius: 28px;
+	}
+
+	.toggle-slider:before {
+		position: absolute;
+		content: "";
+		height: 22px;
+		width: 22px;
+		left: 3px;
+		bottom: 3px;
+		background-color: white;
+		transition: 0.3s;
+		border-radius: 50%;
+	}
+
+	input:checked + .toggle-slider {
+		background-color: #10b981;
+	}
+
+	input:checked + .toggle-slider:before {
+		transform: translateX(22px);
+	}
+
+	/* BUTTONS */
+	.btn-primary,
+	.btn-secondary,
+	.btn-danger {
+		padding: 0.75rem 1.5rem;
+		border: none;
+		border-radius: 8px;
+		font-size: 0.9rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		white-space: nowrap;
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+		color: white;
+		box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+	}
+
+	.btn-secondary {
+		background: #f1f5f9;
+		color: #0f172a;
+		border: 1px solid rgba(148, 163, 184, 0.2);
+	}
+
+	.btn-secondary:hover {
+		background: #e2e8f0;
+		border-color: rgba(148, 163, 184, 0.3);
+	}
+
+	.btn-danger {
+		background: #fee2e2;
+		color: #991b1b;
+		border: 1px solid rgba(239, 68, 68, 0.2);
+	}
+
+	.btn-danger:hover {
+		background: #fecaca;
+		border-color: rgba(239, 68, 68, 0.3);
+	}
+
+	.settings-actions {
+		display: flex;
+		gap: 1rem;
+		justify-content: flex-end;
+		margin-top: 2rem;
+	}
+
+	@media (max-width: 768px) {
+		.settings-section {
+			padding: 1.5rem;
+		}
+
+		.settings-item-action,
+		.settings-toggle-item {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1rem;
+		}
+
+		.settings-actions {
+			flex-direction: column;
+		}
+
+		.btn-primary,
+		.btn-secondary,
+		.btn-danger {
+			width: 100%;
+		}
+	}
+</style>

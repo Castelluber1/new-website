@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Portal de Imigração - Status do Cliente</title>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	</head>
+	<body>
+		<!-- Login Screen -->
+		<div id="loginScreen" class="login-screen">
+			<div class="login-container">
+				<div class="login-header">
+					<div class="login-logo">
+						<svg
+							class="icon"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+						</svg>
+					</div>
+					<h1 class="login-title">Portal de Imigração</h1>
+					<p class="login-subtitle">
+						Acompanhe o progresso do seu processo de visto
+					</p>
+				</div>
+
+				<div class="login-form">
+					<div class="form-group">
+						<label for="email" class="form-label">Email</label>
+						<input
+							type="email"
+							id="email"
+							class="form-input"
+							placeholder="seu@email.com" />
+					</div>
+
+					<div class="form-group">
+						<label for="password" class="form-label">Senha</label>
+						<input
+							type="password"
+							id="password"
+							class="form-input"
+							placeholder="••••••••" />
+					</div>
+
+					<div id="errorMessage" class="error-message hidden">
+						<svg
+							class="error-icon"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+						<span id="errorText"></span>
+					</div>
+
+					<button onclick="handleLogin()" id="loginBtn" class="btn-primary">
+						Entrar
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Dashboard Screen -->
+		<div id="dashboardScreen" class="dashboard-screen hidden">
+			<!-- Overlay Mobile -->
+			<div id="overlay" class="overlay hidden"></div>
+
+			<!-- Mobile Header -->
+			<header class="mobile-header">
+				<button id="menuBtn" class="menu-btn">
+					<svg
+						class="icon"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+				</button>
+				<h1 class="mobile-header-title">Portal de Imigração</h1>
+				<div class="menu-btn-placeholder"></div>
+			</header>
+
+			<!-- Sidebar -->
+			<aside id="sidebar" class="sidebar">
+				<!-- Header Section -->
+				<div class="sidebar-header">
+					<div class="sidebar-user-info">
+						<div class="sidebar-avatar">
+							<svg
+								class="icon"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+							</svg>
+						</div>
+						<div class="sidebar-user-text">
+							<h2 class="sidebar-name" id="sidebarName"></h2>
+							<p class="sidebar-process" id="sidebarProcess"></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Navigation Section -->
+				<nav class="sidebar-nav">
+					<button
+						onclick="switchTab('overview')"
+						id="navOverview"
+						class="nav-button nav-button-active">
+						<svg
+							class="icon"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+						</svg>
+						Visão Geral
+					</button>
+					<button
+						onclick="switchTab('documents')"
+						id="navDocuments"
+						class="nav-button">
+						<svg
+							class="icon"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+						</svg>
+						Documentos
+					</button>
+					<button
+						onclick="switchTab('history')"
+						id="navHistory"
+						class="nav-button">
+						<svg
+							class="icon"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+						Histórico
+					</button>
+				</nav>
+
+				<!-- Logout Button -->
+				<div class="sidebar-footer">
+					<button onclick="handleLogout()" class="btn-logout">
+						<svg
+							class="icon"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+						</svg>
+						Sair
+					</button>
+				</div>
+			</aside>
+
+			<!-- Main Content -->
+			<main class="main-content">
+				<div class="content-wrapper">
+					<!-- Tab Content -->
+					<div>
+						<!-- Overview Tab -->
+						<div id="overviewContent" class="tab-content">
+							<!-- Status Card -->
+							<div class="status-card">
+								<div class="status-card-header">
+									<div>
+										<h1 class="section-title">Status do Processo</h1>
+										<p class="status-stage" id="currentStage"></p>
+									</div>
+									<div id="statusBadge" class="status-badge"></div>
+								</div>
+
+								<!-- Progress Section -->
+								<div class="progress-section">
+									<div class="progress-info">
+										<span class="progress-label">Progresso</span>
+										<span class="progress-percent" id="progressPercent"></span>
+									</div>
+									<div class="progress-bar-container">
+										<div id="progressBar" class="progress-bar"></div>
+									</div>
+								</div>
+
+								<!-- Dates -->
+								<div class="dates-section">
+									<div class="date-item">
+										<p class="date-label">Data de Início</p>
+										<p class="date-value" id="startDate"></p>
+									</div>
+									<div class="date-item">
+										<p class="date-label">Previsão de Conclusão</p>
+										<p class="date-value" id="endDate"></p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Contact Info Card -->
+							<div class="info-card">
+								<h2 class="card-title">Informações de Contato</h2>
+								<div class="contact-grid">
+									<div class="contact-item">
+										<p class="contact-label">Email</p>
+										<p class="contact-value" id="clientEmail"></p>
+									</div>
+									<div class="contact-item">
+										<p class="contact-label">Telefone</p>
+										<p class="contact-value" id="clientPhone"></p>
+									</div>
+									<div class="contact-item contact-item-full">
+										<p class="contact-label">Endereço</p>
+										<p class="contact-value" id="clientAddress"></p>
+									</div>
+								</div>
+							</div>
+
+							<!-- Next Steps Card -->
+							<div class="info-card">
+								<h2 class="card-title">Próximos Passos</h2>
+								<div id="nextSteps" class="next-steps-list"></div>
+							</div>
+						</div>
+
+						<!-- Documents Tab -->
+						<div class="status-card">
+							<h1 class="section-title">Documentos</h1>
+							<div id="documentsContent" class="tab-content hidden"></div>
+						</div>
+
+						<!-- History Tab -->
+						<div id="historyContent" class="tab-content hidden">
+							<div class="info-card">
+								<h2 class="card-title">Histórico do Processo</h2>
+								<div id="historyTimeline" class="history-timeline"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>
