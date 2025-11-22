@@ -1,0 +1,611 @@
+<style>
+	.header {
+		margin-bottom: 3rem;
+	}
+
+	.header h1 {
+		font-size: 2.5rem;
+		font-weight: 800;
+		color: #0f172a;
+		margin-bottom: 0.5rem;
+		letter-spacing: -1px;
+	}
+
+	.header p {
+		font-size: 1rem;
+		color: #64748b;
+		font-weight: 400;
+	}
+
+	.faq-container {
+		max-width: 100%;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	/* SEARCH BAR */
+	.faq-search {
+		position: relative;
+		margin-bottom: 2rem;
+		max-width: 600px;
+	}
+
+	.faq-search-input {
+		width: 100%;
+		padding: 0.875rem 1rem 0.875rem 2.75rem;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		font-size: 0.95rem;
+		color: #0f172a;
+		background: white;
+		transition: all 0.3s ease;
+	}
+
+	.faq-search-input::placeholder {
+		color: #94a3b8;
+	}
+
+	.faq-search-input:focus {
+		outline: none;
+		border-color: #2563eb;
+		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+	}
+
+	.faq-search-icon {
+		position: absolute;
+		left: 0.75rem;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 1.2rem;
+		height: 1.2rem;
+		color: #94a3b8;
+		pointer-events: none;
+	}
+
+	/* CATEGORIES - HIDDEN */
+	.faq-categories {
+		display: none;
+	}
+
+	/* FAQ ITEMS - FULL BLEED */
+	.faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		margin-bottom: 2rem;
+		margin-left: -1.5rem;
+		margin-right: -1.5rem;
+	}
+
+	.faq-item {
+		background: white;
+		border: none;
+		border-bottom: 1px solid #e2e8f0;
+		border-radius: 0;
+		overflow: visible;
+		transition: all 0.3s ease;
+		padding: 0;
+	}
+
+	.faq-item:first-child {
+		border-top: 1px solid #e2e8f0;
+	}
+
+	.faq-item:hover {
+		background: #f8fafc;
+	}
+
+	.faq-item.hidden {
+		display: none;
+	}
+
+	/* QUESTION - FULL BLEED */
+	.faq-question {
+		width: 100%;
+		padding: 1.5rem 1.5rem;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		transition: all 0.3s ease;
+	}
+
+	.faq-question:hover {
+		background: #f8fafc;
+	}
+
+	.faq-question span {
+		flex: 1;
+		text-align: left;
+		font-size: 1.5rem;
+		font-weight: 600;
+		color: #0f172a;
+		line-height: 1.5;
+	}
+
+	.faq-chevron {
+		width: 1.2rem;
+		height: 1.2rem;
+		color: #94a3b8;
+		flex-shrink: 0;
+		transition: transform 0.3s ease;
+		stroke-width: 2;
+	}
+
+	.faq-question.open .faq-chevron {
+		transform: rotate(180deg);
+		color: #2563eb;
+	}
+
+	/* ANSWER - HIDDEN BY DEFAULT */
+	.faq-answer {
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.4s ease;
+		padding: 0 1.5rem;
+	}
+
+	.faq-answer.open {
+		max-height: 2000px;
+		padding: 0 1.5rem 1.5rem 1.5rem;
+	}
+
+	.faq-answer {
+		color: #3e4652;
+		font-size: 1.1rem;
+		line-height: 1.7;
+		font-weight: 500;
+	}
+
+	.faq-answer p {
+		margin: 0 0 1rem 0;
+	}
+
+	.faq-answer p:last-child {
+		margin-bottom: 0;
+	}
+
+	.faq-answer ul {
+		margin: 0 0 1rem 1.5rem;
+		padding: 0;
+	}
+
+	.faq-answer li {
+		margin-bottom: 0.5rem;
+	}
+
+	.faq-answer strong {
+		color: #0f172a;
+		font-weight: 600;
+	}
+
+	/* CONTACT CTA - HIDDEN */
+	.faq-contact {
+		display: none;
+	}
+
+	/* CTA SECTION - HIDDEN */
+	.faq-cta-section {
+		display: none;
+	}
+
+	@media (max-width: 768px) {
+		.header h1 {
+			font-size: 2rem;
+		}
+
+		.faq-list {
+			margin-left: -1rem;
+			margin-right: -1rem;
+		}
+
+		.faq-question {
+			padding: 1rem;
+		}
+
+		.faq-question span {
+			font-size: 0.9rem;
+		}
+
+		.faq-answer {
+			padding: 0 1rem;
+		}
+
+		.faq-answer.open {
+			padding: 0 1rem 1rem 1rem;
+		}
+
+		.faq-search {
+			max-width: 100%;
+		}
+	}
+</style>
+<body>
+	<div class="header">
+		<h1>Frequently Asked Questions</h1>
+		<p>Find answers to common questions about your application</p>
+	</div>
+
+	<div class="faq-container">
+		<!-- SEARCH BAR -->
+		<div class="faq-search">
+			<input
+				type="text"
+				id="faqSearch"
+				class="faq-search-input"
+				placeholder="Search FAQs..."
+				onkeyup="filterFAQ()" />
+			<svg
+				class="faq-search-icon"
+				fill="none"
+				stroke="currentColor"
+				viewBox="0 0 24 24">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+			</svg>
+		</div>
+
+		<!-- FAQ CATEGORIES -->
+		<div class="faq-categories">
+			<button class="faq-category-btn active" onclick="filterByCategory('all')">
+				All
+			</button>
+			<button
+				class="faq-category-btn"
+				onclick="filterByCategory('application')">
+				Application
+			</button>
+			<button class="faq-category-btn" onclick="filterByCategory('documents')">
+				Documents
+			</button>
+			<button class="faq-category-btn" onclick="filterByCategory('timeline')">
+				Timeline
+			</button>
+			<button class="faq-category-btn" onclick="filterByCategory('support')">
+				Support
+			</button>
+		</div>
+
+		<!-- FAQ ITEMS -->
+		<div class="faq-list">
+			<!-- APPLICATION SECTION -->
+			<div class="faq-item" data-category="application">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>What is required to start an immigration application?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>To start your application, you'll need:</p>
+					<ul>
+						<li>Valid passport or travel document</li>
+						<li>Birth certificate</li>
+						<li>Educational credentials</li>
+						<li>Employment history and references</li>
+						<li>Proof of financial stability</li>
+						<li>Medical examination results (if required)</li>
+						<li>Police clearance certificate</li>
+					</ul>
+					<p>Our team will guide you through each requirement step by step.</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="application">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>How long does the application process take?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>
+						The timeline varies depending on your visa type and circumstances,
+						but typically:
+					</p>
+					<ul>
+						<li><strong>Documentation Review:</strong> 5-7 days</li>
+						<li><strong>Initial Assessment:</strong> 7-10 days</li>
+						<li><strong>Interview (if required):</strong> 2-3 weeks</li>
+						<li><strong>Final Decision:</strong> 2-5 days</li>
+					</ul>
+					<p>You can track your progress in real-time on your dashboard.</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="application">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>Can I make changes to my application after submission?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>Limited changes can be made after submission:</p>
+					<ul>
+						<li>During the documentation phase, you can update information</li>
+						<li>After initial assessment, changes may require re-review</li>
+						<li>
+							Contact our support team immediately if you need to make updates
+						</li>
+						<li>Some fields cannot be changed once locked</li>
+					</ul>
+					<p>We recommend careful review before final submission.</p>
+				</div>
+			</div>
+
+			<!-- DOCUMENTS SECTION -->
+			<div class="faq-item" data-category="documents">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>What file formats are accepted for document uploads?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>We accept the following file formats:</p>
+					<ul>
+						<li><strong>PDF:</strong> Preferred format for all documents</li>
+						<li><strong>Images:</strong> JPG, PNG (max 5MB per file)</li>
+						<li><strong>Documents:</strong> DOC, DOCX</li>
+						<li>
+							<strong>Scanned:</strong> Must be clear and legible (300 DPI
+							minimum)
+						</li>
+					</ul>
+					<p>Maximum file size: 10MB. Total upload limit: 500MB.</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="documents">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>Why are some of my documents marked as "Missing"?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>Documents may be marked as missing for several reasons:</p>
+					<ul>
+						<li>The file hasn't been uploaded yet</li>
+						<li>The file format is not acceptable</li>
+						<li>The document is illegible or incomplete</li>
+						<li>The document has expired</li>
+						<li>Additional proof is required for verification</li>
+					</ul>
+					<p>
+						Check the document details for specific instructions on what's
+						needed.
+					</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="documents">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>How do I upload documents securely?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>Your documents are protected with:</p>
+					<ul>
+						<li>
+							<strong>Encryption:</strong> All uploads are encrypted end-to-end
+						</li>
+						<li>
+							<strong>Secure Storage:</strong> Documents stored on secure
+							servers
+						</li>
+						<li>
+							<strong>Access Control:</strong> Only authorized personnel can
+							view
+						</li>
+						<li>
+							<strong>Audit Trail:</strong> All access is logged and monitored
+						</li>
+					</ul>
+					<p>We comply with data protection regulations (GDPR, CCPA, etc.).</p>
+				</div>
+			</div>
+
+			<!-- TIMELINE SECTION -->
+			<div class="faq-item" data-category="timeline">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>What do the different stages of my application mean?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p><strong>Contract:</strong> Agreement signed and processed</p>
+					<p><strong>Invoice:</strong> Payment received and confirmed</p>
+					<p><strong>Documentation:</strong> Your documents are under review</p>
+					<p><strong>Review:</strong> Our team is assessing your eligibility</p>
+					<p>
+						<strong>Submission:</strong> Application submitted to immigration
+						authorities
+					</p>
+					<p>
+						<strong>Final Decision:</strong> Approval or additional steps
+						required
+					</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="timeline">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>Will I be notified at each stage?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>
+						Yes! You'll receive notifications through your preferred channels:
+					</p>
+					<ul>
+						<li>Email updates at each stage transition</li>
+						<li>SMS alerts for urgent matters (if enabled)</li>
+						<li>In-app notifications on your dashboard</li>
+						<li>You can customize notification preferences in Settings</li>
+					</ul>
+					<p>Never miss an important update about your application.</p>
+				</div>
+			</div>
+
+			<!-- SUPPORT SECTION -->
+			<div class="faq-item" data-category="support">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>How do I contact support?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>We're here to help! Contact us through:</p>
+					<ul>
+						<li><strong>Email:</strong> support@immigrationportal.com</li>
+						<li><strong>Chat:</strong> Live chat available 9 AM - 6 PM EST</li>
+						<li><strong>Phone:</strong> +1 (555) 123-4567</li>
+						<li><strong>Response Time:</strong> Usually within 2-4 hours</li>
+					</ul>
+					<p>For urgent matters, use the phone line.</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="support">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>What if I disagree with a decision?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>You have the right to appeal:</p>
+					<ul>
+						<li>Request a detailed explanation of the decision</li>
+						<li>File an appeal within 30 days</li>
+						<li>Provide additional evidence or documentation</li>
+						<li>Our review team will reassess your case</li>
+					</ul>
+					<p>Contact support to start the appeal process.</p>
+				</div>
+			</div>
+
+			<div class="faq-item" data-category="support">
+				<button class="faq-question" onclick="toggleFAQ(this)">
+					<span>Is my personal information safe?</span>
+					<svg
+						class="faq-chevron"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M19 9l-7 7-7-7" />
+					</svg>
+				</button>
+				<div class="faq-answer">
+					<p>Your privacy and security are our top priority:</p>
+					<ul>
+						<li>All data encrypted with industry-standard encryption</li>
+						<li>Regular security audits and penetration testing</li>
+						<li>Compliance with international data protection laws</li>
+						<li>Limited access to personal information (need-to-know basis)</li>
+						<li>Two-factor authentication available for added security</li>
+					</ul>
+					<p>We never share your data without your consent.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
