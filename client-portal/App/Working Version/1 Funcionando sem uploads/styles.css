@@ -496,11 +496,10 @@ body {
 	width: 100px;
 }
 
-.document-status.status-submitted {
+.document-status.status-analyzing {
 	background-color: #dbeafe;
 	color: #1e40af;
 	width: 100px;
-	cursor: default;
 }
 
 .document-status.status-pending {
@@ -810,7 +809,7 @@ body {
 
 .document-item :hover {
 	/* background-color: #f1f5f9; */
-	/* cursor: pointer; */
+	cursor: pointer;
 	transform: translateY(-1px);
 	transition: background-color 0.15s ease, transform 0.15s ease;
 }
@@ -824,13 +823,6 @@ body {
 	background: transparent;
 	border: none;
 	cursor: pointer;
-}
-
-.document-header.no-pointer,
-.document-header.no-pointer *,
-.document-header.no-pointer:hover,
-.document-header.no-pointer *:hover {
-	cursor: default !important;
 }
 
 .document-name-wrapper {
@@ -865,7 +857,7 @@ body {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	padding: 08px;
+	padding: 4px 12px;
 	border-radius: 4px;
 	font-size: 0.8em;
 	font-weight: 600;
@@ -1551,6 +1543,8 @@ progress {
 	white-space: nowrap;
 }
 
+
+
 .stage-item.completed .stage-duration {
 	color: #059669;
 	background: rgba(16, 185, 129, 0.1);
@@ -1581,102 +1575,119 @@ progress {
 	/* opacity: 0.6; */
 }
 
-/* Documents Upgrade */
-
 /* ========================================
-   EXPANDING UPLOAD BUTTON (novo)
+   IMPROVED DOCUMENTS UI
    ======================================== */
-.btn-upload-expand {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	height: 36px;
-	padding: 0 0.5rem;
-	border-radius: 18px;
-	background: rgba(37, 99, 235, 0.85);
-	border: none;
-	cursor: pointer;
-	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	overflow: hidden;
-	white-space: nowrap;
-	max-width: 36px; /* Start as circle */
+
+/* Filter Bar */
+.docs-filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 5px;
 }
 
-.btn-upload-expand:hover {
-	max-width: 200px; /* Expand on hover */
-	padding: 0 1rem 0 0.75rem;
-	background: #2563eb;
+.filter-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    color: var(--color-secondary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
 }
 
-/* Button already expanded (for new documents) */
-.btn-upload-expand.expanded {
-	max-width: 200px;
-	padding: 0 1rem 0 0.75rem;
+.filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
 }
 
-.btn-upload-expand.expanded:hover {
-	background: #2563eb;
+.filter-btn.active {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
 }
 
-.btn-upload-expand .icon {
-	width: 1.25rem;
-	height: 1.25rem;
-	color: white;
-	flex-shrink: 0;
+/* Upload & Actions Area */
+.doc-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.btn-upload-expand .button-text {
-	color: white;
-	font-size: 0.875rem;
-	font-weight: 600;
-	opacity: 0;
-	transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.btn-upload {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-.btn-upload-expand:hover .button-text {
-	opacity: 1;
+.btn-upload:hover {
+    background-color: #2563eb;
 }
 
-/* Text visible on expanded button */
-.btn-upload-expand.expanded .button-text {
-	opacity: 1;
+.btn-view {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-/* Hide file input */
+.btn-view:hover {
+    background-color: #e5e7eb;
+}
+
+/* Feedback Alert Box */
+.feedback-box {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 12px;
+    margin: 10px 0 15px 0;
+    border-radius: 4px;
+}
+
+.feedback-title {
+    color: #991b1b;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.feedback-text {
+    color: #7f1d1d;
+    font-size: 0.9rem;
+}
+
+/* File Input Hidden */
 .file-input-hidden {
-	display: none;
+    display: none;
 }
 
-/* ========================================
-   DOCUMENT HEADER - UPDATE (modificar existente)
-   ======================================== */
-.document-header.no-expand {
-	cursor: default;
-}
-
-/* ========================================
-   RESPONSIVE - EXPANDING BUTTON (novo)
-   ======================================== */
-@media (max-width: 768px) {
-	/* On mobile, show text by default (no hover state) */
-	.btn-upload-expand {
-		max-width: 200px;
-		padding: 0 1rem 0 0.75rem;
-	}
-
-	.btn-upload-expand .button-text {
-		opacity: 1;
-	}
-}
-
-@keyframes spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-.animate-spin {
-	animation: spin 1s linear infinite;
+/* Drag Drop Zone (Optional visual cue) */
+.document-item.drag-over {
+    border: 2px dashed #3b82f6;
+    background-color: #eff6ff;
 }

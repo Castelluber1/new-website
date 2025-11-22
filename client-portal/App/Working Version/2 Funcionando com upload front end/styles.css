@@ -496,11 +496,10 @@ body {
 	width: 100px;
 }
 
-.document-status.status-submitted {
+.document-status.status-analyzing {
 	background-color: #dbeafe;
 	color: #1e40af;
 	width: 100px;
-	cursor: default;
 }
 
 .document-status.status-pending {
@@ -810,7 +809,7 @@ body {
 
 .document-item :hover {
 	/* background-color: #f1f5f9; */
-	/* cursor: pointer; */
+	cursor: pointer;
 	transform: translateY(-1px);
 	transition: background-color 0.15s ease, transform 0.15s ease;
 }
@@ -824,13 +823,6 @@ body {
 	background: transparent;
 	border: none;
 	cursor: pointer;
-}
-
-.document-header.no-pointer,
-.document-header.no-pointer *,
-.document-header.no-pointer:hover,
-.document-header.no-pointer *:hover {
-	cursor: default !important;
 }
 
 .document-name-wrapper {
@@ -865,7 +857,7 @@ body {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	padding: 08px;
+	padding: 4px 12px;
 	border-radius: 4px;
 	font-size: 0.8em;
 	font-weight: 600;
@@ -1667,16 +1659,4 @@ progress {
 	.btn-upload-expand .button-text {
 		opacity: 1;
 	}
-}
-
-@keyframes spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
-}
-.animate-spin {
-	animation: spin 1s linear infinite;
 }

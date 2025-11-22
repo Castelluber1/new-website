@@ -12,6 +12,30 @@ let currentClient = null;
 let currentUser = null;
 
 // ========================================
+// PROGRESS CONFIGURATION
+// ========================================
+
+const PROGRESS_CONFIG = {
+	// Stage base values
+	stages: {
+		"Contract": 30,           // Client starts here
+		"Invoice": 30,            // Same as Contract
+		"Documentation": 30,      // Base, can go up to 60
+		"Review": 70,             // All docs approved
+		"Submission": 85,         // Application submitted
+		"Final Decision": 100     // Process complete
+	},
+	
+	// Documentation phase calculation
+	documentation: {
+		basePoints: 30,           // Starting points for Documentation stage
+		maxPoints: 30,            // Maximum points this stage can add (30 → 60)
+		submittedWeight: 0.6,     // x = 60% of points for submitted
+		approvedWeight: 0.4       // y = 40% of points for approved (x > y)
+	}
+};
+
+// ========================================
 // DOM ELEMENTS
 // ========================================
 
@@ -134,6 +158,182 @@ async function showDashboard() {
 }
 
 // ========================================
+// CALCULATE DOCUMENTATION PROGRESS
+// ========================================
+
+async function calculateDocumentationProgress(clientId) {
+	try {
+		// Get all documents for this client
+		const { data: documents, error } = await supabase
+			.from("documents")
+			.select("id, status")
+			.eq("client_id", clientId);
+
+		if (error) throw error;
+
+		// If no documents, return base points
+		if (!documents || documents.length === 0) {
+			return {
+				progress: PROGRESS_CONFIG.documentation.basePoints,
+				allApproved: false,
+				approved: 0,
+				submitted: 0,
+				total: 0
+			};
+		}
+
+		const totalDocs = documents.length;
+		const config = PROGRESS_CONFIG.documentation;
+		
+		// Calculate points per document
+		const submittedPoints = (config.maxPoints * config.submittedWeight) / totalDocs;
+		const approvedBonus = (config.maxPoints * config.approvedWeight) / totalDocs;
+		
+		// Calculate total earned points
+		let earnedPoints = 0;
+		let allApproved = true;
+		
+		documents.forEach(doc => {
+			if (doc.status === "submitted") {
+				earnedPoints += submittedPoints;
+				allApproved = false;
+			} else if (doc.status === "approved") {
+				earnedPoints += (submittedPoints + approvedBonus);
+			} else {
+				// pending or rejected = 0 points
+				allApproved = false;
+			}
+		});
+
+		const totalProgress = config.basePoints + Math.round(earnedPoints);
+		
+		console.log(`Documentation Progress: ${totalProgress}% (${documents.filter(d => d.status === 'approved').length}/${totalDocs} approved, ${documents.filter(d => d.status === 'submitted').length}/${totalDocs} submitted)`);
+		
+		return {
+			progress: totalProgress,
+			allApproved: allApproved,
+			approved: documents.filter(d => d.status === 'approved').length,
+			submitted: documents.filter(d => d.status === 'submitted').length,
+			total: totalDocs
+		};
+		
+	} catch (error) {
+		console.error("Error calculating documentation progress:", error);
+		return {
+			progress: PROGRESS_CONFIG.documentation.basePoints,
+			allApproved: false,
+			approved: 0,
+			submitted: 0,
+			total: 0
+		};
+	}
+}
+
+// ========================================
+// CALCULATE OVERALL PROGRESS
+// ========================================
+
+async function calculateOverallProgress(clientId, currentStage) {
+	try {
+		let progress = 0;
+		
+		switch(currentStage) {
+			case "Contract":
+			case "Invoice":
+				// Fixed 30% for these stages
+				progress = PROGRESS_CONFIG.stages[currentStage];
+				break;
+				
+			case "Documentation":
+				// Dynamic calculation based on documents
+				const docProgress = await calculateDocumentationProgress(clientId);
+				progress = docProgress.progress;
+				
+				// If all documents approved, should move to Review
+				if (docProgress.allApproved && docProgress.total > 0) {
+					console.log("⚠️ All documents approved! Client should be moved to Review stage.");
+				}
+				break;
+				
+			case "Review":
+				progress = PROGRESS_CONFIG.stages["Review"];
+				break;
+				
+			case "Submission":
+				progress = PROGRESS_CONFIG.stages["Submission"];
+				break;
+				
+			case "Final Decision":
+				progress = PROGRESS_CONFIG.stages["Final Decision"];
+				break;
+				
+			default:
+				progress = 30; // Default to Contract stage
+		}
+		
+		return progress;
+		
+	} catch (error) {
+		console.error("Error calculating overall progress:", error);
+		return 30;
+	}
+}
+
+// ========================================
+// UPDATE PROGRESS IN DATABASE
+// ========================================
+
+async function updateProgressInDatabase(clientId, currentStage) {
+	try {
+		// Calculate current progress
+		const progress = await calculateOverallProgress(clientId, currentStage);
+
+		// Update the clients table
+		const { error } = await supabase
+			.from("clients")
+			.update({ 
+				progress: progress,
+				updated_at: new Date().toISOString()
+			})
+			.eq("id", clientId);
+
+		if (error) throw error;
+
+		console.log(`✅ Progress updated: ${progress}% (Stage: ${currentStage})`);
+		
+		// Update local client object if it exists
+		if (currentClient && currentClient.id === clientId) {
+			currentClient.progress = progress;
+		}
+		
+		return progress;
+		
+	} catch (error) {
+		console.error("Error updating progress:", error);
+		return null;
+	}
+}
+
+// ========================================
+// TRIGGER PROGRESS UPDATE
+// ========================================
+
+async function triggerProgressUpdate() {
+	if (!currentClient) {
+		console.error("No current client");
+		return;
+	}
+	
+	await updateProgressInDatabase(currentClient.id, currentClient.stage);
+	
+	// Refresh overview if it's currently visible
+	const overviewContent = document.getElementById("overviewContent");
+	if (overviewContent && !overviewContent.classList.contains("hidden")) {
+		await populateOverview();
+	}
+}
+
+// ========================================
 // POPULATE OVERVIEW WITH DYNAMIC DATA
 // ========================================
 
@@ -202,8 +402,8 @@ async function populateOverview() {
 		);
 		if (stageDescription) {
 			const stageDescriptions = {
-				Contract: "Please review and sign the contract to proceed",
-				Invoice: "E-transfer the first payment to proceed.",
+				Contract: "Your contract is being processed",
+				Invoice: "Payment is being processed",
 				Documentation:
 					"Your documentation is being reviewed by our team and we will update you shortly",
 				Review: "Your application is under review",
@@ -585,8 +785,9 @@ function isDocumentNew(createdAt) {
 }
 
 // ========================================
-// FILE UPLOAD HANDLER COM WEBHOOK
+// FILE UPLOAD HANDLER
 // ========================================
+
 async function handleFileUpload(event, docId) {
 	const file = event.target.files[0];
 	if (!file) return;
@@ -602,12 +803,12 @@ async function handleFileUpload(event, docId) {
 
 	uploadButton.disabled = true;
 	uploadButton.innerHTML = `
-	<svg class="icon animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-	</svg>
-	<span class="button-text">Uploading</span>
-`;
+		<svg class="icon animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+				  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+		</svg>
+		<span class="button-text">Uploading</span>
+	`;
 
 	console.log("Uploading file for document:", docId, file);
 
@@ -643,6 +844,9 @@ async function handleFileUpload(event, docId) {
 			.eq("id", docId);
 
 		if (dbError) throw dbError;
+
+		// ✅ UPDATE PROGRESS AFTER DOCUMENT UPLOAD
+		await updateProgressInDatabase(currentClient.id, currentClient.stage);
 
 		// ========================================
 		// ENVIAR WEBHOOK PARA GOOGLE DRIVE
@@ -686,39 +890,31 @@ async function handleFileUpload(event, docId) {
 			);
 
 			if (!webhookResponse.ok) {
-				console.warn(
-					"Webhook failed but upload continued:",
-					webhookResponse.status
+				console.error(
+					"Webhook failed:",
+					webhookResponse.status,
+					webhookResponse.statusText
 				);
 			} else {
-				const responseData = await webhookResponse.json();
-				console.log("Webhook sent successfully!", responseData);
+				console.log("✅ Webhook sent successfully");
 			}
 		} catch (webhookError) {
+			console.error("Error sending webhook:", webhookError);
 			// Não bloqueia o upload se o webhook falhar
-			console.error("Webhook error (upload still succeeded):", webhookError);
 		}
-
-		uploadButton.innerHTML = `
-	<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-	</svg>
-	<span class="button-text">Uploaded!</span>
-`;
-		await new Promise((resolve) => setTimeout(resolve, 1000));
 
 		// Reload documents to show updated status
 		await loadDocuments();
 
-		console.log("Document uploaded successfully!");
+		console.log("✅ Document uploaded successfully!");
 	} catch (error) {
 		console.error("Upload error:", error);
 		alert("Error uploading document: " + error.message);
-	}
 
-	uploadButton.disabled = false;
-	uploadButton.innerHTML = originalButtonHTML;
+		// Restore button
+		uploadButton.disabled = false;
+		uploadButton.innerHTML = originalButtonHTML;
+	}
 }
 
 // ========================================
@@ -753,7 +949,7 @@ function getDocStatusInfo(status) {
 
 	const texts = {
 		approved: "Approved",
-		submitted: "Received",
+		submitted: "Submitted",
 		pending: "Pending",
 		rejected: "Rejected",
 	};

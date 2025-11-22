@@ -155,35 +155,25 @@ async function populateOverview() {
 		// ========================================
 		// PROGRESS CIRCLE
 		// ========================================
+
 		const progressText = document.querySelector(
 			"#overviewContent .progress-text"
 		);
-
 		if (progressText) {
 			const progress = currentClient.progress || 0;
 			progressText.textContent = `${progress}%`;
 
 			const progressCircle = document.querySelector(
-				"#overviewContent .progress-circle svg circle:nth-of-type(2)"
+				".progress-circle svg circle:nth-of-type(2)"
 			);
-
 			if (progressCircle) {
-				const radius = 54;
-				const circumference = 2 * Math.PI * radius;
+				const circumference = 2 * Math.PI * 54;
+				const filledAmount = (progress / 100) * circumference;
 
-				progressCircle.style.strokeDasharray = `${circumference}`;
-				const targetOffset = circumference - (progress / 100) * circumference;
-
-				// 1) RESET instantâneo (sem animação)
-				progressCircle.style.transition = "none";
-				progressCircle.style.strokeDashoffset = circumference;
-
-				// 2) Forçar reflow (obrigatório para animar toda vez)
-				progressCircle.getBoundingClientRect();
-
-				// 3) Aplicar animação + valor final
-				progressCircle.style.transition = "stroke-dashoffset 0.8s ease-out";
-				progressCircle.style.strokeDashoffset = targetOffset;
+				// Anima de 0 até o valor real
+				progressCircle.style.animation = `fillProgress 1.5s ease-out forwards`;
+				progressCircle.style.setProperty("--filled", filledAmount);
+				progressCircle.style.setProperty("--circumference", circumference);
 			}
 		}
 
@@ -202,8 +192,8 @@ async function populateOverview() {
 		);
 		if (stageDescription) {
 			const stageDescriptions = {
-				Contract: "Please review and sign the contract to proceed",
-				Invoice: "E-transfer the first payment to proceed.",
+				Contract: "Your contract is being processed",
+				Invoice: "Payment is being processed",
 				Documentation:
 					"Your documentation is being reviewed by our team and we will update you shortly",
 				Review: "Your application is under review",
@@ -290,12 +280,10 @@ async function populateOverview() {
 		];
 
 		const currentStageIndex = stagesOrder.indexOf(
-			currentClient.stage || "Documentation"
+			currentClient.stage || "Contract"
 		);
 
-		const stageItems = document.querySelectorAll(
-			"#overviewContent .stage-item"
-		);
+		const stageItems = document.querySelectorAll(".stage-item");
 
 		stageItems.forEach((item, index) => {
 			// Remove all status classes
@@ -304,266 +292,120 @@ async function populateOverview() {
 			// Add appropriate class
 			if (index < currentStageIndex) {
 				item.classList.add("completed");
-				const icon = item.querySelector(".stage-icon");
-				if (icon) icon.textContent = "✓";
 			} else if (index === currentStageIndex) {
 				item.classList.add("active");
-				const icon = item.querySelector(".stage-icon");
-				if (icon) icon.textContent = "✓";
 			} else {
 				item.classList.add("upcoming");
-				const icon = item.querySelector(".stage-icon");
-				if (icon) icon.textContent = index + 1;
-			}
-
-			// Update stage name
-			const stageName = item.querySelector(".stage-name");
-			if (stageName) {
-				stageName.textContent = stagesOrder[index] || "";
-			}
-
-			// Update stage duration
-			const duration = item.querySelector(".stage-duration");
-			if (duration) {
-				if (index < currentStageIndex) {
-					duration.textContent = "Completed";
-				} else if (index === currentStageIndex) {
-					duration.textContent = "In Progress";
-				} else {
-					duration.textContent = "Coming up";
-				}
 			}
 		});
-
-		console.log("Overview populated successfully");
 	} catch (error) {
-		console.error("Error populating overview:", error);
+		console.error("Error in populateOverview:", error);
 	}
 }
 
 // ========================================
-// DATE FORMATTING
+// HELPER FUNCTIONS
 // ========================================
 
-function formatDateShort(dateString) {
-	if (!dateString) return "N/A";
-	const date = new Date(dateString);
-	const month = String(date.getMonth() + 1).padStart(2, "0");
-	const day = String(date.getDate()).padStart(2, "0");
-	const year = String(date.getFullYear()).slice(-2);
-	return `${month}/${day}/${year}`;
+function formatDate(date) {
+	const options = {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+	};
+	return new Date(date).toLocaleDateString("en-US", options);
 }
 
-function formatDate(dateString) {
-	if (!dateString) return "N/A";
-	const date = new Date(dateString);
-	return date.toLocaleDateString("en-US");
+function formatDateShort(date) {
+	const options = { month: "2-digit", day: "2-digit", year: "2-digit" };
+	return new Date(date).toLocaleDateString("en-US", options);
 }
 
 // ========================================
-// DOCUMENTS TAB
-// ========================================
-
-const CATEGORY_ORDER = [
-	"Personal Documents",
-	"Academic Documents",
-	"Professional Documents",
-	"Financial Documents",
-	"Sponsor Documents",
-	"Partner's Support Documents",
-	"Proof of Ties to Home Country",
-	"Additional Documents for Previous Refusal",
-	"Additional Documents for Loss of Status",
-	"Official Forms",
-];
-
-// ========================================
-// LOAD DOCUMENTS WITH SMART FEATURES
+// LOAD DOCUMENTS
 // ========================================
 
 async function loadDocuments() {
 	try {
-		const { data, error } = await supabase
+		const { data: documents, error } = await supabase
 			.from("documents")
 			.select("*")
 			.eq("client_id", currentClient.id)
-			.order("category, priority, name", { ascending: true });
+			.order("category");
 
 		if (error) throw error;
-
-		console.log("Documents loaded:", data);
 
 		const documentsContent = document.getElementById("documentsContent");
 		if (!documentsContent) return;
 
-		// Just the title
-		documentsContent.innerHTML = '<h1 class="section-title">Documents</h1>';
+		documentsContent.innerHTML = "";
 
-		if (data && data.length > 0) {
-			// Check if user has already submitted any document
-			const hasSubmittedAny = data.some(
-				(d) => d.status === "analyzing" || d.status === "approved"
-			);
-
-			// Group by category
+		if (documents && documents.length > 0) {
+			// Group documents by category
 			const grouped = {};
-			data.forEach((doc) => {
-				if (!grouped[doc.category]) {
-					grouped[doc.category] = [];
+			documents.forEach((doc) => {
+				const category = doc.category || "Other";
+				if (!grouped[category]) {
+					grouped[category] = [];
 				}
-				grouped[doc.category].push(doc);
+				grouped[category].push(doc);
 			});
 
-			// Find first document that needs action AFTER grouping (for auto-expand)
-			let firstActionableId = null;
-			if (!hasSubmittedAny) {
-				// Loop through categories in order to find the first actionable
-				for (const categoria of CATEGORY_ORDER) {
-					const docs = grouped[categoria];
-					if (!docs) continue;
-
-					const firstActionable = docs.find(
-						(d) => d.status === "pending" || d.status === "rejected"
-					);
-					if (firstActionable) {
-						firstActionableId = `doc-${firstActionable.id}`;
-						break; // Stop at first one found
-					}
-				}
-			}
-
-			let docsHTML = '<div class="documents-section">';
-
-			CATEGORY_ORDER.forEach((categoria) => {
-				const docs = grouped[categoria];
-				if (!docs) return;
-
-				docsHTML += `
-					<div class="category-section">
-						<h2 class="category-title">${categoria}</h2>
+			let allHtml = "";
+			Object.entries(grouped).forEach(([category, docs]) => {
+				let html = `
+					<div class="documents-category">
+						<h3 class="documents-category-title">${category}</h3>
+						<div class="documents-list">
 				`;
 
-				docs.forEach((doc, index) => {
+				docs.forEach((doc) => {
 					const statusInfo = getDocStatusInfo(doc.status);
-					const docId = `doc-${doc.id || index}`;
+					const hasDescription = doc.description && doc.description.trim();
+					const docId = `doc-${doc.id}`;
 
-					// Check if document needs action (pending or rejected)
-					const needsAction =
-						doc.status === "pending" || doc.status === "rejected";
-
-					// Check if has description
-					const hasDescription =
-						doc.description && doc.description.trim() !== "";
-
-					// Check if document is new (less than 4 days old)
-					const isNewDocument = isDocumentNew(doc.created_at);
-
-					// Show badge only if NOT new OR status is not pending
-					const showBadge = !isNewDocument || doc.status !== "pending";
-
-					// Show chevron and allow expand ONLY if needs action AND has description
-					const showChevron = needsAction && hasDescription;
-					const canExpand = showChevron;
-
-					// Auto-expand first actionable document
-					const shouldAutoExpand = docId === firstActionableId;
-
-					// Button text based on status
-					const buttonText =
-						doc.status === "rejected" ? "Re-upload" : "Upload Document";
-
-					// If document is new and pending, button starts expanded
-					const buttonClass =
-						isNewDocument && doc.status === "pending"
-							? "btn-upload-expand expanded"
-							: "btn-upload-expand";
-
-					docsHTML += `
+					html += `
 						<div class="document-item">
-							<div class="document-header ${canExpand ? "" : "no-expand"}" ${
-						canExpand ? `onclick="toggleDocDetails('${docId}')"` : ""
-					}>
-								<div class="document-name-wrapper">
+							<div class="document-header" onclick="toggleDocDetails('${docId}')">
+								<div class="document-info">
 									<svg class="document-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
 									</svg>
 									<span class="document-name">${doc.name}</span>
 								</div>
-								<div class="document-meta" ${
-									needsAction ? 'onclick="event.stopPropagation()"' : ""
-								}>
+								<div class="document-meta">
+									<div class="document-status status-${doc.status}">
+										${statusInfo.icon}
+										<span>${statusInfo.text}</span>
+									</div>
 									${
-										showBadge
-											? `
-										<div class="document-status status-${doc.status}">
-											${statusInfo.icon}
-											<span>${statusInfo.text}</span>
-										</div>
-									`
-											: ""
-									}
-									${
-										needsAction
-											? `
-										<input type="file" id="file-${doc.id}" class="file-input-hidden" onchange="handleFileUpload(event, '${doc.id}')">
-										<button class="${buttonClass}" onclick="document.getElementById('file-${doc.id}').click()">
-											<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-													  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-											</svg>
-											<span class="button-text">${buttonText}</span>
-										</button>
-									`
-											: ""
-									}
-									${
-										showChevron
-											? `
-										<svg class="document-chevron ${
-											shouldAutoExpand ? "rotated" : ""
-										}" id="chevron-${docId}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-										</svg>
-									`
+										hasDescription
+											? `<svg class="document-chevron" id="chevron-${docId}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+									</svg>`
 											: ""
 									}
 								</div>
 							</div>
 							${
-								canExpand
-									? `
-								<div class="document-description ${
-									shouldAutoExpand ? "visible" : ""
-								}" id="${docId}">
-									<p>${doc.description}</p>
-									${
-										doc.status === "rejected" && doc.admin_feedback
-											? `
-										<p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
-											<strong>Rejection reason:</strong> ${doc.admin_feedback}
-										</p>
-									`
-											: ""
-									}
-								</div>
-							`
+								hasDescription
+									? `<div class="document-description" id="${docId}">${doc.description}</div>`
 									: ""
 							}
 						</div>
 					`;
 				});
 
-				docsHTML += `</div>`;
+				html += `</div>`;
+				allHtml += html;
 			});
 
-			docsHTML += "</div>";
-
-			const section = document.createElement("div");
-			section.innerHTML = docsHTML;
-			documentsContent.appendChild(section);
+			documentsContent.innerHTML += allHtml;
 		} else {
 			console.log("No documents found");
-			documentsContent.innerHTML +=
+			documentsContent.innerHTML =
 				'<div class="info-card" style="text-align: center;"><p style="color: #6b7280;">No documents found.</p></div>';
 		}
 	} catch (error) {
@@ -571,159 +413,6 @@ async function loadDocuments() {
 	}
 }
 
-// ========================================
-// CHECK IF DOCUMENT IS NEW (< 4 DAYS)
-// ========================================
-function isDocumentNew(createdAt) {
-	if (!createdAt) return false;
-
-	const created = new Date(createdAt);
-	const now = new Date();
-	const diffInDays = (now - created) / (1000 * 60 * 60 * 24);
-
-	return diffInDays < 4;
-}
-
-// ========================================
-// FILE UPLOAD HANDLER COM WEBHOOK
-// ========================================
-async function handleFileUpload(event, docId) {
-	const file = event.target.files[0];
-	if (!file) return;
-
-	const uploadButton = document.querySelector(
-		`button[onclick*="file-${docId}"]`
-	);
-	if (!uploadButton) {
-		console.error("Upload button not found");
-		return;
-	}
-	const originalButtonHTML = uploadButton.innerHTML;
-
-	uploadButton.disabled = true;
-	uploadButton.innerHTML = `
-	<svg class="icon animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-	</svg>
-	<span class="button-text">Uploading</span>
-`;
-
-	console.log("Uploading file for document:", docId, file);
-
-	try {
-		// Create unique file path
-		const timestamp = Date.now();
-		const filePath = `${currentClient.id}/${docId}/${timestamp}_${file.name}`;
-
-		// Upload to Supabase Storage
-		const { data: storageData, error: storageError } = await supabase.storage
-			.from("client-docs")
-			.upload(filePath, file);
-
-		if (storageError) throw storageError;
-
-		// Get the document details
-		const { data: documentData, error: docError } = await supabase
-			.from("documents")
-			.select("*")
-			.eq("id", docId)
-			.single();
-
-		if (docError) throw docError;
-
-		// Update database - change status to submitted
-		const { error: dbError } = await supabase
-			.from("documents")
-			.update({
-				status: "submitted",
-				file_path: filePath,
-				updated_at: new Date().toISOString(),
-			})
-			.eq("id", docId);
-
-		if (dbError) throw dbError;
-
-		// ========================================
-		// ENVIAR WEBHOOK PARA GOOGLE DRIVE
-		// ========================================
-		try {
-			const webhookData = {
-				event: "document_uploaded",
-				timestamp: new Date().toISOString(),
-				client: {
-					id: currentClient.id,
-					name: currentClient.name,
-					email: currentClient.email || currentUser.email,
-					process: currentClient.process,
-					drive_folder_id: currentClient.drive_folder_id || null,
-				},
-				document: {
-					id: documentData.id,
-					name: documentData.name,
-					category: documentData.category,
-					status: "submitted",
-					file_path: filePath,
-					file_name: file.name,
-					file_size: file.size,
-					file_type: file.type,
-				},
-				// URL pública do arquivo
-				file_url: `${SUPABASE_URL}/storage/v1/object/public/client-docs/${filePath}`,
-			};
-
-			console.log("Sending webhook:", webhookData);
-
-			const webhookResponse = await fetch(
-				"https://webhook.upimmigrationconsulting.com/webhook/upload-document",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(webhookData),
-				}
-			);
-
-			if (!webhookResponse.ok) {
-				console.warn(
-					"Webhook failed but upload continued:",
-					webhookResponse.status
-				);
-			} else {
-				const responseData = await webhookResponse.json();
-				console.log("Webhook sent successfully!", responseData);
-			}
-		} catch (webhookError) {
-			// Não bloqueia o upload se o webhook falhar
-			console.error("Webhook error (upload still succeeded):", webhookError);
-		}
-
-		uploadButton.innerHTML = `
-	<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-	</svg>
-	<span class="button-text">Uploaded!</span>
-`;
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
-		// Reload documents to show updated status
-		await loadDocuments();
-
-		console.log("Document uploaded successfully!");
-	} catch (error) {
-		console.error("Upload error:", error);
-		alert("Error uploading document: " + error.message);
-	}
-
-	uploadButton.disabled = false;
-	uploadButton.innerHTML = originalButtonHTML;
-}
-
-// ========================================
-// TOGGLE DOCUMENT DETAILS
-// ========================================
 function toggleDocDetails(docId) {
 	const details = document.getElementById(docId);
 	const chevron = document.getElementById(`chevron-${docId}`);
@@ -736,14 +425,11 @@ function toggleDocDetails(docId) {
 	}
 }
 
-// ========================================
-// GET DOCUMENT STATUS INFO
-// ========================================
 function getDocStatusInfo(status) {
 	const icons = {
 		approved:
 			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
-		submitted:
+		analyzing:
 			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
 		pending:
 			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
@@ -753,7 +439,7 @@ function getDocStatusInfo(status) {
 
 	const texts = {
 		approved: "Approved",
-		submitted: "Received",
+		analyzing: "Analyzing",
 		pending: "Pending",
 		rejected: "Rejected",
 	};
@@ -857,7 +543,7 @@ function switchTab(tab) {
 						content.innerHTML = html;
 						// POPULATE OVERVIEW AFTER HTML IS LOADED
 						if (tab === "overview") {
-							setTimeout(() => populateOverview(), 0);
+							populateOverview();
 						}
 					})
 					.catch((err) => console.error("Error loading file:", err));
@@ -930,6 +616,19 @@ function filterFAQ() {
 		}
 	});
 }
+
+// Initialize FAQ when tab loads
+const originalSwitchTabForFAQ = switchTab;
+switchTab = function (tab) {
+	originalSwitchTabForFAQ(tab);
+
+	if (tab === "faq") {
+		setTimeout(() => {
+			const items = document.querySelectorAll(".faq-item");
+			items.forEach((item) => item.classList.remove("hidden"));
+		}, 50);
+	}
+};
 
 // ========================================
 // SESSION CHECK

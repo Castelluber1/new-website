@@ -202,8 +202,8 @@ async function populateOverview() {
 		);
 		if (stageDescription) {
 			const stageDescriptions = {
-				Contract: "Please review and sign the contract to proceed",
-				Invoice: "E-transfer the first payment to proceed.",
+				Contract: "Your contract is being processed",
+				Invoice: "Payment is being processed",
 				Documentation:
 					"Your documentation is being reviewed by our team and we will update you shortly",
 				Review: "Your application is under review",
@@ -378,6 +378,291 @@ const CATEGORY_ORDER = [
 ];
 
 // ========================================
+// LOAD DOCUMENTS WITH SMART FEATURES
+// ========================================
+
+async function loadDocuments() {
+	try {
+		const { data, error } = await supabase
+			.from("documents")
+			.select("*")
+			.eq("client_id", currentClient.id)
+			.order("category, priority, name", { ascending: true });
+
+		if (error) throw error;
+
+		console.log("Documents loaded:", data);
+
+		const documentsContent = document.getElementById("documentsContent");
+		if (!documentsContent) return;
+
+		// Just the title
+		documentsContent.innerHTML = '<h1 class="section-title">Documents</h1>';
+
+		if (data && data.length > 0) {
+			// Check if user has already submitted any document
+			const hasSubmittedAny = data.some(
+				(d) => d.status === "analyzing" || d.status === "approved"
+			);
+
+			// Find first document that needs action (for auto-expand)
+			let firstActionableId = null;
+			if (!hasSubmittedAny) {
+				const firstActionable = data.find(
+					(d) => d.status === "pending" || d.status === "rejected"
+				);
+				if (firstActionable) {
+					firstActionableId = `doc-${firstActionable.id}`;
+				}
+			}
+
+			// Group by category
+			const grouped = {};
+			data.forEach((doc) => {
+				if (!grouped[doc.category]) {
+					grouped[doc.category] = [];
+				}
+				grouped[doc.category].push(doc);
+			});
+
+			let docsHTML = '<div class="documents-section">';
+
+			CATEGORY_ORDER.forEach((categoria) => {
+				const docs = grouped[categoria];
+				if (!docs) return;
+
+				docsHTML += `
+					<div class="category-section">
+						<h2 class="category-title">${categoria}</h2>
+				`;
+
+				docs.forEach((doc, index) => {
+					const statusInfo = getDocStatusInfo(doc.status);
+					const docId = `doc-${doc.id || index}`;
+
+					// Check if document needs action (pending or rejected)
+					const needsAction =
+						doc.status === "pending" || doc.status === "rejected";
+
+					// Check if has description
+					const hasDescription =
+						doc.description && doc.description.trim() !== "";
+
+					// Check if document is new (less than 4 days old)
+					const isNewDocument = isDocumentNew(doc.created_at);
+
+					// Show badge only if NOT new OR status is not pending
+					const showBadge = !isNewDocument || doc.status !== "pending";
+
+					// Show chevron and allow expand ONLY if needs action AND has description
+					const showChevron = needsAction && hasDescription;
+					const canExpand = showChevron;
+
+					// Auto-expand first actionable document
+					const shouldAutoExpand = docId === firstActionableId;
+
+					// Button text based on status
+					const buttonText =
+						doc.status === "rejected" ? "Re-upload" : "Upload Document";
+
+					// If document is new and pending, button starts expanded
+					const buttonClass =
+						isNewDocument && doc.status === "pending"
+							? "btn-upload-expand expanded"
+							: "btn-upload-expand";
+
+					docsHTML += `
+						<div class="document-item">
+							<div class="document-header ${canExpand ? "" : "no-expand"} ${
+						!needsAction ? "no-pointer" : ""
+					}" ${canExpand ? `onclick="toggleDocDetails('${docId}')"` : ""}>
+								<div class="document-name-wrapper">
+									<svg class="document-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+									</svg>
+									<span class="document-name">${doc.name}</span>
+								</div>
+								<div class="document-meta" ${
+									needsAction ? 'onclick="event.stopPropagation()"' : ""
+								}>
+									${
+										showBadge
+											? `
+										<div class="document-status status-${doc.status}">
+											${statusInfo.icon}
+											<span>${statusInfo.text}</span>
+										</div>
+									`
+											: ""
+									}
+									${
+										needsAction
+											? `
+										<input type="file" id="file-${doc.id}" class="file-input-hidden" onchange="handleFileUpload(event, '${doc.id}')">
+										<button class="${buttonClass}" onclick="document.getElementById('file-${doc.id}').click()">
+											<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+													  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+											</svg>
+											<span class="button-text">${buttonText}</span>
+										</button>
+									`
+											: ""
+									}
+									${
+										showChevron
+											? `
+										<svg class="document-chevron ${
+											shouldAutoExpand ? "rotated" : ""
+										}" id="chevron-${docId}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+										</svg>
+									`
+											: ""
+									}
+								</div>
+							</div>
+							${
+								canExpand
+									? `
+								<div class="document-description ${
+									shouldAutoExpand ? "visible" : ""
+								}" id="${docId}">
+									<p>${doc.description}</p>
+									${
+										doc.status === "rejected" && doc.admin_feedback
+											? `
+										<p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+											<strong>Rejection reason:</strong> ${doc.admin_feedback}
+										</p>
+									`
+											: ""
+									}
+								</div>
+							`
+									: ""
+							}
+						</div>
+					`;
+				});
+
+				docsHTML += `</div>`;
+			});
+
+			docsHTML += "</div>";
+
+			const section = document.createElement("div");
+			section.innerHTML = docsHTML;
+			documentsContent.appendChild(section);
+		} else {
+			console.log("No documents found");
+			documentsContent.innerHTML +=
+				'<div class="info-card" style="text-align: center;"><p style="color: #6b7280;">No documents found.</p></div>';
+		}
+	} catch (error) {
+		console.error("Error loading documents:", error);
+	}
+}
+
+// ========================================
+// CHECK IF DOCUMENT IS NEW (< 4 DAYS)
+// ========================================
+function isDocumentNew(createdAt) {
+	if (!createdAt) return false;
+
+	const created = new Date(createdAt);
+	const now = new Date();
+	const diffInDays = (now - created) / (1000 * 60 * 60 * 24);
+
+	return diffInDays < 4;
+}
+
+// ========================================
+// FILE UPLOAD HANDLER
+// ========================================
+async function handleFileUpload(event, docId) {
+	const file = event.target.files[0];
+	if (!file) return;
+
+	console.log("Uploading file for document:", docId, file);
+
+	try {
+		// Create unique file path
+		const timestamp = Date.now();
+		const filePath = `${currentClient.id}/${docId}/${timestamp}_${file.name}`;
+
+		// Upload to Supabase Storage
+		const { data: storageData, error: storageError } = await supabase.storage
+			.from("client-docs")
+			.upload(filePath, file);
+
+		if (storageError) throw storageError;
+
+		// Update database - change status to analyzing
+		const { error: dbError } = await supabase
+			.from("documents")
+			.update({
+				status: "submitted",
+				file_path: filePath,
+				updated_at: new Date().toISOString(),
+			})
+			.eq("id", docId);
+
+		if (dbError) throw dbError;
+
+		// Reload documents to show updated status
+		await loadDocuments();
+
+		// Optional: Show success message
+		console.log("Document uploaded successfully!");
+	} catch (error) {
+		console.error("Upload error:", error);
+		alert("Error uploading document: " + error.message);
+	}
+}
+
+// ========================================
+// TOGGLE DOCUMENT DETAILS
+// ========================================
+function toggleDocDetails(docId) {
+	const details = document.getElementById(docId);
+	const chevron = document.getElementById(`chevron-${docId}`);
+
+	if (details) {
+		details.classList.toggle("visible");
+		if (chevron) {
+			chevron.classList.toggle("rotated");
+		}
+	}
+}
+
+// ========================================
+// GET DOCUMENT STATUS INFO (UNCHANGED)
+// ========================================
+function getDocStatusInfo(status) {
+	const icons = {
+		approved:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+		submitted:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+		pending:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+		rejected:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 8l8 8M16 8l-8 8"/></svg>',
+	};
+
+	const texts = {
+		approved: "Approved",
+		submitted: "Submitted",
+		pending: "Pending",
+		rejected: "Rejected",
+	};
+
+	return {
+		icon: icons[status] || icons.pending,
+		text: texts[status] || "Unknown",
+	};
+} // ========================================
 // LOAD DOCUMENTS WITH SMART FEATURES
 // ========================================
 
@@ -585,29 +870,11 @@ function isDocumentNew(createdAt) {
 }
 
 // ========================================
-// FILE UPLOAD HANDLER COM WEBHOOK
+// FILE UPLOAD HANDLER
 // ========================================
 async function handleFileUpload(event, docId) {
 	const file = event.target.files[0];
 	if (!file) return;
-
-	const uploadButton = document.querySelector(
-		`button[onclick*="file-${docId}"]`
-	);
-	if (!uploadButton) {
-		console.error("Upload button not found");
-		return;
-	}
-	const originalButtonHTML = uploadButton.innerHTML;
-
-	uploadButton.disabled = true;
-	uploadButton.innerHTML = `
-	<svg class="icon animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-	</svg>
-	<span class="button-text">Uploading</span>
-`;
 
 	console.log("Uploading file for document:", docId, file);
 
@@ -623,16 +890,7 @@ async function handleFileUpload(event, docId) {
 
 		if (storageError) throw storageError;
 
-		// Get the document details
-		const { data: documentData, error: docError } = await supabase
-			.from("documents")
-			.select("*")
-			.eq("id", docId)
-			.single();
-
-		if (docError) throw docError;
-
-		// Update database - change status to submitted
+		// Update database - change status to analyzing
 		const { error: dbError } = await supabase
 			.from("documents")
 			.update({
@@ -644,81 +902,15 @@ async function handleFileUpload(event, docId) {
 
 		if (dbError) throw dbError;
 
-		// ========================================
-		// ENVIAR WEBHOOK PARA GOOGLE DRIVE
-		// ========================================
-		try {
-			const webhookData = {
-				event: "document_uploaded",
-				timestamp: new Date().toISOString(),
-				client: {
-					id: currentClient.id,
-					name: currentClient.name,
-					email: currentClient.email || currentUser.email,
-					process: currentClient.process,
-					drive_folder_id: currentClient.drive_folder_id || null,
-				},
-				document: {
-					id: documentData.id,
-					name: documentData.name,
-					category: documentData.category,
-					status: "submitted",
-					file_path: filePath,
-					file_name: file.name,
-					file_size: file.size,
-					file_type: file.type,
-				},
-				// URL pública do arquivo
-				file_url: `${SUPABASE_URL}/storage/v1/object/public/client-docs/${filePath}`,
-			};
-
-			console.log("Sending webhook:", webhookData);
-
-			const webhookResponse = await fetch(
-				"https://webhook.upimmigrationconsulting.com/webhook/upload-document",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(webhookData),
-				}
-			);
-
-			if (!webhookResponse.ok) {
-				console.warn(
-					"Webhook failed but upload continued:",
-					webhookResponse.status
-				);
-			} else {
-				const responseData = await webhookResponse.json();
-				console.log("Webhook sent successfully!", responseData);
-			}
-		} catch (webhookError) {
-			// Não bloqueia o upload se o webhook falhar
-			console.error("Webhook error (upload still succeeded):", webhookError);
-		}
-
-		uploadButton.innerHTML = `
-	<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-	</svg>
-	<span class="button-text">Uploaded!</span>
-`;
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
 		// Reload documents to show updated status
 		await loadDocuments();
 
+		// Optional: Show success message
 		console.log("Document uploaded successfully!");
 	} catch (error) {
 		console.error("Upload error:", error);
 		alert("Error uploading document: " + error.message);
 	}
-
-	uploadButton.disabled = false;
-	uploadButton.innerHTML = originalButtonHTML;
 }
 
 // ========================================
@@ -737,7 +929,7 @@ function toggleDocDetails(docId) {
 }
 
 // ========================================
-// GET DOCUMENT STATUS INFO
+// GET DOCUMENT STATUS INFO (UNCHANGED)
 // ========================================
 function getDocStatusInfo(status) {
 	const icons = {
@@ -753,7 +945,7 @@ function getDocStatusInfo(status) {
 
 	const texts = {
 		approved: "Approved",
-		submitted: "Received",
+		submitted: "Submitted",
 		pending: "Pending",
 		rejected: "Rejected",
 	};
@@ -764,6 +956,92 @@ function getDocStatusInfo(status) {
 	};
 }
 
+// ========================================
+// FILE UPLOAD HANDLER
+// ========================================
+async function handleFileUpload(event, docId) {
+	const file = event.target.files[0];
+	if (!file) return;
+
+	console.log("Uploading file for document:", docId, file);
+
+	try {
+		// Create unique file path
+		const timestamp = Date.now();
+		const filePath = `${currentClient.id}/${docId}/${timestamp}_${file.name}`;
+
+		// Upload to Supabase Storage
+		const { data: storageData, error: storageError } = await supabase.storage
+			.from("client-docs")
+			.upload(filePath, file);
+
+		if (storageError) throw storageError;
+
+		// Update database - change status to analyzing
+		const { error: dbError } = await supabase
+			.from("documents")
+			.update({
+				status: "submitted",
+				file_path: filePath,
+				updated_at: new Date().toISOString(),
+			})
+			.eq("id", docId);
+
+		if (dbError) throw dbError;
+
+		// Reload documents to show updated status
+		await loadDocuments();
+
+		// Optional: Show success message
+		console.log("Document uploaded successfully!");
+	} catch (error) {
+		console.error("Upload error:", error);
+		alert("Error uploading document: " + error.message);
+	}
+}
+
+// ========================================
+// TOGGLE DOCUMENT DETAILS
+// ========================================
+function toggleDocDetails(docId) {
+	const details = document.getElementById(docId);
+	const chevron = document.getElementById(`chevron-${docId}`);
+
+	if (details) {
+		details.classList.toggle("visible");
+		if (chevron) {
+			chevron.classList.toggle("rotated");
+		}
+	}
+}
+
+// ========================================
+// GET DOCUMENT STATUS INFO (UNCHANGED)
+// ========================================
+function getDocStatusInfo(status) {
+	const icons = {
+		approved:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+		submitted:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+		pending:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>',
+		rejected:
+			'<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 8l8 8M16 8l-8 8"/></svg>',
+	};
+
+	const texts = {
+		approved: "Approved",
+		submitted: "Submitted",
+		pending: "Pending",
+		rejected: "Rejected",
+	};
+
+	return {
+		icon: icons[status] || icons.pending,
+		text: texts[status] || "Unknown",
+	};
+}
 // ========================================
 // LOAD HISTORY
 // ========================================

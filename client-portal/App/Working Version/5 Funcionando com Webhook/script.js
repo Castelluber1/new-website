@@ -202,8 +202,8 @@ async function populateOverview() {
 		);
 		if (stageDescription) {
 			const stageDescriptions = {
-				Contract: "Please review and sign the contract to proceed",
-				Invoice: "E-transfer the first payment to proceed.",
+				Contract: "Your contract is being processed",
+				Invoice: "Payment is being processed",
 				Documentation:
 					"Your documentation is being reviewed by our team and we will update you shortly",
 				Review: "Your application is under review",
@@ -591,24 +591,6 @@ async function handleFileUpload(event, docId) {
 	const file = event.target.files[0];
 	if (!file) return;
 
-	const uploadButton = document.querySelector(
-		`button[onclick*="file-${docId}"]`
-	);
-	if (!uploadButton) {
-		console.error("Upload button not found");
-		return;
-	}
-	const originalButtonHTML = uploadButton.innerHTML;
-
-	uploadButton.disabled = true;
-	uploadButton.innerHTML = `
-	<svg class="icon animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-	</svg>
-	<span class="button-text">Uploading</span>
-`;
-
 	console.log("Uploading file for document:", docId, file);
 
 	try {
@@ -699,15 +681,6 @@ async function handleFileUpload(event, docId) {
 			console.error("Webhook error (upload still succeeded):", webhookError);
 		}
 
-		uploadButton.innerHTML = `
-	<svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-			  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-	</svg>
-	<span class="button-text">Uploaded!</span>
-`;
-		await new Promise((resolve) => setTimeout(resolve, 1000));
-
 		// Reload documents to show updated status
 		await loadDocuments();
 
@@ -716,9 +689,6 @@ async function handleFileUpload(event, docId) {
 		console.error("Upload error:", error);
 		alert("Error uploading document: " + error.message);
 	}
-
-	uploadButton.disabled = false;
-	uploadButton.innerHTML = originalButtonHTML;
 }
 
 // ========================================
@@ -753,7 +723,7 @@ function getDocStatusInfo(status) {
 
 	const texts = {
 		approved: "Approved",
-		submitted: "Received",
+		submitted: "Submitted",
 		pending: "Pending",
 		rejected: "Rejected",
 	};
