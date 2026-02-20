@@ -2627,6 +2627,8 @@ p.statb {
 	margin: 0;
 	color: var(--muted);
 	justify-self: center;
+	text-align: left;
+	max-width: 100%;
 }
 
 .cc-icon-svg {
