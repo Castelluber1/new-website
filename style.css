@@ -3260,6 +3260,67 @@ a.btn-inline {
 	margin-top: 22px;
 }
 
+/* ── content-block: used in Express Entry sub-pages and program detail pages ── */
+.content-block {
+	margin-bottom: 2.5rem;
+	padding-bottom: 2.5rem;
+	border-bottom: 1px solid #e6e8ec;
+}
+.content-block:last-of-type {
+	border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+.content-block h3 {
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: var(--dark);
+	margin: 0 0 1rem;
+}
+.content-block h4 {
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--dark);
+	margin: 1.25rem 0 0.4rem;
+}
+.content-block p {
+	margin: 0 0 0.85rem;
+	color: var(--muted);
+	line-height: 1.7;
+}
+.content-block ul,
+.content-block ol {
+	margin: 0 0 1rem 1.25rem;
+	padding: 0;
+	color: var(--muted);
+	line-height: 1.7;
+}
+.content-block li {
+	margin-bottom: 0.35rem;
+}
+
+/* ── cta-section: bottom CTA block inside services pages ── */
+.cta-section {
+	margin-top: 3rem;
+	padding: 2.5rem 2rem;
+	background: #f7f8fa;
+	border-radius: var(--radius);
+	border: 1px solid #e6e8ec;
+	text-align: center;
+}
+.cta-section h3 {
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: var(--dark);
+	margin: 0 0 0.75rem;
+}
+.cta-section p {
+	color: var(--muted);
+	margin: 0 auto 1.5rem;
+	max-width: 36rem;
+	line-height: 1.7;
+}
+
 /* spousal-section */ /* common-mistakes */
 #common-mistakes .card-grid {
 	gap: 1rem;
