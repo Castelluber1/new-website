@@ -1,4 +1,101 @@
 {
 	"cleanUrls": true,
-	"trailingSlash": false
+	"trailingSlash": false,
+	"redirects": [
+		{
+			"source": "/cec",
+			"destination": "/permanent-residence/canadian-experience-class",
+			"permanent": true
+		},
+		{
+			"source": "/fswp",
+			"destination": "/permanent-residence/federal-skilled-worker",
+			"permanent": true
+		},
+		{
+			"source": "/fstp",
+			"destination": "/permanent-residence/federal-skilled-trades",
+			"permanent": true
+		},
+		{
+			"source": "/ee-work-experience",
+			"destination": "/permanent-residence/express-entry-work-experience",
+			"permanent": true
+		},
+		{
+			"source": "/ee-language-requirements",
+			"destination": "/permanent-residence/express-entry-language-requirements",
+			"permanent": true
+		},
+		{
+			"source": "/ee-faq",
+			"destination": "/permanent-residence/express-entry-faq",
+			"permanent": true
+		},
+		{
+			"source": "/crs",
+			"destination": "/permanent-residence/comprehensive-ranking-system",
+			"permanent": true
+		},
+		{
+			"source": "/pgwp",
+			"destination": "/permanent-residence/post-graduation-work-permit",
+			"permanent": true
+		},
+		{
+			"source": "/educational-credential-assessment",
+			"destination": "/permanent-residence/educational-credential-assessment",
+			"permanent": true
+		},
+		{
+			"source": "/caregivers-program",
+			"destination": "/permanent-residence/caregivers-program",
+			"permanent": true
+		},
+		{
+			"source": "/blog/oinp",
+			"destination": "/blog/ontario-immigrant-nominee-program-oinp",
+			"permanent": true
+		},
+		{
+			"source": "/blog/best-province-for-newcomers-why-82-percent-immigrants-stay-in-ontario",
+			"destination": "/blog/best-province-for-newcomers-ontario",
+			"permanent": true
+		},
+		{
+			"source": "/blog/bc-or-alberta-where-should-you-settle-for-the-best-immigrant-experience",
+			"destination": "/blog/bc-or-alberta-best-immigrant-experience",
+			"permanent": true
+		},
+		{
+			"source": "/blog/best-province-for-newcomers-quebec-immigrants-stay",
+			"destination": "/blog/best-province-for-newcomers-quebec",
+			"permanent": true
+		},
+		{
+			"source": "/blog/best-province-for-newcomers-why-67-percent-immigrants-stay-in-british-columbia",
+			"destination": "/blog/best-province-for-newcomers-british-columbia",
+			"permanent": true
+		},
+		{
+			"source": "/blog/pgwp-everything-you-need-to-know-about-post-graduation-work-permit",
+			"destination": "/blog/pgwp-everything-you-need-to-know",
+			"permanent": true
+		},
+		{
+			"source": "/blog/sponsorship-for-families-in-canada-everything-you-need-to-know",
+			"destination": "/blog/sponsorship-for-families-in-canada",
+			"permanent": true
+		},
+		{
+			"source": "/express-entry",
+			"destination": "/immigrate",
+			"permanent": true
+		},
+		{
+			"source": "/sponsor",
+			"destination": "/sponsorship",
+			"permanent": true
+		}
+	]
 }
