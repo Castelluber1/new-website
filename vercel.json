@@ -88,8 +88,8 @@
 			"permanent": true
 		},
 		{
-			"source": "/express-entry",
-			"destination": "/immigrate",
+			"source": "/immigrate",
+			"destination": "/express-entry",
 			"permanent": true
 		},
 		{
