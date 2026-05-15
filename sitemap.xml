@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.upimmigration.ca/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Core EN Service Pages -->
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/permanent-residence"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/express-entry</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/express-entry"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/express-entry"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/work-permit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/work-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/visto-de-trabalho"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/study-permit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/study-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/visto-de-estudo"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/open-work-permit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/open-work-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/trabalho/visto-de-trabalho-aberto"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/closed-work-permit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/closed-work-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/trabalho/visto-de-trabalho-fechado"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/lmia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/lmia"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/lmia"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/lmia-exempt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/lmia-exempt"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/lmia-exempt"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/humanitarian</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/humanitarian"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/humanitarios-e-de-compaixao"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/immigration-consultation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/immigration-consultation"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/consulta-de-imigracao"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/about"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/sobre"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/contact"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/contato"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/post-graduate-work-permit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Permanent Residence Subpages -->
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/spousal-sponsorship</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/permanent-residence/spousal-sponsorship"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/patrocinio-conjugal"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/provincial-nominee-program</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/permanent-residence/provincial-nominee-program"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/programa-nomeacao-provincial"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/canadian-experience-class</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/express-entry-work-experience</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/express-entry-language-requirements</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/express-entry-faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/comprehensive-ranking-system</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/educational-credential-assessment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/federal-skilled-worker</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/federal-skilled-trades</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/caregivers-program</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/permanent-residence/humanitarian-compassionate-grounds</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Blog EN -->
+  <url>
+    <loc>https://www.upimmigration.ca/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/pgwp-everything-you-need-to-know</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/5-Mistakes-Newcomers-Make-on-Their-Resume</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/5-Mistakes-Newcomers-Make-on-Their-Resume"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/5-erros-comuns-no-curriculo-de-recem-chegados"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/adapting-to-canadian-culture-as-a-new-immigrant</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/bc-or-alberta-best-immigrant-experience</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/best-province-for-newcomers-british-columbia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/best-province-for-newcomers-ontario</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/best-province-for-newcomers-quebec</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/biometria-exames-medicos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/biometria-exames-medicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/biometria-exames-medicos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/bowp-bridging-open-work-permit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/enrolling-children-in-canadian-schools</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/express-entry-crs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/foreign-credentials-in-canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/lmia-empregadores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/lmia-exempt-categories</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/ontario-immigrant-nominee-program-oinp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/open-work-permit-conjuge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/patrocinio-conjugal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/pgwp-guia-completo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/pnp-por-provincia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/proof-of-funds-2025</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/proof-of-funds-2025"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/comprovacao-financeira-2025"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/restauracao-de-status</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/sponsorship-for-families-in-canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/study-permit-checklist</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/study-permit-checklist"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/checklist-visto-de-estudo"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/study-plan-que-convence</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/trabalhar-e-estudar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/work-permit-dentro-fora</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- PT Root -->
+  <url>
+    <loc>https://www.upimmigration.ca/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/permanent-residence"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/express-entry</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/express-entry"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/express-entry"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/patrocinio-conjugal</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/permanent-residence/spousal-sponsorship"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/patrocinio-conjugal"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/programa-nomeacao-provincial</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/permanent-residence/provincial-nominee-program"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/programa-nomeacao-provincial"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/humanitarios-e-de-compaixao</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/humanitarian"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/residencia-permanente/humanitarios-e-de-compaixao"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/classe-experiencia-canadense</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/sistema-classificacao-abrangente</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/avaliacao-credenciais-educacionais</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/trabalhador-qualificado-federal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/oficial-qualificado-federal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/residencia-permanente/programa-cuidadores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/visto-de-trabalho</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/work-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/visto-de-trabalho"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/trabalho/visto-de-trabalho-aberto</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/open-work-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/trabalho/visto-de-trabalho-aberto"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/trabalho/visto-de-trabalho-fechado</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/closed-work-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/trabalho/visto-de-trabalho-fechado"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/lmia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/lmia"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/lmia"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/lmia-exempt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/lmia-exempt"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/lmia-exempt"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/visto-de-estudo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/study-permit"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/visto-de-estudo"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/consulta-de-imigracao</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/immigration-consultation"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/consulta-de-imigracao"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/sobre</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/about"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/sobre"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/contato</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/contact"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/contato"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- PT Blog -->
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/5-erros-comuns-no-curriculo-de-recem-chegados</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/5-Mistakes-Newcomers-Make-on-Their-Resume"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/5-erros-comuns-no-curriculo-de-recem-chegados"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/biometria-exames-medicos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/biometria-exames-medicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/biometria-exames-medicos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/checklist-visto-de-estudo</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/study-permit-checklist"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/checklist-visto-de-estudo"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/comprovacao-financeira-2025</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/proof-of-funds-2025"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/comprovacao-financeira-2025"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/adaptacao-cultura-canadense-imigrante</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/bc-ou-alberta-melhor-experiencia-imigrante</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/bowp-bridging-open-work-permit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/credenciais-estrangeiras-canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/express-entry-crs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/lmia-empregadores</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/lmia-exempt-categories</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/matricular-criancas-escolas-canadenses</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/melhor-provincia-para-imigrantes-british-columbia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/melhor-provincia-para-imigrantes-ontario</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/melhor-provincia-para-imigrantes-quebec</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/open-work-permit-conjuge</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/patrocinio-conjugal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/patrocinio-familias-canada</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/pgwp-guia-completo</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/pgwp-tudo-que-voce-precisa-saber</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/pnp-por-provincia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/programa-nomeacao-imigrante-ontario</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/restauracao-de-status</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/study-plan-que-convence</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/trabalhar-e-estudar</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.upimmigration.ca/pt/blog/work-permit-dentro-fora</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>
