@@ -3014,6 +3014,18 @@ a.btn-inline {
 	.lang-switcher {
 		gap: 0.35rem;
 	}
+	/* Hero: H1 was hitting the 4rem clamp ceiling and felt too heavy
+	   for this width; stats had no breathing room below them. */
+	#hero {
+		padding: 0 60px;
+	}
+	#hero h1 {
+		font-size: clamp(2rem, 4.2vw, 2.8rem);
+	}
+	#hero .badges {
+		margin-top: 2rem;
+		margin-bottom: 2.5rem;
+	}
 }
 
 /* Card Below hero */
