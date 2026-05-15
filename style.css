@@ -2987,6 +2987,35 @@ a.btn-inline {
 		text-align: center;
 	}
 }
+
+/* Header: between 901px and 1300px nav items wrapped beside the logo
+   and the CTA overlapped the Blog link. Tighten gaps + shrink nav/button. */
+@media screen and (min-width: 901px) and (max-width: 1300px) {
+	.nav-container {
+		padding: 0.8rem 0.75rem;
+	}
+	.main-nav ul {
+		gap: 1.1rem;
+	}
+	.main-nav li {
+		font-size: 0.85rem;
+	}
+	.nav-right {
+		gap: 1rem;
+	}
+	.nav-right .cta-btn {
+		padding: 0.3rem 0.65rem;
+		font-size: 0.78rem;
+		white-space: nowrap;
+	}
+	.social {
+		gap: 0.5rem;
+	}
+	.lang-switcher {
+		gap: 0.35rem;
+	}
+}
+
 /* Card Below hero */
 .paths {
 	padding: 38px 0;
