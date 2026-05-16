@@ -20,7 +20,7 @@
 			h1, h2, h3, h4, p { margin: 0; }
 			:root { --brand: #b8001c; --brand-light: #d33541; --radius: 12px; }
 
-			.dash-shell { max-width: 1600px; margin: 0 auto; padding: 24px; }
+			.dash-shell { max-width: none; margin: 0; padding: 24px; }
 
 			/* Topbar inside the admin shell */
 			.dash-topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px 14px; gap: 18px; background: white; border-bottom: 1px solid #e5e7eb; border-radius: 12px 12px 0 0; }
@@ -84,6 +84,18 @@
 			.dash-cell-date { font-size: 12px; color: #6b7280; white-space: nowrap; }
 			.dash-cell-pillar { font-size: 12px; color: #4b5563; white-space: nowrap; }
 
+			/* Quality score column */
+			.dash-cell-quality { width: 110px; }
+			.dash-quality { display: flex; align-items: center; gap: 8px; cursor: help; }
+			.dash-quality-bar { flex: 1; height: 4px; background: #f1f3f5; border-radius: 2px; overflow: hidden; }
+			.dash-quality-fill { height: 100%; transition: width 0.3s; }
+			.dash-quality-num { font-size: 12px; font-weight: 600; color: #111827; min-width: 22px; text-align: right; }
+			.dash-quality-good .dash-quality-fill { background: #10b981; }
+			.dash-quality-mid  .dash-quality-fill { background: #f59e0b; }
+			.dash-quality-low  .dash-quality-fill { background: #ef4444; }
+			.dash-quality-good .dash-quality-num { color: #047857; }
+			.dash-quality-low  .dash-quality-num { color: #b91c1c; }
+
 			/* Flat view container */
 			.dash-flat { background: white; border-radius: 0 0 12px 12px; }
 			.dash-pillars-wrap { background: white; border-radius: 0 0 12px 12px; overflow: hidden; }
@@ -102,9 +114,6 @@
 
 			.dash-btn-review { display: inline-block; padding: 5px 12px; background: var(--brand); color: white; text-decoration: none; border-radius: 4px; font-size: 11px; font-weight: 600; }
 			.dash-btn-review:hover { background: var(--brand-light); }
-
-			.dash-foot { padding: 18px 24px; font-size: 11px; color: #9ca3af; text-align: center; background: white; border-top: 1px solid #f1f3f5; border-radius: 0 0 12px 12px; }
-			.dash-foot code { background: #f3f4f6; padding: 1px 5px; border-radius: 3px; color: #111827; }
 
 			@media (max-width: 1024px) {
 				.dash-summary { flex-wrap: wrap; }
@@ -127,7 +136,7 @@
 					<svg class="dash-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
 					<input class="dash-search" id="dashSearch" placeholder="Search title, slug..." autocomplete="off" />
 				</div>
-				<div class="dash-stamp">Updated May 15, 2026</div>
+				<div class="dash-stamp">Updated May 16, 2026</div>
 			</div>
 
 			<div class="dash-tabs" id="dashTabs">
@@ -170,28 +179,29 @@
 							<th>Pillar</th>
 							<th>Lang</th>
 							<th class="dash-cell-num">Words</th>
+							<th class="dash-cell-quality" title="Score 0-10. Hover any cell for breakdown.">Quality ↓</th>
 							<th>Stats / Commands</th>
 							<th class="dash-cell-date">Date / Action</th>
 						</tr>
 					</thead>
 					<tbody>
-				<tr class="dash-row dash-row-draft" data-status="draft">
-					<td><span class="dash-status dash-status-draft">#1</span></td>
-					<td class="dash-cell-title"><a href="/drafts/1-oinp-scoring-factors-explained" target="_blank">OINP Scoring Factors Explained: How Ontario Ranks Candidates Across Every Stream</a></td>
-					<td class="dash-cell-pillar">Express Entry deep dive</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">1,745</td>
-					<td class="dash-cell-meta"><code>approve 1</code> · <code>fix 1: …</code></td>
-					<td class="dash-cell-date"><a href="/drafts/1-oinp-scoring-factors-explained" target="_blank" class="dash-btn-review">Review</a></td>
-				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/ontario-immigrant-nominee-program-oinp" target="_blank">Ontario Immigrant Nominee Program - OINP</a></td>
+					<td class="dash-cell-title"><a href="/blog/teer-0-1-2-3-jobs-canada-express-entry" target="_blank">TEER 0, 1, 2, and 3 Jobs in Canada: The Complete Express Entry Eligibility Guide</a></td>
 					<td class="dash-cell-pillar">Express Entry deep dive</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">489</td>
-					<td class="dash-cell-meta"><span class="dash-gsc">482 imp · 4 clk · pos 16.4</span></td>
-					<td class="dash-cell-date">2026-02-20</td>
+					<td class="dash-cell-num">1,979</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-mid" title="Score breakdown:
+Word count: 3.0/3.0 (1,979 words)
+Internal links: 1.5/1.5 (9 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 6.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:60%"></div></div><div class="dash-quality-num">6.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-05-15</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
@@ -199,53 +209,37 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">490</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (490 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+Avg position: 1.5/2.0 (5.2)
+Clicks: 0.5/1.5 (1)
+CTR: 0.5/0.5 (16.7%)
+
+Total: 4.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:45%"></div></div><div class="dash-quality-num">4.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc">6 imp · 1 clk · pos 5.2</span></td>
 					<td class="dash-cell-date">2026-02-20</td>
 				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/5-Mistakes-Newcomers-Make-on-Their-Resume" target="_blank">5 Mistakes Newcomers Make on Their Resume</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+				<tr class="dash-row dash-row-draft" data-status="draft">
+					<td><span class="dash-status dash-status-draft">#1</span></td>
+					<td class="dash-cell-title"><a href="/drafts/1-oinp-scoring-factors-explained" target="_blank">OINP Scoring Factors Explained: How Ontario Ranks Candidates Across Every Stream</a></td>
+					<td class="dash-cell-pillar">Express Entry deep dive</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">441</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-09-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/adapting-to-canadian-culture-as-a-new-immigrant" target="_blank">Adapting to Canadian Culture as a New Immigrant</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">495</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2026-02-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/bc-or-alberta-best-immigrant-experience" target="_blank">BC or Alberta? Where Should You Settle for the Best Immigrant Experience</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">363</td>
-					<td class="dash-cell-meta"><span class="dash-gsc">312 imp · 0 clk · pos 10.4</span></td>
-					<td class="dash-cell-date">2026-02-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-british-columbia" target="_blank">Best Province for Newcomers: Why 67% of Immigrants Stay in British Columbia</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">424</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2026-02-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-quebec" target="_blank">Best Province for Newcomers: Why 91% of Immigrants Choose to Stay in Quebec</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">513</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2026-02-20</td>
+					<td class="dash-cell-num">1,745</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 2.0/3.0 (1,745 words)
+Internal links: 1.5/1.5 (6 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(draft — no perf data): 0.0/4.0 (ship it to earn pts)
+
+Total: 4.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:40%"></div></div><div class="dash-quality-num">4.0</div></div></td>
+					<td class="dash-cell-meta"><code>approve 1</code> · <code>fix 1: …</code></td>
+					<td class="dash-cell-date"><a href="/drafts/1-oinp-scoring-factors-explained" target="_blank" class="dash-btn-review">Review</a></td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
@@ -253,33 +247,15 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">738</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/bowp-bridging-open-work-permit" target="_blank">BOWP: Bridging Open Work Permit</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">50</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/enrolling-children-in-canadian-schools" target="_blank">Enrolling Children in Canadian Schools: A Guide for Newcomers</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">672</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2026-02-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/express-entry-crs" target="_blank">Express Entry: CRS, Perfis e Erros Comuns</a></td>
-					<td class="dash-cell-pillar">Express Entry deep dive</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">144</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (738 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:35%"></div></div><div class="dash-quality-num">3.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">2025-10-04</td>
 				</tr>
@@ -289,44 +265,19 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">554</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (554 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+Avg position: 0.5/2.0 (39.9)
+Clicks: 0.0/1.5 (0)
+CTR: 0.0/0.5 (0.0%)
+
+Total: 3.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:35%"></div></div><div class="dash-quality-num">3.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc">61 imp · 0 clk · pos 39.9</span></td>
 					<td class="dash-cell-date">2026-02-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/lmia-empregadores" target="_blank">LMIA para Empregadores: Passo a Passo</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">128</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/lmia-exempt-categories" target="_blank">Trabalho sem LMIA: Categorias Isentas</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">52</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/open-work-permit-conjuge" target="_blank">Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">688</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/patrocinio-conjugal" target="_blank">Como Funciona o Patrocínio Conjugal no Canadá</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">202</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
@@ -334,26 +285,19 @@
 					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">590</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (590 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+Avg position: 0.5/2.0 (47.2)
+Clicks: 0.0/1.5 (0)
+CTR: 0.0/0.5 (0.0%)
+
+Total: 3.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:35%"></div></div><div class="dash-quality-num">3.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc">36 imp · 0 clk · pos 47.2</span></td>
 					<td class="dash-cell-date">2026-02-20</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/pgwp-guia-completo" target="_blank">PGWP: Guia Completo para Recém‑Graduados</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">842</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/pnp-por-provincia" target="_blank">PNP por Província: visão geral prática</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">727</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
@@ -361,15 +305,15 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">744</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/restauracao-de-status" target="_blank">Restauração de Status: como proceder</a></td>
-					<td class="dash-cell-pillar">Refusal & restoration recovery</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">804</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (744 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:35%"></div></div><div class="dash-quality-num">3.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">2025-10-04</td>
 				</tr>
@@ -379,15 +323,145 @@
 					<td class="dash-cell-pillar">Express Entry deep dive</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">669</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (669 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+Avg position: 0.5/2.0 (41.1)
+Clicks: 0.0/1.5 (0)
+CTR: 0.0/0.5 (0.0%)
+
+Total: 3.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:35%"></div></div><div class="dash-quality-num">3.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc">168 imp · 0 clk · pos 41.1</span></td>
 					<td class="dash-cell-date">2026-02-20</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/study-permit-checklist" target="_blank">Estudo no Canadá: Checklist Essencial do Study Permit</a></td>
+					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-quebec" target="_blank">Best Province for Newcomers: Why 91% of Immigrants Choose to Stay in Quebec</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">513</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (513 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/enrolling-children-in-canadian-schools" target="_blank">Enrolling Children in Canadian Schools: A Guide for Newcomers</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">672</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (672 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/ontario-immigrant-nominee-program-oinp" target="_blank">Ontario Immigrant Nominee Program - OINP</a></td>
+					<td class="dash-cell-pillar">Express Entry deep dive</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">489</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (489 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+Avg position: 0.5/2.0 (16.4)
+Clicks: 0.5/1.5 (4)
+CTR: 0.0/0.5 (0.8%)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc">482 imp · 4 clk · pos 16.4</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/open-work-permit-conjuge" target="_blank">Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a></td>
 					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">138</td>
+					<td class="dash-cell-num">688</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (688 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/pgwp-guia-completo" target="_blank">PGWP: Guia Completo para Recém‑Graduados</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">842</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (842 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/pnp-por-provincia" target="_blank">PNP por Província: visão geral prática</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">727</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (727 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/restauracao-de-status" target="_blank">Restauração de Status: como proceder</a></td>
+					<td class="dash-cell-pillar">Refusal & restoration recovery</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">804</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (804 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">2025-10-04</td>
 				</tr>
@@ -397,17 +471,17 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">907</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (907 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/teer-0-1-2-3-jobs-canada-express-entry" target="_blank">TEER 0, 1, 2, and 3 Jobs in Canada: The Complete Express Entry Eligibility Guide</a></td>
-					<td class="dash-cell-pillar">Express Entry deep dive</td>
-					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">1,979</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">2026-05-15</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
@@ -415,26 +489,73 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
 					<td class="dash-cell-num">712</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (712 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 3.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:30%"></div></div><div class="dash-quality-num">3.0</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">2025-10-04</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/blog/work-permit-dentro-fora" target="_blank">Guia do Work Permit: Dentro x Fora do Canadá</a></td>
+					<td class="dash-cell-title"><a href="/blog/5-Mistakes-Newcomers-Make-on-Their-Resume" target="_blank">5 Mistakes Newcomers Make on Their Resume</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">441</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (441 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-09-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/bc-or-alberta-best-immigrant-experience" target="_blank">BC or Alberta? Where Should You Settle for the Best Immigrant Experience</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">363</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (363 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+Avg position: 0.5/2.0 (10.4)
+Clicks: 0.0/1.5 (0)
+CTR: 0.0/0.5 (0.0%)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc">312 imp · 0 clk · pos 10.4</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/study-permit-checklist" target="_blank">Estudo no Canadá: Checklist Essencial do Study Permit</a></td>
 					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
 					<td><span class="dash-badge dash-badge-en">EN</span></td>
-					<td class="dash-cell-num">170</td>
+					<td class="dash-cell-num">138</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (138 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">2025-10-04</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/5-erros-comuns-no-curriculo-de-recem-chegados" target="_blank">5 Mistakes Newcomers Make on Their Resume</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">441</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
 				</tr>
 				<tr class="dash-row" data-status="live">
 					<td><span class="dash-status dash-status-live">LIVE</span></td>
@@ -442,51 +563,15 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">558</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/bc-ou-alberta-melhor-experiencia-imigrante" target="_blank">BC ou Alberta? Onde se Estabelecer para a Melhor Experiência de Imigrante</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">410</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/biometria-exames-medicos" target="_blank">Biometria e Exames Médicos no Canadá: passo a passo completo</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">55</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/bowp-bridging-open-work-permit" target="_blank">BOWP: Bridging Open Work Permit</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">50</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/checklist-visto-de-estudo" target="_blank">Estudo no Canadá: Checklist Essencial do Study Permit</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">138</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/comprovacao-financeira-2025" target="_blank">Proof of Funds 2025: Como comprovar recursos</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">56</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (558 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -496,33 +581,15 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">591</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/express-entry-crs" target="_blank">Express Entry: CRS, Perfis e Erros Comuns</a></td>
-					<td class="dash-cell-pillar">Express Entry deep dive</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">144</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/lmia-empregadores" target="_blank">LMIA para Empregadores: Passo a Passo</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">128</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/lmia-exempt-categories" target="_blank">Trabalho sem LMIA: Categorias Isentas</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">52</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (591 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -532,15 +599,15 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">730</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/melhor-provincia-para-imigrantes-british-columbia" target="_blank">Melhor Província para Recém-Chegados: Por que 67% de Imigrantes Ficam em British Columbia</a></td>
-					<td class="dash-cell-pillar">Settlement & life in Canada</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">463</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (730 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -550,6 +617,15 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">532</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (532 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -559,24 +635,15 @@
 					<td class="dash-cell-pillar">Settlement & life in Canada</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">579</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/open-work-permit-conjuge" target="_blank">Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a></td>
-					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">66</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/patrocinio-conjugal" target="_blank">Como Funciona o Patrocínio Conjugal no Canadá</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">202</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (579 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -586,15 +653,15 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">719</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/pgwp-guia-completo" target="_blank">PGWP: Tudo que Recém‑Graduados Precisam Saber</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">84</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (719 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -604,15 +671,15 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">673</td>
-					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
-					<td class="dash-cell-date">—</td>
-				</tr>
-				<tr class="dash-row" data-status="live">
-					<td><span class="dash-status dash-status-live">LIVE</span></td>
-					<td class="dash-cell-title"><a href="/pt/blog/pnp-por-provincia" target="_blank">Programas Provinciais de Nomeação (PNP): guia prático</a></td>
-					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
-					<td><span class="dash-badge dash-badge-pt">PT</span></td>
-					<td class="dash-cell-num">43</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (673 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -622,6 +689,411 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">539</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 1.0/3.0 (539 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:25%"></div></div><div class="dash-quality-num">2.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/adapting-to-canadian-culture-as-a-new-immigrant" target="_blank">Adapting to Canadian Culture as a New Immigrant</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">495</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (495 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-british-columbia" target="_blank">Best Province for Newcomers: Why 67% of Immigrants Stay in British Columbia</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">424</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (424 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/bowp-bridging-open-work-permit" target="_blank">BOWP: Bridging Open Work Permit</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">50</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (50 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/express-entry-crs" target="_blank">Express Entry: CRS, Perfis e Erros Comuns</a></td>
+					<td class="dash-cell-pillar">Express Entry deep dive</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">144</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (144 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/lmia-empregadores" target="_blank">LMIA para Empregadores: Passo a Passo</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">128</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (128 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/lmia-exempt-categories" target="_blank">Trabalho sem LMIA: Categorias Isentas</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">52</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (52 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/patrocinio-conjugal" target="_blank">Como Funciona o Patrocínio Conjugal no Canadá</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">202</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (202 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/work-permit-dentro-fora" target="_blank">Guia do Work Permit: Dentro x Fora do Canadá</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">170</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (170 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.5/0.5 (yes)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/5-erros-comuns-no-curriculo-de-recem-chegados" target="_blank">5 Mistakes Newcomers Make on Their Resume</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">441</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (441 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/biometria-exames-medicos" target="_blank">Biometria e Exames Médicos no Canadá: passo a passo completo</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">55</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (55 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/checklist-visto-de-estudo" target="_blank">Estudo no Canadá: Checklist Essencial do Study Permit</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">138</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (138 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/comprovacao-financeira-2025" target="_blank">Proof of Funds 2025: Como comprovar recursos</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">56</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (56 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.5/0.5 (both)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 2.0/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:20%"></div></div><div class="dash-quality-num">2.0</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/bc-ou-alberta-melhor-experiencia-imigrante" target="_blank">BC ou Alberta? Onde se Estabelecer para a Melhor Experiência de Imigrante</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">410</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (410 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/bowp-bridging-open-work-permit" target="_blank">BOWP: Bridging Open Work Permit</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">50</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (50 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/express-entry-crs" target="_blank">Express Entry: CRS, Perfis e Erros Comuns</a></td>
+					<td class="dash-cell-pillar">Express Entry deep dive</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">144</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (144 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/lmia-empregadores" target="_blank">LMIA para Empregadores: Passo a Passo</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">128</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (128 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/lmia-exempt-categories" target="_blank">Trabalho sem LMIA: Categorias Isentas</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">52</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (52 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/melhor-provincia-para-imigrantes-british-columbia" target="_blank">Melhor Província para Recém-Chegados: Por que 67% de Imigrantes Ficam em British Columbia</a></td>
+					<td class="dash-cell-pillar">Settlement & life in Canada</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">463</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (463 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/open-work-permit-conjuge" target="_blank">Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a></td>
+					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">66</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (66 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/patrocinio-conjugal" target="_blank">Como Funciona o Patrocínio Conjugal no Canadá</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">202</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (202 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/pgwp-guia-completo" target="_blank">PGWP: Tudo que Recém‑Graduados Precisam Saber</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">84</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (84 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/pnp-por-provincia" target="_blank">Programas Provinciais de Nomeação (PNP): guia prático</a></td>
+					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">43</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (43 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -631,6 +1103,15 @@
 					<td class="dash-cell-pillar">Refusal & restoration recovery</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">47</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (47 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -640,6 +1121,15 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">59</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (59 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -649,6 +1139,15 @@
 					<td class="dash-cell-pillar">Brazil → Canada (PT-first)</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">49</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (49 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -658,6 +1157,15 @@
 					<td class="dash-cell-pillar">Work Permits (post-2024 reality)</td>
 					<td><span class="dash-badge dash-badge-pt">PT</span></td>
 					<td class="dash-cell-num">170</td>
+					<td class="dash-cell-quality"><div class="dash-quality dash-quality-low" title="Score breakdown:
+Word count: 0.0/3.0 (170 words)
+Internal links: 1.0/1.5 (3 links)
+Article schema: 0.0/0.5 (no)
+Hreflang en+pt: 0.0/0.5 (missing)
+Featured image: 0.5/0.5 (yes)
+(no GSC data yet): 0.0/4.0 (needs ranking time)
+
+Total: 1.5/10"><div class="dash-quality-bar"><div class="dash-quality-fill" style="width:15%"></div></div><div class="dash-quality-num">1.5</div></div></td>
 					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
 					<td class="dash-cell-date">—</td>
 				</tr>
@@ -1239,10 +1747,6 @@
 				</table>
 			</div>
 		</div>
-			</div>
-
-			<div class="dash-foot">
-				In chat: <code>approve N</code> · <code>approve N-M</code> · <code>fix N: change X to Y</code> · <code>reject N</code> · regenerated by <code>tools/build-drafts-index-v2.py</code>
 			</div>
 		</div>
 
