@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex,nofollow" />
+		<title>Drafts Dashboard v2 – Up Immigration (internal)</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="../style.css" />
+
+		<style>
+			/* CRM Financeiro-inspired dashboard */
+			body { background: #f4f5f7; }
+			.dash-shell { max-width: 1280px; margin: 0 auto; padding: 0; }
+
+			/* Topbar inside the admin shell */
+			.dash-topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 24px 14px; gap: 18px; background: white; border-bottom: 1px solid #e5e7eb; border-radius: 12px 12px 0 0; margin-top: 24px; }
+			.dash-topbar-left { display: flex; flex-direction: column; }
+			.dash-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand); }
+			.dash-title { font-size: 20px; font-weight: 700; color: #111827; margin: 2px 0 0; }
+			.dash-search-wrap { position: relative; flex: 1; max-width: 400px; }
+			.dash-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none; }
+			.dash-search { width: 100%; padding: 8px 12px 8px 32px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 13px; font-family: inherit; background: #fafbfc; }
+			.dash-search:focus { outline: none; border-color: var(--brand); background: white; }
+			.dash-stamp { font-size: 12px; color: #6b7280; }
+
+			/* Filter tabs (CRM style) */
+			.dash-tabs { display: flex; gap: 2px; padding: 0 24px 12px; background: white; border-bottom: 1px solid #e5e7eb; }
+			.dash-tab { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; border: none; background: none; cursor: pointer; color: #6b7280; font-family: inherit; transition: all 0.15s; }
+			.dash-tab:hover { background: #f3f4f6; color: #111827; }
+			.dash-tab.active { background: #fef2f2; color: var(--brand); font-weight: 600; }
+
+			/* Summary stat strip */
+			.dash-summary { display: flex; gap: 12px; padding: 14px 24px; background: white; border-bottom: 1px solid #e5e7eb; }
+			.dash-stat { flex: 1; background: #fafbfc; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 14px; }
+			.dash-stat-label { font-size: 11px; color: #6b7280; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+			.dash-stat-value { font-size: 1.35rem; font-weight: 700; color: #111827; line-height: 1.2; }
+			.dash-stat-value.dash-stat-green { color: #047857; }
+			.dash-stat-sub { font-size: 0.85rem; color: #9ca3af; font-weight: 500; }
+			.delta { font-size: 0.72rem; font-weight: 600; padding: 1px 5px; border-radius: 3px; vertical-align: middle; margin-left: 4px; }
+			.delta-up { color: #047857; background: #ecfdf5; }
+			.delta-down { color: #b91c1c; background: #fef2f2; }
+
+			/* Pillar sections — table style */
+			.dash-pillar { background: white; border-top: 1px solid #f1f3f5; }
+			.dash-pillar:last-of-type { border-radius: 0 0 12px 12px; overflow: hidden; }
+			.dash-pillar.is-empty { display: none; }
+			.dash-pillar-head { display: flex; justify-content: space-between; align-items: flex-start; padding: 18px 24px 12px; gap: 24px; }
+			.dash-pillar-head h2 { font-size: 1rem; margin: 0 0 4px; color: var(--brand); font-weight: 700; }
+			.dash-pillar-meta p { margin: 0; font-size: 0.78rem; color: #6b7280; line-height: 1.4; max-width: 800px; }
+			.dash-pillar-stat { text-align: right; min-width: 130px; }
+			.dash-pillar-num { font-size: 1.2rem; font-weight: 700; color: #111827; line-height: 1; margin-bottom: 5px; }
+			.dash-pillar-num span { font-size: 0.78rem; color: #9ca3af; font-weight: 500; }
+			.dash-pillar-bar { width: 130px; height: 4px; background: #f1f3f5; border-radius: 2px; overflow: hidden; }
+			.dash-pillar-fill { height: 100%; background: var(--brand); }
+
+			/* Tables */
+			.dash-table-wrap { padding: 0 0 8px; overflow-x: auto; }
+			.dash-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+			.dash-table thead th { text-align: left; padding: 8px 24px; font-size: 11px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #f1f3f5; background: #fafbfc; }
+			.dash-table th.dash-cell-num, .dash-table td.dash-cell-num { text-align: right; }
+			.dash-table tbody td { padding: 12px 24px; border-bottom: 1px solid #f8f9fa; vertical-align: middle; }
+			.dash-table tbody tr:last-child td { border-bottom: none; }
+			.dash-table tbody tr.dash-row.is-hidden { display: none; }
+			.dash-table tbody tr:hover { background: #fafbfc; }
+			.dash-cell-title a { color: #111827; text-decoration: none; font-weight: 500; }
+			.dash-cell-title a:hover { color: var(--brand); }
+			.dash-cell-meta { font-size: 12px; color: #6b7280; }
+			.dash-cell-meta code { background: #f3f4f6; padding: 1px 5px; border-radius: 3px; color: #111827; font-size: 11px; }
+			.dash-cell-date { font-size: 12px; color: #6b7280; white-space: nowrap; }
+			.dash-empty-row td { padding: 18px 24px; color: #9ca3af; font-style: italic; font-size: 13px; }
+
+			/* Status pills */
+			.dash-status { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 3px; }
+			.dash-status-live { background: #ecfdf5; color: #065f46; }
+			.dash-status-draft { background: #fef3c7; color: #92400e; }
+			.dash-badge { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: 600; }
+			.dash-badge-en { background: #eff6ff; color: #1e40af; }
+			.dash-badge-pt { background: #fef3c7; color: #92400e; }
+			.dash-gsc { color: #047857; font-weight: 500; font-size: 11px; }
+			.dash-gsc-none { color: #d1d5db; }
+
+			.dash-btn-review { display: inline-block; padding: 5px 12px; background: var(--brand); color: white; text-decoration: none; border-radius: 4px; font-size: 11px; font-weight: 600; }
+			.dash-btn-review:hover { background: var(--brand-light); }
+
+			.dash-foot { padding: 18px 24px; font-size: 11px; color: #9ca3af; text-align: center; background: white; border-top: 1px solid #f1f3f5; border-radius: 0 0 12px 12px; }
+			.dash-foot code { background: #f3f4f6; padding: 1px 5px; border-radius: 3px; color: #111827; }
+
+			@media (max-width: 1024px) {
+				.dash-summary { flex-wrap: wrap; }
+				.dash-stat { min-width: 45%; }
+			}
+			@media (max-width: 768px) {
+				.dash-topbar { flex-direction: column; align-items: flex-start; }
+				.dash-search-wrap { max-width: 100%; }
+			}
+		</style>
+	</head>
+	<body>
+
+<header>
+	<div class="nav-container">
+		<!-- LEFT: logo -->
+		<a class="logo" href="/">
+			<img
+				src="/img/Up_Immigration_logo.webp"
+				alt="UP Immigration Consulting"
+				width="190"
+				height="auto" />
+		</a>
+
+		<!-- CENTER: desktop menu -->
+		<nav class="main-nav" aria-label="Primary">
+			<ul>
+				<li><a href="/permanent-residence.html">Permanent Residence</a></li>
+				<li><a href="/work-permit.html">Work</a></li>
+				<li><a href="/study-permit.html">Study</a></li>
+				<li><a href="/about.html">About</a></li>
+				<li><a href="/contact.html">Contact</a></li>
+				<li><a href="/blog.html">Blog</a></li>
+			</ul>
+		</nav>
+
+		<!-- RIGHT: socials + languages (desktop) -->
+		<div class="nav-right">
+			<div class="cta-btn">
+				<a class="btn-dark" href="#">Book a Meeting</a>
+			</div>
+			<div class="social" aria-label="Social links">
+				<a
+					href="https://www.instagram.com/upimmigration/"
+					aria-label="Instagram">
+					<svg
+						viewBox="0 0 24 24"
+						width="18"
+						height="18"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8">
+						<rect x="3" y="3" width="18" height="18" rx="4"></rect>
+						<circle cx="12" cy="12" r="3.5"></circle>
+						<circle cx="17.5" cy="6.5" r="1"></circle>
+					</svg>
+				</a>
+				<a href="https://facebook.com/upimmigration" aria-label="Facebook">
+					<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+						<path
+							d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.38-3.62 3.52-3.62.99 0 2.02.18 2.02.18v2.23h-1.14c-1.12 0-1.47.7-1.47 1.42v1.7h2.51l-.4 2.9h-2.11v7.03C18.34 21.2 22 17.06 22 12.06z" />
+					</svg>
+				</a>
+				<a
+					href="https://www.linkedin.com/company/up-immigration-consulting"
+					aria-label="LinkedIn">
+					<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+						<path
+							d="M6.94 8.73H4.09V20h2.85V8.73zM5.5 7.42a1.65 1.65 0 1 0 0-3.3 1.65 1.65 0 0 0 0 3.3zM20 20h-2.84v-5.59c0-1.33-.02-3.02-1.84-3.02-1.84 0-2.16 1.46-2.16 2.96V20H10.4V8.73h2.73v1.54h.04c.38-.73 1.31-1.5 2.7-1.5 2.89 0 3.42 1.9 3.42 4.37V20z" />
+					</svg>
+				</a>
+				<a href="mailto:hello@upimmigration.ca" aria-label="Email">
+					<svg
+						viewBox="0 0 24 24"
+						width="18"
+						height="18"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8">
+						<rect x="3" y="5" width="18" height="14" rx="2"></rect>
+						<path d="M3 7l9 6 9-6"></path>
+					</svg>
+				</a>
+			</div>
+
+			<!-- <div class="lang-switcher">
+				<a href="/" class="active" aria-current="page">
+					<img src="/img/ca-flag.png" alt="English" class="flag active" />
+				</a>
+				<a href="/pt/">
+					<img src="/img/br-flag.png" alt="Português" class="flag" />
+				</a>
+			</div> -->
+
+			<!-- Mobile toggle -->
+			<button
+				class="nav-toggle"
+				id="navToggle"
+				aria-label="Open menu"
+				aria-controls="mobilePanel"
+				aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+		</div>
+	</div>
+
+	<!-- MOBILE PANEL (slides down) -->
+	<nav class="mobile-panel" id="mobilePanel" aria-label="Mobile">
+		<ul class="mobile-links">
+			<li><a href="/permanent-residence.html">Permanent Residence</a></li>
+			<li><a href="/work-permit.html">Work</a></li>
+			<li><a href="/study-permit.html">Study</a></li>
+			<li><a href="/about.html">About</a></li>
+			<li><a href="/contact.html">Contact</a></li>
+			<li><a href="/blog.html">Blog</a></li>
+		</ul>
+		<div class="mobile-extras">
+			<div class="social" aria-label="Social links (mobile)">
+				<!-- reuse same icons -->
+				<a
+					href="https://www.instagram.com/upimmigration/"
+					aria-label="Instagram">
+					<svg
+						viewBox="0 0 24 24"
+						width="18"
+						height="18"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8">
+						<rect x="3" y="3" width="18" height="18" rx="4"></rect>
+						<circle cx="12" cy="12" r="3.5"></circle>
+						<circle cx="17.5" cy="6.5" r="1"></circle>
+					</svg>
+				</a>
+				<a href="https://facebook.com/upimmigration" aria-label="Facebook">
+					<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+						<path
+							d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.14 8.44 9.94v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.38-3.62 3.52-3.62.99 0 2.02.18 2.02.18v2.23h-1.14c-1.12 0-1.47.7-1.47 1.42v1.7h2.51l-.4 2.9h-2.11v7.03C18.34 21.2 22 17.06 22 12.06z" />
+					</svg>
+				</a>
+				<a
+					href="https://www.linkedin.com/company/up-immigration-consulting"
+					aria-label="LinkedIn">
+					<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+						<path
+							d="M6.94 8.73H4.09V20h2.85V8.73zM5.5 7.42a1.65 1.65 0 1 0 0-3.3 1.65 1.65 0 0 0 0 3.3zM20 20h-2.84v-5.59c0-1.33-.02-3.02-1.84-3.02-1.84 0-2.16 1.46-2.16 2.96V20H10.4V8.73h2.73v1.54h.04c.38-.73 1.31-1.5 2.7-1.5 2.89 0 3.42 1.9 3.42 4.37V20z" />
+					</svg>
+				</a>
+				<a href="mailto:hello@upimmigration.ca" aria-label="Email">
+					<svg
+						viewBox="0 0 24 24"
+						width="18"
+						height="18"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8">
+						<rect x="3" y="5" width="18" height="14" rx="2"></rect>
+						<path d="M3 7l9 6 9-6"></path>
+					</svg>
+				</a>
+			</div>
+
+			<!-- <div class="lang-switcher" aria-label="Language (mobile)">
+				<a href="/">
+					<img src="ca-flag.png" alt="English" class="flag active" />
+				</a>
+				<a href="/pt/">
+					<img src="br-flag.png" alt="Português" class="flag" />
+				</a>
+			</div> -->
+		</div>
+	</nav>
+</header>
+
+
+		<main>
+			<div class="dash-shell">
+				<div class="dash-topbar">
+					<div class="dash-topbar-left">
+						<div class="dash-eyebrow">Internal · noindex · v2</div>
+						<h1 class="dash-title">Topical Authority Dashboard</h1>
+					</div>
+					<div class="dash-search-wrap">
+						<svg class="dash-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+						<input class="dash-search" id="dashSearch" placeholder="Search title, slug..." autocomplete="off" />
+					</div>
+					<div class="dash-stamp">Updated May 15, 2026</div>
+				</div>
+
+				<div class="dash-tabs" id="dashTabs">
+					<button class="dash-tab active" data-filter="draft">Drafts</button>
+					<button class="dash-tab" data-filter="live">Live</button>
+					<button class="dash-tab" data-filter="all">All</button>
+				</div>
+
+			<div class="dash-summary">
+				<div class="dash-stat">
+					<div class="dash-stat-label">Drafts in queue</div>
+					<div class="dash-stat-value">1</div>
+				</div>
+				<div class="dash-stat">
+					<div class="dash-stat-label">Posts live</div>
+					<div class="dash-stat-value">53 <span class="dash-stat-sub">· 1 this month</span></div>
+				</div>
+				<div class="dash-stat">
+					<div class="dash-stat-label">GSC impressions (90d)</div>
+					<div class="dash-stat-value">1,065</div>
+				</div>
+				<div class="dash-stat">
+					<div class="dash-stat-label">GSC clicks (90d)</div>
+					<div class="dash-stat-value dash-stat-green">5</div>
+				</div>
+				<div class="dash-stat">
+					<div class="dash-stat-label">Pillars active</div>
+					<div class="dash-stat-value">5<span class="dash-stat-sub">/ 5</span></div>
+				</div>
+			</div>
+
+		<section class="dash-pillar" data-pillar-id="pt_brazil">
+			<header class="dash-pillar-head">
+				<div class="dash-pillar-meta">
+					<h2>Brazil → Canada (PT-first)</h2>
+					<p>Bilingual moat. Brazilian-specific friction points (apostille, IELTS, R$/CAD, distance from family). PT-language SERPs are far less competitive.</p>
+				</div>
+				<div class="dash-pillar-stat">
+					<div class="dash-pillar-num">18<span>/ 30</span></div>
+					<div class="dash-pillar-bar"><div class="dash-pillar-fill" style="width:60%"></div></div>
+				</div>
+			</header>
+			<div class="dash-table-wrap">
+				<table class="dash-table">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Title</th>
+							<th>Lang</th>
+							<th class="dash-cell-num">Words</th>
+							<th>Stats / Commands</th>
+							<th class="dash-cell-date">Pub date / Action</th>
+						</tr>
+					</thead>
+					<tbody>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/biometria-exames-medicos" target="_blank">Biometria e Exames Médicos: o que esperar</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">738</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/patrocinio-conjugal" target="_blank">Como Funciona o Patrocínio Conjugal no Canadá</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">202</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/pgwp-guia-completo" target="_blank">PGWP: Guia Completo para Recém‑Graduados</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">842</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/pnp-por-provincia" target="_blank">PNP por Província: visão geral prática</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">727</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/proof-of-funds-2025" target="_blank">Proof of Funds 2025: Como comprovar recursos</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">744</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/study-plan-que-convence" target="_blank">Study Plan: Como escrever um plano que convence</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">907</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/trabalhar-e-estudar" target="_blank">Dá para trabalhar e estudar? Regras e limites</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">712</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/biometria-exames-medicos" target="_blank">Biometria e Exames Médicos no Canadá: passo a passo completo</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">55</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/checklist-visto-de-estudo" target="_blank">Estudo no Canadá: Checklist Essencial do Study Permit</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">138</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/comprovacao-financeira-2025" target="_blank">Proof of Funds 2025: Como comprovar recursos</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">56</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/patrocinio-conjugal" target="_blank">Como Funciona o Patrocínio Conjugal no Canadá</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">202</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/patrocinio-familias-canada" target="_blank">Patrocínio Familiar no Canadá: Tudo Que Você Precisa Saber</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">719</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/pgwp-guia-completo" target="_blank">PGWP: Tudo que Recém‑Graduados Precisam Saber</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">84</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/pgwp-tudo-que-voce-precisa-saber" target="_blank">PGWP: Tudo Que Você Precisa Saber Sobre Permissões de Trabalho Pós-Graduação</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">673</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/pnp-por-provincia" target="_blank">Programas Provinciais de Nomeação (PNP): guia prático</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">43</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/programa-nomeacao-imigrante-ontario" target="_blank">Programa de Nomeação de Imigrantes de Ontário - OINP</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">539</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/study-plan-que-convence" target="_blank">Study Plan: Como escrever um plano que convence</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">59</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/trabalhar-e-estudar" target="_blank">Dá para trabalhar e estudar? Regras e limites</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">49</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<section class="dash-pillar" data-pillar-id="express_entry">
+			<header class="dash-pillar-head">
+				<div class="dash-pillar-meta">
+					<h2>Express Entry deep dive</h2>
+					<p>Strongest existing cluster. Extend by occupation, NOC code, draws, profile examples, document checklists.</p>
+				</div>
+				<div class="dash-pillar-stat">
+					<div class="dash-pillar-num">6<span>/ 15</span></div>
+					<div class="dash-pillar-bar"><div class="dash-pillar-fill" style="width:40%"></div></div>
+				</div>
+			</header>
+			<div class="dash-table-wrap">
+				<table class="dash-table">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Title</th>
+							<th>Lang</th>
+							<th class="dash-cell-num">Words</th>
+							<th>Stats / Commands</th>
+							<th class="dash-cell-date">Pub date / Action</th>
+						</tr>
+					</thead>
+					<tbody>
+				<tr class="dash-row dash-row-draft" data-status="draft">
+					<td><span class="dash-status dash-status-draft">#1</span></td>
+					<td class="dash-cell-title"><a href="/drafts/1-oinp-scoring-factors-explained" target="_blank">OINP Scoring Factors Explained: How Ontario Ranks Candidates Across Every Stream</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">1,745</td>
+					<td class="dash-cell-meta"><code>approve 1</code> · <code>fix 1: …</code> · <code>reject 1</code></td>
+					<td class="dash-cell-date"><a href="/drafts/1-oinp-scoring-factors-explained" target="_blank" class="dash-btn-review">Review</a></td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/express-entry-crs" target="_blank">Express Entry: CRS, Perfis e Erros Comuns</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">144</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/ontario-immigrant-nominee-program-oinp" target="_blank">Ontario Immigrant Nominee Program - OINP</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">489</td>
+					<td class="dash-cell-meta"><span class="dash-gsc">482 imp · 4 clk · pos 16.4</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/sponsorship-for-families-in-canada" target="_blank">Family Sponsorship in Canada: Everything You Need to Know</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">669</td>
+					<td class="dash-cell-meta"><span class="dash-gsc">168 imp · 0 clk · pos 41.1</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/teer-0-1-2-3-jobs-canada-express-entry" target="_blank">TEER 0, 1, 2, and 3 Jobs in Canada: The Complete Express Entry Eligibility Guide</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">1,979</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-05-15</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/express-entry-crs" target="_blank">Express Entry: CRS, Perfis e Erros Comuns</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">144</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<section class="dash-pillar" data-pillar-id="work_permits">
+			<header class="dash-pillar-head">
+				<div class="dash-pillar-meta">
+					<h2>Work Permits (post-2024 reality)</h2>
+					<p>High volume + post-OWP-restrictions confusion. Coverage by employer type, by spouse situation, by occupation TEER.</p>
+				</div>
+				<div class="dash-pillar-stat">
+					<div class="dash-pillar-num">12<span>/ 10</span></div>
+					<div class="dash-pillar-bar"><div class="dash-pillar-fill" style="width:100%"></div></div>
+				</div>
+			</header>
+			<div class="dash-table-wrap">
+				<table class="dash-table">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Title</th>
+							<th>Lang</th>
+							<th class="dash-cell-num">Words</th>
+							<th>Stats / Commands</th>
+							<th class="dash-cell-date">Pub date / Action</th>
+						</tr>
+					</thead>
+					<tbody>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/bowp-bridging-open-work-permit" target="_blank">BOWP: Bridging Open Work Permit</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">50</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/lmia-empregadores" target="_blank">LMIA para Empregadores: Passo a Passo</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">128</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/lmia-exempt-categories" target="_blank">Trabalho sem LMIA: Categorias Isentas</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">52</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/open-work-permit-conjuge" target="_blank">Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">688</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/pgwp-everything-you-need-to-know" target="_blank">PGWP: Everything You Need to Know About Post-Graduation Work Permits</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">590</td>
+					<td class="dash-cell-meta"><span class="dash-gsc">36 imp · 0 clk · pos 47.2</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/study-permit-checklist" target="_blank">Estudo no Canadá: Checklist Essencial do Study Permit</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">138</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/work-permit-dentro-fora" target="_blank">Guia do Work Permit: Dentro x Fora do Canadá</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">170</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/bowp-bridging-open-work-permit" target="_blank">BOWP: Bridging Open Work Permit</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">50</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/lmia-empregadores" target="_blank">LMIA para Empregadores: Passo a Passo</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">128</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/lmia-exempt-categories" target="_blank">Trabalho sem LMIA: Categorias Isentas</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">52</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/open-work-permit-conjuge" target="_blank">Open Work Permit para Cônjuges de Estudantes/Trabalhadores</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">66</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/work-permit-dentro-fora" target="_blank">Guia do Work Permit: Dentro x Fora do Canadá</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">170</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<section class="dash-pillar" data-pillar-id="refusal_recovery">
+			<header class="dash-pillar-head">
+				<div class="dash-pillar-meta">
+					<h2>Refusal & restoration recovery</h2>
+					<p>Highest commercial intent. People who got refused or lost status need a consultant urgently. Few competitors target this well.</p>
+				</div>
+				<div class="dash-pillar-stat">
+					<div class="dash-pillar-num">2<span>/ 5</span></div>
+					<div class="dash-pillar-bar"><div class="dash-pillar-fill" style="width:40%"></div></div>
+				</div>
+			</header>
+			<div class="dash-table-wrap">
+				<table class="dash-table">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Title</th>
+							<th>Lang</th>
+							<th class="dash-cell-num">Words</th>
+							<th>Stats / Commands</th>
+							<th class="dash-cell-date">Pub date / Action</th>
+						</tr>
+					</thead>
+					<tbody>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/restauracao-de-status" target="_blank">Restauração de Status: como proceder</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">804</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-10-04</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/restauracao-de-status" target="_blank">Restauração de Status no Canadá: como recuperar seu visto</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">47</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<section class="dash-pillar" data-pillar-id="settlement">
+			<header class="dash-pillar-head">
+				<div class="dash-pillar-meta">
+					<h2>Settlement & life in Canada</h2>
+					<p>Post-landing content: where to settle, kids in school, cultural adaptation, foreign credential recognition, finding work. Builds trust and supports retention/referrals.</p>
+				</div>
+				<div class="dash-pillar-stat">
+					<div class="dash-pillar-num">16<span>/ 12</span></div>
+					<div class="dash-pillar-bar"><div class="dash-pillar-fill" style="width:100%"></div></div>
+				</div>
+			</header>
+			<div class="dash-table-wrap">
+				<table class="dash-table">
+					<thead>
+						<tr>
+							<th>Status</th>
+							<th>Title</th>
+							<th>Lang</th>
+							<th class="dash-cell-num">Words</th>
+							<th>Stats / Commands</th>
+							<th class="dash-cell-date">Pub date / Action</th>
+						</tr>
+					</thead>
+					<tbody>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/5-Mistakes-Newcomers-Make-on-Their-Resume" target="_blank">5 Mistakes Newcomers Make on Their Resume</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">441</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2025-09-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/adapting-to-canadian-culture-as-a-new-immigrant" target="_blank">Adapting to Canadian Culture as a New Immigrant</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">495</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/bc-or-alberta-best-immigrant-experience" target="_blank">BC or Alberta? Where Should You Settle for the Best Immigrant Experience</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">363</td>
+					<td class="dash-cell-meta"><span class="dash-gsc">312 imp · 0 clk · pos 10.4</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-british-columbia" target="_blank">Best Province for Newcomers: Why 67% of Immigrants Stay in British Columbia</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">424</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-ontario" target="_blank">Best Province for Newcomers: Why 82% of Immigrants Stay in Ontario</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">490</td>
+					<td class="dash-cell-meta"><span class="dash-gsc">6 imp · 1 clk · pos 5.2</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/best-province-for-newcomers-quebec" target="_blank">Best Province for Newcomers: Why 91% of Immigrants Choose to Stay in Quebec</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">513</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/enrolling-children-in-canadian-schools" target="_blank">Enrolling Children in Canadian Schools: A Guide for Newcomers</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">672</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/blog/foreign-credentials-in-canada" target="_blank">How to Get Your Foreign Credentials Recognized in Canada</a></td>
+					<td><span class="dash-badge dash-badge-en">EN</span></td>
+					<td class="dash-cell-num">554</td>
+					<td class="dash-cell-meta"><span class="dash-gsc">61 imp · 0 clk · pos 39.9</span></td>
+					<td class="dash-cell-date">2026-02-20</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/5-erros-comuns-no-curriculo-de-recem-chegados" target="_blank">5 Mistakes Newcomers Make on Their Resume</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">441</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/adaptacao-cultura-canadense-imigrante" target="_blank">Adaptação à Cultura Canadense como Novo Imigrante</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">558</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/bc-ou-alberta-melhor-experiencia-imigrante" target="_blank">BC ou Alberta? Onde se Estabelecer para a Melhor Experiência de Imigrante</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">410</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/credenciais-estrangeiras-canada" target="_blank">Como Fazer suas Credenciais Estrangeiras Reconhecidas no Canadá</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">591</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/matricular-criancas-escolas-canadenses" target="_blank">Matricular Crianças em Escolas Canadenses: Um Guia para Recém-Chegados</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">730</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/melhor-provincia-para-imigrantes-british-columbia" target="_blank">Melhor Província para Recém-Chegados: Por que 67% de Imigrantes Ficam em British Columbia</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">463</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/melhor-provincia-para-imigrantes-ontario" target="_blank">Melhor Província para Recém-Chegados: Por que 82% de Imigrantes Ficam em Ontário</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">532</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+				<tr class="dash-row" data-status="live">
+					<td><span class="dash-status dash-status-live">LIVE</span></td>
+					<td class="dash-cell-title"><a href="/pt/blog/melhor-provincia-para-imigrantes-quebec" target="_blank">Melhor Província para Imigrantes: Por Que 91% dos Imigrantes Escolhem Ficar em Quebec</a></td>
+					<td><span class="dash-badge dash-badge-pt">PT</span></td>
+					<td class="dash-cell-num">579</td>
+					<td class="dash-cell-meta"><span class="dash-gsc-none">—</span></td>
+					<td class="dash-cell-date">—</td>
+				</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+				<div class="dash-foot">
+					In chat: <code>approve N</code> · <code>approve N-M</code> · <code>fix N: change X to Y</code> · <code>reject N</code> · regenerated by <code>tools/build-drafts-index-v2.py</code>
+				</div>
+			</div>
+		</main>
+
+<footer>
+	<div class="footer-columns">
+		<div class="footer-column">
+			<h4>Services</h4>
+			<ul>
+				<li><a href="/permanent-residence.html">Permanent Residence</a></li>
+				<li><a href="/work-permit.html"></a></li>
+				<li><a href="/study-permit.html">Study Permits</a></li>
+				<li>
+					<a href="/permanent-residence/spousal-sponsorship.html"
+						>Spousal Sponsorship</a
+					>
+				</li>
+			</ul>
+		</div>
+
+		<div class="footer-column">
+			<h4>Company</h4>
+			<ul>
+				<li><a href="/about.html">About Us</a></li>
+				<li><a href="#process">Our Process</a></li>
+				<li><a href="#testimonials">Success Stories</a></li>
+				<li><a href="/contact.html">Contact</a></li>
+			</ul>
+		</div>
+
+		<div class="footer-column">
+			<h4>Contact</h4>
+			<ul>
+				<li>Abbotsford, BC, Canada</li>
+				<li>
+					<a href="mailto:hello@upimmigration.ca">hello@upimmigration.ca</a>
+				</li>
+				<li><a href="tel:+16045555555">+1 (604) 555-5555</a></li>
+			</ul>
+			<div class="social">
+				<a
+					href="https://www.instagram.com/up_immigration"
+					target="_blank"
+					aria-label="Instagram">
+					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M7.5 2H16.5C20.09 2 22 3.91 22 7.5V16.5C22 20.09 20.09 22 16.5 22H7.5C3.91 22 2 20.09 2 16.5V7.5C2 3.91 3.91 2 7.5 2M12 7C9.24 7 7 9.24 7 12S9.24 17 12 17 17 14.76 17 12 14.76 7 12 7M19.54 7C18.95 7 18.46 7.5 18.46 8.08C18.46 8.67 18.95 9.17 19.54 9.17C20.13 9.17 20.62 8.67 20.62 8.08C20.62 7.5 20.13 7 19.54 7Z" />
+					</svg>
+				</a>
+
+				<a
+					href="https://www.facebook.com/upimmigration"
+					target="_blank"
+					aria-label="Facebook">
+					<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M12 2.04C6.5 2.04 2.04 6.5 2.04 12S6.5 21.96 12 21.96 21.96 17.5 21.96 12 17.5 2.04 12 2.04M14.5 12H13.06V17H10.5V12H9.5V9.5H10.5V8.5C10.5 7.12 11.16 5.93 12.82 5.93H14.5V8.43H13.74C13.42 8.43 13.06 8.5 13.06 9.11V9.5H14.5L14.25 12Z" />
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="copyright">
+		&copy; 2025 UP Immigration Consulting. All rights reserved.
+	</div>
+</footer>
+<a
+	id="wa-float"
+	class="wa-float"
+	href="https://wa.me/16725881360"
+	target="_blank"
+	rel="noopener"
+	aria-label="WhatsApp Message">
+	<!-- SVG WhatsApp (inline, leve) -->
+
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		aria-label="WhatsApp"
+		role="img"
+		viewBox="-71.68 -71.68 655.36 655.36"
+		width="80px"
+		height="80px"
+		fill="#000000"
+		transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
+		<g
+			id="SVGRepo_bgCarrier"
+			stroke-width="0"
+			transform="translate(0,0), scale(1)">
+			<rect
+				x="-71.68"
+				y="-71.68"
+				width="655.36"
+				height="655.36"
+				rx="327.68"
+				fill="#25d366"
+				strokewidth="0"></rect>
+		</g>
+		<g
+			id="SVGRepo_tracerCarrier"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			stroke="#CCCCCC"
+			stroke-width="15.36"></g>
+		<g id="SVGRepo_iconCarrier">
+			<rect width="512" height="512" rx="15%" fill="#25d366"></rect>
+			<path
+				fill="#25d366"
+				stroke="#ffffff"
+				stroke-width="25.6"
+				d="M123 393l14-65a138 138 0 1150 47z"></path>
+			<path
+				fill="#ffffff"
+				d="M308 273c-3-2-6-3-9 1l-12 16c-3 2-5 3-9 1-15-8-36-17-54-47-1-4 1-6 3-8l9-14c2-2 1-4 0-6l-12-29c-3-8-6-7-9-7h-8c-2 0-6 1-10 5-22 22-13 53 3 73 3 4 23 40 66 59 32 14 39 12 48 10 11-1 22-10 27-19 1-3 6-16 2-18"></path>
+		</g>
+	</svg>
+</a>
+
+
+		<script>
+			(function() {
+				const tabs = document.querySelectorAll('.dash-tab');
+				const search = document.getElementById('dashSearch');
+				let currentFilter = 'draft';
+
+				function applyFilters() {
+					const q = (search.value || '').toLowerCase().trim();
+					document.querySelectorAll('.dash-row').forEach(row => {
+						const status = row.getAttribute('data-status');
+						const statusOk = currentFilter === 'all' || status === currentFilter;
+						const text = row.textContent.toLowerCase();
+						const searchOk = !q || text.includes(q);
+						row.classList.toggle('is-hidden', !(statusOk && searchOk));
+					});
+					// hide pillars where no rows are visible after filtering
+					document.querySelectorAll('.dash-pillar').forEach(p => {
+						const visible = p.querySelectorAll('.dash-row:not(.is-hidden)').length;
+						const hasEmpty = p.querySelector('.dash-empty-row');
+						p.classList.toggle('is-empty', visible === 0 && !hasEmpty);
+					});
+				}
+
+				tabs.forEach(t => t.addEventListener('click', () => {
+					tabs.forEach(x => x.classList.remove('active'));
+					t.classList.add('active');
+					currentFilter = t.getAttribute('data-filter');
+					applyFilters();
+				}));
+				search.addEventListener('input', applyFilters);
+				applyFilters();
+			})();
+		</script>
+	</body>
+</html>
