@@ -10,6 +10,10 @@
 	max-width: 900px;
 	margin: 0 auto;
 }
+.container.mw800 {
+	max-width: 800px;
+	margin: 0 auto;
+}
 
 .blog-post {
 	margin-top: 0;
