@@ -39,6 +39,7 @@
 		<link rel="canonical" href="https://www.upimmigration.ca/immigration-consultation" />
 	<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 	<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+	<script>document.addEventListener('keydown', e => { if (e.key === 'Escape' && window.Calendly) Calendly.closePopupWidget(); });</script>
 </head>
 	<body>
 		<div data-include="sections/header.html"></div>
@@ -435,7 +436,7 @@
 			<section id="book" style="scroll-margin-top:80px;">
 				<h2>Ready to Take the First Step?</h2>
 				<p>Still figuring things out? This consultation will help you understand your real options and what to focus on next.</p>
-				<button class="btn-book-overlay" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation');return false;">
+				<button class="btn-book-overlay" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">
 					Book Your Consultation →
 				</button>
 			</section>
