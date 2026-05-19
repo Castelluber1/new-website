@@ -168,6 +168,14 @@ document.querySelectorAll("[data-include]").forEach((el) => {
 	const file = el.getAttribute("data-include");
 	fetch(file)
 		.then((resp) => resp.text())
-		.then((data) => (el.innerHTML = data))
+		.then((data) => {
+			el.innerHTML = data;
+			const isPt = location.pathname.startsWith('/pt/');
+			const bookBtn = el.querySelector('#nav-book-btn');
+			if (bookBtn && isPt) {
+				bookBtn.href = '/pt/consulta-de-imigracao';
+				bookBtn.textContent = 'Agendar Consulta';
+			}
+		})
 		.catch((err) => console.error("Erro ao incluir:", file, err));
 });
