@@ -365,24 +365,24 @@ h1 {
 }
 
 /* CTA Section */
-#cta {
+#cta, #book {
 	background: var(--brand);
 	color: var(--light);
 	text-align: center;
 	padding: 6rem 2rem;
 }
-#cta h2 {
+#cta h2, #book h2 {
 	font-size: 2.5rem;
 	margin-bottom: 1rem;
 }
-#cta p {
+#cta p, #book p {
 	font-size: 1.1rem;
 	margin-bottom: 2rem;
 	max-width: 700px;
 	margin-left: auto;
 	margin-right: auto;
 }
-#cta a.btn-dark {
+#cta a.btn-dark, #book a.btn-dark {
 	display: inline-block;
 	padding: 0.7rem 2rem;
 	border-radius: var(--radius);
@@ -391,7 +391,7 @@ h1 {
 	font-weight: 600;
 	transition: background 0.2s, color 0.2s;
 }
-#cta a.btn-dark:hover {
+#cta a.btn-dark:hover, #book a.btn-dark:hover {
 	background: var(--brand-light);
 	color: var(--light);
 }
