@@ -163,6 +163,26 @@ document.addEventListener("click", (e) => {
 	}
 });
 
+// Smooth scroll with custom duration for anchor links
+document.addEventListener('click', e => {
+	const a = e.target.closest('a[href^="#"]');
+	if (!a) return;
+	const target = document.querySelector(a.getAttribute('href'));
+	if (!target) return;
+	e.preventDefault();
+	const start = window.scrollY;
+	const end = target.getBoundingClientRect().top + window.scrollY - 80;
+	const duration = 900;
+	const startTime = performance.now();
+	function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+	function step(now) {
+		const elapsed = Math.min((now - startTime) / duration, 1);
+		window.scrollTo(0, start + (end - start) * ease(elapsed));
+		if (elapsed < 1) requestAnimationFrame(step);
+	}
+	requestAnimationFrame(step);
+});
+
 // Import Features
 document.querySelectorAll("[data-include]").forEach((el) => {
 	const file = el.getAttribute("data-include");
