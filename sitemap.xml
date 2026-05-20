@@ -605,4 +605,10 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/express-entry-nurses-canada-healthcare-draws</loc>
+		<lastmod>2026-05-20</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
 </urlset>
