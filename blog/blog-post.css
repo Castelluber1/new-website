@@ -356,6 +356,16 @@
 	font-style: italic;
 }
 
+.article-body a {
+	color: var(--brand);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.article-body a:hover {
+	opacity: 0.8;
+}
+
 /* Callout Boxes */
 .callout-box {
 	background: var(--gray);
