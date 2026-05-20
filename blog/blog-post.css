@@ -14,6 +14,27 @@
 	max-width: 800px;
 	margin: 0 auto;
 }
+.container.mw800 .content-wrapper {
+	display: block;
+}
+.container.mw800 .article-sidebar {
+	display: none;
+}
+.container.mw800 .article-body {
+	max-width: 100%;
+}
+.container.mw800 .post-featured-image img {
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 12px;
+}
+.container.mw800 .article-body table {
+	width: 100%;
+	overflow-x: auto;
+	display: block;
+}
 
 .blog-post {
 	margin-top: 0;
