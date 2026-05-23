@@ -288,11 +288,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.upimmigration.ca/blog/sponsorship-for-families-in-canada</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.upimmigration.ca/blog/study-permit-checklist</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/study-permit-checklist"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/checklist-visto-de-estudo"/>
