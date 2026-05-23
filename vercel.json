@@ -88,6 +88,16 @@
 			"permanent": true
 		},
 		{
+			"source": "/blog/applying-for-healthcare-coverage-in-canada",
+			"destination": "/blog/canada-healthcare-newcomers-waiting-period-private-insurance",
+			"permanent": true
+		},
+		{
+			"source": "/blog/impact-assessment-on-the-labor-market-a-fundamental-piece-for-hiring-foreign-workers",
+			"destination": "/lmia",
+			"permanent": true
+		},
+		{
 			"source": "/immigrate",
 			"destination": "/express-entry",
 			"permanent": true

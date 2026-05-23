@@ -749,4 +749,9 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
+  <url>
+    <loc>https://www.upimmigration.ca/blog/networking-in-canada-for-newcomers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
