@@ -84,7 +84,7 @@
 		},
 		{
 			"source": "/blog/sponsorship-for-families-in-canada-everything-you-need-to-know",
-			"destination": "/blog/sponsorship-for-families-in-canada",
+			"destination": "/blog/family-sponsorship-canada-complete-guide-2026",
 			"permanent": true
 		},
 		{
@@ -105,6 +105,31 @@
 		{
 			"source": "/sponsor",
 			"destination": "/sponsorship",
+			"permanent": true
+		},
+		{
+			"source": "/blog/pnp",
+			"destination": "/blog/pnp-por-provincia",
+			"permanent": true
+		},
+		{
+			"source": "/blog/express-entry-points-requirements",
+			"destination": "/blog/express-entry-crs",
+			"permanent": true
+		},
+		{
+			"source": "/northern-immigration-program-overview",
+			"destination": "/permanent-residence/provincial-nominee-program",
+			"permanent": true
+		},
+		{
+			"source": "/self-employed-immigration",
+			"destination": "/permanent-residence",
+			"permanent": true
+		},
+		{
+			"source": "/sponsorship",
+			"destination": "/permanent-residence/spousal-sponsorship",
 			"permanent": true
 		}
 	]
