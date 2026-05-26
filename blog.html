@@ -301,7 +301,53 @@
 				position: relative;
 				z-index: 2;
 			} /* keep title link above overlay if you add one */
-		</style>
+		
+			.blog-compact-section {
+				max-width: 1200px;
+				margin: 2rem auto;
+				padding: 0 1.5rem 3rem;
+			}
+			.blog-compact-heading {
+				font-size: 1rem;
+				font-weight: 600;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: .08em;
+				margin-bottom: 1rem;
+			}
+			.blog-compact-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: .5rem;
+			}
+			.blog-compact-card {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: .75rem;
+				padding: .5rem .75rem;
+				background: #fff;
+				border: 1px solid #e5e7eb;
+				border-radius: 8px;
+				text-decoration: none;
+				color: var(--dark);
+				font-size: .8rem;
+				transition: border-color .15s, background .15s;
+			}
+			.blog-compact-card:hover {
+				border-color: var(--brand);
+				background: #fff5f5;
+			}
+			.blog-compact-title {
+				flex: 1;
+				line-height: 1.3;
+			}
+			.blog-compact-date {
+				white-space: nowrap;
+				color: var(--muted);
+				font-size: .72rem;
+			}
+			</style>
 		<script
 			src="https://analytics.ahrefs.com/analytics.js"
 			data-key="+gmggu6RQti8IGmra6zEdA"
@@ -867,6 +913,46 @@
 				});
 			}
 		</script>
+		
+		<!-- compact-index-start: replace with full cards once designed -->
+		<section class="blog-compact-section" aria-label="More Articles">
+			<h2 class="blog-compact-heading">More Articles</h2>
+			<div class="blog-compact-grid">
+			<a href="/blog/adapting-to-canadian-culture-as-a-new-immigrant" class="blog-compact-card"><span class="blog-compact-title">Adapting to Canadian Culture as a New Immigrant |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/bc-or-alberta-best-immigrant-experience" class="blog-compact-card"><span class="blog-compact-title">BC vs Alberta: Which Province Offers the Best Immigrant Experience in 2026? –</span><span class="blog-compact-date">2026-05-25</span></a>
+<a href="/blog/best-province-for-newcomers-british-columbia" class="blog-compact-card"><span class="blog-compact-title">Best Province for Newcomers: Why 67% of Immigrants Stay in BC |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/best-province-for-newcomers-ontario" class="blog-compact-card"><span class="blog-compact-title">Best Province for Newcomers: Why 82% of Immigrants Stay in Ontario |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/best-province-for-newcomers-quebec" class="blog-compact-card"><span class="blog-compact-title">Best Province for Newcomers: Why Quebec Has 91% Retention |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/bowp-bridging-open-work-permit" class="blog-compact-card"><span class="blog-compact-title">BOWP: Bridging Open Work Permit –</span><span class="blog-compact-date">2025-10-04</span></a>
+<a href="/blog/brazilian-immigrants-canada-census-stats" class="blog-compact-card"><span class="blog-compact-title">Brazilian Immigrants in Canada: What the Census Tells Us About Where, How, and Why (2026) –</span><span class="blog-compact-date">2026-05-25</span></a>
+<a href="/blog/canada-work-permit-refused-gcms-reapplication" class="blog-compact-card"><span class="blog-compact-title">Canada Work Permit Refused: GCMS Notes, Reapplication Strategy and Restoration in 2026 –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/cost-of-immigrating-canada-2026-breakdown" class="blog-compact-card"><span class="blog-compact-title">The Real Cost of Immigrating to Canada in 2026: A Pathway-by-Pathway Breakdown –</span><span class="blog-compact-date">2026-05-25</span></a>
+<a href="/blog/eca-for-express-entry-wes-iqas-icas-ces-comparison" class="blog-compact-card"><span class="blog-compact-title">Educational Credential Assessment (ECA) for Express Entry: WES vs IQAS vs ICAS vs CES Compared –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/enrolling-children-in-canadian-schools" class="blog-compact-card"><span class="blog-compact-title">Guide to Enrolling Children in Canadian Schools for Newcomers |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/express-entry-canada-processing-time" class="blog-compact-card"><span class="blog-compact-title">Express Entry Canada Processing Time: What to Expect in 2026 –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/express-entry-draws-crs-cutoff-history-2024-2026" class="blog-compact-card"><span class="blog-compact-title">Express Entry Draws History 2024-2026: CRS Cutoff Trends and What to Expect –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/express-entry-over-40-realistic-crs-strategy" class="blog-compact-card"><span class="blog-compact-title">Express Entry After 40: Realistic CRS Strategy for Older Applicants in 2026 –</span><span class="blog-compact-date">2026-05-25</span></a>
+<a href="/blog/express-entry-profile-expires-365-days" class="blog-compact-card"><span class="blog-compact-title">Express Entry Profile Expiry: What Happens at 365 Days (and How to Refresh) –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/express-entry-software-engineers-noc-21232" class="blog-compact-card"><span class="blog-compact-title">Express Entry for Software Engineers: NOC 21232, STEM Targeted Draws, and Maximizing Your CRS –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/family-sponsorship-canada-complete-guide-2026" class="blog-compact-card"><span class="blog-compact-title">Family Sponsorship Canada: All Options for Reuniting with Your Family in 2026 –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/foreign-credentials-in-canada" class="blog-compact-card"><span class="blog-compact-title">How to Get Your Foreign Credentials Recognized in Canada |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/how-to-open-bank-account-canada-newcomers-2026" class="blog-compact-card"><span class="blog-compact-title">How to Open a Bank Account in Canada: A Guide for Newcomers 2026 –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/language-use-canada-insights" class="blog-compact-card"><span class="blog-compact-title">English vs French in Canada: Where Each Language Actually Matters for Immigrants in 2026 –</span><span class="blog-compact-date">2026-05-25</span></a>
+<a href="/blog/lmia-empregadores" class="blog-compact-card"><span class="blog-compact-title">LMIA para Empregadores: Passo a Passo –</span><span class="blog-compact-date">2025-10-04</span></a>
+<a href="/blog/lmia-exempt-categories" class="blog-compact-card"><span class="blog-compact-title">Trabalho sem LMIA: Categorias Isentas –</span><span class="blog-compact-date">2025-10-04</span></a>
+<a href="/blog/networking-in-canada-for-newcomers" class="blog-compact-card"><span class="blog-compact-title">Networking in Canada for Newcomers: How to Build Professional Connections That Get You Hired |</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/occupations-canada-needs-2026-immigration" class="blog-compact-card"><span class="blog-compact-title">Top Occupations Canada Needs in 2026 (And How Immigration Pathways Match) –</span><span class="blog-compact-date">2026-05-25</span></a>
+<a href="/blog/oinp-scoring-factors-explained" class="blog-compact-card"><span class="blog-compact-title">OINP Scoring Factors Explained: How Ontario Ranks Candidates Across Every Stream –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/ontario-immigrant-nominee-program-oinp" class="blog-compact-card"><span class="blog-compact-title">Ontario Immigrant Nominee Program - OINP |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/patrocinio-conjugal" class="blog-compact-card"><span class="blog-compact-title">Como Funciona o Patrocínio Conjugal no Canadá –</span><span class="blog-compact-date">2025-10-04</span></a>
+<a href="/blog/pgwp-everything-you-need-to-know" class="blog-compact-card"><span class="blog-compact-title">PGWP: Everything You Need to Know About Post-Graduation Work Permits |</span><span class="blog-compact-date">2026-02-20</span></a>
+<a href="/blog/pnp-vs-express-entry-which-path" class="blog-compact-card"><span class="blog-compact-title">PNP or Express Entry? Choose Your Path Based on Your CRS Score (2026) –</span><span class="blog-compact-date">2026-05-21</span></a>
+<a href="/blog/study-permit-refused-canada-reasons-next-steps" class="blog-compact-card"><span class="blog-compact-title">Canada Study Permit Refused: Top Reasons + Your Next Steps in 2026 –</span><span class="blog-compact-date">2026-05-23</span></a>
+<a href="/blog/study-plan-que-convence" class="blog-compact-card"><span class="blog-compact-title">Study Plan: Como escrever um plano que convence –</span><span class="blog-compact-date">2025-10-04</span></a>
+			</div>
+		</section>
+		<!-- compact-index-end -->
 		<div data-include="sections/footer.html"></div>
-	</body>
+	
+</body>
 </html>

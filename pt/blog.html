@@ -304,7 +304,53 @@
 				position: relative;
 				z-index: 2;
 			} /* keep title link above overlay if you add one */
-		</style>
+		
+			.blog-compact-section {
+				max-width: 1200px;
+				margin: 2rem auto;
+				padding: 0 1.5rem 3rem;
+			}
+			.blog-compact-heading {
+				font-size: 1rem;
+				font-weight: 600;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: .08em;
+				margin-bottom: 1rem;
+			}
+			.blog-compact-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: .5rem;
+			}
+			.blog-compact-card {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: .75rem;
+				padding: .5rem .75rem;
+				background: #fff;
+				border: 1px solid #e5e7eb;
+				border-radius: 8px;
+				text-decoration: none;
+				color: var(--dark);
+				font-size: .8rem;
+				transition: border-color .15s, background .15s;
+			}
+			.blog-compact-card:hover {
+				border-color: var(--brand);
+				background: #fff5f5;
+			}
+			.blog-compact-title {
+				flex: 1;
+				line-height: 1.3;
+			}
+			.blog-compact-date {
+				white-space: nowrap;
+				color: var(--muted);
+				font-size: .72rem;
+			}
+			</style>
 		<script
 			src="https://analytics.ahrefs.com/analytics.js"
 			data-key="+gmggu6RQti8IGmra6zEdA"
@@ -827,5 +873,6 @@
 			}
 		</script>
 		<div data-include="sections/footer.html"></div>
-	</body>
+	
+</body>
 </html>
