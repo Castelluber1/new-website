@@ -131,6 +131,21 @@
 			"source": "/sponsorship",
 			"destination": "/permanent-residence/spousal-sponsorship",
 			"permanent": true
+		},
+		{
+			"source": "/blog/5-mistakes-newcomers-make-on-their-resume",
+			"destination": "/blog/5-Mistakes-Newcomers-Make-on-Their-Resume",
+			"permanent": true
+		},
+		{
+			"source": "/permanent-residence/post-graduation-work-permit",
+			"destination": "/post-graduate-work-permit",
+			"permanent": true
+		},
+		{
+			"source": "/blog/super-visa-parents-canada",
+			"destination": "/blog/super-visa-parents-grandparents-canada",
+			"permanent": true
 		}
 	]
 }
