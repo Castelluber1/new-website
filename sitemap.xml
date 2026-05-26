@@ -749,4 +749,40 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/language-use-canada-insights</loc>
+		<lastmod>2026-05-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/cost-of-immigrating-canada-2026-breakdown</loc>
+		<lastmod>2026-05-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/brazilian-immigrants-canada-census-stats</loc>
+		<lastmod>2026-05-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/express-entry-over-40-realistic-crs-strategy</loc>
+		<lastmod>2026-05-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/occupations-canada-needs-2026-immigration</loc>
+		<lastmod>2026-05-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/blog/profissoes-mais-demandadas-canada-2026</loc>
+		<lastmod>2026-05-25</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
 </urlset>
