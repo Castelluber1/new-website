@@ -146,6 +146,11 @@
 			"source": "/blog/super-visa-parents-canada",
 			"destination": "/blog/super-visa-parents-grandparents-canada",
 			"permanent": true
+		},
+		{
+			"source": "/consultation",
+			"destination": "/immigration-consultation",
+			"permanent": true
 		}
 	]
 }
