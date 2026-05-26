@@ -153,11 +153,6 @@
 			"permanent": true
 		},
 		{
-			"source": "/blog/oinp-scoring-factors-explained",
-			"destination": "/blog/oinp-scoring-factors-explained",
-			"permanent": true
-		},
-		{
 			"source": "/pt/blog/oinp-scoring-factors-explained",
 			"destination": "/blog/oinp-scoring-factors-explained",
 			"permanent": true
