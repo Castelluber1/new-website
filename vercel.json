@@ -39,7 +39,7 @@
 		},
 		{
 			"source": "/pgwp",
-			"destination": "/permanent-residence/post-graduation-work-permit",
+			"destination": "/post-graduate-work-permit",
 			"permanent": true
 		},
 		{
