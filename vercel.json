@@ -104,7 +104,7 @@
 		},
 		{
 			"source": "/sponsor",
-			"destination": "/sponsorship",
+			"destination": "/permanent-residence/spousal-sponsorship",
 			"permanent": true
 		},
 		{
