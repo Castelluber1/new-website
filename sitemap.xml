@@ -667,6 +667,20 @@
 		<priority>0.7</priority>
 	</url>
 	<url>
+		<loc>https://www.upimmigration.ca/blog/how-to-get-sin-number-canada</loc>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/como-obter-numero-sin-canada"/>
+		<lastmod>2026-05-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/canadian-cell-phone-plans-newcomers</loc>
+		<xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/planos-telefone-celular-imigrantes-canada"/>
+		<lastmod>2026-05-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
 		<loc>https://www.upimmigration.ca/blog/express-entry-draws-crs-cutoff-history-2024-2026</loc>
 		<lastmod>2026-05-23</lastmod>
 		<changefreq>monthly</changefreq>
@@ -853,6 +867,20 @@
 	</url>
 	<url>
 		<loc>https://www.upimmigration.ca/blog/super-visa-parents-grandparents-canada</loc>
+		<lastmod>2026-05-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/blog/como-obter-numero-sin-canada</loc>
+		<xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/how-to-get-sin-number-canada"/>
+		<lastmod>2026-05-26</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/blog/planos-telefone-celular-imigrantes-canada</loc>
+		<xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/canadian-cell-phone-plans-newcomers"/>
 		<lastmod>2026-05-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
