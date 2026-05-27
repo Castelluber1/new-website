@@ -171,6 +171,11 @@
 			"source": "/blog/post-graduate-work-permit",
 			"destination": "/post-graduate-work-permit",
 			"permanent": true
+		},
+		{
+			"source": "/pt/blog/landing-canada-pr-first-30-days-checklist",
+			"destination": "/blog/landing-canada-pr-first-30-days-checklist",
+			"permanent": true
 		}
 	]
 }
