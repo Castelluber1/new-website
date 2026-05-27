@@ -3458,3 +3458,37 @@ a.btn-inline {
 	margin: auto;
 	padding: 1.3rem;
 }
+
+/* Blog table styling */
+.blog-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 2rem 0;
+	font-size: 14px;
+}
+
+.blog-table thead {
+	background: #f3f4f6;
+}
+
+.blog-table th {
+	border: 1px solid #d1d5db;
+	padding: 10px 12px;
+	text-align: left;
+	font-weight: 600;
+	color: #374151;
+}
+
+.blog-table td {
+	border: 1px solid #d1d5db;
+	padding: 10px 12px;
+	color: #1f2937;
+}
+
+.blog-table tbody tr:nth-child(odd) {
+	background: white;
+}
+
+.blog-table tbody tr:nth-child(even) {
+	background: #f9fafb;
+}
