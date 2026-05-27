@@ -1397,28 +1397,57 @@ div.reviews {
 	padding-bottom: 10px;
 }
 
-/* Blog image sizing */
-.blog-post img {
+/* Blog image sizing - comprehensive */
+.blog-post img,
+.article img,
+article img {
 	max-width: 100%;
 	height: auto;
 	display: block;
 }
 
-.post-featured-image {
+.post-featured-image,
+.blog-header-img,
+.article-featured-img {
 	width: 100%;
 	margin-bottom: 2rem;
+	max-width: 100%;
 }
 
-.post-featured-image img {
+.post-featured-image img,
+.blog-header-img,
+.article-featured-img {
 	max-width: 100%;
 	height: auto;
 	width: 100%;
 }
 
 .article-body img,
-.post-content img {
+.post-content img,
+.blog-content img,
+.content-wrapper img {
 	max-width: 100%;
 	height: auto;
+	margin: 1.5rem 0;
+}
+
+/* Ensure blog articles don't exceed viewport */
+.blog-post {
+	width: 100%;
+	max-width: 100%;
+}
+
+article {
+	max-width: 100%;
+}
+
+/* Table sizing in blog posts */
+.blog-post table,
+.post-content table,
+article table {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: auto;
 	margin: 1.5rem 0;
 }
 
