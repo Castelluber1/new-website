@@ -1397,6 +1397,31 @@ div.reviews {
 	padding-bottom: 10px;
 }
 
+/* Blog image sizing */
+.blog-post img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.post-featured-image {
+	width: 100%;
+	margin-bottom: 2rem;
+}
+
+.post-featured-image img {
+	max-width: 100%;
+	height: auto;
+	width: 100%;
+}
+
+.article-body img,
+.post-content img {
+	max-width: 100%;
+	height: auto;
+	margin: 1.5rem 0;
+}
+
 /* Blog ends */
 /* Steps start */
 
