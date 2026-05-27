@@ -153,83 +153,23 @@
 			"permanent": true
 		},
 		{
-			"source": "/pt/blog/oinp-scoring-factors-explained",
-			"destination": "/blog/oinp-scoring-factors-explained",
-			"permanent": true
-		},
-		{
 			"source": "/blog/job-offer-express-entry-lmia-points",
 			"destination": "/lmia",
 			"permanent": true
 		},
 		{
-			"source": "/pt/blog/express-entry-profile-expires-365-days",
-			"destination": "/blog/express-entry-profile-expires-365-days",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/express-entry-draws-crs-cutoff-history-2024-2026",
-			"destination": "/blog/express-entry-draws-crs-cutoff-history-2024-2026",
-			"permanent": true
-		},
-		{
 			"source": "/blog/abrir-conta-bancaria-canada-brasileiro",
-			"destination": "/blog/landing-canada-pr-first-30-days-checklist",
+			"destination": "/pt/blog/abrir-conta-bancaria-canada-brasileiro",
 			"permanent": true
 		},
 		{
-			"source": "/pt/blog/express-entry-software-engineers-noc-21232",
-			"destination": "/blog/express-entry-software-engineers-noc-21232",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/express-entry-canada-processing-time",
-			"destination": "/blog/express-entry-canada-processing-time",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/canada-work-permit-refused-gcms-reapplication",
-			"destination": "/blog/canada-work-permit-refused-gcms-reapplication",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/pnp-vs-express-entry-which-path",
-			"destination": "/blog/pnp-vs-express-entry-which-path",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/eca-for-express-entry-wes-iqas-icas-ces-comparison",
-			"destination": "/blog/eca-for-express-entry-wes-iqas-icas-ces-comparison",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/how-to-open-bank-account-canada-newcomers-2026",
-			"destination": "/blog/how-to-open-bank-account-canada-newcomers-2026",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/study-permit-refused-canada-reasons-next-steps",
-			"destination": "/blog/study-permit-refused-canada-reasons-next-steps",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/teer-0-1-2-3-jobs-canada-express-entry",
-			"destination": "/blog/teer-0-1-2-3-jobs-canada-express-entry",
+			"source": "/blog/como-tirar-sin-canada-brasileiro",
+			"destination": "/pt/blog/como-tirar-sin-canada-brasileiro",
 			"permanent": true
 		},
 		{
 			"source": "/blog/post-graduate-work-permit",
 			"destination": "/post-graduate-work-permit",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/family-sponsorship-canada-complete-guide-2026",
-			"destination": "/blog/family-sponsorship-canada-complete-guide-2026",
-			"permanent": true
-		},
-		{
-			"source": "/blog/como-tirar-sin-canada-brasileiro",
-			"destination": "/blog/landing-canada-pr-first-30-days-checklist",
 			"permanent": true
 		}
 	]
