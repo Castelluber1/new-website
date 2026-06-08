@@ -176,6 +176,61 @@
 			"source": "/pt/blog/landing-canada-pr-first-30-days-checklist",
 			"destination": "/blog/landing-canada-pr-first-30-days-checklist",
 			"permanent": true
+		},
+		{
+			"source": "/home",
+			"destination": "/",
+			"permanent": true
+		},
+		{
+			"source": "/study",
+			"destination": "/study-permit",
+			"permanent": true
+		},
+		{
+			"source": "/patrocinio-conjugal",
+			"destination": "/pt/residencia-permanente/patrocinio-conjugal",
+			"permanent": true
+		},
+		{
+			"source": "/immigrationconsultation",
+			"destination": "/immigration-consultation",
+			"permanent": true
+		},
+		{
+			"source": "/primeiro-passo-canada",
+			"destination": "/pt/",
+			"permanent": true
+		},
+		{
+			"source": "/bc-pnp-program-priorities",
+			"destination": "/permanent-residence/provincial-nominee-program",
+			"permanent": true
+		},
+		{
+			"source": "/eca",
+			"destination": "/permanent-residence/educational-credential-assessment",
+			"permanent": true
+		},
+		{
+			"source": "/blog/best-province-for-newcomers-where-immigrants-stay-and-thrive",
+			"destination": "/blog/bc-or-alberta-best-immigrant-experience",
+			"permanent": true
+		},
+		{
+			"source": "/blog/how-to-determine-pnp-eligibility-canada",
+			"destination": "/permanent-residence/provincial-nominee-program",
+			"permanent": true
+		},
+		{
+			"source": "/blog/do-i-need-a-job-offer-for-pnp-canada",
+			"destination": "/permanent-residence/provincial-nominee-program",
+			"permanent": true
+		},
+		{
+			"source": "/blog/navigating-the-lmia-process-your-gateway-to-canadian-work-opportunities",
+			"destination": "/lmia",
+			"permanent": true
 		}
 	]
 }
