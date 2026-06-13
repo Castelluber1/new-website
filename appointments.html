@@ -101,5 +101,12 @@
 		</main>
 
 		<div data-include="sections/footer.html"></div>
+		<script>
+			window.addEventListener('message', function(e) {
+				if (e.data.event === 'calendly.event_scheduled') {
+					gtag('event', 'generate_lead', { event_category: 'booking', event_label: 'calendly' });
+				}
+			});
+		</script>
 	</body>
 </html>
