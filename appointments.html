@@ -22,6 +22,8 @@
 
 		<link rel="stylesheet" href="/style.css" />
 		<script src="/script.js" defer></script>
+		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
 		<link
 			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
@@ -54,9 +56,7 @@
 					</p>
 
 					<div class="hero-cta">
-						<a href="/immigration-consultation" class="btn-primary"
-							>Book a Consultation</a
-						>
+						<button class="btn-primary" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">Book a Consultation</button>
 					</div>
 				</div>
 			</section>
@@ -72,31 +72,53 @@
 
 					<div class="content-block">
 						<h2>Choose Your Consultation Type</h2>
-
-						<h3>Permanent Residence</h3>
-						<p>
-							Explore pathways to Canadian permanent residence through Express Entry, Provincial Nominee Programs, and other immigration streams.
-						</p>
-
-						<h3>Employers</h3>
-						<p>
-							Get expert guidance on hiring foreign talent, LMIA applications, and global mobility solutions for your business.
-						</p>
-
-						<h3>Sponsorship</h3>
-						<p>
-							Reunite with your partner or spouse through spousal sponsorship. We guide you through every step of the process.
-						</p>
-
-						<h3>Extend Your Visa</h3>
-						<p>
-							Need to extend your stay in Canada? Get help with visitor visa extensions, work permit renewals, and more.
-						</p>
-
-						<h3>PGWP (Post-Graduation Work Permit)</h3>
-						<p>
-							International graduates can gain valuable Canadian work experience. Learn about PGWP eligibility and pathways to PR.
-						</p>
+						<div class="service-cards">
+							<div class="service-card">
+								<img src="/img/family-walking.webp" alt="Permanent Residence" class="service-card-img" loading="lazy">
+								<div class="service-card-body">
+									<h3>Permanent Residence</h3>
+									<p>Seeking permanent residence can feel out of reach, especially with ongoing policy changes.</p>
+									<p>Our <span class="service-card-link">Immigration Consultation</span> helps you understand your real options, what to prepare, and the fastest path to PR.</p>
+									<button class="btn-primary service-card-btn" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">Book Now</button>
+								</div>
+							</div>
+							<div class="service-card">
+								<img src="/img/workers-outside-office.webp" alt="Employers" class="service-card-img" loading="lazy">
+								<div class="service-card-body">
+									<h3>Employers</h3>
+									<p>Securing local talent is increasingly difficult, and you don't have time to navigate complex hiring regulations.</p>
+									<p>Our <span class="service-card-link">Employer Consultation</span> walks you through compliance, LMIA requirements, and how to bring the right people to your team.</p>
+									<button class="btn-primary service-card-btn" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/employers-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">Book Now</button>
+								</div>
+							</div>
+							<div class="service-card">
+								<img src="/img/casal.webp" alt="Spousal Sponsorship" class="service-card-img" loading="lazy">
+								<div class="service-card-body">
+									<h3>Sponsorship</h3>
+									<p>Your partner's immigration status is uncertain, and every delay makes the future feel harder to plan.</p>
+									<p>Our <span class="service-card-link">Sponsorship Consultation</span> helps you understand the process, gather the right documents, and avoid mistakes that could delay approval.</p>
+									<button class="btn-primary service-card-btn" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/spousal-sponsorship?hide_event_type_details=1&hide_gdpr_banner=1');return false;">Book Now</button>
+								</div>
+							</div>
+							<div class="service-card">
+								<img src="/img/women-airport.webp" alt="Extend Your Visa" class="service-card-img" loading="lazy">
+								<div class="service-card-body">
+									<h3>Extend Your Visa</h3>
+									<p>Your visa expiry is approaching and you want to stay in Canada — but you're not sure what applies to your situation.</p>
+									<p>Our <span class="service-card-link">Visa Consultation</span> helps you explore your options and avoid gaps in legal status.</p>
+									<button class="btn-primary service-card-btn" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/visa-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">Book Now</button>
+								</div>
+							</div>
+							<div class="service-card">
+								<img src="/img/study-bg2.webp" alt="PGWP" class="service-card-img" loading="lazy">
+								<div class="service-card-body">
+									<h3>PGWP</h3>
+									<p>You came to Canada to study, finished your program, and now you're figuring out what comes next.</p>
+									<p>Our <span class="service-card-link">Consultation</span> helps you understand your post-graduation work permit options and pathways to permanent residence.</p>
+									<button class="btn-primary service-card-btn" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">Book Now</button>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="content-block">

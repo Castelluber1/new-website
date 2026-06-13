@@ -3421,6 +3421,71 @@ a.btn-inline {
 	margin-bottom: 0.35rem;
 }
 
+/* ── service-cards: appointment type cards on /appointments ── */
+.service-cards {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.75rem;
+	margin-top: 1.5rem;
+}
+.service-card {
+	background: #fff;
+	border: 1px solid #e6e8ec;
+	border-radius: 12px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.service-card:hover {
+	box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+	transform: translateY(-3px);
+}
+.service-card-img {
+	width: 100%;
+	height: 200px;
+	object-fit: cover;
+	display: block;
+}
+.service-card-body {
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.65rem;
+	flex: 1;
+}
+.service-card h3 {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: var(--dark);
+	margin: 0;
+	text-align: center;
+}
+.service-card p {
+	font-size: 0.95rem;
+	color: var(--muted);
+	line-height: 1.65;
+	margin: 0;
+}
+.service-card-link {
+	color: var(--brand);
+	font-weight: 600;
+}
+.service-card-btn {
+	margin-top: auto;
+	padding-top: 1rem;
+	width: 100%;
+	text-align: center;
+	cursor: pointer;
+	border: none;
+	display: block;
+}
+@media (max-width: 768px) {
+	.service-cards {
+		grid-template-columns: 1fr;
+	}
+}
+
 /* ── cta-section: bottom CTA block inside services pages ── */
 .cta-section {
 	margin-top: 3rem;
