@@ -3421,12 +3421,41 @@ a.btn-inline {
 	margin-bottom: 0.35rem;
 }
 
+/* ── appointments page ── */
+.appointments-section {
+	padding: 3rem 0 4rem;
+}
+.appointments-heading {
+	text-align: center;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 2.5rem;
+	color: var(--dark);
+}
+.appointments-cta {
+	text-align: center;
+	margin-top: 2.5rem;
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+.appointments-cta a {
+	color: var(--brand);
+	font-weight: 600;
+	text-decoration: none;
+}
+.appointments-cta a:hover {
+	text-decoration: underline;
+}
+
 /* ── service-cards: appointment type cards on /appointments ── */
 .service-cards {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	gap: 1.75rem;
-	margin-top: 1.5rem;
+}
+/* centre the last row when 5 cards span 3 cols (2 + 2 + 1 → last card centres) */
+.service-card:last-child:nth-child(3n - 2) {
+	grid-column: 2;
 }
 .service-card {
 	background: #fff;
@@ -3443,7 +3472,7 @@ a.btn-inline {
 }
 .service-card-img {
 	width: 100%;
-	height: 200px;
+	height: 190px;
 	object-fit: cover;
 	display: block;
 }
@@ -3455,14 +3484,14 @@ a.btn-inline {
 	flex: 1;
 }
 .service-card h3 {
-	font-size: 1.25rem;
+	font-size: 1.15rem;
 	font-weight: 700;
 	color: var(--dark);
 	margin: 0;
 	text-align: center;
 }
 .service-card p {
-	font-size: 0.95rem;
+	font-size: 0.92rem;
 	color: var(--muted);
 	line-height: 1.65;
 	margin: 0;
@@ -3473,14 +3502,22 @@ a.btn-inline {
 }
 .service-card-btn {
 	margin-top: auto;
-	padding-top: 1rem;
+	padding-top: 0.75rem;
 	width: 100%;
 	text-align: center;
 	cursor: pointer;
 	border: none;
 	display: block;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+	.service-cards {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.service-card:last-child:nth-child(3n - 2) {
+		grid-column: auto;
+	}
+}
+@media (max-width: 560px) {
 	.service-cards {
 		grid-template-columns: 1fr;
 	}
