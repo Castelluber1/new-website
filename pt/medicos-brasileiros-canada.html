@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="/style.css" />
 	<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
 	<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-	<script src="/script.js" defer></script>
+	<script src="../script.js" defer></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -62,21 +62,19 @@
 			align-items: stretch;
 			justify-content: flex-start;
 			padding: 0;
-			height: calc(100vh - 70px);
-			max-height: 820px;
-			min-height: 540px;
+			min-height: calc(100vh - 70px);
 			overflow: hidden;
 		}
 		.hero-left {
 			flex: 0 0 50%;
 			background: var(--ink);
 			color: var(--white);
-			padding: 72px 56px;
+			padding: 56px 56px;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			position: relative;
-			overflow: hidden;
+			overflow: visible;
 		}
 		.hero-left::before {
 			content: '';
@@ -927,7 +925,7 @@
 	</style>
 </head>
 <body>
-	<div data-include="/pt/sections/header.html"></div>
+	<div data-include="sections/header.html"></div>
 
 	<main>
 
@@ -1294,7 +1292,7 @@
 
 	</main>
 
-	<div data-include="/pt/sections/footer.html"></div>
+	<div data-include="sections/footer.html"></div>
 
 	<!-- Sticky CTA -->
 	<div class="sticky-cta" id="stickyCta">
