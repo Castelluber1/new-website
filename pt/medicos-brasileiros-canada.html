@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
 	<!-- Google tag (gtag.js) -->
@@ -621,6 +621,274 @@
 		}
 		.sticky-btn:hover { background: var(--red-2); box-shadow: 0 12px 40px rgba(200,0,31,0.5); }
 
+		/* ── SOCIAL PROOF ──────────────────────────────────────── */
+		.proof-section {
+			background: var(--white);
+			padding: 80px 24px;
+		}
+		.proof-inner { max-width: 980px; margin: 0 auto; text-align: center; }
+		.proof-inner h2 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.8rem, 4vw, 2.8rem);
+			font-weight: 600;
+			line-height: 1.15;
+			margin: 12px 0 8px;
+		}
+		.proof-inner > p {
+			font-size: 1rem;
+			color: var(--muted);
+			max-width: 520px;
+			margin: 0 auto 40px;
+			line-height: 1.75;
+			font-weight: 300;
+		}
+		.proof-stats {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 0;
+			border: 1px solid #e8e8e8;
+			border-radius: var(--r);
+			overflow: hidden;
+			max-width: 620px;
+			margin: 0 auto 40px;
+		}
+		.proof-stat {
+			flex: 1;
+			min-width: 140px;
+			padding: 24px 16px;
+			border-right: 1px solid #e8e8e8;
+		}
+		.proof-stat:last-child { border-right: none; }
+		.proof-stat .ps-num {
+			font-family: "Cormorant Garamond", serif;
+			font-size: 2.4rem;
+			font-weight: 700;
+			color: var(--red);
+			line-height: 1;
+			display: block;
+			margin-bottom: 6px;
+		}
+		.proof-stat .ps-lbl {
+			font-size: 0.74rem;
+			color: var(--muted);
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			line-height: 1.4;
+		}
+		.proof-img-wrap {
+			border: 1px solid #ececec;
+			border-radius: var(--r);
+			padding: 16px;
+			background: var(--white);
+			box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+		}
+		.proof-img-wrap img { width: 100%; height: auto; display: block; border-radius: 6px; }
+
+		/* ── EBOOK LEAD MAGNET ─────────────────────────────────── */
+		.ebook-section {
+			background: var(--ink);
+			color: var(--white);
+			padding: 80px 24px;
+			position: relative;
+			overflow: hidden;
+		}
+		.ebook-section::before {
+			content: '';
+			position: absolute; inset: 0;
+			background: radial-gradient(ellipse 50% 60% at 85% 30%, rgba(200,0,31,0.12) 0%, transparent 60%);
+			pointer-events: none;
+		}
+		.ebook-inner {
+			max-width: 960px;
+			margin: 0 auto;
+			position: relative;
+			display: grid;
+			grid-template-columns: 0.8fr 1fr;
+			gap: 56px;
+			align-items: center;
+		}
+		.ebook-cover {
+			border-radius: 8px;
+			overflow: hidden;
+			box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+			transform: rotate(-2deg);
+			transition: transform 0.3s;
+		}
+		.ebook-cover:hover { transform: rotate(0deg); }
+		.ebook-cover img { width: 100%; height: auto; display: block; }
+		.ec {
+			position: relative;
+			aspect-ratio: 1 / 1.414;
+			background: #0a0f18 url('/img/ebook-medicos-cover.jpg') center 20% / cover;
+		}
+		.ec::after {
+			content: '';
+			position: absolute; inset: 0;
+			background: linear-gradient(170deg, rgba(10,15,24,0.6) 0%, rgba(10,15,24,0.5) 35%, rgba(10,15,24,0.88) 100%);
+		}
+		.ec-year {
+			position: absolute; top: 0; right: 22px; z-index: 2;
+			background: var(--red); color: #fff;
+			font-size: 0.62rem; font-weight: 700;
+			padding: 4px 10px; letter-spacing: 0.08em;
+		}
+		.ec-body {
+			position: absolute; inset: 0; z-index: 2;
+			padding: 26px 24px;
+			display: flex; flex-direction: column; justify-content: flex-end;
+		}
+		.ec-eyebrow {
+			font-size: 0.56rem; font-weight: 600; color: rgba(255,255,255,0.85);
+			text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 10px;
+		}
+		.ec-title {
+			font-family: "Cormorant Garamond", serif;
+			font-size: 1.7rem; font-weight: 700; color: #fff;
+			line-height: 1.05; text-transform: uppercase; margin-bottom: 14px;
+		}
+		.ec-title span { color: #e8233a; }
+		.ec-author {
+			font-size: 0.56rem; font-weight: 600; color: rgba(255,255,255,0.6);
+			text-transform: uppercase; letter-spacing: 0.1em;
+			border-top: 1px solid rgba(255,255,255,0.18); padding-top: 12px;
+		}
+		.ebook-content .eyebrow { color: var(--gold); }
+		.ebook-content h2 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+			font-weight: 600;
+			line-height: 1.12;
+			margin: 12px 0 16px;
+		}
+		.ebook-content > p {
+			font-size: 0.92rem;
+			color: rgba(255,255,255,0.55);
+			line-height: 1.75;
+			margin-bottom: 24px;
+			font-weight: 300;
+		}
+		.ebook-bullets { list-style: none; margin-bottom: 28px; }
+		.ebook-bullets li {
+			font-size: 0.86rem;
+			color: rgba(255,255,255,0.7);
+			padding: 5px 0 5px 26px;
+			position: relative;
+		}
+		.ebook-bullets li::before {
+			content: '✓';
+			position: absolute; left: 0;
+			color: var(--gold);
+			font-size: 0.8rem;
+		}
+		.ebook-form { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
+		.ebook-form input {
+			background: rgba(255,255,255,0.06);
+			border: 1px solid rgba(255,255,255,0.14);
+			border-radius: 5px;
+			padding: 13px 16px;
+			color: var(--white);
+			font-family: "DM Sans", sans-serif;
+			font-size: 0.9rem;
+			width: 100%;
+		}
+		.ebook-form input::placeholder { color: rgba(255,255,255,0.35); }
+		.ebook-form input:focus { outline: none; border-color: var(--red); }
+		.ebook-form button {
+			background: var(--red);
+			color: var(--white);
+			border: none;
+			border-radius: 5px;
+			padding: 14px 24px;
+			font-family: "DM Sans", sans-serif;
+			font-size: 0.95rem;
+			font-weight: 600;
+			cursor: pointer;
+			margin-top: 4px;
+			transition: background 0.2s;
+		}
+		.ebook-form button:hover { background: var(--red-2); }
+		.ebook-form .form-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 4px; line-height: 1.5; }
+		.ebook-success {
+			display: none;
+			background: rgba(76,175,128,0.12);
+			border: 1px solid rgba(76,175,128,0.4);
+			border-radius: 6px;
+			padding: 20px;
+			font-size: 0.9rem;
+			color: rgba(255,255,255,0.85);
+			line-height: 1.6;
+			max-width: 360px;
+		}
+		.ebook-success a { color: var(--gold); font-weight: 600; }
+
+		/* ── FAQ ───────────────────────────────────────────────── */
+		.faq-section {
+			background: var(--cream);
+			padding: 80px 24px;
+		}
+		.faq-inner { max-width: 760px; margin: 0 auto; }
+		.faq-inner h2 {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: clamp(1.8rem, 4vw, 2.8rem);
+			font-weight: 600;
+			line-height: 1.15;
+			margin: 12px 0 8px;
+		}
+		.faq-inner > p {
+			font-size: 1rem;
+			color: var(--muted);
+			max-width: 520px;
+			line-height: 1.75;
+			margin-bottom: 40px;
+			font-weight: 300;
+		}
+		.faq-item {
+			background: var(--white);
+			border-radius: var(--r);
+			margin-bottom: 10px;
+			overflow: hidden;
+			border: 1px solid #ececec;
+		}
+		.faq-q {
+			width: 100%;
+			text-align: left;
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 20px 24px;
+			font-family: "DM Sans", sans-serif;
+			font-size: 0.98rem;
+			font-weight: 600;
+			color: var(--ink);
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			line-height: 1.4;
+		}
+		.faq-q .faq-icon {
+			flex-shrink: 0;
+			color: var(--red);
+			font-size: 1.3rem;
+			font-weight: 400;
+			transition: transform 0.2s;
+		}
+		.faq-item.open .faq-q .faq-icon { transform: rotate(45deg); }
+		.faq-a {
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease;
+		}
+		.faq-a-inner {
+			padding: 0 24px 22px;
+			font-size: 0.9rem;
+			color: var(--muted);
+			line-height: 1.75;
+			font-weight: 300;
+		}
+		.faq-a-inner strong { color: var(--ink); font-weight: 500; }
+
 		/* ── RESPONSIVE ────────────────────────────────────────── */
 
 		/* Laptop — 1024px */
@@ -638,6 +906,8 @@
 			.btn-primary { align-self: auto; }
 			.hero-right { flex: none; width: 100%; height: 320px; }
 			.hero-nameplate { bottom: 20px; right: 20px; }
+			.ebook-inner { grid-template-columns: 1fr; gap: 36px; }
+			.ebook-cover { max-width: 240px; margin: 0 auto; transform: rotate(0deg); }
 		}
 
 		/* Mobile — 600px */
@@ -649,6 +919,9 @@
 			.consultation-meta { flex-direction: column; align-items: flex-start; }
 			.mistakes { grid-template-columns: 1fr; }
 			.articles-grid { grid-template-columns: 1fr; }
+			.proof-stat { border-right: none; border-bottom: 1px solid #e8e8e8; }
+			.proof-stat:last-child { border-bottom: none; }
+			.ebook-form { max-width: 100%; }
 		}
 	</style>
 </head>
@@ -800,6 +1073,32 @@
 			</div>
 		</section>
 
+		<!-- ── PROVA SOCIAL ── -->
+		<section class="proof-section">
+			<div class="proof-inner">
+				<p class="eyebrow">O que dizem nossos clientes</p>
+				<h2>Mais de 500 famílias orientadas rumo ao Canadá</h2>
+				<p>Avaliação 5.0 no Google. Profissionais de saúde e famílias que confiaram o processo à Up Immigration.</p>
+				<div class="proof-stats">
+					<div class="proof-stat">
+						<span class="ps-num">500+</span>
+						<span class="ps-lbl">Processos<br>conduzidos</span>
+					</div>
+					<div class="proof-stat">
+						<span class="ps-num">95%</span>
+						<span class="ps-lbl">Taxa de<br>aprovação</span>
+					</div>
+					<div class="proof-stat">
+						<span class="ps-num">5.0 ★</span>
+						<span class="ps-lbl">Google<br>Reviews</span>
+					</div>
+				</div>
+				<div class="proof-img-wrap">
+					<img src="/img/google-review.png" alt="Avaliações 5 estrelas no Google da Up Immigration" loading="lazy" />
+				</div>
+			</div>
+		</section>
+
 		<!-- ── O QUE VOCÊ GANHA ── -->
 		<section class="gets-section">
 			<div class="gets-inner">
@@ -840,20 +1139,57 @@
 						<div class="get-check">✓</div>
 						<div>
 							<h4>Taxa creditada no processo</h4>
-							<p>O valor da consulta é abatido integralmente no custo do processo de imigração, caso você decida seguir com a Up Immigration.</p>
+							<p>A consulta custa <strong>CAD $175</strong> e o valor é abatido integralmente no custo do processo de imigração, caso você decida seguir com a Up Immigration.</p>
 						</div>
 					</div>
 				</div>
 
 				<div class="consultation-meta">
 					<div class="meta-items">
+						<div class="meta-item"><strong>Investimento</strong>CAD $175</div>
 						<div class="meta-item"><strong>Formato</strong>Zoom · 1 hora</div>
 						<div class="meta-item"><strong>Idioma</strong>Português</div>
-						<div class="meta-item"><strong>Especialista</strong>Larissa Castelluber, RCIC</div>
 					</div>
 					<button class="btn-primary-sm" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">
 						Agendar agora
 					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- ── EBOOK LEAD MAGNET ── -->
+		<section class="ebook-section" id="ebook">
+			<div class="ebook-inner">
+				<div class="ebook-cover">
+					<div class="ec">
+						<div class="ec-year">2026</div>
+						<div class="ec-body">
+							<span class="ec-eyebrow">Guia Especial · Profissionais da Saúde</span>
+							<div class="ec-title">Médicos Brasileiros no <span>Canadá</span></div>
+							<div class="ec-author">Larissa Castelluber · Consultora RCIC Licenciada</div>
+						</div>
+					</div>
+				</div>
+				<div class="ebook-content">
+					<p class="eyebrow">Guia gratuito em PDF</p>
+					<h2>Tire suas principais dúvidas antes da consulta</h2>
+					<p>Um guia direto, escrito por uma consultora RCIC licenciada, respondendo as perguntas mais comuns de médicos brasileiros sobre o caminho para exercer no Canadá.</p>
+					<ul class="ebook-bullets">
+						<li>Permissão de trabalho e o prazo acelerado de 14 dias</li>
+						<li>Reconhecimento de diploma, MCCQE e licenciamento</li>
+						<li>Express Entry e os draws exclusivos para a saúde</li>
+						<li>Regiões com mais vagas e tabela salarial por especialidade</li>
+					</ul>
+					<form class="ebook-form" id="ebookForm">
+						<input type="text" name="name" placeholder="Seu nome completo" required />
+						<input type="email" name="email" placeholder="Seu melhor e-mail" required />
+						<input type="tel" name="phone" placeholder="WhatsApp com DDI (ex: +55 11...)" required />
+						<button type="submit">Baixar o guia gratuito →</button>
+						<p class="form-note">Ao baixar, você concorda em receber contato da Up Immigration. Sem spam.</p>
+					</form>
+					<div class="ebook-success" id="ebookSuccess">
+						✓ Pronto! Seu download começou. Se não iniciar, <a href="/downloads/ebook-medicos-brasileiros-canada.pdf" target="_blank" rel="noopener">clique aqui</a>.
+					</div>
 				</div>
 			</div>
 		</section>
@@ -890,6 +1226,55 @@
 						<h4>Work Permit para Médicos Estrangeiros no Canadá: Opções e Caminhos para 2026</h4>
 						<span class="art-cta">Ler o guia →</span>
 					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ── FAQ ── -->
+		<section class="faq-section">
+			<div class="faq-inner">
+				<p class="eyebrow">Perguntas frequentes</p>
+				<h2>Dúvidas de quem está começando</h2>
+				<p>As perguntas que médicos brasileiros mais fazem antes de iniciar o processo.</p>
+
+				<div class="faq-item">
+					<button class="faq-q">Meu diploma brasileiro é aceito no Canadá?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">O diploma em si não é automaticamente aceito. Para exercer medicina é necessário passar pelo processo de reconhecimento regulatório de cada província, que envolve avaliação pelo <strong>Medical Council of Canada (MCC)</strong>, exames e licenciamento provincial.</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">Preciso refazer a residência médica no Canadá?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">Não necessariamente, mas muitos médicos formados no exterior precisam passar por um período de avaliação clínica supervisionada ou completar programas de adaptação. A exigência depende da especialidade e da província onde pretende atuar.</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">Posso trabalhar no Canadá enquanto reconheço o diploma?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">Em alguns casos sim, especialmente em funções supervisionadas ou em regiões com escassez crítica de médicos (zonas rurais e remotas), onde existem programas de autorização temporária. O governo canadense criou vias aceleradas de <strong>permissão de trabalho</strong> para profissionais da saúde. Isso precisa ser avaliado caso a caso.</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">Quanto tempo leva o processo todo?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">O processo completo de licenciamento pode levar de <strong>1 a 3 anos</strong> para o reconhecimento, dependendo da província, especialidade e preparo do candidato. A permissão de trabalho temporária permite iniciar atividades em alguns contextos enquanto esse processo ocorre.</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">O que são os draws exclusivos para profissionais da saúde?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">O governo canadense passou a realizar <em>draws</em> do Express Entry exclusivos por ocupação, priorizando profissionais da saúde. Nesses draws, médicos podem ser convidados mesmo com <strong>CRS mais baixo que o usual</strong> — a ocupação passa a valer mais do que a pontuação geral.</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">Minha família pode vir comigo?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">Sim. Cônjuge ou parceiro(a) pode solicitar um <em>open work permit</em> e trabalhar em qualquer empregador no Canadá. Filhos dependentes têm direito a estudar em escolas públicas sem custo adicional enquanto o processo estiver ativo.</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">Quanto ganha um médico no Canadá?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">A remuneração varia por especialidade e província. Medicina de família fica entre <strong>CAD $200.000 e $350.000</strong> por ano; cirurgiões podem ultrapassar <strong>CAD $550.000</strong> (valores brutos, antes de impostos e despesas de consultório — fonte CIHI 2023).</div></div>
+				</div>
+
+				<div class="faq-item">
+					<button class="faq-q">Vale a pena fazer sozinho ou com uma consultora?<span class="faq-icon">+</span></button>
+					<div class="faq-a"><div class="faq-a-inner">Tecnicamente é possível sozinho, mas o processo é complexo. Erros podem custar meses de atraso ou até o indeferimento do pedido. Contar com uma <strong>RCIC regulamentada</strong> protege você de armadilhas e garante que tudo seja feito dentro dos prazos e exigências corretas.</div></div>
 				</div>
 			</div>
 		</section>
@@ -938,6 +1323,46 @@
 				gtag('event', 'generate_lead', { event_category: 'booking', event_label: 'medicos-lp' });
 			}
 		});
-	</script>
+			// FAQ accordion
+			document.querySelectorAll('.faq-q').forEach(function(btn) {
+				btn.addEventListener('click', function() {
+					var item = btn.parentElement;
+					var ans = item.querySelector('.faq-a');
+					if (item.classList.contains('open')) {
+						item.classList.remove('open');
+						ans.style.maxHeight = null;
+					} else {
+						item.classList.add('open');
+						ans.style.maxHeight = ans.scrollHeight + 'px';
+					}
+				});
+			});
+
+			// Ebook lead magnet form
+			var ebookForm = document.getElementById('ebookForm');
+			if (ebookForm) {
+				ebookForm.addEventListener('submit', function(e) {
+					e.preventDefault();
+					var data = {
+						action: 'ebook-lead-medicos',
+						name: ebookForm.name.value.trim(),
+						email: ebookForm.email.value.trim(),
+						phone: ebookForm.phone.value.trim(),
+						source: 'lp-medicos-brasileiros',
+						page: window.location.href
+					};
+					fetch('https://webhook.upimmigrationconsulting.com/webhook/up-crm', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(data),
+						mode: 'no-cors'
+					}).catch(function(){});
+					gtag('event', 'generate_lead', { event_category: 'ebook', event_label: 'medicos-ebook' });
+					ebookForm.style.display = 'none';
+					document.getElementById('ebookSuccess').style.display = 'block';
+					window.location.href = '/downloads/ebook-medicos-brasileiros-canada.pdf';
+				});
+			}
+		</script>
 </body>
 </html>
