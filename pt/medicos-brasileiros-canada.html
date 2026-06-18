@@ -58,9 +58,13 @@
 		/* ── HERO ─────────────────────────────────────────────── */
 		.hero {
 			display: flex;
-			height: 100vh;
-			max-height: 860px;
-			min-height: 560px;
+			flex-direction: row;
+			align-items: stretch;
+			justify-content: flex-start;
+			padding: 0;
+			height: calc(100vh - 70px);
+			max-height: 820px;
+			min-height: 540px;
 			overflow: hidden;
 		}
 		.hero-left {
