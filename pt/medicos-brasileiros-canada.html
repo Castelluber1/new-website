@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="/style.css" />
 	<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
 	<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-	<script src="../script.js" defer></script>
+	<script src="/script.js" defer></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -926,7 +926,7 @@
 	</style>
 </head>
 <body>
-	<div data-include="sections/header.html"></div>
+	<div data-include="/pt/sections/header.html"></div>
 
 	<main>
 
@@ -940,7 +940,7 @@
 					<em>Em português.</em>
 				</h1>
 				<p class="hero-sub">
-					O processo de equivalência médica tem 5 etapas e leva de <strong>5 a 10 anos</strong>. Cada decisão tomada fora de ordem pode custar anos do seu processo.
+					O processo tem etapas que precisam acontecer na ordem certa. Com o plano errado, você perde anos. Com o caminho certo, começa antes do que imagina.
 				</p>
 				<button class="btn-primary" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">
 					Falar com a Larissa →
@@ -1292,7 +1292,7 @@
 
 	</main>
 
-	<div data-include="sections/footer.html"></div>
+	<div data-include="/pt/sections/footer.html"></div>
 
 	<!-- Sticky CTA -->
 	<div class="sticky-cta" id="stickyCta">
@@ -1350,7 +1350,7 @@
 						source: 'lp-medicos-brasileiros',
 						page: window.location.href
 					};
-					fetch('https://webhook.upimmigrationconsulting.com/webhook/up-crm', {
+					fetch('https://webhook.upimmigrationconsulting.com/webhook/ebook-medicos', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(data),
