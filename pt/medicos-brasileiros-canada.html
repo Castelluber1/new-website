@@ -57,102 +57,72 @@
 
 		/* ── HERO ─────────────────────────────────────────────── */
 		.hero {
+			display: flex;
+			height: 100vh;
+			max-height: 860px;
+			min-height: 560px;
+			overflow: hidden;
+		}
+		.hero-left {
+			flex: 0 0 50%;
 			background: var(--ink);
 			color: var(--white);
-			padding: 100px 24px 72px;
-			position: relative;
-			overflow: hidden;
-		}
-		.hero::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			background:
-				radial-gradient(ellipse 60% 50% at 80% 20%, rgba(200,0,31,0.12) 0%, transparent 60%),
-				radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,151,58,0.06) 0%, transparent 60%);
-			pointer-events: none;
-		}
-		.hero-inner {
-			max-width: 1120px;
-			margin: 0 auto;
-			position: relative;
+			padding: 72px 56px;
 			display: flex;
-			align-items: center;
-			gap: 56px;
-		}
-		.hero-content { flex: 1 1 480px; min-width: 0; }
-		.hero-image {
-			flex: 0 0 360px;
-			height: 480px;
-			border-radius: 12px;
-			overflow: hidden;
+			flex-direction: column;
+			justify-content: center;
 			position: relative;
+			overflow: hidden;
 		}
-		.hero-image::after {
+		.hero-left::before {
 			content: '';
 			position: absolute;
-			inset: 0;
-			background: linear-gradient(135deg, rgba(13,17,23,0.35) 0%, transparent 60%);
+			top: 0; left: 0; bottom: 0;
+			width: 3px;
+			background: linear-gradient(to bottom, transparent, var(--red) 25%, var(--red) 75%, transparent);
 		}
-		.hero-image img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			filter: grayscale(15%) brightness(0.88);
-			display: block;
-		}
-		.hero-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
-			border: 1px solid rgba(184,151,58,0.4);
-			color: var(--gold);
-			font-size: 0.72rem;
-			font-weight: 500;
-			letter-spacing: 0.12em;
+		.hero-tag {
+			font-size: 0.68rem;
+			font-weight: 600;
+			letter-spacing: 0.14em;
 			text-transform: uppercase;
-			padding: 7px 16px;
-			border-radius: 2px;
-			margin-bottom: 32px;
-		}
-		.hero-badge::before {
-			content: '';
-			width: 6px; height: 6px;
-			background: var(--gold);
-			border-radius: 50%;
+			color: var(--red);
+			margin-bottom: 22px;
 		}
 		.hero h1 {
 			font-family: "Cormorant Garamond", Georgia, serif;
-			font-size: clamp(2.4rem, 6vw, 4.2rem);
+			font-size: clamp(1.9rem, 3vw, 3rem);
 			font-weight: 600;
 			line-height: 1.1;
 			letter-spacing: -0.01em;
-			margin-bottom: 28px;
+			margin-bottom: 20px;
 		}
-		.hero h1 .accent { color: var(--red); font-style: italic; }
+		.hero h1 em { color: rgba(255,255,255,0.38); font-style: italic; }
 		.hero-sub {
-			font-size: clamp(0.95rem, 2vw, 1.1rem);
-			color: rgba(255,255,255,0.65);
-			max-width: 560px;
-			line-height: 1.75;
-			margin-bottom: 44px;
+			font-size: 0.9rem;
+			color: rgba(255,255,255,0.48);
+			max-width: 380px;
+			line-height: 1.78;
+			margin-bottom: 32px;
 			font-weight: 300;
 		}
-		.hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+		.hero-sub strong { color: rgba(255,255,255,0.75); font-weight: 500; }
 		.btn-primary {
 			background: var(--red);
 			color: var(--white);
 			font-family: "DM Sans", sans-serif;
 			font-size: 0.95rem;
 			font-weight: 600;
-			padding: 16px 32px;
+			padding: 15px 32px;
 			border: none;
 			border-radius: 4px;
 			cursor: pointer;
 			text-decoration: none;
 			display: inline-block;
+			align-self: flex-start;
 			transition: background 0.2s, transform 0.15s;
 			letter-spacing: 0.01em;
+			margin-bottom: 32px;
 		}
 		.btn-primary:hover { background: var(--red-2); transform: translateY(-1px); }
 		.btn-ghost {
@@ -164,27 +134,57 @@
 			align-items: center;
 			gap: 6px;
 		}
-		.hero-trust {
-			margin-top: 52px;
-			padding-top: 28px;
-			border-top: 1px solid rgba(255,255,255,0.08);
-			display: flex;
-			flex-wrap: wrap;
-			gap: 28px;
+		.hero-sep {
+			width: 36px; height: 1px;
+			background: rgba(255,255,255,0.1);
+			margin-bottom: 24px;
 		}
-		.trust-item {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			font-size: 0.8rem;
-			color: rgba(255,255,255,0.45);
+		.hero-creds { display: flex; flex-wrap: wrap; gap: 8px; }
+		.hero-cred {
+			background: rgba(255,255,255,0.04);
+			border: 1px solid rgba(255,255,255,0.08);
+			border-radius: 4px;
+			padding: 5px 12px;
+			font-size: 0.7rem;
+			color: rgba(255,255,255,0.38);
+			font-weight: 500;
+			letter-spacing: 0.03em;
 		}
-		.trust-item strong { color: rgba(255,255,255,0.8); font-weight: 500; }
-		.trust-dot {
-			width: 4px; height: 4px;
-			background: var(--gold);
-			border-radius: 50%;
-			flex-shrink: 0;
+		.hero-right {
+			flex: 1;
+			position: relative;
+			overflow: hidden;
+			background: #0d1117;
+		}
+		.hero-right img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center top;
+			filter: brightness(0.92) contrast(1.04);
+			display: block;
+		}
+		.hero-right::before {
+			content: '';
+			position: absolute; inset: 0; z-index: 1;
+			background:
+				linear-gradient(to right, var(--ink) 0%, transparent 18%),
+				linear-gradient(to top, rgba(13,17,23,0.5) 0%, transparent 40%);
+		}
+		.hero-nameplate {
+			position: absolute;
+			bottom: 28px; right: 28px;
+			z-index: 2; text-align: right;
+		}
+		.hero-nameplate-name {
+			font-family: "Cormorant Garamond", Georgia, serif;
+			font-size: 1.3rem; font-weight: 600;
+			color: var(--white); line-height: 1.2;
+		}
+		.hero-nameplate-role {
+			font-size: 0.68rem;
+			color: rgba(255,255,255,0.35);
+			margin-top: 3px; letter-spacing: 0.04em;
 		}
 
 		/* ── COST OF DELAY ─────────────────────────────────────── */
@@ -621,29 +621,30 @@
 
 		/* Laptop — 1024px */
 		@media (max-width: 1024px) {
-			.hero-image { flex: 0 0 280px; height: 400px; }
-			.hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+			.hero-left { padding: 56px 40px; }
+			.hero h1 { font-size: clamp(1.7rem, 2.8vw, 2.4rem); }
 			.larissa-inner { grid-template-columns: 1fr; gap: 40px; }
-			.larissa-left h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
 		}
 
 		/* Tablet — 860px */
 		@media (max-width: 860px) {
-			.hero-inner { flex-direction: column; gap: 36px; }
-			.hero-image { flex: none; width: 100%; height: 260px; border-radius: 10px; }
-			.hero { padding: 80px 20px 56px; }
+			.hero { flex-direction: column; height: auto; max-height: none; }
+			.hero-left { flex: none; width: 100%; padding: 64px 28px 48px; }
+			.hero-left::before { display: none; }
+			.btn-primary { align-self: auto; }
+			.hero-right { flex: none; width: 100%; height: 320px; }
+			.hero-nameplate { bottom: 20px; right: 20px; }
 		}
 
 		/* Mobile — 600px */
 		@media (max-width: 600px) {
-			.hero-image { display: none; }
+			.hero-right { height: 260px; }
+			.hero h1 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 			.larissa-inner { grid-template-columns: 1fr; gap: 36px; }
 			.timeline::before { left: 18px; }
 			.consultation-meta { flex-direction: column; align-items: flex-start; }
-			.hero-trust { gap: 14px; }
 			.mistakes { grid-template-columns: 1fr; }
 			.articles-grid { grid-template-columns: 1fr; }
-			.hero { padding: 72px 20px 48px; }
 		}
 	</style>
 </head>
@@ -654,32 +655,33 @@
 
 		<!-- ── HERO ── -->
 		<section class="hero">
-			<div class="hero-inner">
-				<div class="hero-content">
-				<div class="hero-badge">Médicos Brasileiros no Canadá</div>
+			<div class="hero-left">
+				<div class="hero-tag">Atendimento exclusivo · Médicos brasileiros</div>
 				<h1>
-					Você se formou no Brasil.<br>
-					O Canadá precisa de médicos.<br>
-					<span class="accent">O caminho existe. E tem uma ordem.</span>
+					A consultora RCIC que orienta<br>
+					médicos brasileiros a exercer<br>
+					medicina no Canadá.<br>
+					<em>Em português.</em>
 				</h1>
 				<p class="hero-sub">
-					O processo de equivalência médica no Canadá é longo e tem múltiplas etapas interdependentes. Cada decisão errada atrasa o seguinte. Entender o mapa completo antes de agir é o que separa quem chega lá de quem desiste no meio do caminho.
+					O processo de equivalência médica tem 5 etapas e leva de <strong>5 a 10 anos</strong>. Cada decisão tomada fora de ordem pode custar anos do seu processo.
 				</p>
-				<div class="hero-actions">
-					<button class="btn-primary" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">
-						Entender o meu caminho →
-					</button>
-					<a href="#etapas" class="btn-ghost">Ver as 5 etapas ↓</a>
+				<button class="btn-primary" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">
+					Falar com a Larissa →
+				</button>
+				<div class="hero-sep"></div>
+				<div class="hero-creds">
+					<span class="hero-cred">RCIC R710678</span>
+					<span class="hero-cred">CICC Certificada</span>
+					<span class="hero-cred">UBC · Immigration Law</span>
+					<span class="hero-cred">7+ anos de experiência</span>
 				</div>
-				<div class="hero-trust">
-					<div class="trust-item"><span class="trust-dot"></span><strong>RCIC R710678</strong> Larissa Castelluber</div>
-					<div class="trust-item"><span class="trust-dot"></span><strong>UBC</strong> Immigration Law</div>
-					<div class="trust-item"><span class="trust-dot"></span><strong>7+ anos</strong> em mobilidade global</div>
-					<div class="trust-item"><span class="trust-dot"></span><strong>Atendimento</strong> em português</div>
-				</div>
-				</div><!-- /hero-content -->
-				<div class="hero-image">
-					<img src="/img/female-doctor-canada.webp" alt="Médica no Canadá" />
+			</div>
+			<div class="hero-right">
+				<img src="/img/Larissa-headshot.webp" alt="Larissa Castelluber, RCIC" />
+				<div class="hero-nameplate">
+					<div class="hero-nameplate-name">Larissa Castelluber</div>
+					<div class="hero-nameplate-role">Regulated Canadian Immigration Consultant</div>
 				</div>
 			</div>
 		</section>
