@@ -782,6 +782,7 @@
 			font-size: 0.8rem;
 		}
 		.ebook-form { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
+		.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
 		.ebook-form input {
 			background: rgba(255,255,255,0.06);
 			border: 1px solid rgba(255,255,255,0.14);
@@ -1183,6 +1184,7 @@
 						<input type="text" name="name" placeholder="Seu nome completo" required />
 						<input type="email" name="email" placeholder="Seu melhor e-mail" required />
 						<input type="tel" name="phone" placeholder="WhatsApp com DDI (ex: +55 11...)" required />
+						<input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
 						<button type="submit">Baixar o guia gratuito →</button>
 						<p class="form-note">Ao baixar, você concorda em receber contato da Up Immigration. Sem spam.</p>
 					</form>
@@ -1343,14 +1345,15 @@
 				ebookForm.addEventListener('submit', function(e) {
 					e.preventDefault();
 					var data = {
-						action: 'ebook-lead-medicos',
 						name: ebookForm.name.value.trim(),
 						email: ebookForm.email.value.trim(),
 						phone: ebookForm.phone.value.trim(),
+						website: ebookForm.website.value,
 						source: 'lp-medicos-brasileiros',
+						tags: ['médico', 'ebook-medicos'],
 						page: window.location.href
 					};
-					fetch('https://webhook.upimmigrationconsulting.com/webhook/ebook-medicos', {
+					fetch('https://webhook.upimmigrationconsulting.com/webhook/crm-new-person', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(data),
