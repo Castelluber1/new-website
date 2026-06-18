@@ -59,7 +59,7 @@
 		.hero {
 			background: var(--ink);
 			color: var(--white);
-			padding: 120px 24px 80px;
+			padding: 100px 24px 72px;
 			position: relative;
 			overflow: hidden;
 		}
@@ -73,9 +73,33 @@
 			pointer-events: none;
 		}
 		.hero-inner {
-			max-width: 860px;
+			max-width: 1120px;
 			margin: 0 auto;
 			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 56px;
+		}
+		.hero-content { flex: 1 1 480px; min-width: 0; }
+		.hero-image {
+			flex: 0 0 360px;
+			height: 480px;
+			border-radius: 12px;
+			overflow: hidden;
+			position: relative;
+		}
+		.hero-image::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(135deg, rgba(13,17,23,0.35) 0%, transparent 60%);
+		}
+		.hero-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			filter: grayscale(15%) brightness(0.88);
+			display: block;
 		}
 		.hero-badge {
 			display: inline-flex;
@@ -240,7 +264,7 @@
 			margin-bottom: 56px;
 			font-weight: 300;
 		}
-		.timeline { position: relative; }
+		.timeline { position: relative; display: flex; flex-direction: column; }
 		.timeline::before {
 			content: '';
 			position: absolute;
@@ -594,11 +618,32 @@
 		.sticky-btn:hover { background: var(--red-2); box-shadow: 0 12px 40px rgba(200,0,31,0.5); }
 
 		/* ── RESPONSIVE ────────────────────────────────────────── */
-		@media (max-width: 700px) {
+
+		/* Laptop — 1024px */
+		@media (max-width: 1024px) {
+			.hero-image { flex: 0 0 280px; height: 400px; }
+			.hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+			.larissa-inner { grid-template-columns: 1fr; gap: 40px; }
+			.larissa-left h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+		}
+
+		/* Tablet — 860px */
+		@media (max-width: 860px) {
+			.hero-inner { flex-direction: column; gap: 36px; }
+			.hero-image { flex: none; width: 100%; height: 260px; border-radius: 10px; }
+			.hero { padding: 80px 20px 56px; }
+		}
+
+		/* Mobile — 600px */
+		@media (max-width: 600px) {
+			.hero-image { display: none; }
 			.larissa-inner { grid-template-columns: 1fr; gap: 36px; }
 			.timeline::before { left: 18px; }
 			.consultation-meta { flex-direction: column; align-items: flex-start; }
-			.hero-trust { gap: 16px; }
+			.hero-trust { gap: 14px; }
+			.mistakes { grid-template-columns: 1fr; }
+			.articles-grid { grid-template-columns: 1fr; }
+			.hero { padding: 72px 20px 48px; }
 		}
 	</style>
 </head>
@@ -610,6 +655,7 @@
 		<!-- ── HERO ── -->
 		<section class="hero">
 			<div class="hero-inner">
+				<div class="hero-content">
 				<div class="hero-badge">Médicos Brasileiros no Canadá</div>
 				<h1>
 					Você se formou no Brasil.<br>
@@ -630,6 +676,10 @@
 					<div class="trust-item"><span class="trust-dot"></span><strong>UBC</strong> Immigration Law</div>
 					<div class="trust-item"><span class="trust-dot"></span><strong>7+ anos</strong> em mobilidade global</div>
 					<div class="trust-item"><span class="trust-dot"></span><strong>Atendimento</strong> em português</div>
+				</div>
+				</div><!-- /hero-content -->
+				<div class="hero-image">
+					<img src="/img/holding-hands-hospital.webp" alt="Profissional de saúde no Canadá" />
 				</div>
 			</div>
 		</section>
