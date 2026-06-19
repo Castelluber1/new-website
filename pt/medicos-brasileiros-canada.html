@@ -69,7 +69,8 @@
 			background: var(--ink);
 		}
 		.hero-left {
-			flex: 0 1 auto;
+			flex: 1 1 auto;
+			min-width: 0;
 			background: var(--ink);
 			color: var(--white);
 			padding: 44px 48px 44px max(24px, calc((100vw - 860px) / 2));
@@ -156,7 +157,8 @@
 			letter-spacing: 0.03em;
 		}
 		.hero-right {
-			flex: 1;
+			flex: 0 0 42%;
+			min-width: 300px;
 			position: relative;
 			overflow: hidden;
 			background: #0d1117;
