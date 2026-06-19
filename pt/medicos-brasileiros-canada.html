@@ -622,6 +622,18 @@
 		.sticky-btn:hover { background: var(--red-2); box-shadow: 0 12px 40px rgba(200,0,31,0.5); }
 
 		/* ── SOCIAL PROOF ──────────────────────────────────────── */
+		/* QUOTE / prova social medico */
+		.quote-section { background: var(--ink); color: #fff; padding: 76px 24px; }
+		.quote-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr; gap: 44px; align-items: center; }
+		.quote-photo { border-radius: 10px; overflow: hidden; }
+		.quote-photo img { width: 100%; height: 340px; object-fit: cover; object-position: center 20%; display: block; }
+		.quote-body .eyebrow { color: var(--gold); }
+		.quote-body blockquote { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(1.3rem, 2.3vw, 1.85rem); font-weight: 600; font-style: italic; line-height: 1.32; color: #fff; margin: 12px 0 22px; }
+		.quote-author { font-size: 0.95rem; font-weight: 600; color: #fff; }
+		.quote-author span { display: block; font-size: 0.76rem; font-weight: 400; color: var(--gold); margin-top: 4px; letter-spacing: 0.03em; }
+		.quote-seals { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.1); }
+		.quote-seals img { height: 38px; width: auto; background: #fff; padding: 6px 10px; border-radius: 6px; }
+		@media (max-width: 700px) { .quote-inner { grid-template-columns: 1fr; gap: 28px; } .quote-photo img { height: 280px; } }
 		.proof-section {
 			background: var(--white);
 			padding: 80px 24px;
@@ -940,7 +952,7 @@
 					<em>Em português.</em>
 				</h1>
 				<p class="hero-sub">
-					O processo tem etapas que precisam acontecer na ordem certa. Com o plano errado, você perde anos. Com o caminho certo, começa antes do que imagina.
+					O processo tem etapas que precisam acontecer na ordem certa. Com o plano errado, você perde anos. Com o caminho certo, você começa a trabalhar antes do que imagina.
 				</p>
 				<button class="btn-primary" onclick="Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');return false;">
 					Falar com a Larissa →
@@ -998,9 +1010,9 @@
 					<div class="tl-step">
 						<div class="tl-num">1</div>
 						<div class="tl-body">
-							<span class="tl-duration">Meta de 14 dias</span>
-							<h3>Permissão de trabalho acelerada</h3>
-							<p>O Canadá criou uma via acelerada de work permit para médicos estrangeiros, com meta de 14 dias. Você pode começar a trabalhar enquanto avança nas demais etapas, em vez de esperar parado.</p>
+							<span class="tl-duration">Em questão de meses</span>
+							<h3>A via rápida para começar a trabalhar</h3>
+							<p>Dependendo do seu perfil, caminhos como um fellowship ou a via acelerada de work permit para a saúde podem te colocar trabalhando no Canadá em questão de meses, não anos. A consulta identifica a rota mais rápida para o seu caso.</p>
 						</div>
 					</div>
 
@@ -1043,23 +1055,19 @@
 			</div>
 		</section>
 
-		<!-- ── LARISSA ── -->
-		<section class="larissa-section">
-			<div class="larissa-inner">
-				<div class="larissa-left">
-					<p class="eyebrow">Quem vai te orientar</p>
-					<h2>Uma especialista que fala o seu idioma, em todos os sentidos</h2>
-					<p>Entender o processo de imigração é uma coisa. Entender o que significa ser médico brasileiro navegando esse processo é outra. A Larissa tem os dois.</p>
+		<!-- ── QUOTE / prova social médico ── -->
+		<section class="quote-section">
+			<div class="quote-inner">
+				<div class="quote-photo">
+					<img src="/img/larissa-smile.webp" alt="Larissa Castelluber, RCIC" />
 				</div>
-				<div class="larissa-right">
-					<div class="larissa-name">Larissa Castelluber</div>
-					<div class="larissa-title">Regulated Canadian Immigration Consultant · RCIC R710678</div>
-					<p class="larissa-bio">Certificada pelo College of Immigration and Citizenship Consultants (CICC) e especializada em Leis de Imigração pela University of British Columbia. Com mais de 7 anos de experiência em RH e Global Mobility, Larissa orientou profissionais em processos de imigração complexos, e conduz todas as consultas em português.</p>
-					<div class="creds">
-						<span class="cred">RCIC R710678</span>
-						<span class="cred">CICC Certificada</span>
-						<span class="cred">UBC · Immigration Law</span>
-						<span class="cred">7+ anos de experiência</span>
+				<div class="quote-body">
+					<p class="eyebrow">Quem vai te orientar</p>
+					<blockquote>"Não vou prometer que é fácil. É desafiador, e fica mais difícil a cada ano. Mas para o médico brasileiro que quer exercer no Canadá, essa é uma oportunidade de ouro, e ela tem prazo. Já orientei profissionais de saúde nesse caminho, e ele começa com a estratégia certa para o seu caso."</blockquote>
+					<div class="quote-author">Larissa Castelluber<span>RCIC R710678 · Regulated Canadian Immigration Consultant</span></div>
+					<div class="quote-seals">
+						<img src="/img/RCIC-logo.webp" alt="RCIC" />
+						<img src="/img/UBC-logo.webp" alt="UBC" />
 					</div>
 				</div>
 			</div>
