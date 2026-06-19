@@ -58,6 +58,14 @@
 		/* LP focada: esconde distrações do header global */
 		header .social { display: none !important; }
 		#wa-float { display: none !important; }
+		/* LP focada: footer bege/discreto (menos atenção) */
+		footer { background: var(--cream) !important; color: #5a5346 !important; }
+		footer h4 { color: var(--ink) !important; }
+		footer ul li, footer ul li a { color: #6b7280 !important; }
+		footer ul li a:hover { color: var(--red) !important; }
+		footer .social a svg { fill: #9ca3af !important; }
+		footer .social a:hover svg { fill: var(--red) !important; }
+		footer .copyright { color: #9ca3af !important; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 1.2rem; }
 
 		/* ── HERO ─────────────────────────────────────────────── */
 		.hero {
@@ -462,6 +470,16 @@
 		}
 		.get-row h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
 		.get-row p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+		.consult-urgency {
+			font-size: 0.82rem;
+			color: #9a7b1f;
+			background: rgba(184,151,58,0.08);
+			border: 1px solid rgba(184,151,58,0.28);
+			border-radius: 6px;
+			padding: 11px 16px;
+			margin-bottom: 20px;
+			line-height: 1.5;
+		}
 		.consultation-meta {
 			margin-top: 40px;
 			padding: 24px 28px;
@@ -928,7 +946,17 @@
 			.hero h1 { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 			.larissa-inner { grid-template-columns: 1fr; gap: 36px; }
 			.timeline::before { left: 18px; }
-			.consultation-meta { flex-direction: column; align-items: flex-start; }
+			.consult-urgency {
+			font-size: 0.82rem;
+			color: #9a7b1f;
+			background: rgba(184,151,58,0.08);
+			border: 1px solid rgba(184,151,58,0.28);
+			border-radius: 6px;
+			padding: 11px 16px;
+			margin-bottom: 20px;
+			line-height: 1.5;
+		}
+		.consultation-meta { flex-direction: column; align-items: flex-start; }
 			.mistakes { grid-template-columns: 1fr; }
 			.articles-grid { grid-template-columns: 1fr; }
 			.proof-stat { border-right: none; border-bottom: 1px solid #e8e8e8; }
@@ -1143,6 +1171,8 @@
 						</div>
 					</div>
 				</div>
+
+				<p class="consult-urgency">⚡ A janela de oportunidade para médicos no Canadá não fica aberta para sempre, e a Larissa atende um número limitado de consultas por semana. Garanta o seu horário.</p>
 
 				<div class="consultation-meta">
 					<div class="meta-items">
