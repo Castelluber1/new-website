@@ -55,6 +55,10 @@
 			-webkit-font-smoothing: antialiased;
 		}
 
+		/* LP focada: esconde distrações do header global */
+		header .social { display: none !important; }
+		#wa-float { display: none !important; }
+
 		/* ── HERO ─────────────────────────────────────────────── */
 		.hero {
 			display: flex;
@@ -62,7 +66,7 @@
 			align-items: stretch;
 			justify-content: flex-start;
 			padding: 0;
-			min-height: calc(82vh - 70px);
+			height: 78vh;
 			overflow: hidden;
 		}
 		.hero-left {
@@ -1320,6 +1324,15 @@
 				gtag('event', 'generate_lead', { event_category: 'booking', event_label: 'medicos-lp' });
 			}
 		});
+			// LP focada: botão "Agende sua consulta" do header abre Calendly (não navega para outra página)
+			document.addEventListener('click', function(e) {
+				var cta = e.target.closest('header .nav-right .cta-btn a, header .cta-btn a');
+				if (cta) {
+					e.preventDefault();
+					Calendly.showPopupWidget('https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1');
+				}
+			});
+
 			// FAQ accordion
 			document.querySelectorAll('.med-faq-q').forEach(function(btn) {
 				btn.addEventListener('click', function() {
