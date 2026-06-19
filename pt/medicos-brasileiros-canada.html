@@ -277,19 +277,12 @@
 			font-weight: 300;
 		}
 		.timeline { position: relative; display: flex; flex-direction: column; }
-		.timeline::before {
-			content: '';
-			position: absolute;
-			left: 20px;
-			top: 0; bottom: 0;
-			width: 1px;
-			background: linear-gradient(to bottom, var(--red), rgba(200,0,31,0.1));
-		}
+		.timeline::before { display: none; }
 		.tl-step {
 			display: grid;
 			grid-template-columns: 42px 1fr;
 			gap: 24px;
-			padding-bottom: 44px;
+			padding-bottom: 14px;
 			position: relative;
 		}
 		.tl-step:last-child { padding-bottom: 0; }
@@ -312,7 +305,7 @@
 		}
 		.tl-body {
 			padding-top: 8px;
-			padding-bottom: 32px;
+			padding-bottom: 16px;
 			border-bottom: 1px solid #eee;
 		}
 		.tl-step:last-child .tl-body { border-bottom: none; }
