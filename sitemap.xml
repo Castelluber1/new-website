@@ -312,7 +312,7 @@
 
   <!-- PT Root -->
   <url>
-    <loc>https://www.upimmigration.ca/pt/</loc>
+    <loc>https://www.upimmigration.ca/pt</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/"/>
     <changefreq>monthly</changefreq>
