@@ -3,6 +3,11 @@
 	"trailingSlash": false,
 	"redirects": [
 		{
+			"source": "/ebook",
+			"destination": "/pt/ebook-medicos",
+			"permanent": false
+		},
+		{
 			"source": "/cec",
 			"destination": "/permanent-residence/canadian-experience-class",
 			"permanent": true
