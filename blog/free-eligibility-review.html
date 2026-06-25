@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9MHZ6FJJGG"></script>
+	<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-9MHZ6FJJGG");</script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Free Express Entry Eligibility Review by a Licensed RCIC</title>
+	<meta name="description" content="Tell us about your profile and a licensed Canadian immigration consultant (RCIC) will review whether you have a path to Express Entry, free and with no obligation." />
+	<link rel="stylesheet" href="/style.css" />
+	<script src="/script.js" defer></script>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+	<script src="https://analytics.ahrefs.com/analytics.js" data-key="+gmggu6RQti8IGmra6zEdA" async></script>
+	<link rel="canonical" href="https://www.upimmigration.ca/blog/free-eligibility-review" />
+	<meta name="robots" content="noindex" />
+	<link rel="icon" type="image/png" href="/img/thumnail.png" />
+	<style>
+		.fr-wrap{max-width:640px;margin:0 auto;padding:56px 24px 80px}
+		.fr-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(46,125,91,.1);color:#2e7d5b;font-size:.74rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:18px}
+		.fr-badge::before{content:"";width:6px;height:6px;background:#2e7d5b;border-radius:50%}
+		.fr-wrap h1{font-size:clamp(1.8rem,4vw,2.5rem);line-height:1.15;margin:0 0 12px}
+		.fr-sub{font-size:1.02rem;color:#5a6c7d;line-height:1.7;margin:0 0 8px}
+		.fr-trust{font-size:.85rem;color:#9aa0aa;margin:0 0 28px}
+		form{display:flex;flex-direction:column;gap:14px}
+		label{font-size:.85rem;font-weight:600;color:#2c3e50;margin-bottom:-6px}
+		input,select,textarea{padding:13px 15px;border:1px solid #d0d5db;border-radius:8px;font-size:1rem;font-family:inherit;width:100%}
+		input:focus,select:focus,textarea:focus{outline:none;border-color:#b8001c}
+		textarea{resize:vertical;min-height:80px}
+		.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+		button{background:#b8001c;color:#fff;border:none;border-radius:8px;padding:15px;font-size:1rem;font-weight:700;cursor:pointer;margin-top:6px;font-family:inherit}
+		button:hover{background:#8a0015}
+		.fr-note{font-size:.78rem;color:#9aa0aa;text-align:center;margin-top:4px}
+		.success{display:none;background:#eef7f1;border:1px solid #b7e0c7;border-radius:12px;padding:28px;text-align:center}
+		.success h2{color:#2e7d5b;margin:0 0 8px}.success p{color:#2c3e50;line-height:1.6;margin:0}
+	</style>
+</head>
+<body>
+	<div data-include="../sections/header.html"></div>
+	<main>
+		<div class="fr-wrap">
+			<div class="fr-badge">Free · No obligation</div>
+			<h1>Get a free eligibility review from a licensed RCIC</h1>
+			<p class="fr-sub">Tell us a little about your profile. A Regulated Canadian Immigration Consultant (RCIC R710678) will personally review whether you have a realistic path to Express Entry, and email you an honest answer.</p>
+			<p class="fr-trust">No automated score. A real licensed consultant reviews your case. 100% free.</p>
+
+			<form id="reviewForm">
+				<label for="name">Full name</label>
+				<input id="name" name="name" type="text" required />
+
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email" required />
+
+				<label for="occupation">Your occupation / job title</label>
+				<input id="occupation" name="occupation" type="text" required />
+
+				<label for="experience">Years of skilled work experience</label>
+				<select id="experience" name="experience" required>
+					<option value="">Select…</option>
+					<option>Less than 1 year</option>
+					<option>1–2 years</option>
+					<option>3–5 years</option>
+					<option>5+ years</option>
+				</select>
+
+				<label for="country">Current country of residence</label>
+				<input id="country" name="country" type="text" required />
+
+				<label for="about">Anything else we should know? (optional)</label>
+				<textarea id="about" name="about" placeholder="Language test, job offer, family, etc."></textarea>
+
+				<input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+				<button type="submit">Get my free review →</button>
+				<p class="fr-note">We'll never share your info. By submitting, you agree to be contacted by Up Immigration.</p>
+			</form>
+
+			<div class="success" id="success">
+				<h2>Got it ✅</h2>
+				<p>A licensed RCIC will review your profile and email you whether you have a path to Express Entry. Keep an eye on your inbox over the next few days.</p>
+			</div>
+		</div>
+	</main>
+	<div data-include="../sections/footer.html"></div>
+	<script>
+		var f = document.getElementById('reviewForm');
+		f.addEventListener('submit', function(e){
+			e.preventDefault();
+			var about = 'Occupation: ' + f.occupation.value + ' | Experience: ' + f.experience.value + ' | Country: ' + f.country.value + (f.about.value ? ' | Notes: ' + f.about.value : '');
+			var data = {
+				name: f.name.value.trim(),
+				email: f.email.value.trim(),
+				phone: '',
+				website: f.website.value,
+				source: 'free-eligibility-review',
+				tags: ['express-entry','free-review'],
+				about: about,
+				page: window.location.href
+			};
+			fetch('https://webhook.upimmigrationconsulting.com/webhook/crm-new-person', {
+				method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data), mode:'no-cors'
+			}).catch(function(){});
+			gtag('event','generate_lead',{ event_category:'eligibility', event_label:'free-review' });
+			f.style.display='none';
+			document.getElementById('success').style.display='block';
+		});
+	</script>
+</body>
+</html>
