@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CTA mockups — Immigration Consultation</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="blog/blog-post.css" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+	body{font-family:"Poppins",sans-serif;background:#f0f1f4;margin:0;color:#2c3e50}
+	.page{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+	.page > h1{font-size:1.4rem;margin:0 0 6px}
+	.page > p.sub{color:#6b7280;margin:0 0 36px;font-size:.95rem}
+	.variant{margin-bottom:44px}
+	.variant > .label{display:inline-block;background:#0d1117;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:50px;margin-bottom:14px}
+
+	/* V2 bold red */
+	.cta-red{background:#b8001c;color:#fff;border-radius:16px;padding:2.6rem 2rem;text-align:center}
+	.cta-red h3{color:#fff;font-size:1.45rem;margin:0 0 .6rem}
+	.cta-red p{color:rgba(255,255,255,.85);max-width:34rem;margin:0 auto 1.4rem;line-height:1.65}
+	.cta-red a{display:inline-block;background:#fff;color:#b8001c;font-weight:700;text-decoration:none;padding:.85rem 2rem;border-radius:8px}
+
+	/* V3 consultant card */
+	.cta-card{display:flex;border:1px solid #e6e8ec;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+	.cta-card .photo{flex:0 0 210px;background:#0d1117}
+	.cta-card .photo img{width:100%;height:100%;object-fit:cover;display:block}
+	.cta-card .body{padding:2rem 2rem 2rem 1.8rem}
+	.cta-card .cred{display:inline-block;background:rgba(184,0,28,.08);color:#b8001c;font-size:.7rem;font-weight:700;letter-spacing:.04em;padding:4px 12px;border-radius:50px;margin-bottom:12px}
+	.cta-card h3{font-size:1.3rem;margin:0 0 .5rem}
+	.cta-card p{color:#5a6c7d;line-height:1.65;margin:0 0 1.2rem;font-size:.95rem}
+	.cta-card a{display:inline-block;background:#b8001c;color:#fff;font-weight:600;text-decoration:none;padding:.8rem 1.8rem;border-radius:8px}
+	@media(max-width:620px){.cta-card{flex-direction:column}.cta-card .photo{flex:none;height:200px}}
+</style>
+</head>
+<body>
+<div class="page">
+	<h1>3 variações de CTA — Immigration Consultation</h1>
+	<p class="sub">Renderizadas com o CSS real do site. Escolha 1 e eu coloco nas 4 páginas.</p>
+
+	<!-- VARIATION 1 — refined cta-box (padrão do blog, polido) -->
+	<div class="variant">
+		<span class="label">Opção 1 — Padrão do blog (refinado)</span>
+		<div class="cta-box">
+			<h3>Not sure if you qualify for Express Entry?</h3>
+			<p>Book a consultation with a licensed RCIC. We'll confirm your NOC, calculate your real CRS score, and build a step-by-step roadmap to your Canadian PR.</p>
+			<a href="/immigration-consultation" class="cta-button">Schedule a Consultation</a>
+		</div>
+	</div>
+
+	<!-- VARIATION 2 — bold red band -->
+	<div class="variant">
+		<span class="label">Opção 2 — Faixa vermelha (alto contraste)</span>
+		<div class="cta-red">
+			<h3>Get a clear answer from a licensed RCIC</h3>
+			<p>Stop guessing. In one consultation we confirm your eligibility, your CRS score, and your exact path to Canadian permanent residence.</p>
+			<a href="/immigration-consultation">Schedule a Consultation</a>
+		</div>
+	</div>
+
+	<!-- VARIATION 3 — consultant card (human + authority) -->
+	<div class="variant">
+		<span class="label">Opção 3 — Card da consultora (humano + autoridade)</span>
+		<div class="cta-card">
+			<div class="photo"><img src="img/larissa-smile.webp" alt="Larissa Castelluber, RCIC" /></div>
+			<div class="body">
+				<span class="cred">Larissa Castelluber · RCIC R710678</span>
+				<h3>Let's map your path to Canada</h3>
+				<p>Book a consultation and a licensed Canadian immigration consultant will review your case personally, confirm your eligibility, and build your roadmap to PR.</p>
+				<a href="/immigration-consultation">Schedule a Consultation</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
