@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-9MHZ6FJJGG"></script>
+		<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-9MHZ6FJJGG");</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>NOC 21232 Software Engineer: Express Entry, STEM Draws & CRS Score (2026)</title>
@@ -72,7 +74,7 @@
 
 		<main>
 			<article class="blog-post">
-				<div class="container mw800">
+				<div class="container mw900">
 					<nav class="breadcrumb">
 						<a href="/">Home</a>
 						<span>›</span>
@@ -97,7 +99,7 @@
 				</div>
 
 				<div class="post-content">
-					<div class="container mw800">
+					<div class="container mw900">
 						<div class="content-wrapper">
 							<div class="article-body">
 								<div class="post-featured-image">
@@ -261,11 +263,12 @@
 							</div>
 
 							<aside class="article-sidebar">
-								<div class="sidebar-widget services-widget">
-									<h4>Related Services</h4>
-									<a href="/express-entry" class="service-link"><span>Express Entry</span></a>
-									<a href="/work-permit" class="service-link"><span>Work Permit</span></a>
-									<a href="/permanent-residence" class="service-link"><span>Permanent Residence</span></a>
+								<div class="sidebar-widget suggested-widget">
+									<h4>Quick links</h4>
+									<a href="/blog/teer-0-1-2-3-occupations-list" class="service-link" data-track="teer-list"><span>TEER job list</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+									<a href="/blog/find-your-noc-teer" class="service-link" data-track="noc-lookup"><span>Find your NOC</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+									<a href="/blog/what-is-the-teer-system" class="service-link" data-track="teer-system"><span>What is TEER?</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+									<a href="/blog/express-entry-eligibility-requirements" class="service-link" data-track="ee-eligible"><span>Am I eligible?</span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
 								</div>
 							</aside>
 						</div>
@@ -289,5 +292,12 @@
 		</main>
 
 		<div data-include="../sections/footer.html"></div>
+		<script>
+		document.querySelectorAll('a[data-track]').forEach(function(a){
+			a.addEventListener('click', function(){
+				gtag('event','sidebar_intent_click',{ intent: a.getAttribute('data-track'), source_page: 'noc-21232' });
+			});
+		});
+		</script>
 	</body>
 </html>
