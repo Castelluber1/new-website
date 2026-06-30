@@ -15,6 +15,14 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Guia Completo de Imigração Canadense — Por R$47">
   <meta name="twitter:image" content="https://upimmigration.ca/img/imagem-do-produto-hd-nobg.png">
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1616167476729320');
+  fbq('track', 'ViewContent', { content_name: 'Guia de Imigração Canadense', content_category: 'Ebook', value: 47, currency: 'BRL' });
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1616167476729320&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -1059,6 +1067,15 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ── META PIXEL — InitiateCheckout on CTA click ── */
+document.querySelectorAll('a[href*="kiwify.com.br"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout', { content_name: 'Guia de Imigração Canadense', value: 47, currency: 'BRL', num_items: 1 });
+    }
   });
 });
 
