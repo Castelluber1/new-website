@@ -1080,16 +1080,40 @@ document.querySelectorAll('.faq-q').forEach(btn => {
 });
 
 /* ── META PIXEL — InitiateCheckout on CTA click ── */
+/* ── CTA click — which button ── */
+const ctaLabels = new Map([
+  ['nav-btn',        'nav'],
+  ['btn-hero-cta',   'hero'],
+  ['btn-buy-main',   'price_card'],
+  ['btn-final-white','final_cta'],
+  ['btn-sticky',     'sticky'],
+]);
 document.querySelectorAll('a[href*="kiwify.com.br"]').forEach(btn => {
   btn.addEventListener('click', () => {
+    const label = [...ctaLabels.entries()].find(([cls]) => btn.classList.contains(cls))?.[1] || 'unknown';
     if (typeof fbq === 'function') {
       fbq('track', 'InitiateCheckout', { content_name: 'Guia de Imigração Canadense', value: 47, currency: 'BRL', num_items: 1 });
     }
     if (typeof gtag === 'function') {
-      gtag('event', 'begin_checkout', { currency: 'BRL', value: 47, items: [{ item_id: 'ebook-imigracao-2026', item_name: 'Guia de Imigração Canadense', price: 47, quantity: 1 }] });
+      gtag('event', 'begin_checkout', { currency: 'BRL', value: 47, cta_location: label, items: [{ item_id: 'ebook-imigracao-2026', item_name: 'Guia de Imigração Canadense', price: 47, quantity: 1 }] });
     }
   });
 });
+
+/* ── Scroll depth — 25 / 50 / 75 / 90 % ── */
+(function () {
+  const marks = [25, 50, 75, 90];
+  const fired = new Set();
+  window.addEventListener('scroll', () => {
+    const pct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    marks.forEach(m => {
+      if (pct >= m && !fired.has(m)) {
+        fired.add(m);
+        if (typeof gtag === 'function') gtag('event', 'scroll_depth', { depth: m });
+      }
+    });
+  }, { passive: true });
+})();
 
 /* ── COUNTDOWN (48h evergreen, persists via localStorage) ── */
 (function () {
