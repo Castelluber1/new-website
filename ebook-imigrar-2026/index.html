@@ -15,6 +15,15 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Guia Completo de Imigração Canadense — Por R$47">
   <meta name="twitter:image" content="https://upimmigration.ca/img/imagem-do-produto-hd-nobg.png">
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MHZ6FJJGG"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9MHZ6FJJGG');
+  </script>
+  <!-- End GA4 -->
   <!-- Meta Pixel -->
   <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -1075,6 +1084,9 @@ document.querySelectorAll('a[href*="kiwify.com.br"]').forEach(btn => {
   btn.addEventListener('click', () => {
     if (typeof fbq === 'function') {
       fbq('track', 'InitiateCheckout', { content_name: 'Guia de Imigração Canadense', value: 47, currency: 'BRL', num_items: 1 });
+    }
+    if (typeof gtag === 'function') {
+      gtag('event', 'begin_checkout', { currency: 'BRL', value: 47, items: [{ item_id: 'ebook-imigracao-2026', item_name: 'Guia de Imigração Canadense', price: 47, quantity: 1 }] });
     }
   });
 });
