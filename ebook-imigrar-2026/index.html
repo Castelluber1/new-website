@@ -121,6 +121,17 @@
       margin-bottom: 1rem; color: #fff;
     }
     .hero h1 em { font-style: normal; color: #ffb3bd; }
+    /* Pre-hide hero elements so GSAP animation has no flash on slow connections */
+    .hero-book-wrap { opacity: 0; }
+    .hero-sub, .hero-bullets, .btn-hero-cta, .hero-cta-note { opacity: 0; }
+    /* Fallback: if JS/GSAP fails, show everything after 2s */
+    @keyframes gsap-fallback { to { opacity: 1; transform: none; } }
+    .no-gsap .hero-book-wrap,
+    .no-gsap .hero-sub,
+    .no-gsap .hero-bullets,
+    .no-gsap .btn-hero-cta,
+    .no-gsap .hero-cta-note { animation: gsap-fallback 0.5s ease forwards; }
+
     .hero-sub {
       font-size: 0.92rem; opacity: 0.85; line-height: 1.7; margin-bottom: 1rem;
     }
@@ -968,9 +979,10 @@
   <a href="https://pay.kiwify.com.br/y1DDDxb" class="btn-sticky mag-btn" target="_blank" rel="noopener">Baixar por R$47 →</a>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+if (typeof gsap === 'undefined') { document.body.classList.add('no-gsap'); }
 gsap.registerPlugin(ScrollTrigger);
 
 /* ── NAV ── */
