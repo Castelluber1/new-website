@@ -3,6 +3,11 @@
 	"trailingSlash": false,
 	"redirects": [
 		{
+			"source": "/blog/study-plan-que-convence",
+			"destination": "/pt/blog/study-plan-que-convence",
+			"permanent": true
+		},
+		{
 			"source": "/ebook",
 			"destination": "/pt/ebook-medicos",
 			"permanent": false
