@@ -3,6 +3,41 @@
 	"trailingSlash": false,
 	"redirects": [
 		{
+			"source": "/blog/express-entry-crs",
+			"destination": "/pt/blog/express-entry-crs",
+			"permanent": true
+		},
+		{
+			"source": "/blog/trabalhar-e-estudar",
+			"destination": "/pt/blog/trabalhar-e-estudar",
+			"permanent": true
+		},
+		{
+			"source": "/blog/restauracao-de-status",
+			"destination": "/pt/blog/restauracao-de-status",
+			"permanent": true
+		},
+		{
+			"source": "/blog/pnp-por-provincia",
+			"destination": "/pt/blog/pnp-por-provincia",
+			"permanent": true
+		},
+		{
+			"source": "/blog/pgwp-guia-completo",
+			"destination": "/pt/blog/pgwp-guia-completo",
+			"permanent": true
+		},
+		{
+			"source": "/blog/open-work-permit-conjuge",
+			"destination": "/pt/blog/open-work-permit-conjuge",
+			"permanent": true
+		},
+		{
+			"source": "/blog/biometria-exames-medicos",
+			"destination": "/pt/blog/biometria-exames-medicos",
+			"permanent": true
+		},
+		{
 			"source": "/blog/study-plan-que-convence",
 			"destination": "/pt/blog/study-plan-que-convence",
 			"permanent": true
