@@ -890,4 +890,34 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/lmia-fraud-2024-2025-reforms-what-changed</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/gcms-notes-atip-request-canada-immigration</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/noc-2021-code-picking-guide-immigration-canada</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/canadian-experience-class-cec-guide-2026</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/canada-visitor-visa-trv-refusal-reapply</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
 </urlset>
