@@ -1232,4 +1232,22 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/provincial-health-insurance-canada-newcomers</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/blog/como-encontrar-emprego-canada</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/canada-immigration-levels-plan-2026-2028-targets</loc>
+		<lastmod>2026-07-17</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
 </urlset>
