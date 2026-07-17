@@ -3,6 +3,21 @@
 	"trailingSlash": false,
 	"redirects": [
 		{
+			"source": "/blog/canada-study-permit-processing-time-brazilians-2026",
+			"destination": "/pt/blog/tempo-processamento-study-permit-canada-brasileiros",
+			"permanent": true
+		},
+		{
+			"source": "/blog/canada-work-permit-processing-time-brazilians-2026",
+			"destination": "/pt/blog/tempo-processamento-work-permit-canada-brasileiros",
+			"permanent": true
+		},
+		{
+			"source": "/blog/canada-visitor-visa-processing-time-brazilians-2026",
+			"destination": "/pt/blog/tempo-processamento-visto-visitante-canada-brasileiros",
+			"permanent": true
+		},
+		{
 			"source": "/blog/express-entry-crs",
 			"destination": "/pt/blog/express-entry-crs",
 			"permanent": true
