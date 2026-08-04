@@ -1268,4 +1268,49 @@
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
 	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/express-entry-eligibility-requirements</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/find-your-noc-teer</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/noc-21231-vs-21232</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/teer-0-1-2-3-occupations-list</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/what-is-the-teer-system</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/residencia-permanente/experiencia-trabalho-express-entry</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/residencia-permanente/express-entry-perguntas-frequentes</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/residencia-permanente/requisitos-idioma-express-entry</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/pt/trabalho/post-graduate-work-permit</loc>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
 </urlset>
