@@ -52,7 +52,18 @@
 		document.addEventListener('keydown', e => { if (e.key === 'Escape' && window.Calendly) Calendly.closePopupWidget(); });
 	</script>
     <link rel="icon" type="image/png" href="/img/thumnail.png" />
-	</head>
+		<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Immigration Consultation",
+  "serviceType": "Immigration Consulting",
+  "provider": { "@id": "https://www.upimmigration.ca/#organization" },
+  "areaServed": { "@type": "Country", "name": "Canada" },
+  "url": "https://www.upimmigration.ca/immigration-consultation"
+}
+	</script>
+</head>
 	<body>
 		<div data-include="sections/header.html"></div>
 
