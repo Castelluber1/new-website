@@ -296,6 +296,11 @@
       "source": "/blog/patrocinio-conjugal",
       "destination": "/pt/blog/patrocinio-conjugal",
       "permanent": true
+    },
+    {
+      "source": "/blog/teer-0-1-2-3-canada-express-entry",
+      "destination": "/blog/teer-0-1-2-3-jobs-canada-express-entry",
+      "permanent": true
     }
   ]
 }
