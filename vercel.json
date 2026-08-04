@@ -1,296 +1,301 @@
 {
-	"cleanUrls": true,
-	"trailingSlash": false,
-	"redirects": [
-		{
-			"source": "/blog/canada-study-permit-processing-time-brazilians-2026",
-			"destination": "/pt/blog/tempo-processamento-study-permit-canada-brasileiros",
-			"permanent": true
-		},
-		{
-			"source": "/blog/canada-work-permit-processing-time-brazilians-2026",
-			"destination": "/pt/blog/tempo-processamento-work-permit-canada-brasileiros",
-			"permanent": true
-		},
-		{
-			"source": "/blog/canada-visitor-visa-processing-time-brazilians-2026",
-			"destination": "/pt/blog/tempo-processamento-visto-visitante-canada-brasileiros",
-			"permanent": true
-		},
-		{
-			"source": "/blog/express-entry-crs",
-			"destination": "/pt/blog/express-entry-crs",
-			"permanent": true
-		},
-		{
-			"source": "/blog/trabalhar-e-estudar",
-			"destination": "/pt/blog/trabalhar-e-estudar",
-			"permanent": true
-		},
-		{
-			"source": "/blog/restauracao-de-status",
-			"destination": "/pt/blog/restauracao-de-status",
-			"permanent": true
-		},
-		{
-			"source": "/blog/pnp-por-provincia",
-			"destination": "/pt/blog/pnp-por-provincia",
-			"permanent": true
-		},
-		{
-			"source": "/blog/pgwp-guia-completo",
-			"destination": "/pt/blog/pgwp-guia-completo",
-			"permanent": true
-		},
-		{
-			"source": "/blog/open-work-permit-conjuge",
-			"destination": "/pt/blog/open-work-permit-conjuge",
-			"permanent": true
-		},
-		{
-			"source": "/blog/biometria-exames-medicos",
-			"destination": "/pt/blog/biometria-exames-medicos",
-			"permanent": true
-		},
-		{
-			"source": "/blog/study-plan-que-convence",
-			"destination": "/pt/blog/study-plan-que-convence",
-			"permanent": true
-		},
-		{
-			"source": "/ebook",
-			"destination": "/pt/ebook-medicos",
-			"permanent": false
-		},
-		{
-			"source": "/cec",
-			"destination": "/permanent-residence/canadian-experience-class",
-			"permanent": true
-		},
-		{
-			"source": "/fswp",
-			"destination": "/permanent-residence/federal-skilled-worker",
-			"permanent": true
-		},
-		{
-			"source": "/fstp",
-			"destination": "/permanent-residence/federal-skilled-trades",
-			"permanent": true
-		},
-		{
-			"source": "/ee-work-experience",
-			"destination": "/permanent-residence/express-entry-work-experience",
-			"permanent": true
-		},
-		{
-			"source": "/ee-language-requirements",
-			"destination": "/permanent-residence/express-entry-language-requirements",
-			"permanent": true
-		},
-		{
-			"source": "/ee-faq",
-			"destination": "/permanent-residence/express-entry-faq",
-			"permanent": true
-		},
-		{
-			"source": "/crs",
-			"destination": "/permanent-residence/comprehensive-ranking-system",
-			"permanent": true
-		},
-		{
-			"source": "/pgwp",
-			"destination": "/post-graduate-work-permit",
-			"permanent": true
-		},
-		{
-			"source": "/educational-credential-assessment",
-			"destination": "/permanent-residence/educational-credential-assessment",
-			"permanent": true
-		},
-		{
-			"source": "/caregivers-program",
-			"destination": "/permanent-residence/caregivers-program",
-			"permanent": true
-		},
-		{
-			"source": "/blog/oinp",
-			"destination": "/blog/ontario-immigrant-nominee-program-oinp",
-			"permanent": true
-		},
-		{
-			"source": "/blog/best-province-for-newcomers-why-82-percent-immigrants-stay-in-ontario",
-			"destination": "/blog/best-province-for-newcomers-ontario",
-			"permanent": true
-		},
-		{
-			"source": "/blog/bc-or-alberta-where-should-you-settle-for-the-best-immigrant-experience",
-			"destination": "/blog/bc-or-alberta-best-immigrant-experience",
-			"permanent": true
-		},
-		{
-			"source": "/blog/best-province-for-newcomers-quebec-immigrants-stay",
-			"destination": "/blog/best-province-for-newcomers-quebec",
-			"permanent": true
-		},
-		{
-			"source": "/blog/best-province-for-newcomers-why-67-percent-immigrants-stay-in-british-columbia",
-			"destination": "/blog/best-province-for-newcomers-british-columbia",
-			"permanent": true
-		},
-		{
-			"source": "/blog/pgwp-everything-you-need-to-know-about-post-graduation-work-permit",
-			"destination": "/blog/pgwp-everything-you-need-to-know",
-			"permanent": true
-		},
-		{
-			"source": "/blog/sponsorship-for-families-in-canada-everything-you-need-to-know",
-			"destination": "/blog/family-sponsorship-canada-complete-guide-2026",
-			"permanent": true
-		},
-		{
-			"source": "/blog/applying-for-healthcare-coverage-in-canada",
-			"destination": "/blog/canada-healthcare-newcomers-waiting-period-private-insurance",
-			"permanent": true
-		},
-		{
-			"source": "/blog/impact-assessment-on-the-labor-market-a-fundamental-piece-for-hiring-foreign-workers",
-			"destination": "/lmia",
-			"permanent": true
-		},
-		{
-			"source": "/immigrate",
-			"destination": "/express-entry",
-			"permanent": true
-		},
-		{
-			"source": "/sponsor",
-			"destination": "/permanent-residence/spousal-sponsorship",
-			"permanent": true
-		},
-		{
-			"source": "/blog/pnp",
-			"destination": "/blog/pnp-por-provincia",
-			"permanent": true
-		},
-		{
-			"source": "/blog/express-entry-points-requirements",
-			"destination": "/blog/express-entry-crs",
-			"permanent": true
-		},
-		{
-			"source": "/northern-immigration-program-overview",
-			"destination": "/permanent-residence/provincial-nominee-program",
-			"permanent": true
-		},
-		{
-			"source": "/self-employed-immigration",
-			"destination": "/permanent-residence",
-			"permanent": true
-		},
-		{
-			"source": "/sponsorship",
-			"destination": "/permanent-residence/spousal-sponsorship",
-			"permanent": true
-		},
-		{
-			"source": "/blog/5-mistakes-newcomers-make-on-their-resume",
-			"destination": "/blog/5-Mistakes-Newcomers-Make-on-Their-Resume",
-			"permanent": true
-		},
-		{
-			"source": "/permanent-residence/post-graduation-work-permit",
-			"destination": "/post-graduate-work-permit",
-			"permanent": true
-		},
-		{
-			"source": "/blog/super-visa-parents-canada",
-			"destination": "/blog/super-visa-parents-grandparents-canada",
-			"permanent": true
-		},
-		{
-			"source": "/consultation",
-			"destination": "/immigration-consultation",
-			"permanent": true
-		},
-		{
-			"source": "/blog/job-offer-express-entry-lmia-points",
-			"destination": "/lmia",
-			"permanent": true
-		},
-		{
-			"source": "/blog/abrir-conta-bancaria-canada-brasileiro",
-			"destination": "/pt/blog/abrir-conta-bancaria-canada-brasileiro",
-			"permanent": true
-		},
-		{
-			"source": "/blog/como-tirar-sin-canada-brasileiro",
-			"destination": "/pt/blog/como-tirar-sin-canada-brasileiro",
-			"permanent": true
-		},
-		{
-			"source": "/blog/post-graduate-work-permit",
-			"destination": "/post-graduate-work-permit",
-			"permanent": true
-		},
-		{
-			"source": "/pt/blog/landing-canada-pr-first-30-days-checklist",
-			"destination": "/blog/landing-canada-pr-first-30-days-checklist",
-			"permanent": true
-		},
-		{
-			"source": "/home",
-			"destination": "/",
-			"permanent": true
-		},
-		{
-			"source": "/study",
-			"destination": "/study-permit",
-			"permanent": true
-		},
-		{
-			"source": "/patrocinio-conjugal",
-			"destination": "/pt/residencia-permanente/patrocinio-conjugal",
-			"permanent": true
-		},
-		{
-			"source": "/immigrationconsultation",
-			"destination": "/immigration-consultation",
-			"permanent": true
-		},
-		{
-			"source": "/primeiro-passo-canada",
-			"destination": "/pt/",
-			"permanent": true
-		},
-		{
-			"source": "/bc-pnp-program-priorities",
-			"destination": "/permanent-residence/provincial-nominee-program",
-			"permanent": true
-		},
-		{
-			"source": "/eca",
-			"destination": "/permanent-residence/educational-credential-assessment",
-			"permanent": true
-		},
-		{
-			"source": "/blog/best-province-for-newcomers-where-immigrants-stay-and-thrive",
-			"destination": "/blog/bc-or-alberta-best-immigrant-experience",
-			"permanent": true
-		},
-		{
-			"source": "/blog/how-to-determine-pnp-eligibility-canada",
-			"destination": "/permanent-residence/provincial-nominee-program",
-			"permanent": true
-		},
-		{
-			"source": "/blog/do-i-need-a-job-offer-for-pnp-canada",
-			"destination": "/permanent-residence/provincial-nominee-program",
-			"permanent": true
-		},
-		{
-			"source": "/blog/navigating-the-lmia-process-your-gateway-to-canadian-work-opportunities",
-			"destination": "/lmia",
-			"permanent": true
-		}
-	]
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blog/canada-study-permit-processing-time-brazilians-2026",
+      "destination": "/pt/blog/tempo-processamento-study-permit-canada-brasileiros",
+      "permanent": true
+    },
+    {
+      "source": "/blog/canada-work-permit-processing-time-brazilians-2026",
+      "destination": "/pt/blog/tempo-processamento-work-permit-canada-brasileiros",
+      "permanent": true
+    },
+    {
+      "source": "/blog/canada-visitor-visa-processing-time-brazilians-2026",
+      "destination": "/pt/blog/tempo-processamento-visto-visitante-canada-brasileiros",
+      "permanent": true
+    },
+    {
+      "source": "/blog/express-entry-crs",
+      "destination": "/pt/blog/express-entry-crs",
+      "permanent": true
+    },
+    {
+      "source": "/blog/trabalhar-e-estudar",
+      "destination": "/pt/blog/trabalhar-e-estudar",
+      "permanent": true
+    },
+    {
+      "source": "/blog/restauracao-de-status",
+      "destination": "/pt/blog/restauracao-de-status",
+      "permanent": true
+    },
+    {
+      "source": "/blog/pnp-por-provincia",
+      "destination": "/pt/blog/pnp-por-provincia",
+      "permanent": true
+    },
+    {
+      "source": "/blog/pgwp-guia-completo",
+      "destination": "/pt/blog/pgwp-guia-completo",
+      "permanent": true
+    },
+    {
+      "source": "/blog/open-work-permit-conjuge",
+      "destination": "/pt/blog/open-work-permit-conjuge",
+      "permanent": true
+    },
+    {
+      "source": "/blog/biometria-exames-medicos",
+      "destination": "/pt/blog/biometria-exames-medicos",
+      "permanent": true
+    },
+    {
+      "source": "/blog/study-plan-que-convence",
+      "destination": "/pt/blog/study-plan-que-convence",
+      "permanent": true
+    },
+    {
+      "source": "/ebook",
+      "destination": "/pt/ebook-medicos",
+      "permanent": false
+    },
+    {
+      "source": "/cec",
+      "destination": "/permanent-residence/canadian-experience-class",
+      "permanent": true
+    },
+    {
+      "source": "/fswp",
+      "destination": "/permanent-residence/federal-skilled-worker",
+      "permanent": true
+    },
+    {
+      "source": "/fstp",
+      "destination": "/permanent-residence/federal-skilled-trades",
+      "permanent": true
+    },
+    {
+      "source": "/ee-work-experience",
+      "destination": "/permanent-residence/express-entry-work-experience",
+      "permanent": true
+    },
+    {
+      "source": "/ee-language-requirements",
+      "destination": "/permanent-residence/express-entry-language-requirements",
+      "permanent": true
+    },
+    {
+      "source": "/ee-faq",
+      "destination": "/permanent-residence/express-entry-faq",
+      "permanent": true
+    },
+    {
+      "source": "/crs",
+      "destination": "/permanent-residence/comprehensive-ranking-system",
+      "permanent": true
+    },
+    {
+      "source": "/pgwp",
+      "destination": "/post-graduate-work-permit",
+      "permanent": true
+    },
+    {
+      "source": "/educational-credential-assessment",
+      "destination": "/permanent-residence/educational-credential-assessment",
+      "permanent": true
+    },
+    {
+      "source": "/caregivers-program",
+      "destination": "/permanent-residence/caregivers-program",
+      "permanent": true
+    },
+    {
+      "source": "/blog/oinp",
+      "destination": "/blog/ontario-immigrant-nominee-program-oinp",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-province-for-newcomers-why-82-percent-immigrants-stay-in-ontario",
+      "destination": "/blog/best-province-for-newcomers-ontario",
+      "permanent": true
+    },
+    {
+      "source": "/blog/bc-or-alberta-where-should-you-settle-for-the-best-immigrant-experience",
+      "destination": "/blog/bc-or-alberta-best-immigrant-experience",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-province-for-newcomers-quebec-immigrants-stay",
+      "destination": "/blog/best-province-for-newcomers-quebec",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-province-for-newcomers-why-67-percent-immigrants-stay-in-british-columbia",
+      "destination": "/blog/best-province-for-newcomers-british-columbia",
+      "permanent": true
+    },
+    {
+      "source": "/blog/pgwp-everything-you-need-to-know-about-post-graduation-work-permit",
+      "destination": "/blog/pgwp-everything-you-need-to-know",
+      "permanent": true
+    },
+    {
+      "source": "/blog/sponsorship-for-families-in-canada-everything-you-need-to-know",
+      "destination": "/blog/family-sponsorship-canada-complete-guide-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/applying-for-healthcare-coverage-in-canada",
+      "destination": "/blog/canada-healthcare-newcomers-waiting-period-private-insurance",
+      "permanent": true
+    },
+    {
+      "source": "/blog/impact-assessment-on-the-labor-market-a-fundamental-piece-for-hiring-foreign-workers",
+      "destination": "/lmia",
+      "permanent": true
+    },
+    {
+      "source": "/immigrate",
+      "destination": "/express-entry",
+      "permanent": true
+    },
+    {
+      "source": "/sponsor",
+      "destination": "/permanent-residence/spousal-sponsorship",
+      "permanent": true
+    },
+    {
+      "source": "/blog/pnp",
+      "destination": "/blog/pnp-por-provincia",
+      "permanent": true
+    },
+    {
+      "source": "/blog/express-entry-points-requirements",
+      "destination": "/blog/express-entry-crs",
+      "permanent": true
+    },
+    {
+      "source": "/northern-immigration-program-overview",
+      "destination": "/permanent-residence/provincial-nominee-program",
+      "permanent": true
+    },
+    {
+      "source": "/self-employed-immigration",
+      "destination": "/permanent-residence",
+      "permanent": true
+    },
+    {
+      "source": "/sponsorship",
+      "destination": "/permanent-residence/spousal-sponsorship",
+      "permanent": true
+    },
+    {
+      "source": "/blog/5-mistakes-newcomers-make-on-their-resume",
+      "destination": "/blog/5-Mistakes-Newcomers-Make-on-Their-Resume",
+      "permanent": true
+    },
+    {
+      "source": "/permanent-residence/post-graduation-work-permit",
+      "destination": "/post-graduate-work-permit",
+      "permanent": true
+    },
+    {
+      "source": "/blog/super-visa-parents-canada",
+      "destination": "/blog/super-visa-parents-grandparents-canada",
+      "permanent": true
+    },
+    {
+      "source": "/consultation",
+      "destination": "/immigration-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/blog/job-offer-express-entry-lmia-points",
+      "destination": "/lmia",
+      "permanent": true
+    },
+    {
+      "source": "/blog/abrir-conta-bancaria-canada-brasileiro",
+      "destination": "/pt/blog/abrir-conta-bancaria-canada-brasileiro",
+      "permanent": true
+    },
+    {
+      "source": "/blog/como-tirar-sin-canada-brasileiro",
+      "destination": "/pt/blog/como-tirar-sin-canada-brasileiro",
+      "permanent": true
+    },
+    {
+      "source": "/blog/post-graduate-work-permit",
+      "destination": "/post-graduate-work-permit",
+      "permanent": true
+    },
+    {
+      "source": "/pt/blog/landing-canada-pr-first-30-days-checklist",
+      "destination": "/blog/landing-canada-pr-first-30-days-checklist",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/study",
+      "destination": "/study-permit",
+      "permanent": true
+    },
+    {
+      "source": "/patrocinio-conjugal",
+      "destination": "/pt/residencia-permanente/patrocinio-conjugal",
+      "permanent": true
+    },
+    {
+      "source": "/immigrationconsultation",
+      "destination": "/immigration-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/primeiro-passo-canada",
+      "destination": "/pt/",
+      "permanent": true
+    },
+    {
+      "source": "/bc-pnp-program-priorities",
+      "destination": "/permanent-residence/provincial-nominee-program",
+      "permanent": true
+    },
+    {
+      "source": "/eca",
+      "destination": "/permanent-residence/educational-credential-assessment",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-province-for-newcomers-where-immigrants-stay-and-thrive",
+      "destination": "/blog/bc-or-alberta-best-immigrant-experience",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-determine-pnp-eligibility-canada",
+      "destination": "/permanent-residence/provincial-nominee-program",
+      "permanent": true
+    },
+    {
+      "source": "/blog/do-i-need-a-job-offer-for-pnp-canada",
+      "destination": "/permanent-residence/provincial-nominee-program",
+      "permanent": true
+    },
+    {
+      "source": "/blog/navigating-the-lmia-process-your-gateway-to-canadian-work-opportunities",
+      "destination": "/lmia",
+      "permanent": true
+    },
+    {
+      "source": "/blog/patrocinio-conjugal",
+      "destination": "/pt/blog/patrocinio-conjugal",
+      "permanent": true
+    }
+  ]
 }
