@@ -244,11 +244,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.upimmigration.ca/blog/patrocinio-conjugal</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.upimmigration.ca/blog/proof-of-funds-2025</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/proof-of-funds-2025"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.upimmigration.ca/pt/blog/comprovacao-financeira-2025"/>
@@ -512,11 +507,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.upimmigration.ca/pt/blog/pgwp-guia-completo</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.upimmigration.ca/pt/blog/pgwp-tudo-que-voce-precisa-saber</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -538,11 +528,6 @@
   </url>
   <url>
     <loc>https://www.upimmigration.ca/pt/blog/study-plan-que-convence</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.upimmigration.ca/pt/blog/trabalhar-e-estudar</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -819,13 +804,6 @@
 	</url>
 	<url>
 		<loc>https://www.upimmigration.ca/blog/ircc-processing-times-2026-application-tracker</loc>
-		<lastmod>2026-05-26</lastmod>
-		<changefreq>monthly</changefreq>
-		<priority>0.7</priority>
-	</url>
-	<url>
-		<loc>https://www.upimmigration.ca/pt/blog/como-obter-numero-sin-canada</loc>
-		<xhtml:link rel="alternate" hreflang="en" href="https://www.upimmigration.ca/blog/how-to-get-sin-number-canada"/>
 		<lastmod>2026-05-26</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
