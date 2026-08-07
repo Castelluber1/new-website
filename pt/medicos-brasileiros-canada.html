@@ -1342,7 +1342,7 @@
 		// Calendly conversion tracking
 		window.addEventListener('message', function(e) {
 			if (e.data.event === 'calendly.event_scheduled') {
-				gtag('event', 'generate_lead', { event_category: 'booking', event_label: 'medicos-lp' });
+				gtag('event', 'generate_lead', { booking_source: 'medicos-lp' });
 			}
 		});
 			// LP focada: botão "Agende sua consulta" do header abre Calendly (não navega para outra página)
@@ -1389,7 +1389,7 @@
 						body: JSON.stringify(data),
 						mode: 'no-cors'
 					}).catch(function(){});
-					gtag('event', 'generate_lead', { event_category: 'ebook', event_label: 'medicos-ebook' });
+					gtag('event', 'sign_up', { method: 'lp-medicos-brasileiros' });
 					ebookForm.style.display = 'none';
 					document.getElementById('ebookSuccess').style.display = 'block';
 					window.location.href = '/downloads/ebook-medicos-brasileiros-canada.pdf';

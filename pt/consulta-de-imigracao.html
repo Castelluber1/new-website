@@ -19,6 +19,13 @@
 		<link rel="stylesheet" href="/style.css" />
 		<script src="../script.js" defer></script>
 
+		<!-- Calendly widget: required for booking tracking. See TRACKING.md §3 -->
+		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+		<script>
+			document.addEventListener('keydown', e => { if (e.key === 'Escape' && window.Calendly) Calendly.closePopupWidget(); });
+		</script>
+
 		<title>Consulta de Imigração</title>
 		<meta
 			name="description"
@@ -653,9 +660,19 @@
 
 		<div data-include="sections/footer.html"></div>
 		<script>
-			window.addEventListener('message', function(e) {
+			// Open Calendly in-page so the booking is trackable (a plain link
+			// navigates away and never posts calendly.event_scheduled back).
+			// See TRACKING.md §3 "widget-vs-link rule".
+			document.addEventListener('click', function (e) {
+				var a = e.target.closest('a[href*="calendly.com/upimmigration"]');
+				if (!a || !window.Calendly) return;
+				e.preventDefault();
+				Calendly.showPopupWidget(a.getAttribute('href') + '?hide_event_type_details=1&hide_gdpr_banner=1');
+			});
+
+			window.addEventListener('message', function (e) {
 				if (e.data.event === 'calendly.event_scheduled') {
-					gtag('event', 'generate_lead', { event_category: 'booking', event_label: 'calendly' });
+					gtag('event', 'generate_lead', { booking_source: 'consultation-pt' });
 				}
 			});
 		</script>
