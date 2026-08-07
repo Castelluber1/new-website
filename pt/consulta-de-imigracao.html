@@ -22,6 +22,8 @@
 		<!-- Calendly widget: required for booking tracking. See TRACKING.md §3 -->
 		<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
 		<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+		<!-- Stamps GA4 clientId/sessionId onto bookings. See TRACKING.md §8 -->
+		<script src="/js/calendly-attribution.js"></script>
 		<script>
 			document.addEventListener('keydown', e => { if (e.key === 'Escape' && window.Calendly) Calendly.closePopupWidget(); });
 		</script>

@@ -278,10 +278,77 @@ Code alone is not enough. These are UI steps and must be re-checked after change
 
 ---
 
-## 8. Changelog
+## 8. Calendly ↔ GA4 attribution (joining a booking to a session)
+
+**Problem:** GA4 only sees bookings that start on this site. Calendly sees every
+booking but knows nothing about GA4. Neither alone answers *"which visit produced
+this consultation?"*
+
+**Solution (phase 1, live 2026-08-07):** [`js/calendly-attribution.js`](js/calendly-attribution.js)
+stamps the GA4 identity onto the booking using UTM fields, which Calendly persists
+into its CSV export.
+
+Loaded on the 4 pages that open the Calendly widget. It wraps
+`Calendly.showPopupWidget` globally, so all 12 call sites are covered without
+editing any of them.
+
+### Field map
+
+| Calendly CSV column | Value | Set by |
+|---|---|---|
+| `utm_content` | `cid.<clientId>~sid.<sessionId>` | **us** — the join key |
+| `utm_term` | booking page path | **us** |
+| `utm_source` / `utm_medium` / `utm_campaign` | real traffic source | Calendly, forwarded from the page |
+
+### Why only those two slots
+
+Calendly's widget builds the iframe URL in this order — **later wins**:
+
+```
+{embed_domain, embed_type}
+  → getUtmParamsFromHost()   // utm_* read from THIS page's URL
+  → getParamsFromUrl()       // params on the URL we pass in   ← us
+  → getParamsFromOptions()
+```
+
+*(verified by reading `assets.calendly.com/assets/external/widget.js`, 2026-08-07)*
+
+So anything we write on the widget URL **overrides** the page's real UTMs. We
+write only to `utm_content` / `utm_term` and leave source/medium/campaign alone,
+so genuine channel attribution (instagram, google) still reaches the export.
+
+**Do not** put the clientId in `utm_source` — it destroys channel attribution.
+
+### How to join
+
+`utm_content` → strip the `cid.` prefix → that is the GA4 client id. Match against
+GA4 (custom dimension, BigQuery export, or User Explorer).
+
+### Limits — read before trusting a number
+
+- **Only covers bookings that START on this site.** A booking from a Calendly link
+  in a DM, email signature, or LinkedIn never loads this file and stays
+  unattributed. Structural, not a bug — see phase 2.
+- `clientId` is per-browser: same person on phone + laptop = two ids.
+- Cookies blocked → no `_ga` cookie → the field is sent blank rather than faked.
+- **No backfill.** Bookings before 2026-08-07 (incl. Angel Bueno, Thad Rodrigues,
+  Matheus Freitas, Alessandre Portes, Adriano Junior, Alana Ferreira) have blank
+  UTMs and are permanently unattributable. Blank UTMs on those rows do **not**
+  prove they booked off-site — the site never sent UTMs before this date either.
+
+### Phase 2 — not built
+
+Calendly webhook (`invitee.created`) → n8n → GA4 Measurement Protocol. Would fire
+a server-side conversion for **every** booking, including ones that never touch
+the site. Needs an API secret + n8n workflow. Deferred by decision 2026-08-07.
+
+---
+
+## 9. Changelog
 
 | Date | Change |
 |---|---|
+| 2026-08-07 | **Calendly ↔ GA4 attribution (§8).** `js/calendly-attribution.js` stamps GA4 clientId/sessionId into `utm_content` + page into `utm_term` on the 4 booking pages. Verified against widget.js merge order so real `utm_source`/`utm_medium` survive. Phase 2 (webhook → Measurement Protocol) deferred. |
 | 2026-08-07 | **Contract established.** Split overloaded `generate_lead` into `generate_lead` (booking) / `sign_up` (lead). Renamed `ebook_download` → `file_download`. Added the 3 missing Calendly listeners (blog common-law, spousal, TFWP) — those bookings were previously invisible. Dropped dead `event_category`/`event_label` params. |
 | 2026-06-25 | `free-eligibility-review` page added, reused `generate_lead` (drift) |
 | 2026-06-18 | médicos LP ebook form added, reused `generate_lead` (drift) |
