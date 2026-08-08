@@ -106,7 +106,7 @@
 		<script>
 			window.addEventListener('message', function(e) {
 				if (e.data.event === 'calendly.event_scheduled') {
-					gtag('event', 'generate_lead', { booking_source: 'appointments' });
+					gtag('event', 'consultation_booked', { booking_source: 'appointments' });
 				}
 			});
 		</script>

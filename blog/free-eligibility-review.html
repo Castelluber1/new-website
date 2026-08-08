@@ -109,7 +109,7 @@
 			fetch('https://webhook.upimmigrationconsulting.com/webhook/crm-new-person', {
 				method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data), mode:'no-cors'
 			}).catch(function(){});
-			gtag('event','sign_up',{ method:'free-eligibility-review' });
+			gtag('event','lead_form_submitted',{ method:'free-eligibility-review' });
 			f.style.display='none';
 			document.getElementById('success').style.display='block';
 		});

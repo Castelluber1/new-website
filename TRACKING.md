@@ -43,14 +43,14 @@ Decided by Caio, 2026-08-07. Not everything worth measuring is a conversion.
 
 | Tier | Meaning | Events |
 |---|---|---|
-| **Conversion** | The site did its job. Judge the site by these. | `generate_lead` (booked consult), `begin_checkout` (ebook purchase intent) |
-| **Lead** | Contact captured, not yet a booking. Real value, but not a conversion. | `sign_up` |
+| **Conversion** | The site did its job. Judge the site by these. | `consultation_booked` (booked consult), `begin_checkout` (ebook purchase intent) |
+| **Lead** | Contact captured, not yet a booking. Real value, but not a conversion. | `lead_form_submitted` |
 | **Engagement** | Diagnostic only. Never mark as conversion. | `sidebar_intent_click`, `scroll_depth`, `file_download` |
 | **Automatic** | GA4 enhanced measurement. We do not fire these. | `page_view`, `session_start`, `first_visit`, `user_engagement`, `scroll`, `click`, `form_start` |
 
 Rationale: a booked consultation and an email-for-PDF are not the same outcome.
 Pooling them hides which one is actually growing. Lead-magnet emails are tracked
-as `sign_up` so they stay visible without inflating the conversion number.
+as `lead_form_submitted` so they stay visible without inflating the conversion number.
 
 ---
 
@@ -63,7 +63,7 @@ Any page → CTA → Calendly popup/embed → user schedules
                                           ↓
                           postMessage: calendly.event_scheduled
                                           ↓
-                            gtag('event', 'generate_lead')
+                            gtag('event', 'consultation_booked')
 ```
 
 Calendly is embedded on 7 pages. It signals a completed booking by posting a
@@ -92,13 +92,13 @@ it is the closest signal we own. See §7 for the real fix.
 ```
 Form submit → POST webhook.upimmigrationconsulting.com/webhook/crm-new-person
                               ↓
-                     gtag('event', 'sign_up')
+                     gtag('event', 'lead_form_submitted')
                               ↓
                   person appears in CRM with `source`
 ```
 
 Two forms feed this. The `source` field in the webhook payload is what ties a GA4
-`sign_up` back to a CRM record, so **`sign_up`'s `method` param must match the
+`lead_form_submitted` back to a CRM record, so **`lead_form_submitted`'s `method` param must match the
 webhook `source` string exactly.**
 
 ---
@@ -107,7 +107,7 @@ webhook `source` string exactly.**
 
 Every custom event on this site. One row = one user action. Nothing else may fire.
 
-### `generate_lead` — CONVERSION
+### `consultation_booked` — CONVERSION
 
 **Means:** a consultation was successfully booked through Calendly. Nothing else.
 
@@ -149,7 +149,7 @@ page that loads the Calendly widget:**
 <script>
   window.addEventListener('message', function (e) {
     if (e.data.event === 'calendly.event_scheduled') {
-      gtag('event', 'generate_lead', { booking_source: 'PAGE_SLUG_HERE' });
+      gtag('event', 'consultation_booked', { booking_source: 'PAGE_SLUG_HERE' });
     }
   });
 </script>
@@ -176,7 +176,7 @@ not here. See §7.
 Fires on `/ebook-imigrar-2026` only, on any `a[href*="kiwify.com.br"]` click.
 Also fires Meta `InitiateCheckout` alongside. Already correctly built — do not change.
 
-### `sign_up` — LEAD
+### `lead_form_submitted` — LEAD
 
 **Means:** submitted a form and gave an email; a CRM record was created.
 
@@ -190,7 +190,7 @@ Also fires Meta `InitiateCheckout` alongside. Already correctly built — do not
 | `pt/medicos-brasileiros-canada.html` (ebook form) | `lp-medicos-brasileiros` |
 
 ```js
-gtag('event', 'sign_up', { method: 'SOURCE_STRING_MATCHING_WEBHOOK' });
+gtag('event', 'lead_form_submitted', { method: 'SOURCE_STRING_MATCHING_WEBHOOK' });
 ```
 
 ### `sidebar_intent_click` — ENGAGEMENT
@@ -223,9 +223,15 @@ Param: `ebook: 'medicos-brasileiros-canada'`.
 
 | Name | Why retired | Replacement |
 |---|---|---|
-| `generate_lead` on form submits | Meant 3 things at once; made the metric unreadable | `sign_up` |
+| `generate_lead` | Ambiguous. Meant 3 things at once (booking, ebook form, eligibility form); even after being narrowed to bookings only, the name did not say what it measured. **"Lead" = a form was filled in; a booked consultation is a different, further-down-funnel event.** | `consultation_booked` (booking) / `lead_form_submitted` (form) |
+| `sign_up` | Nobody "signs up" for anything here — there is no account. It was a form submission. | `lead_form_submitted` |
 | `ebook_download` | Read as a sale; it is a free PDF | `file_download` |
 | `event_category` / `event_label` params | Never registered as custom dimensions in GA4 → **silently discarded**, unqueryable via API | Named params in §3 |
+
+> **No backfill.** GA4 never renames historical events. The single `generate_lead`
+> recorded on 2026-08-07 (the verification booking) stays under the old name
+> forever; `consultation_booked` starts from 2026-08-08. Any trend crossing that
+> date must sum both.
 
 **`event_category` / `event_label` do nothing.** They were sent for months and
 never appeared in any report. Do not add them. Use the params defined above.
@@ -237,9 +243,9 @@ never appeared in any report. Do not add them. Use the params defined above.
 Code alone is not enough. These are UI steps and must be re-checked after changes.
 
 **Mark as conversion** — Admin → Events → toggle "Mark as key event":
-- [ ] `generate_lead`
+- [ ] `consultation_booked`
 - [ ] `begin_checkout`
-- [ ] `sign_up` — **leave OFF** (lead, not conversion)
+- [ ] `lead_form_submitted` — **leave OFF** (lead, not conversion)
 
 **Register custom dimensions** — Admin → Custom definitions → Create (event-scoped):
 
@@ -262,7 +268,11 @@ Code alone is not enough. These are UI steps and must be re-checked after change
 ## 6. How to verify (do this after any change)
 
 1. **Realtime:** GA4 → Reports → Realtime, perform the action, confirm the event and its params appear.
-2. **API:** from `Claude Code Test/`, `python tools/ga4-kpis.py`. Property ID is `508062273`; pass it directly — the Admin API (property *listing*) is disabled on GCP project `476422682136`, but the **Data API works fine**. A 403 on listing does not mean reporting is broken.
+2. **API:** from `Claude Code Test/`, `python tools/ga4-kpis.py`, property `508062273`.
+   Both the Data API and the Admin API work (Admin verified 2026-08-07 — an older
+   `SERVICE_DISABLED` 403 in `.tmp/ga4-out.txt` dated 2026-06-23 is **stale**; do
+   not repeat it). The OAuth token is `analytics.readonly`, so config can be read
+   but **not written** — §5 must be done by hand in the UI.
 3. **Params:** an unregistered param returns `Field customEvent:X is not a valid dimension` from the API. That means §5 was skipped.
 
 ---
@@ -274,7 +284,7 @@ Code alone is not enough. These are UI steps and must be re-checked after change
 | **No `purchase` event** — Kiwify is off-domain | Cannot see ebook revenue or completed sales; only intent | Kiwify postback/webhook → GA4 Measurement Protocol, or tag the Kiwify thank-you page |
 | **Instagram traffic untagged** | IG lands in Direct/Organic Social; médicos LP drives most leads but is unattributable | UTMs on IG bio + reel links (`?utm_source=instagram&utm_medium=social&utm_campaign=...`) |
 | No internal traffic filter | Team visits pollute data | §5 |
-| Historical data is not backfillable | Pre-2026-08-07 `generate_lead` mixes bookings + forms; the 5 recorded fires cannot be split | Treat 2026-08-07 as the break point in any trend |
+| Historical data is not backfillable | Pre-2026-08-07 `consultation_booked` mixes bookings + forms; the 5 recorded fires cannot be split | Treat 2026-08-07 as the break point in any trend |
 
 ---
 
@@ -348,8 +358,10 @@ the site. Needs an API secret + n8n workflow. Deferred by decision 2026-08-07.
 
 | Date | Change |
 |---|---|
+| 2026-08-08 | **Renamed for clarity.** `generate_lead` → `consultation_booked`, `sign_up` → `lead_form_submitted`. "Lead" means a form was filled in; a booked consultation is further down the funnel and deserves its own name. 6 call sites. **No backfill** — see §4. |
+| 2026-08-07 | **✅ END-TO-END VERIFIED.** A real paid `Immigration Consultation` booked from `/immigration-consultation` fired the event in GA4 Realtime, **through the Stripe checkout**. This settles the open question: the Calendly popup widget *does* deliver `event_scheduled` on paid bookings; Stripe does not break the `postMessage`. Therefore the zero bookings recorded between 2026-06-13 and 2026-08-07 mean those consultations **did not originate on the site** (direct Calendly links from DM/Instagram/LinkedIn/referral), not that tracking was broken. `booking_source` came back unqueryable — confirming the custom dimension in §5 is still unregistered. |
 | 2026-08-07 | **Calendly ↔ GA4 attribution (§8).** `js/calendly-attribution.js` stamps GA4 clientId/sessionId into `utm_content` + page into `utm_term` on the 4 booking pages. Verified against widget.js merge order so real `utm_source`/`utm_medium` survive. Phase 2 (webhook → Measurement Protocol) deferred. |
-| 2026-08-07 | **Contract established.** Split overloaded `generate_lead` into `generate_lead` (booking) / `sign_up` (lead). Renamed `ebook_download` → `file_download`. Added the 3 missing Calendly listeners (blog common-law, spousal, TFWP) — those bookings were previously invisible. Dropped dead `event_category`/`event_label` params. |
-| 2026-06-25 | `free-eligibility-review` page added, reused `generate_lead` (drift) |
-| 2026-06-18 | médicos LP ebook form added, reused `generate_lead` (drift) |
+| 2026-08-07 | **Contract established.** Split overloaded `consultation_booked` into `consultation_booked` (booking) / `lead_form_submitted` (lead). Renamed `ebook_download` → `file_download`. Added the 3 missing Calendly listeners (blog common-law, spousal, TFWP) — those bookings were previously invisible. Dropped dead `event_category`/`event_label` params. |
+| 2026-06-25 | `free-eligibility-review` page added, reused `consultation_booked` (drift) |
+| 2026-06-18 | médicos LP ebook form added, reused `consultation_booked` (drift) |
 | 2026-06-13 | Calendly booking tracking introduced (`b1e1d32`) |
