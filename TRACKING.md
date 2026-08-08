@@ -354,6 +354,51 @@ the site. Needs an API secret + n8n workflow. Deferred by decision 2026-08-07.
 
 ---
 
+## 10. Overlay funnel — where people drop out (live 2026-08-08)
+
+**Problem it solves:** the site had only the two ends of the funnel. Between
+"landed on the consultation page" and "booked" there was no data at all, so a
+visitor who opened the Calendly overlay and gave up was indistinguishable from
+one who never opened it. Opposite fixes, same blank.
+
+[`js/calendly-funnel.js`](js/calendly-funnel.js), loaded on
+`/immigration-consultation` and `/pt/consulta-de-imigracao` only.
+
+| Step | Event | Fired by |
+|---|---|---|
+| 1 | `calendly_overlay_opened` | us — wraps `showPopupWidget` |
+| 2 | `calendly_profile_viewed` | Calendly `profile_page_viewed` |
+| 3 | `calendly_eventtype_viewed` | Calendly `event_type_viewed` |
+| 4 | `calendly_datetime_selected` | Calendly `date_and_time_selected` |
+| 5 | `consultation_booked` | the page's own listener (§3) |
+| ✗ | `calendly_abandoned` | us — overlay left the DOM without booking |
+
+Steps 2–4 were **already being posted to the page by Calendly** and nobody was
+listening. All carry `booking_source` (`consultation-en` / `consultation-pt`).
+
+`calendly_abandoned` additionally carries:
+- `abandoned_at` — the furthest step reached (`overlay_opened`, `profile_viewed`,
+  `eventtype_viewed`, `datetime_selected`). **This is the number that says where to fix.**
+- `seconds_open` — how long the overlay was open
+
+### Limits — read before trusting the abandonment number
+
+- **Closing the tab or navigating away does not remove the overlay from the DOM**,
+  so it does not register. `calendly_abandoned` is a **floor, not the total**.
+  Real abandonment is higher by an unknown amount.
+- Reopening the overlay on the same page starts a new funnel attempt (stage
+  resets). Deliberate — each attempt counts once.
+- No de-duplication across tabs.
+- `consultation_booked` is *not* re-fired here, to avoid double-counting the
+  conversion. This file only tracks the stage.
+
+### Why this exists
+Investigating why site traffic grew 11.5x (May→Jul 2026) while consultation-page
+traffic grew only 2.5x. Full hypotheses:
+`Claude Code Test/projects/up-seo/optimization-log.md` → "TO INVESTIGATE".
+
+---
+
 ## 9. Changelog
 
 | Date | Change |
