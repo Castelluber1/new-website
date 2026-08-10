@@ -63,6 +63,44 @@
 					<option>5+ years</option>
 				</select>
 
+				<label for="age">Your age</label>
+				<select id="age" name="age" required>
+					<option value="">Select…</option>
+					<option>Under 18</option>
+					<option>18–29</option>
+					<option>30–34</option>
+					<option>35–39</option>
+					<option>40–44</option>
+					<option>45 or older</option>
+				</select>
+
+				<label for="education">Highest level of education</label>
+				<select id="education" name="education" required>
+					<option value="">Select…</option>
+					<option>High school</option>
+					<option>One-year diploma/certificate</option>
+					<option>Two+ year diploma</option>
+					<option>Bachelor's degree</option>
+					<option>Master's degree</option>
+					<option>PhD / doctorate</option>
+				</select>
+
+				<label for="english">English level</label>
+				<select id="english" name="english" required>
+					<option value="">Select…</option>
+					<option>Haven't taken IELTS/CELPIP yet</option>
+					<option>Basic (CLB 4–6)</option>
+					<option>Good (CLB 7–8)</option>
+					<option>Strong (CLB 9+)</option>
+				</select>
+
+				<label for="marital">Marital status</label>
+				<select id="marital" name="marital" required>
+					<option value="">Select…</option>
+					<option>Single</option>
+					<option>Married / common-law</option>
+				</select>
+
 				<label for="country">Current country of residence</label>
 				<input id="country" name="country" type="text" required />
 
@@ -86,7 +124,14 @@
 		var f = document.getElementById('reviewForm');
 		f.addEventListener('submit', function(e){
 			e.preventDefault();
-			var about = 'Occupation: ' + f.occupation.value + ' | Experience: ' + f.experience.value + ' | Country: ' + f.country.value + (f.about.value ? ' | Notes: ' + f.about.value : '');
+			var about = 'Occupation: ' + f.occupation.value +
+				' | Experience: ' + f.experience.value +
+				' | Age: ' + f.age.value +
+				' | Education: ' + f.education.value +
+				' | English: ' + f.english.value +
+				' | Marital: ' + f.marital.value +
+				' | Country: ' + f.country.value +
+				(f.about.value ? ' | Notes: ' + f.about.value : '');
 			var data = {
 				name: f.name.value.trim(),
 				email: f.email.value.trim(),
