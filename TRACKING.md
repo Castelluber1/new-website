@@ -97,6 +97,17 @@ Form submit → POST webhook.upimmigrationconsulting.com/webhook/crm-new-person
                   person appears in CRM with `source`
 ```
 
+> **⚠️ Bug that silently ate leads (fixed 2026-08-10).** Both forms `fetch` with
+> `mode: 'no-cors'`. That flag forces the request `Content-Type` to `text/plain`,
+> so the n8n webhook never JSON-parsed the body: `name`/`email` came through as
+> `undefined`, the "Validar / Anti-bot" node marked every real submission as a bot,
+> and the lead was dropped (only a "sem nome" empty email went out). Proven via n8n
+> execution history: `curl` with `application/json` passed; every real form submit
+> (text/plain) failed. **Fix:** the anti-bot node now parses the body if it arrives
+> as a string (`if (typeof b === 'string') b = JSON.parse(b)`) — one line, covers
+> both forms, backward-compatible. Verified live (exec 26287). If you ever move off
+> `no-cors`, the webhook must send CORS headers or the fetch errors.
+
 Two forms feed this. The `source` field in the webhook payload is what ties a GA4
 `lead_form_submitted` back to a CRM record, so **`lead_form_submitted`'s `method` param must match the
 webhook `source` string exactly.**
