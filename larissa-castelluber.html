@@ -66,10 +66,11 @@
 }
 </script>
 		<style>
-			.lc-wrap { max-width: 860px; margin: 0 auto; padding: 56px 24px 80px; }
-			.lc-hero { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
-			.lc-hero img { width: 200px; height: 200px; object-fit: cover; border-radius: 16px; flex: none; }
-			.lc-hero h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.15; margin: 0 0 8px; }
+			.lc-wrap { max-width: 980px; margin: 0 auto; padding: 56px 24px 80px; }
+			.lc-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; align-items: center; margin-bottom: 52px; }
+			.lc-hero img { width: 100%; height: 100%; max-height: 500px; min-height: 400px; object-fit: cover; object-position: center 22%; border-radius: 18px; }
+			.lc-hero h1 { font-size: clamp(2rem, 4vw, 2.9rem); line-height: 1.1; margin: 0 0 8px; }
+			@media (max-width: 720px) { .lc-hero { grid-template-columns: 1fr; gap: 24px; } .lc-hero img { max-height: 440px; } }
 			.lc-cred { display: inline-block; background: rgba(184,0,28,.08); color: #b8001c; font-weight: 700; font-size: .8rem; letter-spacing: .04em; padding: 6px 14px; border-radius: 50px; margin-bottom: 14px; }
 			.lc-hero p { color: #4b5563; line-height: 1.65; margin: 0; }
 			.lc-body h2 { font-size: 1.4rem; margin: 40px 0 14px; }
@@ -111,7 +112,8 @@
 					</div>
 
 					<h2>About Larissa</h2>
-					<p>Larissa Castelluber is a licensed RCIC based in Vancouver, British Columbia. She studied immigration laws, policies and procedures at the University of British Columbia and holds a global mobility credential from BCIT, combining regulated immigration expertise with hands-on experience in HR and international talent relocation.</p>
+					<p>Larissa Castelluber is a licensed RCIC based in Vancouver, British Columbia. <a href="/larissa-castelluber-rcic">Read her full story, from global mobility to founding Up Immigration</a>.</p>
+					<p>She studied immigration laws, policies and procedures at the University of British Columbia and holds a global mobility credential from BCIT, combining regulated immigration expertise with hands-on experience in HR and international talent relocation.</p>
 					<p>Over 7+ years she has guided clients through the full immigration journey: assessing eligibility, choosing the right pathway, preparing documentation, and representing them before IRCC. As a regulated consultant, she is one of the professionals legally authorized to provide paid Canadian immigration advice, a distinction that protects clients from the unlicensed "agents" and "facilitators" common in this field.</p>
 
 					<h2>How to verify Larissa's licence with CICC</h2>
