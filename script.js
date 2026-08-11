@@ -199,3 +199,33 @@ document.querySelectorAll("[data-include]").forEach((el) => {
 		})
 		.catch((err) => console.error("Erro ao incluir:", file, err));
 });
+
+// AI-referral tracker — mede quanto tráfego vem de assistentes de IA (Perplexity,
+// ChatGPT, Gemini, Copilot, etc.) via document.referrer. Ver TRACKING.md §3 (ai_referral).
+// Só mede visitas que CHEGAM ao site — não vê AI Overview do Google (lá o clique nem acontece).
+(function () {
+	if (typeof gtag !== "function") return;
+	var ref = document.referrer || "";
+	if (!ref) return;
+	var host = "";
+	try { host = new URL(ref).hostname.replace(/^www\./, ""); } catch (e) { return; }
+	// mapa host -> nome da fonte de IA
+	var SOURCES = [
+		["perplexity.ai", "perplexity"],
+		["chatgpt.com", "chatgpt"], ["chat.openai.com", "chatgpt"], ["openai.com", "chatgpt"],
+		["gemini.google.com", "gemini"], ["bard.google.com", "gemini"],
+		["copilot.microsoft.com", "copilot"], ["bing.com", "copilot-or-bing"],
+		["claude.ai", "claude"],
+		["you.com", "you"], ["poe.com", "poe"], ["phind.com", "phind"]
+	];
+	for (var i = 0; i < SOURCES.length; i++) {
+		if (host === SOURCES[i][0] || host.endsWith("." + SOURCES[i][0])) {
+			gtag("event", "ai_referral", {
+				ai_source: SOURCES[i][1],
+				referrer_host: host,
+				landing_page: location.pathname
+			});
+			break;
+		}
+	}
+})();

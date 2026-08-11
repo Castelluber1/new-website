@@ -216,6 +216,24 @@ gtag('event', 'lead_form_submitted', { method: 'SOURCE_STRING_MATCHING_WEBHOOK' 
 On `blog/teer-0-1-2-3-jobs-canada-express-entry.html` and
 `blog/express-entry-software-engineers-noc-21232.html`.
 
+### `ai_referral` — ENGAGEMENT / diagnóstico
+
+**Means:** a visita chegou ao site vindo de um assistente de IA (Perplexity, ChatGPT,
+Gemini, Copilot, Claude, etc.), detectado via `document.referrer`. Mede quanto tráfego
+a IA nos MANDA.
+
+| Param | Value |
+|---|---|
+| `ai_source` | `perplexity` / `chatgpt` / `gemini` / `copilot` / `claude` / ... |
+| `referrer_host` | o hostname real do referrer |
+| `landing_page` | pathname de entrada |
+
+Global em `script.js` (todas as 128 páginas). **Limite:** só vê visitas que CHEGAM ao
+site. NÃO vê o AI Overview do Google nem respostas de IA que não geram clique — nesses
+casos o usuário nunca chega, então não há como medir pelo lado do site. Para "IA lê meu
+conteúdo sem clique", o sinal é indireto (CTR caindo com posição boa no GSC) ou server
+logs de bots (GPTBot/ClaudeBot), não este evento. Nunca marcar como conversão.
+
 ### `scroll_depth` — ENGAGEMENT
 
 **Means:** reached 25/50/75/90% of the ebook LP. Param: `depth`. Fires once per mark per page.
