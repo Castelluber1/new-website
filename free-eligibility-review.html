@@ -107,6 +107,19 @@
 				<label for="country">Current country of residence</label>
 				<input id="country" name="country" type="text" required />
 
+				<label for="foundus">How did you find us?</label>
+				<select id="foundus" name="foundus" required>
+					<option value="">Select…</option>
+					<option>Google search</option>
+					<option>Instagram</option>
+					<option>Friend / referral</option>
+					<option>YouTube</option>
+					<option>Facebook</option>
+					<option>An ad</option>
+					<option>Other</option>
+				</select>
+				<input id="foundus_other" name="foundus_other" type="text" placeholder="Tell us where…" style="display:none" />
+
 				<label for="about">Anything else we should know? (optional)</label>
 				<textarea id="about" name="about" placeholder="Language test, job offer, family, etc."></textarea>
 
@@ -125,8 +138,13 @@
 	<div data-include="sections/footer.html"></div>
 	<script>
 		var f = document.getElementById('reviewForm');
+		f.foundus.addEventListener('change', function(){
+			f.foundus_other.style.display = (f.foundus.value === 'Other') ? 'block' : 'none';
+		});
 		f.addEventListener('submit', function(e){
 			e.preventDefault();
+			var foundus = (f.foundus.value === 'Other' && f.foundus_other.value.trim())
+				? f.foundus_other.value.trim() : f.foundus.value;
 			var about = 'Occupation: ' + f.occupation.value +
 				' | Experience: ' + f.experience.value +
 				' | Age: ' + f.age.value +
@@ -134,6 +152,7 @@
 				' | English: ' + f.english.value +
 				' | Marital: ' + f.marital.value +
 				' | Country: ' + f.country.value +
+				' | Found us: ' + foundus +
 				(f.about.value ? ' | Notes: ' + f.about.value : '');
 			var data = {
 				name: f.name.value.trim(),
@@ -141,6 +160,7 @@
 				phone: f.phone.value.trim(),
 				website: f.website.value,
 				source: 'free-eligibility-review',
+				found_us: foundus,
 				tags: ['express-entry','free-review'],
 				about: about,
 				page: window.location.href

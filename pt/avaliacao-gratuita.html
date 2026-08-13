@@ -107,6 +107,19 @@
 				<label for="country">País onde mora atualmente</label>
 				<input id="country" name="country" type="text" required value="Brasil" />
 
+				<label for="foundus">Como você nos encontrou?</label>
+				<select id="foundus" name="foundus" required>
+					<option value="">Selecione…</option>
+					<option>Busca no Google</option>
+					<option>Instagram</option>
+					<option>Indicação de amigo</option>
+					<option>YouTube</option>
+					<option>Facebook</option>
+					<option>Anúncio</option>
+					<option>Outro</option>
+				</select>
+				<input id="foundus_other" name="foundus_other" type="text" placeholder="Conte onde…" style="display:none" />
+
 				<label for="about">Algo mais que devemos saber? (opcional)</label>
 				<textarea id="about" name="about" placeholder="Teste de idioma, oferta de trabalho, família, etc."></textarea>
 
@@ -125,8 +138,13 @@
 	<div data-include="../sections/footer.html"></div>
 	<script>
 		var f = document.getElementById('reviewForm');
+		f.foundus.addEventListener('change', function(){
+			f.foundus_other.style.display = (f.foundus.value === 'Outro') ? 'block' : 'none';
+		});
 		f.addEventListener('submit', function(e){
 			e.preventDefault();
+			var foundus = (f.foundus.value === 'Outro' && f.foundus_other.value.trim())
+				? f.foundus_other.value.trim() : f.foundus.value;
 			var about = 'Profissão: ' + f.occupation.value +
 				' | Experiência: ' + f.experience.value +
 				' | Idade: ' + f.age.value +
@@ -134,6 +152,7 @@
 				' | Inglês: ' + f.english.value +
 				' | Estado civil: ' + f.marital.value +
 				' | País: ' + f.country.value +
+				' | Nos encontrou: ' + foundus +
 				(f.about.value ? ' | Obs: ' + f.about.value : '');
 			var data = {
 				name: f.name.value.trim(),
@@ -141,6 +160,7 @@
 				phone: f.phone.value.trim(),
 				website: f.website.value,
 				source: 'avaliacao-gratuita-pt',
+				found_us: foundus,
 				tags: ['express-entry','avaliacao-gratuita','pt'],
 				about: about,
 				page: window.location.href
