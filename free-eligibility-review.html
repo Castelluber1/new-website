@@ -51,6 +51,9 @@
 				<label for="email">Email</label>
 				<input id="email" name="email" type="email" required />
 
+				<label for="phone">Phone / WhatsApp</label>
+				<input id="phone" name="phone" type="tel" inputmode="tel" placeholder="+1 …" required />
+
 				<label for="occupation">Your occupation / job title</label>
 				<input id="occupation" name="occupation" type="text" required />
 
@@ -135,7 +138,7 @@
 			var data = {
 				name: f.name.value.trim(),
 				email: f.email.value.trim(),
-				phone: '',
+				phone: f.phone.value.trim(),
 				website: f.website.value,
 				source: 'free-eligibility-review',
 				tags: ['express-entry','free-review'],
