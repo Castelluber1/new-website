@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/humanitarian",
+      "destination": "/permanent-residence/humanitarian-compassionate-grounds",
+      "permanent": true
+    },
+    {
       "source": "/blog/canada-study-permit-processing-time-brazilians-2026",
       "destination": "/pt/blog/tempo-processamento-study-permit-canada-brasileiros",
       "permanent": true
