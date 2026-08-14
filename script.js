@@ -229,3 +229,114 @@ document.querySelectorAll("[data-include]").forEach((el) => {
 		}
 	}
 })();
+
+// ── Journey tracker (HubSpot-like) ────────────────────────────────────────
+// Registra a jornada da pessoa no site NESTA sessão: cada página visitada,
+// tempo em cada uma, e como entrou (referrer/keyword). Fica em localStorage,
+// anônimo, até a pessoa se identificar (formulário ou Calendly). Nesse momento
+// o form/Calendly pega window.upJourney.get() e manda pro CRM, pra a Larissa
+// ver o caminho ANTES da consulta. Ver TRACKING.md.
+(function () {
+	'use strict';
+	var KEY = 'up_journey_v1';
+	var MAX_PAGES = 40;         // teto de segurança
+	var SESSION_GAP = 30 * 60000; // 30min sem atividade = nova sessão
+
+	function load() {
+		try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; }
+	}
+	function save(j) {
+		try { localStorage.setItem(KEY, JSON.stringify(j)); } catch (e) {}
+	}
+
+	var now = Date.now();
+	var j = load();
+
+	// nova sessão se não existe ou ficou inativa demais
+	if (!j || (now - (j.last || 0)) > SESSION_GAP) {
+		var ref = document.referrer || '';
+		var refHost = '';
+		try { refHost = ref ? new URL(ref).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+		// tenta extrair keyword de busca do referrer (Google não passa mais, mas Bing/outros às vezes sim)
+		var kw = '';
+		try {
+			var m = ref.match(/[?&](q|p|query)=([^&]+)/);
+			if (m) kw = decodeURIComponent(m[2].replace(/\+/g, ' '));
+		} catch (e) {}
+		j = {
+			started: now,
+			entry_page: location.pathname,
+			entry_referrer: refHost,
+			entry_keyword: kw,
+			utm: location.search || '',
+			pages: []
+		};
+	}
+
+	// fecha o tempo da página anterior (se houve) — usa o carimbo do pageshow anterior
+	if (j._openPath && j._openAt) {
+		var secs = Math.round((now - j._openAt) / 1000);
+		if (secs >= 0 && secs < 3600) { // ignora abas esquecidas abertas horas
+			var last = j.pages[j.pages.length - 1];
+			if (last && last.path === j._openPath && !last.seconds) {
+				last.seconds = secs;
+			}
+		}
+	}
+
+	// registra a página atual
+	if (j.pages.length < MAX_PAGES) {
+		j.pages.push({ path: location.pathname, title: (document.title || '').slice(0, 90), at: now });
+	}
+	j._openPath = location.pathname;
+	j._openAt = now;
+	j.last = now;
+	save(j);
+
+	// quando a pessoa sai da página, grava o tempo gasto
+	function closePage() {
+		var cur = load();
+		if (!cur || cur._openPath !== location.pathname) return;
+		var s = Math.round((Date.now() - cur._openAt) / 1000);
+		if (s >= 0 && s < 3600) {
+			var last = cur.pages[cur.pages.length - 1];
+			if (last && last.path === location.pathname) last.seconds = s;
+		}
+		cur.last = Date.now();
+		save(cur);
+	}
+	window.addEventListener('pagehide', closePage);
+	window.addEventListener('beforeunload', closePage);
+	document.addEventListener('visibilitychange', function () {
+		if (document.visibilityState === 'hidden') closePage();
+	});
+
+	// API pública: o form e o Calendly chamam isto na hora de identificar a pessoa
+	window.upJourney = {
+		get: function () {
+			var cur = load() || j;
+			closePage(); // garante o tempo da página atual
+			cur = load() || cur;
+			return {
+				entry_page: cur.entry_page,
+				entry_referrer: cur.entry_referrer,
+				entry_keyword: cur.entry_keyword,
+				utm: cur.utm,
+				started: cur.started,
+				pages: (cur.pages || []).map(function (p) {
+					return { path: p.path, title: p.title, seconds: p.seconds || 0 };
+				})
+			};
+		},
+		// versão compacta pra caber em campos/URLs: "spousal(8m)>processing(3m)"
+		summary: function () {
+			var d = this.get();
+			return d.pages.map(function (p) {
+				var slug = p.path.replace(/^\/(blog\/|permanent-residence\/)?/, '').replace(/\/$/, '') || 'home';
+				var m = Math.floor(p.seconds / 60), s = p.seconds % 60;
+				var t = m ? (m + 'm' + (s ? s + 's' : '')) : (p.seconds + 's');
+				return slug.slice(0, 30) + '(' + t + ')';
+			}).join(' > ');
+		}
+	};
+})();

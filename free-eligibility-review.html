@@ -163,7 +163,9 @@
 				found_us: foundus,
 				tags: ['express-entry','free-review'],
 				about: about,
-				page: window.location.href
+				page: window.location.href,
+				journey: (window.upJourney ? window.upJourney.get() : null),
+				journey_summary: (window.upJourney ? window.upJourney.summary() : '')
 			};
 			fetch('https://webhook.upimmigrationconsulting.com/webhook/crm-new-person', {
 				method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data), mode:'no-cors'
