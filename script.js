@@ -1,3 +1,10 @@
+// Microsoft Clarity (session recordings + heatmaps) — site-wide via script.js
+(function(c,l,a,r,i,t,y){
+	c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+	t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+	y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "tnkgwsky2c");
+
 // Typed effect for dynamic word
 const dynamicSpan = document.getElementById("dynamic-word");
 if (dynamicSpan) {
