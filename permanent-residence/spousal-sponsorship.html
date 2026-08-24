@@ -166,13 +166,49 @@
 					</p>
 					<div class="hero-cta">
 						<a
-							href="/immigration-consultation#book"
+							href="https://calendly.com/upimmigration/free-initial-call-spousal-sponsorship"
 							class="btn-main"
-							>Book a consultation</a
+							>Book a free 15-minute call</a
 						>
 					</div>
+					<p style="margin-top:12px;font-size:.9rem;opacity:.85;">
+						Prefer a full consultation?
+						<a href="/immigration-consultation#book" style="text-decoration:underline;color:inherit;">Book here</a>
+					</p>
 				</div>
 			</section>
+
+			<!-- Stamp GA4 clientId onto direct Calendly links (utm_content only),
+			     so the free-call booking joins back to the session. Mirrors
+			     js/calendly-attribution.js but for plain links (mobile-robust,
+			     no widget.js / no popup). See TRACKING.md section 8. -->
+			<script>
+			(function(){
+				function id(){
+					function g(re){var m=document.cookie.match(re);return m?m[1]:null;}
+					var cid=g(/_ga=GA\d\.\d\.(\d+\.\d+)/), sid=g(/_ga_[A-Z0-9]+=GS\d\.\d\.(\d+)/), p=[];
+					if(cid)p.push('cid.'+cid); if(sid)p.push('sid.'+sid);
+					return p.length?p.join('~'):null;
+				}
+				function decorate(a){
+					try{
+						var u=new URL(a.getAttribute('href'), location.href);
+						if(!/(^|\.)calendly\.com$/.test(u.hostname)) return;
+						var i=id();
+						if(i && !u.searchParams.has('utm_content')) u.searchParams.set('utm_content', i);
+						if(!u.searchParams.has('utm_term')) u.searchParams.set('utm_term', location.pathname);
+						a.setAttribute('href', u.toString());
+					}catch(e){}
+				}
+				document.addEventListener('DOMContentLoaded', function(){
+					document.querySelectorAll('a[href*="calendly.com"]').forEach(decorate);
+				});
+				document.addEventListener('click', function(e){
+					var a=e.target.closest && e.target.closest('a[href*="calendly.com"]');
+					if(a) decorate(a);
+				}, true);
+			})();
+			</script>
 
 			<!-- WHAT IS / HOW IT WORKS / WHO QUALIFIES -->
 			<section class="services-section bg-light-grey" id="what-is-spousal">
