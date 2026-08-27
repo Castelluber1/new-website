@@ -1333,7 +1333,13 @@
     <priority>0.6</priority>
   </url>
 	<url>
-		<loc>https://www.upimmigration.ca/blog/new-lmia-rules-canada-august-2026</loc>
+		<loc>https://www.upimmigration.ca/blog/lmia-concurrent-processing-90-days-canada-2026</loc>
+		<lastmod>2026-08-27</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.upimmigration.ca/blog/low-wage-lmia-cap-multi-site-employers-canada-2026</loc>
 		<lastmod>2026-08-27</lastmod>
 		<changefreq>monthly</changefreq>
 		<priority>0.7</priority>
