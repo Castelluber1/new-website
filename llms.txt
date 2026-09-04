@@ -47,6 +47,7 @@ Use this resource if you:
 ### Blog & Resources
 - [Immigration Blog](https://www.upimmigration.ca/blog) - Latest news, guides, and case studies
 - [FAQ](https://www.upimmigration.ca/express-entry-faq-quick-answers) - Quick answers to common questions
+- [Privacy Policy](https://www.upimmigration.ca/privacy)
 
 ### Site Structure
 - **Sitemap**: https://www.upimmigration.ca/sitemap.xml
