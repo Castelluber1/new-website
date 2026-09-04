@@ -3592,3 +3592,7 @@ a.btn-inline {
 .blog-table tbody tr:nth-child(even) {
 	background: #f9fafb;
 }
+
+/* agentic heading hierarchy: h3 forced to match former h4 exactly (pixel-identical) */
+.service-v2-card h3 { font-size:27.2px !important; font-weight:700 !important; line-height:normal !important; color:rgb(184,0,28) !important; margin:0 !important; padding:0 0 15px !important; }
+.review-info h3 { font-size:20px !important; font-weight:600 !important; line-height:24px !important; color:rgb(0,0,0) !important; margin:0 !important; padding:0 !important; }
