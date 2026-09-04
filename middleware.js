@@ -23,7 +23,30 @@ export default async function middleware(request) {
     const res = await fetch(request.url, {
       headers: { accept: 'text/html', 'x-md-passthrough': '1' },
     });
-    if (!res.ok) return; // fall back to normal handling
+    if (!res.ok) {
+      // 404 requested in markdown: return a markdown recovery body so agents can recover
+      if (res.status === 404) {
+        const nf =
+          '# Page Not Found (404)\n\n' +
+          'The page you requested does not exist. Where to look next:\n\n' +
+          '- [Home](https://www.upimmigration.ca/)\n' +
+          '- [Permanent Residence](https://www.upimmigration.ca/permanent-residence)\n' +
+          '- [Work Permits](https://www.upimmigration.ca/work-permit)\n' +
+          '- [Study Permits](https://www.upimmigration.ca/study-permit)\n' +
+          '- [Immigration Blog](https://www.upimmigration.ca/blog)\n' +
+          '- [Book a consultation](https://www.upimmigration.ca/immigration-consultation)\n\n' +
+          'Machine-readable: [sitemap.xml](https://www.upimmigration.ca/sitemap.xml) and [llms.txt](https://www.upimmigration.ca/llms.txt)\n';
+        return new Response(nf, {
+          status: 404,
+          headers: {
+            'content-type': 'text/markdown; charset=utf-8',
+            'vary': 'Accept, Accept-Encoding',
+            'x-content-type-options': 'nosniff',
+          },
+        });
+      }
+      return; // other errors -> serve the normal response
+    }
     const ct = res.headers.get('content-type') || '';
     if (!ct.includes('text/html')) return; // only convert HTML documents
 
