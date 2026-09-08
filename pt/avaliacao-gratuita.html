@@ -60,63 +60,97 @@
 				<label for="experience">Anos de experiência profissional qualificada</label>
 				<select id="experience" name="experience" required>
 					<option value="">Selecione...</option>
-					<option>Menos de 1 ano</option>
-					<option>1 a 2 anos</option>
-					<option>3 a 5 anos</option>
-					<option>Mais de 5 anos</option>
+					<option value="lt1">Menos de 1 ano</option>
+					<option value="y1_2">1 a 2 anos</option>
+					<option value="y3_5">3 a 5 anos</option>
+					<option value="y5plus">Mais de 5 anos</option>
 				</select>
 
 				<label for="age">Sua idade</label>
 				<select id="age" name="age" required>
 					<option value="">Selecione...</option>
-					<option>Menos de 18</option>
-					<option>18 a 29</option>
-					<option>30 a 34</option>
-					<option>35 a 39</option>
-					<option>40 a 44</option>
-					<option>45 ou mais</option>
+					<option value="u18">Menos de 18</option>
+					<option value="a18_29">18 a 29</option>
+					<option value="a30_34">30 a 34</option>
+					<option value="a35_39">35 a 39</option>
+					<option value="a40_44">40 a 44</option>
+					<option value="a45plus">45 ou mais</option>
 				</select>
 
 				<label for="education">Maior nível de escolaridade</label>
 				<select id="education" name="education" required>
 					<option value="">Selecione...</option>
-					<option>Ensino médio</option>
-					<option>Curso técnico / tecnólogo (1 ano)</option>
-					<option>Curso superior de 2+ anos</option>
-					<option>Graduação (bacharelado)</option>
-					<option>Mestrado</option>
-					<option>Doutorado</option>
+					<option value="highschool">Ensino médio</option>
+					<option value="dip1">Curso técnico / tecnólogo (1 ano)</option>
+					<option value="dip2plus">Curso superior de 2+ anos</option>
+					<option value="bachelor">Graduação (bacharelado)</option>
+					<option value="master">Mestrado</option>
+					<option value="phd">Doutorado</option>
 				</select>
 
 				<label for="english">Nível de inglês</label>
 				<select id="english" name="english" required>
 					<option value="">Selecione...</option>
-					<option>Ainda não fiz IELTS/CELPIP</option>
-					<option>Básico (CLB 4 a 6)</option>
-					<option>Bom (CLB 7 a 8)</option>
-					<option>Avançado (CLB 9+)</option>
+					<option value="untested">Ainda não fiz IELTS/CELPIP</option>
+					<option value="clb4_6">Básico (CLB 4 a 6)</option>
+					<option value="clb7_8">Bom (CLB 7 a 8)</option>
+					<option value="clb9plus">Avançado (CLB 9+)</option>
 				</select>
 
 				<label for="marital">Estado civil</label>
 				<select id="marital" name="marital" required>
 					<option value="">Selecione...</option>
-					<option>Solteiro(a)</option>
-					<option>Casado(a) / união estável</option>
+					<option value="single">Solteiro(a)</option>
+					<option value="married">Casado(a) / união estável</option>
 				</select>
 
 				<label for="country">País onde mora atualmente</label>
 				<input id="country" name="country" type="text" required value="Brasil" />
 
+				<label for="job_offer">Você tem uma oferta de emprego de um empregador canadense? (opcional)</label>
+				<select id="job_offer" name="job_offer">
+					<option value="">Selecione…</option>
+					<option value="none">Não tenho oferta</option>
+					<option value="offer_no_lmia">Sim, mas sem LMIA</option>
+					<option value="lmia">Sim, com LMIA aprovado</option>
+				</select>
+
+				<label for="french">Nível de francês (opcional)</label>
+				<select id="french" name="french">
+					<option value="">Selecione…</option>
+					<option value="none">Não falo francês</option>
+					<option value="basic">Básico</option>
+					<option value="intermediate">Intermediário</option>
+					<option value="advanced">Avançado / fluente</option>
+				</select>
+
+				<label for="relative_canada">Você tem parente que seja cidadão ou residente permanente do Canadá? (opcional)</label>
+				<select id="relative_canada" name="relative_canada">
+					<option value="">Selecione…</option>
+					<option value="none">Não</option>
+					<option value="sibling">Sim, irmão(ã)</option>
+					<option value="other">Sim, outro parente</option>
+				</select>
+
+				<label for="canada_history">Você já estudou ou trabalhou no Canadá? (opcional)</label>
+				<select id="canada_history" name="canada_history">
+					<option value="">Selecione…</option>
+					<option value="none">Nenhum dos dois</option>
+					<option value="study">Estudei no Canadá</option>
+					<option value="work">Trabalhei no Canadá</option>
+					<option value="both">Os dois</option>
+				</select>
+
 				<label for="foundus">Como você nos encontrou?</label>
 				<select id="foundus" name="foundus" required>
 					<option value="">Selecione…</option>
-					<option>Busca no Google</option>
-					<option>Instagram</option>
-					<option>Indicação de amigo</option>
-					<option>YouTube</option>
-					<option>Facebook</option>
-					<option>Anúncio</option>
-					<option>Outro</option>
+					<option value="google">Busca no Google</option>
+					<option value="instagram">Instagram</option>
+					<option value="referral">Indicação de amigo</option>
+					<option value="youtube">YouTube</option>
+					<option value="facebook">Facebook</option>
+					<option value="ad">Anúncio</option>
+					<option value="other">Outro</option>
 				</select>
 				<input id="foundus_other" name="foundus_other" type="text" placeholder="Conte onde…" style="display:none" />
 
@@ -139,19 +173,27 @@
 	<script>
 		var f = document.getElementById('reviewForm');
 		f.foundus.addEventListener('change', function(){
-			f.foundus_other.style.display = (f.foundus.value === 'Outro') ? 'block' : 'none';
+			f.foundus_other.style.display = (f.foundus.value === 'other') ? 'block' : 'none';
 		});
 		f.addEventListener('submit', function(e){
 			e.preventDefault();
-			var foundus = (f.foundus.value === 'Outro' && f.foundus_other.value.trim())
-				? f.foundus_other.value.trim() : f.foundus.value;
+			// Texto visivel do <option> escolhido (o .value agora e o codigo).
+			var lbl = function(sel){ return sel.selectedIndex > 0 ? sel.options[sel.selectedIndex].text : ''; };
+			// Campo opcional: so entra no resumo se a pessoa respondeu.
+			var opt = function(label, sel){ var v = lbl(sel); return v ? ' | ' + label + ': ' + v : ''; };
+			var foundus = (f.foundus.value === 'other' && f.foundus_other.value.trim())
+				? f.foundus_other.value.trim() : lbl(f.foundus);
 			var about = 'Profissão: ' + f.occupation.value +
-				' | Experiência: ' + f.experience.value +
-				' | Idade: ' + f.age.value +
-				' | Escolaridade: ' + f.education.value +
-				' | Inglês: ' + f.english.value +
-				' | Estado civil: ' + f.marital.value +
+				' | Experiência: ' + lbl(f.experience) +
+				' | Idade: ' + lbl(f.age) +
+				' | Escolaridade: ' + lbl(f.education) +
+				' | Inglês: ' + lbl(f.english) +
+				' | Estado civil: ' + lbl(f.marital) +
 				' | País: ' + f.country.value +
+				opt('Oferta de emprego', f.job_offer) +
+				opt('Francês', f.french) +
+				opt('Parente no Canadá', f.relative_canada) +
+				opt('Histórico no Canadá', f.canada_history) +
 				' | Nos encontrou: ' + foundus +
 				(f.about.value ? ' | Obs: ' + f.about.value : '');
 			var data = {
@@ -163,6 +205,22 @@
 				found_us: foundus,
 				tags: ['express-entry','avaliacao-gratuita','pt'],
 				about: about,
+				// Perfil em codigos estaveis — o CRM le daqui, sem parsear texto.
+				profile: {
+					lang: 'pt',
+					occupation: f.occupation.value.trim(),
+					country: f.country.value.trim(),
+					experience: f.experience.value,
+					age: f.age.value,
+					education: f.education.value,
+					english: f.english.value,
+					marital: f.marital.value,
+					job_offer: f.job_offer.value,
+					french: f.french.value,
+					relative_canada: f.relative_canada.value,
+					canada_history: f.canada_history.value,
+					notes: f.about.value.trim()
+				},
 				page: window.location.href,
 				journey: (window.upJourney ? window.upJourney.get() : null),
 				journey_summary: (window.upJourney ? window.upJourney.summary() : '')
