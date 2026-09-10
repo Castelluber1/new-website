@@ -177,6 +177,8 @@
 		});
 		f.addEventListener('submit', function(e){
 			e.preventDefault();
+			// Origem da isca (?src=eca etc.): vira tag pra medir qual pagina trouxe o lead.
+			var srcParam = (new URLSearchParams(window.location.search).get('src') || '').replace(/[^a-z0-9_-]/gi,'').slice(0,32);
 			// Texto visivel do <option> escolhido (o .value agora e o codigo).
 			var lbl = function(sel){ return sel.selectedIndex > 0 ? sel.options[sel.selectedIndex].text : ''; };
 			// Campo opcional: so entra no resumo se a pessoa respondeu.
@@ -203,7 +205,7 @@
 				website: f.website.value,
 				source: 'free-eligibility-review',
 				found_us: foundus,
-				tags: ['express-entry','free-review'],
+				tags: ['express-entry','free-review'].concat(srcParam ? ['src-' + srcParam] : []),
 				about: about,
 				// Perfil em codigos estaveis — o CRM le daqui, sem parsear texto.
 				profile: {
