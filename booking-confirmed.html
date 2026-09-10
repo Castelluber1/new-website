@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-9MHZ6FJJGG"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", "G-9MHZ6FJJGG");
+		</script>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Booking Confirmed — Up Immigration</title>
+		<meta name="description" content="Your consultation with Up Immigration is confirmed. Here's what to prepare before we meet." />
+		<meta name="robots" content="noindex, follow" />
+
+		<link rel="stylesheet" href="/style.css" />
+		<script src="/script.js" defer></script>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+			rel="stylesheet" />
+		<link rel="canonical" href="https://www.upimmigration.ca/booking-confirmed" />
+		<link rel="icon" type="image/png" href="/img/thumnail.png" />
+
+		<!--
+			Conversion tracking for Calendly bookings that redirect here.
+			See TRACKING.md §3 (consultation_booked). This covers bookings made
+			from a direct Calendly link (DM / email / LinkedIn) that never load
+			the on-site widget listener. In-widget bookings are still tracked by
+			the page's own postMessage listener; the sessionStorage guard below
+			also stops a refresh from double-firing.
+		-->
+		<script>
+			(function () {
+				try {
+					var params = new URLSearchParams(window.location.search);
+
+					// Calendly appends event_type_name / event_type_uuid / invitee_uuid
+					// plus any utm_* we set via js/calendly-attribution.js.
+					var eventType = params.get("event_type_name") || "unknown";
+					var inviteeUuid = params.get("invitee_uuid") || "";
+
+					var guardKey = "booking_confirmed_fired:" + (inviteeUuid || "no-uuid");
+					if (sessionStorage.getItem(guardKey)) return;
+
+					gtag("event", "consultation_booked", {
+						booking_source: "calendly-redirect",
+						event_type: eventType,
+						// carry the join key through so calendly-attribution's utm_content still lines up
+						utm_content: params.get("utm_content") || undefined
+					});
+
+					sessionStorage.setItem(guardKey, "1");
+				} catch (e) {
+					// never let tracking break the confirmation UI
+				}
+			})();
+		</script>
+
+		<style>
+			.confirm-section {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 72px 24px 96px;
+				text-align: center;
+			}
+			.confirm-check {
+				width: 64px;
+				height: 64px;
+				border-radius: 50%;
+				background: #e8f5ec;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin: 0 auto 24px;
+				font-size: 32px;
+				line-height: 1;
+				color: #1a7f43;
+			}
+			.confirm-section h1 {
+				font-size: 2rem;
+				margin: 0 0 12px;
+			}
+			.confirm-section .confirm-lead {
+				font-size: 1.1rem;
+				color: #444;
+				margin: 0 0 40px;
+			}
+			.confirm-next {
+				text-align: left;
+				background: #f7f8fa;
+				border-radius: 12px;
+				padding: 28px 28px 8px;
+				margin: 0 0 40px;
+			}
+			.confirm-next h2 {
+				font-size: 1.1rem;
+				margin: 0 0 16px;
+			}
+			.confirm-next ul {
+				margin: 0;
+				padding-left: 20px;
+			}
+			.confirm-next li {
+				margin: 0 0 12px;
+				color: #333;
+			}
+			.confirm-actions a {
+				display: inline-block;
+				margin: 0 8px 12px;
+			}
+			.btn-outline {
+				border: 1px solid #ccc;
+				padding: 12px 22px;
+				border-radius: 8px;
+				text-decoration: none;
+				color: #222;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div data-include="sections/header.html"></div>
+		<main>
+			<section class="confirm-section">
+				<div class="confirm-check" aria-hidden="true">&#10003;</div>
+				<h1>Your consultation is booked</h1>
+				<p class="confirm-lead">
+					A calendar invite and confirmation email are on their way. If you don't see it in
+					a few minutes, check your spam folder.
+				</p>
+
+				<div class="confirm-next">
+					<h2>Before we meet</h2>
+					<ul>
+						<li>Have your passport and any current or past Canadian permits or visas handy.</li>
+						<li>Note key dates: entries to Canada, status expiry, application submission dates.</li>
+						<li>Write down your main question &mdash; the one thing you most want answered.</li>
+						<li>Add the meeting to your calendar from the invite so you don't miss it.</li>
+					</ul>
+				</div>
+
+				<div class="confirm-actions">
+					<a class="btn-outline" href="/">Back to home</a>
+					<a class="btn-outline" href="/blog.html">Read the blog while you wait</a>
+				</div>
+			</section>
+		</main>
+
+		<div data-include="sections/footer.html"></div>
+	</body>
+</html>
