@@ -1,3 +1,45 @@
+// Header CTA agenda direto no Calendly (popup), sem passar pela pagina de
+// consulta. Carregado aqui (nao dentro de sections/header.html) porque
+// <script>/<link> injetados via innerHTML pelo loader de data-include NAO
+// executam — e o header e incluido assim em toda pagina do site.
+// Ver TRACKING.md secao 8 e js/calendly-funnel.js para o que cada script mede.
+(function () {
+	var css = document.createElement('link');
+	css.rel = 'stylesheet';
+	css.href = 'https://assets.calendly.com/assets/external/widget.css';
+	document.head.appendChild(css);
+
+	var widget = document.createElement('script');
+	widget.src = 'https://assets.calendly.com/assets/external/widget.js';
+	widget.async = true;
+	document.head.appendChild(widget);
+
+	var attribution = document.createElement('script');
+	attribution.src = '/js/calendly-attribution.js';
+	document.head.appendChild(attribution);
+
+	var funnel = document.createElement('script');
+	funnel.src = '/js/calendly-funnel.js';
+	document.head.appendChild(funnel);
+
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape' && window.Calendly) Calendly.closePopupWidget();
+	});
+})();
+
+window.upOpenBooking = function () {
+	var url = 'https://calendly.com/upimmigration/immigration-consultation?hide_event_type_details=1&hide_gdpr_banner=1';
+	if (window.Calendly && typeof Calendly.showPopupWidget === 'function') {
+		Calendly.showPopupWidget(url);
+	} else {
+		// widget.js ainda nao carregou (raro, mas nao trava o clique) —
+		// manda pra pagina de consulta no idioma certo como fallback.
+		var isPt = location.pathname.indexOf('/pt/') === 0 || location.pathname.indexOf('/pt') === 0;
+		window.location.href = isPt ? '/pt/consulta-de-imigracao' : '/immigration-consultation';
+	}
+	return false;
+};
+
 // Microsoft Clarity (session recordings + heatmaps) — site-wide via script.js
 (function(c,l,a,r,i,t,y){
 	c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -198,10 +240,12 @@ document.querySelectorAll("[data-include]").forEach((el) => {
 		.then((data) => {
 			el.innerHTML = data;
 			const isPt = location.pathname.startsWith('/pt/');
-			const bookBtn = el.querySelector('#nav-book-btn');
-			if (bookBtn && isPt) {
-				bookBtn.href = '/pt/consulta-de-imigracao';
-				bookBtn.textContent = 'Agendar Consulta';
+			if (isPt) {
+				// O botao abre o popup do Calendly direto (ver upOpenBooking em
+				// sections/header.html); so o texto muda por idioma aqui.
+				el.querySelectorAll('#nav-book-btn, #nav-book-btn-mobile').forEach((btn) => {
+					btn.textContent = 'Agendar Consulta';
+				});
 			}
 		})
 		.catch((err) => console.error("Erro ao incluir:", file, err));
