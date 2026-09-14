@@ -29,6 +29,35 @@
 		<link rel="canonical" href="https://www.upimmigration.ca/booking-confirmed" />
 		<link rel="icon" type="image/png" href="/img/thumnail.png" />
 
+		<!-- Meta Pixel (dataset 1616167476729320) -->
+		<script>
+			!(function (f, b, e, v, n, t, s) {
+				if (f.fbq) return;
+				n = f.fbq = function () {
+					n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+				};
+				if (!f._fbq) f._fbq = n;
+				n.push = n;
+				n.loaded = !0;
+				n.version = "2.0";
+				n.queue = [];
+				t = b.createElement(e);
+				t.async = !0;
+				t.src = v;
+				s = b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t, s);
+			})(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+			fbq("init", "1616167476729320");
+			fbq("track", "PageView");
+		</script>
+		<noscript
+			><img
+				height="1"
+				width="1"
+				style="display: none"
+				src="https://www.facebook.com/tr?id=1616167476729320&ev=PageView&noscript=1"
+		/></noscript>
+
 		<!--
 			Conversion tracking for Calendly bookings that redirect here.
 			See TRACKING.md §3 (consultation_booked). Covers bookings made from a
@@ -36,6 +65,11 @@
 			on-site widget listener. In-widget bookings are still tracked by the
 			page's own postMessage listener; the sessionStorage guard below also
 			stops a refresh from double-firing.
+
+			The same guard fires the Meta conversion. Note: upimmigration.ca is
+			categorised by Meta as "Nationality", which blocks some standard
+			events, so this uses a custom event (trackCustom) rather than Lead /
+			CompleteRegistration.
 		-->
 		<script>
 			(function () {
@@ -52,6 +86,13 @@
 						event_type: eventType,
 						utm_content: params.get("utm_content") || undefined
 					});
+
+					if (typeof fbq === "function") {
+						fbq("trackCustom", "ConsultationBooked", {
+							booking_source: "calendly-redirect",
+							event_type: eventType
+						});
+					}
 
 					sessionStorage.setItem(guardKey, "1");
 				} catch (e) {
