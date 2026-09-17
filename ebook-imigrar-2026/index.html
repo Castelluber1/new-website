@@ -70,7 +70,7 @@
       backdrop-filter: blur(8px);
     }
     .nav:not(.scrolled) { background: transparent; }
-    .nav-logo { height: 26px; transition: filter 0.3s; }
+    .nav-logo { height: 26px; width: auto; transition: filter 0.3s; }
     .nav.scrolled .nav-logo { filter: none; }
     .nav:not(.scrolled) .nav-logo { filter: brightness(0) invert(1); }
 
@@ -107,7 +107,7 @@
       margin: 1.25rem 0;
     }
     .ebook-cover-img {
-      width: 100%; max-width: 100%;
+      width: 100%; max-width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain;
       filter: drop-shadow(-6px 10px 22px rgba(0,0,0,0.32));
       transform: perspective(900px) rotateY(-10deg) rotateX(2deg);
       transform-origin: center center;
