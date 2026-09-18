@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>[MOCKUP B] Larissa Castelluber, RCIC R710678 — Consultora de Imigração Licenciada no Canadá</title>
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="/style.css" />
+		<script src="/script.js" defer></script>
+		<style>
+			:root {
+				--brand: #b8001c;
+				--brand-deep: #8c0016;
+				--ink: #14161a;
+				--muted: #5b6068;
+				--line: #e4e6ea;
+				--paper: #fdfcfa;
+			}
+			body.lcpage { background: var(--paper); }
+			.lc-wrap { max-width: 640px; margin: 0 auto; padding: 0 20px 72px; font-family: 'Poppins', sans-serif; }
+
+			/* ---------- Masthead / credential strip ---------- */
+			.lc-masthead {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+				padding: 36px 0 28px;
+				border-bottom: 1px solid var(--line);
+				margin-bottom: 34px;
+			}
+			.lc-masthead img {
+				width: 62px; height: 62px; border-radius: 50%; object-fit: cover; flex: none;
+				border: 1px solid var(--line);
+			}
+			.lc-masthead .name {
+				font-family: 'Fraunces', serif;
+				font-weight: 600;
+				font-size: 1.2rem;
+				color: var(--ink);
+				line-height: 1.2;
+				margin: 0 0 4px;
+			}
+			.lc-masthead .role {
+				font-size: .8rem;
+				color: var(--muted);
+				letter-spacing: .01em;
+			}
+			.lc-masthead .role b { color: var(--brand); font-weight: 700; }
+
+			/* ---------- Editorial headline block ---------- */
+			.lc-eyebrow {
+				font-size: .72rem;
+				font-weight: 700;
+				letter-spacing: .12em;
+				text-transform: uppercase;
+				color: var(--brand);
+				margin: 0 0 14px;
+			}
+			.lc-headline {
+				font-family: 'Fraunces', serif;
+				font-weight: 600;
+				font-size: 2.05rem;
+				line-height: 1.18;
+				letter-spacing: -.01em;
+				color: var(--ink);
+				margin: 0 0 20px;
+			}
+			.lc-headline .id { color: var(--brand); font-style: italic; }
+			.lc-intro {
+				font-size: 1rem;
+				line-height: 1.75;
+				color: #33363c;
+				margin: 0 0 44px;
+			}
+
+			/* ---------- Proof — the gold: big, unhidden, framed like an exhibit ---------- */
+			.lc-proof-block { margin: 0 0 40px; }
+			.lc-proof-label {
+				display: flex;
+				align-items: baseline;
+				gap: 10px;
+				font-size: .74rem;
+				font-weight: 700;
+				letter-spacing: .1em;
+				text-transform: uppercase;
+				color: var(--brand);
+				margin: 0 0 12px;
+			}
+			.lc-proof-label .num {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 20px; height: 20px;
+				border-radius: 50%;
+				background: var(--brand);
+				color: #fff;
+				font-size: .68rem;
+				font-weight: 800;
+				letter-spacing: 0;
+				flex: none;
+			}
+			.lc-proof {
+				margin: 0 0 10px;
+				border: 1px solid var(--line);
+				border-radius: 4px;
+				overflow: hidden;
+				box-shadow: 0 1px 3px rgba(20,22,26,.06), 0 8px 24px -12px rgba(20,22,26,.12);
+			}
+			.lc-proof img { display: block; width: 100%; height: auto; }
+			.lc-proof-caption {
+				font-size: .82rem;
+				line-height: 1.55;
+				color: var(--muted);
+				margin: 0;
+				padding-left: 2px;
+			}
+			.lc-proof-caption a { color: var(--brand); font-weight: 600; }
+
+			/* ---------- Data table — ledger style ---------- */
+			.lc-data-label {
+				font-size: .74rem;
+				font-weight: 700;
+				letter-spacing: .1em;
+				text-transform: uppercase;
+				color: var(--brand);
+				margin: 48px 0 14px;
+			}
+			.lc-data {
+				border-top: 1px solid var(--ink);
+				border-bottom: 1px solid var(--ink);
+				margin: 0 0 40px;
+			}
+			.lc-row {
+				display: flex;
+				justify-content: space-between;
+				gap: 14px;
+				padding: 13px 0;
+				border-top: 1px solid var(--line);
+				font-size: .92rem;
+			}
+			.lc-row:first-child { border-top: 0; }
+			.lc-row .k { color: var(--muted); }
+			.lc-row .v { color: var(--ink); font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+
+			/* ---------- CTA: appears AFTER proof is established — editorial weight, not a banner ad ---------- */
+			.lc-cta-section {
+				margin: 0 0 48px;
+				padding: 32px 26px;
+				background: #fff;
+				border: 1px solid var(--line);
+				border-left: 3px solid var(--brand);
+				border-radius: 2px;
+			}
+			.lc-cta-section .lc-cta-kicker {
+				font-size: .72rem;
+				font-weight: 700;
+				letter-spacing: .1em;
+				text-transform: uppercase;
+				color: var(--muted);
+				margin: 0 0 10px;
+			}
+			.lc-cta-section h3 {
+				font-family: 'Fraunces', serif;
+				font-weight: 600;
+				font-size: 1.28rem;
+				line-height: 1.32;
+				color: var(--ink);
+				margin: 0 0 10px;
+			}
+			.lc-cta-section p {
+				font-size: .94rem;
+				line-height: 1.65;
+				color: #33363c;
+				margin: 0 0 20px;
+			}
+			.lc-cta-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				background: var(--brand);
+				color: #fff;
+				padding: 13px 24px;
+				border-radius: 4px;
+				text-decoration: none;
+				font-weight: 700;
+				font-size: .92rem;
+				transition: background .15s ease;
+			}
+			.lc-cta-btn:hover { background: var(--brand-deep); }
+			.lc-cta-btn .arrow { font-size: 1rem; }
+
+			/* ---------- Secondary editorial content ---------- */
+			h2 {
+				font-family: 'Fraunces', serif;
+				font-weight: 600;
+				font-size: 1.18rem;
+				color: var(--ink);
+				margin: 40px 0 12px;
+			}
+			p { font-size: .96rem; line-height: 1.75; color: #33363c; margin: 0 0 16px; }
+			.lc-steps { margin: 0 0 16px; padding-left: 20px; font-size: .96rem; line-height: 1.8; color: #33363c; }
+			.lc-steps li { margin-bottom: 6px; }
+			a { color: var(--brand); }
+
+			.lc-signoff {
+				margin-top: 56px;
+				padding-top: 24px;
+				border-top: 1px solid var(--line);
+				font-size: .84rem;
+				color: var(--muted);
+			}
+
+			@media (min-width: 600px) {
+				.lc-headline { font-size: 2.3rem; }
+			}
+		</style>
+	</head>
+	<body class="lcpage">
+		<div data-include="sections/header.html"></div>
+		<main>
+			<div class="lc-wrap">
+				<div class="lc-masthead">
+					<img src="/img/larissa-smile.webp" alt="Larissa Castelluber" />
+					<div>
+						<p class="name">Larissa Castelluber</p>
+						<p class="role"><b>RCIC</b> &middot; UP Immigration Consulting</p>
+					</div>
+				</div>
+
+				<p class="lc-eyebrow">Verificação de credencial</p>
+				<h1 class="lc-headline">Licença <span class="id">R710678</span>, ativa no registro oficial do governo canadense</h1>
+				<p class="lc-intro">Larissa é Regulated Canadian Immigration Consultant (RCIC), registrada no College of Immigration and Citizenship Consultants (CICC) &mdash; o órgão que regula quem pode legalmente cobrar por consultoria de imigração no Canadá. Abaixo está o print direto do site oficial do CICC, sem edição.</p>
+
+				<div class="lc-proof-block">
+					<p class="lc-proof-label"><span class="num">1</span> Busca pública &mdash; college-ic.ca</p>
+					<div class="lc-proof">
+						<img src="/img/cicc-search-larissa.png" alt="Registro público do CICC: busca por Larissa Castelluber, College ID R710678, UP Immigration Consulting, RCIC-L2, Entitled to Practise: Yes" loading="eager" />
+					</div>
+					<p class="lc-proof-caption">Resultado da busca em <a href="https://college-ic.ca/find-a-consultant" target="_blank" rel="noopener">college-ic.ca/find-a-consultant</a> &mdash; R710678, UP Immigration Consulting, Entitled to Practise: Yes.</p>
+				</div>
+
+				<div class="lc-proof-block">
+					<p class="lc-proof-label"><span class="num">2</span> Perfil completo &mdash; register.college-ic.ca</p>
+					<div class="lc-proof">
+						<img src="/img/cicc-profile-larissa.png" alt="Perfil de Larissa Castelluber no CICC: College ID R710678, Class L2 RCIC, Licence Status Active, Eligible to Provide Service" loading="lazy" />
+					</div>
+					<p class="lc-proof-caption"><a href="https://register.college-ic.ca/Public-Register-EN/Licensee/Profile.aspx?ID=15375" target="_blank" rel="noopener">register.college-ic.ca</a> &mdash; Class L2 RCIC, Licence Status Active, Eligible to Provide Service.</p>
+				</div>
+
+				<p class="lc-data-label">Resumo dos dados</p>
+				<div class="lc-data">
+					<div class="lc-row"><span class="k">College ID</span><span class="v">R710678</span></div>
+					<div class="lc-row"><span class="k">Empresa</span><span class="v">UP Immigration Consulting</span></div>
+					<div class="lc-row"><span class="k">Tipo</span><span class="v">RCIC-L2</span></div>
+					<div class="lc-row"><span class="k">Status</span><span class="v">Active</span></div>
+					<div class="lc-row"><span class="k">Entitled to Practise</span><span class="v">Yes</span></div>
+				</div>
+
+				<!-- CTA: arrives here, right after the proof is fully established, not before it -->
+				<div class="lc-cta-section">
+					<p class="lc-cta-kicker">Próximo passo</p>
+					<h3>Agora que você já confirmou a licença</h3>
+					<p>Se o seu caso tem dúvidas específicas, a Larissa pode analisar sua situação diretamente numa consulta &mdash; sem compromisso de continuar depois.</p>
+					<a class="lc-cta-btn" href="/pt/consulta-de-imigracao">Agendar consulta com a Larissa <span class="arrow">&rarr;</span></a>
+				</div>
+
+				<h2>Como conferir você mesmo</h2>
+				<ol class="lc-steps">
+					<li>Acesse <a href="https://college-ic.ca/find-a-consultant" target="_blank" rel="noopener">college-ic.ca/find-a-consultant</a> e abra "Search for an RCIC".</li>
+					<li>Digite <strong>Larissa</strong> em First Name e <strong>Castelluber</strong> em Last Name.</li>
+					<li>Clique em <strong>Find</strong>, depois em <strong>Select</strong> para abrir o perfil completo.</li>
+				</ol>
+				<p>Leva menos de um minuto e é direto na fonte oficial &mdash; não precisa confiar na nossa palavra.</p>
+
+				<h2>Por que isso importa</h2>
+				<p>No Canadá, só um RCIC licenciado ou um advogado canadense pode legalmente cobrar para dar consultoria de imigração. É uma profissão regulamentada porque o mercado tem muito "despachante" sem licença cobrando e desaparecendo quando o processo complica.</p>
+
+				<p class="lc-signoff">Você também encontra a Larissa no <a href="https://www.linkedin.com/in/castelluberlarissa/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+			</div>
+		</main>
+		<div data-include="sections/footer.html"></div>
+	</body>
+</html>
