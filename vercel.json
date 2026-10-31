@@ -316,6 +316,11 @@
       "source": "/blog/free-eligibility-review",
       "destination": "/free-eligibility-review",
       "permanent": true
+    },
+    {
+      "source": "/pt/lp-consulta",
+      "destination": "/pt/imigrar-canada",
+      "permanent": true
     }
   ],
   "headers": [
