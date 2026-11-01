@@ -223,6 +223,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .get-card h3 { margin-bottom: 8px; font-size: 1rem; }
     .get-card p  { font-size: .9rem; }
 
+    .get-list {
+      list-style: none; max-width: 640px; margin: 48px auto 0;
+    }
+    .get-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 0; border-bottom: 1px solid rgba(10,12,15,.08);
+      font-size: 1rem; color: var(--dark);
+    }
+    .get-list li:last-child { border-bottom: none; }
+    .get-list li svg { flex-shrink: 0; color: var(--brand); margin-top: 2px; }
+
     /* ── Larissa ── */
     .larissa-grid {
       display: grid; grid-template-columns: 1fr 1.6fr;
@@ -232,10 +243,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       border-radius: var(--r); overflow: hidden;
       box-shadow: 0 16px 48px rgba(0,0,0,.12);
       max-width: 320px;
+      aspect-ratio: 4 / 5;
       margin: 0 auto;
     }
-    .cred-logos { display: flex; gap: 20px; align-items: center; margin-top: 28px; flex-wrap: wrap; }
-    .cred-logos img { height: 36px; filter: grayscale(1) opacity(.6); }
+    .larissa-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .cred-logos { display: flex; gap: 24px; align-items: center; margin-top: 28px; flex-wrap: wrap; }
+    .cred-logos img { height: 32px; width: auto; max-width: 110px; object-fit: contain; filter: grayscale(1) opacity(.55); }
     .rcic-badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(184,0,28,.06); border: 1px solid rgba(184,0,28,.2);
@@ -538,106 +551,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ════════════════════════════════════
-     AUTORIDADE DA LARISSA — quem é + prova oficial CICC + RCIC vs. não-licenciado
-════════════════════════════════════ -->
-<section class="section section--gray">
-  <div class="container">
-    <div class="larissa-grid">
-      <div>
-        <div class="larissa-photo">
-          <img width="1365" height="2048" src="/img/larissa-smile.webp" alt="Larissa Castelluber, RCIC" />
-        </div>
-      </div>
-      <div>
-        <div class="rcic-badge">RCIC Licenciada · R710678 · CICC</div>
-        <h2 style="text-align:left; margin-bottom: 20px;">Você vai falar diretamente com a Larissa</h2>
-        <p style="margin-bottom: 16px;">
-          Não com uma assistente. Não com um script. Com a Larissa Castelluber, consultora RCIC licenciada pelo CICC, com formação pela UBC em Canadian Immigration Law e experiência em casos de PR, patrocínio, LMIA, study permits e work permits.
-        </p>
-        <p>
-          A UP Immigration foi construída com um princípio claro: cada pessoa merece atenção real, orientação honesta e um plano que funcione para <em>o seu</em> caso — não para o caso genérico.
-        </p>
-        <div class="cred-logos">
-          <img width="344" height="146" src="/img/RCIC-logo.webp" alt="RCIC" />
-          <img width="580" height="580" src="/img/UBC-logo.webp" alt="UBC" />
-          <img width="440" height="440" src="/img/BCIT-logo.webp" alt="BCIT" />
-        </div>
-      </div>
-    </div>
-
-    <div class="mw760" style="margin-top:72px;">
-      <div class="section-tag">
-        <div class="eyebrow">Prova, não promessa</div>
-        <h2>Confira o registro oficial você mesma</h2>
-        <p class="lead">Não precisa confiar na nossa palavra. Abaixo está o print direto do registro público do governo canadense, sem edição.</p>
-      </div>
-
-      <div style="margin-top:40px; border:1px solid rgba(10,12,15,.1); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow);">
-        <img src="/img/cicc-search-larissa.png" alt="Registro público do CICC: busca por Larissa Castelluber, College ID R710678, UP Immigration Consulting, RCIC-L2, Entitled to Practise: Yes" loading="lazy" style="width:100%; height:auto; display:block;" />
-      </div>
-      <p style="text-align:center; font-size:.85rem; margin-top:12px;">
-        Resultado da busca em <a href="https://college-ic.ca/find-a-consultant" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:underline;">college-ic.ca/find-a-consultant</a> — College ID R710678, Entitled to Practise: Yes.
-      </p>
-
-      <div style="margin-top:40px; max-width:360px; margin-inline:auto; border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow);">
-        <video
-          controls
-          preload="none"
-          poster="/img/verifique-rcic-poster.jpg"
-          style="width:100%; display:block; background:#000;"
-          aria-label="Vídeo: como verificar se um consultor de imigração é realmente licenciado">
-          <source src="/video/verifique-rcic-antes-de-contratar.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <p style="text-align:center; font-size:.85rem; margin-top:12px;">
-        Como fazer essa verificação direto pelo seu celular, em menos de 1 minuto.
-      </p>
-
-      <div style="text-align:center; margin-top:28px;">
-        <a href="/pt/larissa-castelluber" style="font-size:.9rem; color:var(--muted); text-decoration:underline;">
-          Ver perfil completo e passo a passo para verificar você mesma →
-        </a>
-      </div>
-    </div>
-
-    <div class="mw760" style="margin-top:72px;">
-      <div class="section-tag">
-        <div class="eyebrow">A pergunta que você deveria fazer</div>
-        <h2>Com quem você está falando, de verdade?</h2>
-        <p class="lead">Qualquer pessoa pode se chamar de "consultora de imigração" no Instagram. Só uma RCIC licenciada pode legalmente representar seu caso perante o governo canadense.</p>
-      </div>
-
-      <div class="rcic-compare">
-        <div class="rcic-col rcic-col--bad">
-          <div class="rcic-col-h">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
-            Consultor não licenciado
-          </div>
-          <ul class="rcic-list">
-            <li>✕ Não pode representá-lo oficialmente perante o IRCC</li>
-            <li>✕ Sem obrigação legal de seguir um código de ética</li>
-            <li>✕ Se der errado, você não tem a quem recorrer</li>
-            <li>✕ Muitas vezes é apenas um intermediário de vendas</li>
-          </ul>
-        </div>
-        <div class="rcic-col rcic-col--good">
-          <div class="rcic-col-h">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
-            RCIC licenciada (Larissa)
-          </div>
-          <ul class="rcic-list">
-            <li>✓ Autorizada pelo CICC a representar seu caso legalmente</li>
-            <li>✓ Sujeita a código de ética e fiscalização do governo</li>
-            <li>✓ Registro público verificável (R710678)</li>
-            <li>✓ Formação formal em Canadian Immigration Law (UBC)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
      O QUE FAZEMOS
 ════════════════════════════════════ -->
 <section class="section">
@@ -688,9 +601,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ════════════════════════════════════
-     O QUE VOCÊ GANHA NA CONSULTA
+     AUTORIDADE DA LARISSA — quem é + RCIC vs. não-licenciado
 ════════════════════════════════════ -->
 <section class="section section--gray">
+  <div class="container">
+    <div class="larissa-grid">
+      <div>
+        <div class="larissa-photo">
+          <img src="/img/larissa-smile.webp" alt="Larissa Castelluber, RCIC" />
+        </div>
+      </div>
+      <div>
+        <div class="rcic-badge">RCIC Licenciada · R710678 · CICC</div>
+        <h2 style="text-align:left; margin-bottom: 20px;">Você vai falar diretamente com a Larissa</h2>
+        <p style="margin-bottom: 16px;">
+          Não com uma assistente. Não com um script. Com a Larissa Castelluber, consultora RCIC licenciada pelo CICC, com formação pela UBC em Canadian Immigration Law e experiência em casos de PR, patrocínio, LMIA, study permits e work permits.
+        </p>
+        <p>
+          A UP Immigration foi construída com um princípio claro: cada pessoa merece atenção real, orientação honesta e um plano que funcione para <em>o seu</em> caso — não para o caso genérico.
+        </p>
+        <div class="cred-logos">
+          <img src="/img/RCIC-logo.webp" alt="RCIC" />
+          <img src="/img/UBC-logo.webp" alt="UBC" />
+          <img src="/img/BCIT-logo.webp" alt="BCIT" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mw760" style="margin-top:72px;">
+      <div class="section-tag">
+        <div class="eyebrow">A pergunta que você deveria fazer</div>
+        <h2>Com quem você está falando, de verdade?</h2>
+        <p class="lead">Qualquer pessoa pode se chamar de "consultora de imigração" no Instagram. Só uma RCIC licenciada pode legalmente representar seu caso perante o governo canadense — <a href="/pt/larissa-castelluber" style="color:var(--brand); text-decoration:underline;">confira o registro oficial da Larissa</a>.</p>
+      </div>
+
+      <div class="rcic-compare">
+        <div class="rcic-col rcic-col--bad">
+          <div class="rcic-col-h">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+            Consultor não licenciado
+          </div>
+          <ul class="rcic-list">
+            <li>✕ Não pode representá-lo oficialmente perante o IRCC</li>
+            <li>✕ Sem obrigação legal de seguir um código de ética</li>
+            <li>✕ Se der errado, você não tem a quem recorrer</li>
+            <li>✕ Muitas vezes é apenas um intermediário de vendas</li>
+          </ul>
+        </div>
+        <div class="rcic-col rcic-col--good">
+          <div class="rcic-col-h">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
+            RCIC licenciada (Larissa)
+          </div>
+          <ul class="rcic-list">
+            <li>✓ Autorizada pelo CICC a representar seu caso legalmente</li>
+            <li>✓ Sujeita a código de ética e fiscalização do governo</li>
+            <li>✓ Registro público verificável (R710678)</li>
+            <li>✓ Formação formal em Canadian Immigration Law (UBC)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     O QUE VOCÊ GANHA NA CONSULTA
+════════════════════════════════════ -->
+<section class="section">
   <div class="container">
     <div class="section-tag">
       <div class="eyebrow">O que você leva da consulta</div>
@@ -698,40 +676,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="lead">Cada consulta é conduzida pessoalmente pela Larissa. Sem terceirizar, sem roteiro genérico.</p>
     </div>
 
-    <div class="get-grid">
-      <div class="get-card">
-        <div class="get-num">1</div>
-        <h3>Um plano para você e sua família</h3>
-        <p>Você sai com um plano concreto de imigração — não uma lista genérica de opções, mas o caminho certo para o seu caso.</p>
-      </div>
-      <div class="get-card">
-        <div class="get-num">2</div>
-        <h3>Cálculo de pontos para residência permanente</h3>
-        <p>Se Express Entry for relevante para você, calculamos sua pontuação CRS e explicamos como melhorá-la.</p>
-      </div>
-      <div class="get-card">
-        <div class="get-num">3</div>
-        <h3>Opções de visto para trabalhar legalmente</h3>
-        <p>Mostramos quais caminhos existem para você trabalhar e ficar no Canadá de forma legal — sem achismo, com base nos critérios oficiais.</p>
-      </div>
-      <div class="get-card">
-        <div class="get-num">4</div>
-        <h3>Verificação da sua elegibilidade</h3>
-        <p>Revisamos seu histórico, experiência profissional, escolaridade e objetivos para confirmar o que realmente se aplica a você.</p>
-      </div>
-      <div class="get-card">
-        <div class="get-num">5</div>
-        <h3>Prazos realistas</h3>
-        <p>Entenda quanto tempo cada etapa leva de verdade — não as estimativas genéricas que você leu no Google.</p>
-      </div>
-      <div class="get-card">
-        <div class="get-num">6</div>
-        <h3>Suas dúvidas respondidas</h3>
-        <p>Pode trazer todas as perguntas que acumulou. Sem jargão, sem pressa — em português.</p>
-      </div>
-    </div>
+    <ul class="get-list">
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Um plano de imigração para você e sua família</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Cálculo de pontos CRS para residência permanente</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Opções de visto para trabalhar legalmente</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Verificação completa da sua elegibilidade</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Prazos reais — não as estimativas genéricas do Google</li>
+      <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Todas as suas dúvidas respondidas, sem jargão</li>
+    </ul>
 
-    <div style="text-align: center; margin-top: 48px;">
+    <div style="text-align: center; margin-top: 40px;">
       <a href="#consulta" class="btn btn--brand" data-cta="get-section">
         Quero essa clareza — Agendar agora
       </a>
