@@ -26,15 +26,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 		<meta property="og:title" content="Imigrar para o Canadá — Consulta com RCIC Licenciada | UP Immigration" />
 		<meta property="og:description" content="Ainda não sabe se você qualifica para morar no Canadá? Em 1 hora com uma consultora RCIC licenciada, você terá clareza total sobre o seu caso." />
-		<meta property="og:image" content="https://www.upimmigration.ca/img/Up_Immigration_logo.webp" />
+		<meta property="og:image" content="https://www.upimmigration.ca/img/Professional-people-walking.webp" />
 		<meta property="og:url" content="https://www.upimmigration.ca/pt/imigrar-canada" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Imigrar para o Canadá — Consulta com RCIC Licenciada | UP Immigration" />
 		<meta name="twitter:description" content="Ainda não sabe se você qualifica para morar no Canadá? Em 1 hora com uma consultora RCIC licenciada, você terá clareza total sobre o seu caso." />
-		<meta name="twitter:image" content="https://www.upimmigration.ca/img/Up_Immigration_logo.webp" />
+		<meta name="twitter:image" content="https://www.upimmigration.ca/img/Professional-people-walking.webp" />
 
 
   <style>
@@ -48,9 +48,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       --navy2:   #163a63;
       --light:   #ffffff;
       --gray:    #f7f8fa;
+      --cream:   #fbf8f3;
       --muted:   #62656f;
+      --gold:    #c89b4a;
       --r: 14px;
       --shadow: 0 4px 24px rgba(0,0,0,.08);
+      --serif: 'Fraunces', serif;
     }
     html { scroll-behavior: smooth; }
     body {
@@ -67,6 +70,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .mw760     { max-width: 760px;  margin: 0 auto; padding: 0 24px; }
     .section   { padding: 96px 0; }
     .section--gray { background: var(--gray); }
+    .section--cream { background: var(--cream); }
     .section--dark { background: var(--dark); color: var(--light); }
     .section--navy { background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 100%); color: var(--light); }
     .eyebrow {
@@ -77,8 +81,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       padding: 4px 14px; margin-bottom: 20px;
     }
     .eyebrow--light { color: #ff8a9a; background: rgba(255,138,154,.12); }
-    h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.18; font-weight: 800; }
-    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1.25; font-weight: 700; }
+    .eyebrow--gold { color: var(--gold); background: rgba(200,155,74,.1); }
+    h1 { font-family: var(--serif); font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.14; font-weight: 600; letter-spacing: -.01em; }
+    h2 { font-family: var(--serif); font-size: clamp(1.7rem, 3.3vw, 2.5rem); line-height: 1.2; font-weight: 600; letter-spacing: -.005em; }
     h3 { font-size: 1.1rem; font-weight: 600; }
     p  { line-height: 1.7; color: var(--muted); }
     .lead { font-size: 1.15rem; color: var(--muted); }
@@ -86,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ── Buttons ── */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 16px 36px; border-radius: 50px;
+      padding: 17px 38px; border-radius: 50px;
       font-family: inherit; font-size: 1rem; font-weight: 700;
       cursor: pointer; border: none; transition: transform .2s, box-shadow .2s;
       text-decoration: none; white-space: nowrap;
@@ -96,51 +101,61 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn--white  { background: #fff; color: var(--dark); }
     .btn--outline{ background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.4); }
     .btn--brand:hover { background: var(--brand-l); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
     .btn-wrap { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
 
     /* ── Sticky mini bar ── */
     #sticky-bar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,.07);
-      padding: 12px 24px;
+      padding: 10px 24px;
       display: flex; align-items: center; justify-content: space-between;
       transform: translateY(-100%); transition: transform .35s ease;
     }
     #sticky-bar.visible { transform: translateY(0); }
-    .sticky-logo { height: 34px; }
-    .sticky-cta  { font-size: .9rem; padding: 10px 24px; }
+    .sticky-logo { height: 42px; width: auto; display: block; }
+    .sticky-cta  { font-size: .88rem; padding: 11px 22px; }
 
     /* ── Hero ── */
     #hero {
-      background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 100%);
-      color: var(--light);
-      padding: 120px 0 96px;
       position: relative; overflow: hidden;
+      min-height: 94vh;
+      display: flex; align-items: center;
+      color: var(--light);
+      padding: 150px 0 80px;
     }
-    #hero::after {
-      content: '';
+    #hero .hero-bg {
       position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      pointer-events: none;
+      background-image: url('/img/Professional-people-walking.webp');
+      background-size: cover; background-position: center 35%;
+      transform: scale(1.04);
     }
-    .hero-inner { position: relative; z-index: 1; max-width: 800px; }
-    .hero-stars  { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+    #hero .hero-scrim {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(100deg, rgba(10,16,26,.94) 0%, rgba(10,16,26,.82) 32%, rgba(10,16,26,.42) 62%, rgba(10,16,26,.18) 100%),
+        linear-gradient(0deg, rgba(10,16,26,.55) 0%, rgba(10,16,26,0) 32%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 660px; }
+    .hero-stars  { display: flex; align-items: center; gap: 10px; margin-top: 32px; }
     .stars-row   { color: #fbbf24; font-size: 1.1rem; letter-spacing: 2px; }
-    .stars-label { font-size: .85rem; color: rgba(255,255,255,.65); }
-    #hero h1     { color: #fff; margin-bottom: 24px; }
-    #hero h1 span{ color: #ff8a9a; }
-    #hero .lead  { color: rgba(255,255,255,.8); max-width: 580px; margin-bottom: 40px; font-size: 1.2rem; }
-    .hero-note   { margin-top: 20px; font-size: .85rem; color: rgba(255,255,255,.5); }
-    .hero-note strong { color: rgba(255,255,255,.75); font-weight: 600; }
+    .stars-label { font-size: .85rem; color: rgba(255,255,255,.7); }
+    #hero h1     { color: #fff; margin-bottom: 22px; text-wrap: balance; }
+    #hero h1 em  { font-style: italic; color: #ffb3bd; }
+    #hero .lead  { color: rgba(255,255,255,.86); max-width: 480px; margin-bottom: 36px; font-size: 1.15rem; }
     .hero-badge  {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
-      border-radius: 50px; padding: 6px 16px;
-      font-size: .8rem; color: rgba(255,255,255,.8);
-      margin-bottom: 24px;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50px; padding: 7px 18px;
+      font-size: .8rem; color: #fff; font-weight: 500;
+      margin-bottom: 26px;
+      backdrop-filter: blur(6px);
     }
-    .hero-badge::before { content: '🇨🇦'; }
+    .hero-badge .flag { font-size: .95rem; }
+    .hero-trust { margin-top: 44px; display: flex; gap: 28px; flex-wrap: wrap; }
+    .hero-trust-item { display: flex; align-items: center; gap: 9px; font-size: .84rem; color: rgba(255,255,255,.75); }
+    .hero-trust-item svg { flex-shrink: 0; color: var(--gold); }
 
     /* ── Recognition ── */
     .pain-grid {
@@ -150,26 +165,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
     .pain-card {
       background: var(--light); border-radius: var(--r);
-      padding: 24px; border-left: 4px solid var(--brand);
+      padding: 26px; border: 1px solid rgba(10,12,15,.06);
       box-shadow: var(--shadow);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .pain-card-icon {
+      flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px;
+      background: rgba(184,0,28,.07); color: var(--brand);
+      display: flex; align-items: center; justify-content: center;
     }
     .pain-card p { color: var(--dark); font-size: .95rem; line-height: 1.6; }
-    .pain-icon  { font-size: 1.4rem; margin-bottom: 10px; }
     .section-tag { text-align: center; margin-bottom: 16px; }
     .section-tag h2 { margin-bottom: 12px; }
     .section-tag .lead { margin: 0 auto; max-width: 600px; }
 
     /* ── Risk strip ── */
-    .risk-stat { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; color: var(--brand); line-height: 1; }
+    .risk-stat { font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; font-family: var(--serif); color: var(--brand); line-height: 1; }
     .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .risk-label { font-size: 1rem; color: var(--muted); margin-top: 6px; }
     .risk-list  { list-style: none; }
     .risk-list li {
-      padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+      padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,.06);
       display: flex; align-items: flex-start; gap: 12px; font-size: .95rem; color: var(--dark);
     }
-    .risk-list li::before { content: '⚠️'; flex-shrink: 0; }
+    .risk-list li svg { flex-shrink: 0; color: var(--brand); margin-top: 3px; }
     .risk-list li:last-child { border-bottom: none; }
+
+    /* ── Why RCIC (objection handling: golpe/consultor nao licenciado) ── */
+    .rcic-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    .rcic-col { border-radius: var(--r); padding: 30px; }
+    .rcic-col--bad { background: #fdf2f2; border: 1px solid rgba(220,38,38,.15); }
+    .rcic-col--good { background: var(--light); border: 2px solid var(--brand); box-shadow: var(--shadow); }
+    .rcic-col-h { font-weight: 700; font-size: 1.02rem; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .rcic-col--bad .rcic-col-h { color: #991b1b; }
+    .rcic-col--good .rcic-col-h { color: var(--brand); }
+    .rcic-list { list-style: none; }
+    .rcic-list li { padding: 9px 0; font-size: .92rem; color: var(--dark); display: flex; gap: 10px; }
 
     /* ── What you get ── */
     .get-grid {
@@ -187,20 +218,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background: var(--brand); color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: .85rem; margin-bottom: 14px;
+      font-family: var(--serif);
     }
     .get-card h3 { margin-bottom: 8px; font-size: 1rem; }
     .get-card p  { font-size: .9rem; }
-
-    /* ── Stats strip ── */
-    .stats-strip { padding: 80px 0; }
-    .stats-grid  {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px; text-align: center;
-    }
-    .stat-num  { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; color: #fff; line-height: 1; }
-    .stat-label{ font-size: .85rem; color: rgba(255,255,255,.65); margin-top: 6px; }
-    .stat-divider { width: 1px; background: rgba(255,255,255,.15); align-self: stretch; }
 
     /* ── Larissa ── */
     .larissa-grid {
@@ -230,8 +251,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .ba-col { background: var(--light); border-radius: var(--r); padding: 32px; box-shadow: var(--shadow); }
     .ba-col--after { border-top: 4px solid #16a34a; }
     .ba-col--before{ border-top: 4px solid #dc2626; }
-    .ba-h { font-weight: 700; font-size: 1rem; margin-bottom: 20px; }
-    .ba-arrow { align-self: center; font-size: 2rem; color: var(--muted); padding-top: 48px; }
+    .ba-h { font-weight: 700; font-size: 1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .ba-arrow { align-self: center; font-size: 1.6rem; color: var(--muted); padding-top: 48px; }
     .ba-list { list-style: none; }
     .ba-list li {
       padding: 8px 0; font-size: .9rem;
@@ -267,18 +288,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       max-width: 680px; margin: 48px auto 0;
     }
     .price-amount {
+      font-family: var(--serif);
       font-size: clamp(3rem, 6vw, 4.5rem);
-      font-weight: 800; color: var(--light); line-height: 1;
+      font-weight: 700; color: var(--light); line-height: 1;
     }
     .price-currency { font-size: 1.4rem; font-weight: 600; vertical-align: super; margin-right: 4px; }
     .price-note { font-size: .9rem; color: rgba(255,255,255,.6); margin-top: 8px; }
+    .price-compare {
+      margin: 20px 0 0;
+      font-size: .9rem; line-height: 1.6; color: rgba(255,255,255,.55);
+    }
+    .price-compare strong { color: rgba(255,255,255,.85); font-weight: 600; }
     .price-includes { list-style: none; margin: 28px 0; }
     .price-includes li {
       padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.12);
       display: flex; gap: 12px; font-size: .95rem; color: rgba(255,255,255,.85);
     }
     .price-includes li:last-child { border-bottom: none; }
-    .price-includes li::before { content: '✓'; color: #4ade80; font-weight: 700; flex-shrink: 0; }
+    .price-includes li svg { color: #4ade80; flex-shrink: 0; margin-top: 2px; }
     .price-guarantee {
       background: rgba(255,255,255,.08); border-radius: 10px;
       padding: 16px 20px; font-size: .88rem; color: rgba(255,255,255,.7);
@@ -303,14 +330,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
     .faq-a p { padding-bottom: 20px; font-size: .93rem; }
 
-    /* ── Final CTA ── */
-    #final-cta {
-      text-align: center; padding: 112px 0;
+    /* ── Final CTA / Lead form ── */
+    .final-cta {
+      padding: 100px 0;
       background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 100%);
       color: var(--light);
     }
-    #final-cta h2 { color: #fff; max-width: 680px; margin: 0 auto 20px; }
-    #final-cta .lead { color: rgba(255,255,255,.7); margin: 0 auto 40px; max-width: 520px; }
+    .cta-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+    .final-cta h2 { color: #fff; margin-bottom: 18px; }
+    .final-cta .lead { color: rgba(255,255,255,.72); margin-bottom: 0; max-width: 460px; }
+
+    .lead-form-card {
+      background: #fff; border-radius: 20px; padding: 36px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.35);
+      color: var(--dark);
+    }
+    .lead-form-card h3 { font-size: 1.15rem; margin-bottom: 6px; }
+    .lead-form-sub { font-size: .87rem; color: var(--muted); margin-bottom: 24px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: .8rem; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+    .field input {
+      width: 100%; padding: 13px 16px; border-radius: 10px;
+      border: 1.5px solid rgba(10,12,15,.14); font-family: inherit; font-size: .95rem;
+      transition: border-color .15s;
+      background: var(--gray);
+    }
+    .field input:focus { outline: none; border-color: var(--brand); background: #fff; }
+    .field-error { font-size: .78rem; color: var(--brand); margin-top: 5px; display: none; }
+    .field.invalid input { border-color: var(--brand); }
+    .field.invalid .field-error { display: block; }
+    .lead-form-card .btn { width: 100%; margin-top: 6px; font-size: 1rem; }
+    .lead-form-note { font-size: .76rem; color: var(--muted); text-align: center; margin-top: 14px; }
+    .lead-form-success { display: none; text-align: center; padding: 20px 0; }
+    .lead-form-success svg { color: #16a34a; margin: 0 auto 16px; }
+    .lead-form-success h3 { margin-bottom: 8px; }
+    .lead-form-success p { font-size: .92rem; }
+    .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+    .skip-whatsapp { margin-top: 24px; text-align: center; }
+    .skip-whatsapp a { font-size: .85rem; color: rgba(255,255,255,.55); text-decoration: underline; }
+    .skip-whatsapp a:hover { color: rgba(255,255,255,.8); }
 
     /* ── Minimal footer ── */
     .lp-footer {
@@ -322,25 +381,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     /* ── Responsive ── */
     @media (max-width: 860px) {
       .larissa-grid { grid-template-columns: 1fr; }
+      .cta-grid { grid-template-columns: 1fr; gap: 40px; }
+      .rcic-compare { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .section { padding: 64px 0; }
       .risk-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .stat-divider { display: none; }
       .ba-grid { grid-template-columns: 1fr; }
       .ba-arrow { display: none; }
       .price-box { padding: 32px 24px; }
-      #hero { padding: 96px 0 56px; }
-      .hero-badge { font-size: .72rem; padding: 6px 12px; }
+      #hero { padding: 120px 0 56px; min-height: unset; }
+      #hero .hero-bg { background-position: 78% center; }
+      #hero .hero-scrim {
+        background:
+          linear-gradient(180deg, rgba(10,16,26,.88) 0%, rgba(10,16,26,.8) 55%, rgba(10,16,26,.9) 100%);
+      }
+      .hero-badge { font-size: .74rem; padding: 6px 14px; }
       .faq-q { font-size: .95rem; padding: 18px 0; }
+      .hero-trust { gap: 16px 22px; }
+      .lead-form-card { padding: 26px; }
     }
     @media (max-width: 480px) {
       .btn { padding: 14px 24px; font-size: .92rem; }
       .section-tag h2 { font-size: 1.5rem; }
     }
 
-    /* ── Respect reduced motion ── */
+    /* ── Reveal-on-load (CSS only, no scroll dependency) ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-inner > * { animation: fadeUp .7s cubic-bezier(.16,1,.3,1) both; }
+      .hero-inner > *:nth-child(1) { animation-delay: .05s; }
+      .hero-inner > *:nth-child(2) { animation-delay: .13s; }
+      .hero-inner > *:nth-child(3) { animation-delay: .21s; }
+      .hero-inner > *:nth-child(4) { animation-delay: .29s; }
+      .hero-inner > *:nth-child(5) { animation-delay: .37s; }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .btn, #sticky-bar, .faq-a { transition: none; }
@@ -374,7 +449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ── Sticky bar (shows after hero) ── -->
 <div id="sticky-bar">
   <img width="450" height="197" class="sticky-logo" src="/img/Up_Immigration_logo.webp" alt="UP Immigration" />
-  <a href="/pt/consulta-de-imigracao" class="btn btn--brand sticky-cta">
+  <a href="#consulta" class="btn btn--brand sticky-cta" data-cta="sticky">
     Agendar consulta — CAD $175
   </a>
 </div>
@@ -383,16 +458,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      HERO
 ════════════════════════════════════ -->
 <section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-scrim"></div>
   <div class="container">
     <div class="hero-inner">
 
       <div class="hero-badge">
-        Atendimento em português · Consultora RCIC Licenciada R710678
+        <span class="flag">🇨🇦</span> Atendimento em português · Consultora RCIC Licenciada R710678
       </div>
 
       <h1>
-        Você quer morar no Canadá,<br />mas ainda não sabe<br />
-        <span>por onde começar?</span>
+        Você quer morar no Canadá,<br />mas ainda não sabe <em>por onde começar?</em>
       </h1>
 
       <p class="lead">
@@ -400,8 +476,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
 
       <div class="btn-wrap">
-        <a href="/pt/consulta-de-imigracao"
-           class="btn btn--brand">
+        <a href="#consulta" class="btn btn--brand" data-cta="hero">
           Agendar minha consulta — CAD $175 →
         </a>
       </div>
@@ -409,6 +484,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="hero-stars">
         <span class="stars-row">★★★★★</span>
         <span class="stars-label">5.0 no Google</span>
+      </div>
+
+      <div class="hero-trust">
+        <div class="hero-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4z"/></svg>
+          Regulada pelo CICC
+        </div>
+        <div class="hero-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+          Atendida pela Larissa, sem terceirizar
+        </div>
+        <div class="hero-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Resposta em até 1 dia útil
+        </div>
       </div>
 
     </div>
@@ -428,28 +518,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="pain-grid">
       <div class="pain-card">
-        <div class="pain-icon">😵‍💫</div>
+        <div class="pain-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
         <p>"Pesquisei Express Entry, PNP, LMIA… e fiquei mais confuso do que antes."</p>
       </div>
       <div class="pain-card">
-        <div class="pain-icon">🤷</div>
+        <div class="pain-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
         <p>"Não faço ideia se meu perfil qualifica para alguma coisa ou não."</p>
       </div>
       <div class="pain-card">
-        <div class="pain-icon">😰</div>
+        <div class="pain-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
         <p>"Tenho medo de cometer um erro que comprometa minha chance para sempre."</p>
       </div>
       <div class="pain-card">
-        <div class="pain-icon">🔄</div>
+        <div class="pain-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>
         <p>"As regras mudam o tempo todo. Como saber se o que li ainda é válido?"</p>
       </div>
       <div class="pain-card">
-        <div class="pain-icon">⏳</div>
+        <div class="pain-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <p>"Não sei por onde começar — quanto tempo leva? Preciso de emprego primeiro? Qual visto?"</p>
       </div>
       <div class="pain-card">
-        <div class="pain-icon">💸</div>
-        <p>"Já ouvi histórias de pessoas que perderam dinheiro por fazer a aplicação sozinhas."</p>
+        <div class="pain-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <p>"Já ouvi histórias de pessoas que perderam dinheiro por fazer a aplicação sozinhas — ou com quem não era licenciado."</p>
       </div>
     </div>
   </div>
@@ -468,11 +558,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           A taxa nacional de aprovação de visto de estudante no Canadá é de apenas <strong style="color:var(--dark);">35%</strong>. Dois em cada três pedidos são recusados. Uma recusa pode manchar seu histórico e dificultar futuras aplicações.
         </p>
         <ul class="risk-list" style="margin-top: 32px;">
-          <li>Documentos errados ou incompletos = recusa automática</li>
-          <li>Escolher o programa errado = anos desperdiçados</li>
-          <li>Perda das taxas de aplicação (CAD $150–$1.500+)</li>
-          <li>Histórico de recusa compromete aplicações futuras</li>
-          <li>Informações desatualizadas da internet podem invalidar seu processo</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Documentos errados ou incompletos = recusa automática</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Escolher o programa errado = anos desperdiçados</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Perda das taxas de aplicação (CAD $150–$1.500+)</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Histórico de recusa compromete aplicações futuras</li>
+          <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Informações desatualizadas da internet podem invalidar seu processo</li>
         </ul>
       </div>
       <div style="text-align: center;">
@@ -484,9 +574,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ════════════════════════════════════
-     O QUE VOCÊ RECEBE
+     OBJECTION HANDLING — RCIC vs. "consultor" não licenciado
 ════════════════════════════════════ -->
 <section class="section">
+  <div class="container mw760">
+    <div class="section-tag">
+      <div class="eyebrow">A pergunta que você deveria fazer</div>
+      <h2>Com quem você está falando, de verdade?</h2>
+      <p class="lead">Qualquer pessoa pode se chamar de "consultora de imigração" no Instagram. Só uma RCIC licenciada pode legalmente representar seu caso perante o governo canadense.</p>
+    </div>
+
+    <div class="rcic-compare">
+      <div class="rcic-col rcic-col--bad">
+        <div class="rcic-col-h">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+          Consultor não licenciado
+        </div>
+        <ul class="rcic-list">
+          <li>✕ Não pode representá-lo oficialmente perante o IRCC</li>
+          <li>✕ Sem obrigação legal de seguir um código de ética</li>
+          <li>✕ Se der errado, você não tem a quem recorrer</li>
+          <li>✕ Muitas vezes é apenas um intermediário de vendas</li>
+        </ul>
+      </div>
+      <div class="rcic-col rcic-col--good">
+        <div class="rcic-col-h">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10-3-3"/></svg>
+          RCIC licenciada (Larissa)
+        </div>
+        <ul class="rcic-list">
+          <li>✓ Autorizada pelo CICC a representar seu caso legalmente</li>
+          <li>✓ Sujeita a código de ética e fiscalização do governo</li>
+          <li>✓ Registro público verificável (R710678)</li>
+          <li>✓ Formação formal em Canadian Immigration Law (UBC)</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:28px; font-size:.88rem;">
+      Você pode verificar o registro da Larissa diretamente no site oficial do
+      <a href="https://college-ic.ca/protecting-the-public/find-an-immigration-consultant" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:underline;">College of Immigration and Citizenship Consultants (CICC)</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     O QUE VOCÊ RECEBE
+════════════════════════════════════ -->
+<section class="section section--gray">
   <div class="container">
     <div class="section-tag">
       <div class="eyebrow">O que acontece na consulta</div>
@@ -528,8 +663,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div style="text-align: center; margin-top: 48px;">
-      <a href="/pt/consulta-de-imigracao"
-         class="btn btn--brand">
+      <a href="#consulta" class="btn btn--brand" data-cta="get-section">
         Quero essa clareza — Agendar agora
       </a>
     </div>
@@ -539,7 +673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ════════════════════════════════════
      LARISSA
 ════════════════════════════════════ -->
-<section class="section section--gray">
+<section class="section">
   <div class="container">
     <div class="larissa-grid">
       <div>
@@ -569,7 +703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ════════════════════════════════════
      ANTES / DEPOIS
 ════════════════════════════════════ -->
-<section class="section">
+<section class="section section--gray">
   <div class="container">
     <div class="section-tag">
       <div class="eyebrow">A transformação</div>
@@ -577,7 +711,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="ba-grid">
       <div class="ba-col ba-col--before">
-        <div class="ba-h" style="color:#dc2626;">❌ Antes da consulta</div>
+        <div class="ba-h" style="color:#dc2626;">✕ Antes da consulta</div>
         <ul class="ba-list">
           <li>Não sabe se qualifica para nada</li>
           <li>Pesquisas contraditórias na internet</li>
@@ -589,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="ba-arrow">→</div>
       <div class="ba-col ba-col--after">
-        <div class="ba-h" style="color:#16a34a;">✅ Depois da consulta</div>
+        <div class="ba-h" style="color:#16a34a;">✓ Depois da consulta</div>
         <ul class="ba-list">
           <li>Sabe exatamente qual caminho é o seu</li>
           <li>Informações validadas por uma RCIC</li>
@@ -601,8 +735,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div style="text-align:center; margin-top: 40px;">
-      <a href="/pt/consulta-de-imigracao"
-         class="btn btn--brand">
+      <a href="#consulta" class="btn btn--brand" data-cta="before-after">
         Quero sair com clareza — Agendar
       </a>
     </div>
@@ -612,7 +745,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ════════════════════════════════════
      DEPOIMENTOS
 ════════════════════════════════════ -->
-<section class="section section--gray">
+<section class="section">
   <div class="container">
     <div class="section-tag">
       <div class="eyebrow">O que nossos clientes dizem</div>
@@ -718,18 +851,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="price-amount">$175</span>
       </div>
       <div class="price-note">Sessão individual de estratégia · ~60 minutos · Em português</div>
+      <div class="price-compare">
+        Em reais: <strong>≈ R$ 650</strong> — menos que uma taxa de reaplicação de visto recusado.
+      </div>
 
       <ul class="price-includes">
-        <li>Análise completa do seu perfil imigratório</li>
-        <li>Identificação dos programas que se aplicam ao seu caso</li>
-        <li>Cálculo de pontuação Express Entry (quando relevante)</li>
-        <li>Prazos realistas e próximos passos documentados</li>
-        <li>Todas as suas dúvidas respondidas pela Larissa</li>
-        <li>Conduzida por uma RCIC licenciada (não assistente)</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Análise completa do seu perfil imigratório</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Identificação dos programas que se aplicam ao seu caso</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Cálculo de pontuação Express Entry (quando relevante)</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Prazos realistas e próximos passos documentados</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Todas as suas dúvidas respondidas pela Larissa</li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Conduzida por uma RCIC licenciada (não assistente)</li>
       </ul>
 
-      <a href="/pt/consulta-de-imigracao"
-         class="btn btn--brand" style="width:100%; justify-content:center; font-size:1.05rem;">
+      <a href="#consulta" class="btn btn--brand" style="width:100%; justify-content:center; font-size:1.05rem;" data-cta="price-section">
         Agendar minha consulta agora →
       </a>
 
@@ -819,28 +954,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- ════════════════════════════════════
-     FINAL CTA
+     FINAL CTA — Formulário de captação
 ════════════════════════════════════ -->
-<section id="final-cta">
+<section id="consulta" class="final-cta">
   <div class="container">
-    <div class="section-tag">
-      <div class="eyebrow eyebrow--light">Pronto para dar o primeiro passo?</div>
-      <h2>Pare de adivinhar.<br />Descubra o seu caminho.</h2>
-      <p class="lead">
-        Uma hora de consulta com a Larissa vai te dar mais clareza do que meses de pesquisa online. Sem compromisso de contratação, sem jargão — em português.
-      </p>
-      <div class="btn-wrap" style="justify-content:center;">
-        <a href="/pt/consulta-de-imigracao"
-           class="btn btn--brand" style="font-size:1.1rem; padding:18px 44px;">
-          Agendar minha consulta — CAD $175 →
-        </a>
-        <a href="https://wa.me/16725881360" class="btn btn--outline" target="_blank" rel="noopener">
-          💬 Falar no WhatsApp primeiro
-        </a>
+    <div class="cta-grid">
+      <div>
+        <div class="eyebrow eyebrow--light">Pronto para dar o primeiro passo?</div>
+        <h2>Pare de adivinhar.<br />Descubra o seu caminho.</h2>
+        <p class="lead">
+          Uma hora de consulta com a Larissa vai te dar mais clareza do que meses de pesquisa online. Sem compromisso de contratação, sem jargão — em português.
+        </p>
+        <div class="skip-whatsapp">
+          <a href="https://wa.me/16725881360?text=Vim%20da%20p%C3%A1gina%20sobre%20imigrar%20pro%20Canad%C3%A1%2C%20tenho%20uma%20d%C3%BAvida%20antes%20de%20agendar" target="_blank" rel="noopener" data-cta="whatsapp-skip">
+            Prefere falar no WhatsApp primeiro? Clique aqui →
+          </a>
+        </div>
       </div>
-      <p style="margin-top: 20px; font-size:.85rem; color:rgba(255,255,255,.4);">
-        Resposta em até 1 dia útil · Atendimento em português · Consultora RCIC licenciada
-      </p>
+
+      <div class="lead-form-card">
+        <form id="lead-form" novalidate>
+          <h3>Agendar minha consulta</h3>
+          <p class="lead-form-sub">Preencha seus dados — o próximo passo é escolher o melhor horário.</p>
+
+          <!-- honeypot anti-bot -->
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="field" id="field-name">
+            <label for="lf-name">Nome completo</label>
+            <input type="text" id="lf-name" name="name" autocomplete="name" required />
+            <div class="field-error">Digite seu nome completo.</div>
+          </div>
+          <div class="field" id="field-whatsapp">
+            <label for="lf-whatsapp">WhatsApp (com DDD)</label>
+            <input type="tel" id="lf-whatsapp" name="whatsapp" autocomplete="tel" placeholder="(11) 91234-5678" required />
+            <div class="field-error">Digite um WhatsApp válido.</div>
+          </div>
+          <div class="field" id="field-email">
+            <label for="lf-email">E-mail</label>
+            <input type="email" id="lf-email" name="email" autocomplete="email" required />
+            <div class="field-error">Digite um e-mail válido.</div>
+          </div>
+
+          <button type="submit" class="btn btn--brand" id="lf-submit" data-cta="form-submit">
+            Continuar para agendamento →
+          </button>
+          <p class="lead-form-note">Seus dados vão direto para a Larissa. Sem spam.</p>
+        </form>
+
+        <div class="lead-form-success" id="lf-success">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>Recebemos seus dados!</h3>
+          <p>Te levando para escolher o melhor horário com a Larissa…</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -857,6 +1027,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 (function () {
+  var CALENDLY_URL = 'https://calendly.com/upimmigration/immigration-consultation';
+  var WEBHOOK_URL = 'https://webhook.upimmigrationconsulting.com/webhook/crm-new-person';
+
   /* ── Sticky bar after hero ── */
   var hero = document.getElementById('hero');
   var bar = document.getElementById('sticky-bar');
@@ -885,6 +1058,128 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
+    });
+  });
+
+  /* ── CTA click tracking (every button that scrolls to the form) ── */
+  document.querySelectorAll('[data-cta]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'cta_click', cta_location: el.getAttribute('data-cta') });
+      } catch (e) {}
+    });
+  });
+
+  /* ── Scroll depth tracking (fires once per threshold) ── */
+  (function () {
+    var thresholds = [25, 50, 75, 100];
+    var fired = {};
+    function checkScroll() {
+      var doc = document.documentElement;
+      var scrollTop = window.scrollY || doc.scrollTop;
+      var docHeight = doc.scrollHeight - doc.clientHeight;
+      if (docHeight <= 0) return;
+      var pct = Math.round((scrollTop / docHeight) * 100);
+      thresholds.forEach(function (t) {
+        if (pct >= t && !fired[t]) {
+          fired[t] = true;
+          try {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'scroll_depth', scroll_percent: t });
+          } catch (e) {}
+        }
+      });
+      if (fired[100]) window.removeEventListener('scroll', onScroll);
+    }
+    var ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(function () { checkScroll(); ticking = false; });
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+
+  /* ── Lead form ── */
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+
+  var submitBtn = document.getElementById('lf-submit');
+  var successBox = document.getElementById('lf-success');
+
+  function setInvalid(fieldId, invalid) {
+    var el = document.getElementById(fieldId);
+    if (el) el.classList.toggle('invalid', invalid);
+  }
+
+  function validPhone(v) {
+    var digits = v.replace(/\D/g, '');
+    return digits.length >= 10 && digits.length <= 13;
+  }
+
+  function validEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var honeypot = form.querySelector('#website').value;
+    if (honeypot) return; // bot
+
+    var name = form.querySelector('#lf-name').value.trim();
+    var whatsapp = form.querySelector('#lf-whatsapp').value.trim();
+    var email = form.querySelector('#lf-email').value.trim();
+
+    var ok = true;
+    if (name.length < 3) { setInvalid('field-name', true); ok = false; } else setInvalid('field-name', false);
+    if (!validPhone(whatsapp)) { setInvalid('field-whatsapp', true); ok = false; } else setInvalid('field-whatsapp', false);
+    if (!validEmail(email)) { setInvalid('field-email', true); ok = false; } else setInvalid('field-email', false);
+
+    if (!ok) {
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_validation_error' });
+      } catch (err) {}
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    var payload = {
+      name: name,
+      email: email,
+      phone: whatsapp,
+      website: '',
+      source: 'imigrar-canada-pt',
+      tags: ['imigrar-canada', 'lp', 'pt'],
+      page: window.location.href,
+      journey: (window.upJourney ? window.upJourney.get() : null),
+      journey_summary: (window.upJourney ? window.upJourney.summary() : '')
+    };
+
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    }).catch(function () {}).finally(function () {
+      try {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'lead_form_submitted', method: 'imigrar-canada-pt' });
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { method: 'imigrar-canada-pt' });
+      } catch (err) {}
+
+      form.style.display = 'none';
+      successBox.style.display = 'block';
+
+      var calendlyUrl = CALENDLY_URL + '?name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email);
+      setTimeout(function () {
+        window.location.href = calendlyUrl;
+      }, 1400);
     });
   });
 })();
