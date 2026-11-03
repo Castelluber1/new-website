@@ -224,6 +224,9 @@
     .review blockquote { font-size: .93rem; color: var(--ink); margin: 10px 0 14px; line-height: 1.6; }
     .review cite { font-style: normal; font-size: .8rem; font-weight: 600; color: var(--ink); }
     .review cite span { display: block; font-weight: 400; color: var(--muted); }
+    .rating { display: flex; align-items: center; gap: 14px; margin: -4px 0 18px; font-size: .82rem; color: var(--muted); line-height: 1.35; }
+    .rating-n { font-family: var(--serif); font-size: 2.6rem; font-weight: 600; color: var(--ink); line-height: 1; }
+    .rating-stars { color: var(--gold); letter-spacing: 2px; font-size: 1rem; }
     .more-link { display: inline-block; margin-top: 6px; font-size: .85rem; color: var(--navy); font-weight: 500; text-underline-offset: 3px; }
 
     /* Price card */
@@ -329,7 +332,7 @@
       <img src="/img/larissa-cofee.webp" alt="Larissa Castelluber, consultora de imigração RCIC" width="750" height="1125" fetchpriority="high" />
       <figcaption>
         <span><strong>Larissa Castelluber</strong>RCIC R710678</span>
-        <span class="stars">★ 4.9 Google</span>
+        <span class="stars">★ 4,9 Google</span>
       </figcaption>
     </figure>
 
@@ -341,7 +344,7 @@
   </div>
 
   <div class="trust">
-    <div><strong><span class="stars">★</span> 4.9</strong>no Google</div>
+    <div><strong><span class="stars">★</span> 4,9</strong>no Google</div>
     <div><strong>RCIC</strong>R710678 · CICC</div>
     <div><strong>UBC</strong>Canadian Immigration Law</div>
   </div>
@@ -439,6 +442,10 @@
     <div class="wrap reveal">
       <span class="eyebrow">Avaliações no Google</span>
       <h2>Quem já passou por aqui.</h2>
+      <div class="rating">
+        <span class="rating-n">4,9</span>
+        <span><span class="rating-stars">★★★★★</span><br />nota média no Google</span>
+      </div>
       <div class="reviews">
         <figure class="review">
           <div class="stars">★★★★★</div>
