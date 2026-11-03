@@ -43,7 +43,7 @@ Decided by Caio, 2026-08-07. Not everything worth measuring is a conversion.
 
 | Tier | Meaning | Events |
 |---|---|---|
-| **Conversion** | The site did its job. Judge the site by these. | `consultation_booked` (booked consult), `begin_checkout` (ebook purchase intent) |
+| **Conversion** | The site did its job. Judge the site by these. | `consultation_booked` (booked consult), `purchase` (paid consult via Stripe), `begin_checkout` (checkout intent: ebook or paid consult, by `item_id`) |
 | **Lead** | Contact captured, not yet a booking. Real value, but not a conversion. | `lead_form_submitted` |
 | **Engagement** | Diagnostic only. Never mark as conversion. | `sidebar_intent_click`, `scroll_depth`, `file_download` |
 | **Automatic** | GA4 enhanced measurement. We do not fire these. | `page_view`, `session_start`, `first_visit`, `user_engagement`, `scroll`, `click`, `form_start` |
@@ -145,6 +145,7 @@ Both failure modes exist on this site today:
 | `appointments.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
 | `immigration-consultation.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
 | `pt/medicos-brasileiros-canada.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
+| `pt/consulta-confirmada.html` | inline embed (after Stripe payment) | ✅ | ✅ yes — `booking_source: consulta-canada-paga` |
 | `pt/consulta-de-imigracao.html` | **plain links only** | ✅ (dead) | ❌ **no — never fired** |
 | `blog/common-law-relationship-...` | plain link | ✗ | ❌ no |
 | `blog/sponsoring-spouse-partner-...` | plain link | ✗ | ❌ no |
@@ -186,6 +187,42 @@ not here. See §7.
 
 Fires on `/ebook-imigrar-2026` only, on any `a[href*="kiwify.com.br"]` click.
 Also fires Meta `InitiateCheckout` alongside. Already correctly built — do not change.
+
+**Second product, same action (added 2026-11-02):** `/pt/consulta-canada` fires
+`begin_checkout` when a CTA sends the visitor to the Stripe Payment Link for the
+paid consultation. Same user action (start checkout), different product, so the
+product is told apart by `items[].item_id`, never by a new event name.
+
+| Param | Value |
+|---|---|
+| `currency` | `BRL` |
+| `value` | `650` |
+| `cta_location` | `hero` / `price_card` / `final_cta` / `sticky` |
+| `items[]` | `item_id: consulta-imigracao-50min` |
+
+Also fires Meta `InitiateCheckout`. Report ebook vs consultation by filtering on `item_id`.
+
+### `purchase` — CONVERSION (paid consultation)
+
+**Means:** the Stripe payment for the consultation went through and Stripe sent
+the visitor back to `/pt/consulta-confirmada?session_id={CHECKOUT_SESSION_ID}`.
+
+| Param | Value |
+|---|---|
+| `transaction_id` | Stripe Checkout Session id (`cs_...`) |
+| `currency` | `BRL` |
+| `value` | `650` |
+| `items[]` | `item_id: consulta-imigracao-50min` |
+
+- Fires only when `session_id` starts with `cs_`, once per session id
+  (`localStorage` guard). Opening the page directly or refreshing does not count a sale.
+- Meta: `trackCustom('ConsultationPaid')` with `eventID = session_id`. Custom, not
+  `Purchase`, because Meta classifies the domain as "Nationality" (see
+  `booking-confirmed.html`). Ads optimization needs a Custom Conversion on it.
+- Limit: client-side only. A buyer who closes the tab before the redirect is not
+  counted. The fix is a Stripe webhook → Measurement Protocol / Conversions API.
+- The Stripe Payment Link's "after payment" setting must redirect to the URL above.
+  If it shows Stripe's own confirmation page instead, this event never fires.
 
 ### `lead_form_submitted` — LEAD
 

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Pagamento confirmado · Escolha seu horário | UP Immigration</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0e2a47" />
+
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9MHZ6FJJGG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9MHZ6FJJGG');
+  </script>
+
+  <!-- Meta Pixel (dataset 1616167476729320) -->
+  <script>
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1616167476729320');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1616167476729320&ev=PageView&noscript=1" /></noscript>
+
+  <!--
+    Pagamento da consulta (Stripe Payment Link) → esta página.
+    O link do Stripe precisa redirecionar para:
+      https://www.upimmigration.ca/pt/consulta-confirmada?session_id={CHECKOUT_SESSION_ID}
+    Ver TRACKING.md §3 (purchase). Só dispara com session_id do Stripe (cs_...),
+    uma vez por pagamento: abrir a página direto ou dar refresh não conta venda.
+
+    Meta: o domínio é categorizado como "Nationality", que bloqueia alguns
+    eventos padrão, então a venda vai como evento customizado (ConsultationPaid),
+    igual ao ConsultationBooked do booking-confirmed.html.
+  -->
+  <script>
+    (function () {
+      try {
+        var sid = new URLSearchParams(window.location.search).get('session_id') || '';
+        if (!/^cs_/.test(sid)) return;
+        var guardKey = 'consulta_paid_fired:' + sid;
+        if (localStorage.getItem(guardKey)) return;
+
+        gtag('event', 'purchase', {
+          transaction_id: sid,
+          currency: 'BRL',
+          value: 650,
+          items: [{ item_id: 'consulta-imigracao-50min', item_name: 'Consulta de imigração 50 min', price: 650, quantity: 1 }]
+        });
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'ConsultationPaid', { currency: 'BRL', value: 650, content_ids: ['consulta-imigracao-50min'] }, { eventID: sid });
+        }
+        localStorage.setItem(guardKey, '1');
+      } catch (e) { /* tracking nunca quebra a página */ }
+    })();
+  </script>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <script src="/js/calendly-attribution.js"></script>
+
+  <link rel="icon" href="/img/logo-favicon-leaf.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #b8001c; --brand-l: #d33541; --ink: #14181f; --navy: #0e2a47; --navy-deep: #0a2038;
+      --cream: #fbf8f3; --paper: #fff; --muted: #5c6470; --line: #e9e4da; --gold: #c89b4a;
+      --serif: 'Fraunces', Georgia, serif; --sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--cream); color: var(--ink); line-height: 1.6; }
+    .head {
+      background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%); color: #fff;
+      padding: calc(22px + env(safe-area-inset-top, 0px)) 22px 76px; text-align: center;
+    }
+    .head img.logo { height: 32px; width: auto; margin: 0 auto 30px; filter: brightness(0) invert(1); }
+    .check {
+      width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%;
+      display: grid; place-items: center; background: rgba(200,155,74,.16); border: 1px solid rgba(200,155,74,.5);
+      color: var(--gold); font-size: 1.7rem;
+      animation: pop .5s cubic-bezier(.2,1.4,.4,1) both;
+    }
+    @keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+    .eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+    h1 { font-family: var(--serif); font-weight: 600; font-size: 2rem; line-height: 1.15; margin: 10px auto 12px; max-width: 460px; }
+    h1 em { font-style: italic; font-weight: 500; color: #ff9aa6; }
+    .head p { color: rgba(255,255,255,.78); max-width: 420px; margin: 0 auto; font-size: .95rem; }
+
+    .card {
+      max-width: 720px; margin: -48px 12px 0; padding: 8px 0 0; background: var(--paper);
+      border-radius: 22px; box-shadow: 0 24px 60px -30px rgba(10,32,56,.4); overflow: hidden;
+    }
+    @media (min-width: 760px) { .card { margin: -48px auto 0; } }
+    .step-label {
+      display: flex; align-items: center; gap: 10px; padding: 16px 20px 6px;
+      font-size: .85rem; font-weight: 600; color: var(--ink);
+    }
+    .step-label span {
+      width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--navy); color: #fff; font-size: .75rem;
+    }
+    .calendly-inline-widget { min-width: 320px; height: 1000px; }
+
+    .fallback { display: none; padding: 20px 22px 26px; }
+    .fallback p { color: var(--muted); font-size: .95rem; margin-bottom: 18px; }
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px;
+      padding: 16px 24px; border-radius: 999px; background: var(--brand); color: #fff; text-decoration: none;
+      font: 600 1rem/1.2 var(--sans); transition: transform .18s ease, background .18s ease;
+    }
+    .btn:hover { background: var(--brand-l); }
+    .btn:active { transform: scale(.98); }
+
+    .notes { max-width: 720px; margin: 28px auto 0; padding: 0 22px; display: grid; gap: 12px; }
+    .note { display: grid; grid-template-columns: 28px 1fr; gap: 12px; font-size: .9rem; color: var(--muted); }
+    .note b { color: var(--ink); font-weight: 600; }
+    .note i { font-style: normal; color: var(--gold); font-size: 1.05rem; }
+    .help { text-align: center; margin: 30px 0 0; font-size: .88rem; }
+    .help a { color: var(--navy); font-weight: 500; text-underline-offset: 3px; }
+    footer { margin-top: 40px; padding: 24px 22px calc(24px + env(safe-area-inset-bottom, 0px)); text-align: center; font-size: .74rem; color: var(--muted); border-top: 1px solid var(--line); }
+  </style>
+</head>
+<body>
+
+<header class="head">
+  <img class="logo" src="/img/Up_Immigration_logo.webp" alt="UP Immigration" width="113" height="32" />
+  <div class="check">✓</div>
+  <span class="eyebrow">Pagamento confirmado</span>
+  <h1>Agora é só escolher o <em>seu horário</em>.</h1>
+  <p>Sua consulta de 50 minutos com a Larissa está garantida. Escolha abaixo o dia e o horário que funcionam melhor para você.</p>
+</header>
+
+<main>
+  <div class="card">
+    <div class="step-label"><span>2</span>Escolha o dia e o horário</div>
+
+    <div id="agenda"></div>
+    <script>
+      /*
+        Evento do Calendly SEM cobrança e SECRETO (só abre por este link).
+        Enquanto estiver vazio, a página mostra o botão de WhatsApp no lugar da agenda.
+      */
+      var CALENDLY_PAGO_URL = '';
+
+      (function () {
+        if (!CALENDLY_PAGO_URL) return;
+        var el = document.createElement('div');
+        el.className = 'calendly-inline-widget';
+        el.setAttribute('data-url', CALENDLY_PAGO_URL + (CALENDLY_PAGO_URL.indexOf('?') > -1 ? '&' : '?') + 'hide_gdpr_banner=1&primary_color=b8001c');
+        document.getElementById('agenda').appendChild(el);
+      })();
+    </script>
+
+    <div class="fallback" id="fallback">
+      <p>Chame a gente no WhatsApp para marcar o melhor horário com a Larissa:</p>
+      <a class="btn" href="https://wa.me/16725881360?text=Acabei%20de%20pagar%20a%20consulta%20e%20quero%20marcar%20o%20hor%C3%A1rio" target="_blank" rel="noopener">Marcar pelo WhatsApp →</a>
+    </div>
+    <script>
+      if (!CALENDLY_PAGO_URL) document.getElementById('fallback').style.display = 'block';
+    </script>
+  </div>
+
+  <div class="notes">
+    <div class="note"><i>◷</i><div><b>Confirmação do horário.</b> Assim que você marcar, chega o convite com o link da consulta online.</div></div>
+    <div class="note"><i>✦</i><div><b>Se contratar a UP depois,</b> o valor da consulta é creditado integralmente na sua aplicação.</div></div>
+  </div>
+
+  <p class="help"><a href="https://wa.me/16725881360?text=Paguei%20a%20consulta%20e%20tenho%20uma%20d%C3%BAvida" target="_blank" rel="noopener">Alguma dúvida? Fale com a gente no WhatsApp</a></p>
+</main>
+
+<footer>© 2026 UP Immigration Consulting · Larissa Castelluber, RCIC R710678</footer>
+
+<!--
+  Horário marcado no widget → TRACKING.md §3 consultation_booked.
+  Usa a mesma chave de proteção do booking-confirmed.html, então se o evento do
+  Calendly também redirecionar para lá, a marcação não conta duas vezes.
+-->
+<script>
+  window.addEventListener('message', function (e) {
+    try {
+      if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
+      var uri = (e.data.payload && e.data.payload.invitee && e.data.payload.invitee.uri) || '';
+      var uuid = uri.split('/').pop() || 'no-uuid';
+      var guardKey = 'booking_confirmed_fired:' + uuid;
+      if (sessionStorage.getItem(guardKey)) return;
+
+      gtag('event', 'consultation_booked', { booking_source: 'consulta-canada-paga', event_type: 'consulta-paga-stripe' });
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'ConsultationBooked', { booking_source: 'consulta-canada-paga', event_type: 'consulta-paga-stripe' });
+      }
+      sessionStorage.setItem(guardKey, '1');
+    } catch (err) {}
+  });
+</script>
+</body>
+</html>
