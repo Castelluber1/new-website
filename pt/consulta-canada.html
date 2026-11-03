@@ -264,9 +264,23 @@
     .faq details p { padding: 0 0 18px; font-size: .92rem; }
 
     /* Final CTA */
-    .final { text-align: center; padding: 64px 0 40px; }
-    .final h2 { margin-top: 0; }
-    .wa-link { display: inline-block; margin-top: 18px; font-size: .88rem; color: var(--navy); font-weight: 500; text-underline-offset: 3px; }
+    .final { text-align: center; padding: 72px 0 40px; }
+    .final-card {
+      position: relative; padding: 64px 24px 30px; margin-top: 40px; border-radius: 26px;
+      background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 100%); color: #fff;
+      box-shadow: 0 30px 60px -34px rgba(10,32,56,.6);
+    }
+    .final-photo {
+      position: absolute; top: -44px; left: 50%; transform: translateX(-50%);
+      width: 88px; height: 88px; border-radius: 50%; object-fit: cover; object-position: 50% 22%;
+      border: 3px solid var(--cream); box-shadow: 0 10px 24px -10px rgba(10,32,56,.5);
+    }
+    .final-card h2 { color: #fff; margin: 12px 0 12px; }
+    .final-card h2 em { color: #ff9aa6; }
+    .final-card p { color: rgba(255,255,255,.78); margin-bottom: 20px; }
+    .final-price { font-size: .85rem; color: rgba(255,255,255,.7); margin-bottom: 14px; }
+    .final-price strong { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: #fff; margin-right: 2px; }
+    .wa-link { display: inline-block; margin-top: 18px; font-size: .88rem; color: rgba(255,255,255,.85); font-weight: 500; text-underline-offset: 3px; }
 
     footer { padding: 28px 22px 20px; text-align: center; font-size: .74rem; color: var(--muted); border-top: 1px solid var(--line); }
     footer a { color: var(--muted); }
@@ -531,13 +545,17 @@
   <!-- ── Final ── -->
   <div class="final">
     <div class="wrap reveal">
-      <span class="eyebrow">Próximo passo</span>
-      <h2>Pare de pesquisar no escuro. <em>Decida com clareza.</em></h2>
-      <p style="margin-bottom:24px;">50 minutos com uma RCIC licenciada, em português, sobre o seu caso.</p>
-      <a class="btn js-checkout" data-cta="final_cta" href="https://buy.stripe.com/bJebJ17oo0zf0PfdtG57W0c">
-        Garantir minha consulta · R$ 650 <span class="arrow">→</span>
-      </a>
-      <a class="wa-link" href="https://wa.me/16725881360?text=Vim%20da%20p%C3%A1gina%20da%20consulta%2C%20tenho%20uma%20d%C3%BAvida%20antes%20de%20pagar" target="_blank" rel="noopener">Prefere tirar uma dúvida antes? Fale no WhatsApp</a>
+      <div class="final-card">
+        <img class="final-photo" src="/img/larissa-smile.webp" alt="Larissa Castelluber" width="1365" height="2048" loading="lazy" />
+        <span class="eyebrow">Próximo passo</span>
+        <h2>Seu plano para o Canadá começa com um <em>diagnóstico</em>.</h2>
+        <p>Em 50 minutos, a Larissa analisa o seu perfil e te mostra por onde começar.</p>
+        <div class="final-price"><strong>R$ 650</strong> · Pix, cartão ou Apple Pay</div>
+        <a class="btn js-checkout" data-cta="final_cta" href="https://buy.stripe.com/bJebJ17oo0zf0PfdtG57W0c">
+          Garantir minha consulta <span class="arrow">→</span>
+        </a>
+        <a class="wa-link" href="https://wa.me/16725881360?text=Vim%20da%20p%C3%A1gina%20da%20consulta%2C%20tenho%20uma%20d%C3%BAvida%20antes%20de%20pagar" target="_blank" rel="noopener">Ficou com alguma dúvida? Fale com a gente no WhatsApp</a>
+      </div>
     </div>
   </div>
 </main>
