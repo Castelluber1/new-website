@@ -197,7 +197,7 @@ product is told apart by `items[].item_id`, never by a new event name.
 |---|---|
 | `currency` | `BRL` |
 | `value` | `650` |
-| `cta_location` | `hero` / `price_card` / `final_cta` / `sticky` |
+| `cta_location` | `price_block` / `price_card` / `final_cta` / `sticky` (the hero button only scrolls, no checkout) |
 | `items[]` | `item_id: consulta-imigracao-50min` |
 
 Also fires Meta `InitiateCheckout`. Report ebook vs consultation by filtering on `item_id`.

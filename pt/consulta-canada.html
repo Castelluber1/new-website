@@ -139,14 +139,17 @@
     .hero-photo figcaption strong { display: block; color: var(--ink); font-size: .88rem; font-weight: 600; }
     .hero-photo figcaption .stars { color: var(--gold); white-space: nowrap; font-weight: 600; }
     .hero-buy { margin-top: 22px; }
-    .price-row {
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      padding: 12px 0; margin-bottom: 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    }
     .price { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: var(--ink); line-height: 1; white-space: nowrap; }
     .price small { font-family: var(--sans); font-size: .78rem; font-weight: 500; color: var(--muted); margin-left: 4px; }
-    .price-meta { text-align: right; font-size: .74rem; color: var(--muted); line-height: 1.4; max-width: 150px; }
-    .price-meta strong { color: var(--ink); font-weight: 600; }
+
+    /* Primeiro bloco de preço (depois de "O que você leva") */
+    .price-block {
+      margin-top: 22px; padding: 22px; border-radius: var(--r); text-align: center;
+      background: var(--paper); border: 1px solid var(--line); box-shadow: 0 24px 50px -36px rgba(10,32,56,.4);
+    }
+    .pb-title { font-weight: 600; font-size: .98rem; color: var(--ink); }
+    .pb-meta { font-size: .82rem; color: var(--muted); margin: 2px 0 14px; }
+    .price-block .price { font-size: 2.3rem; margin-bottom: 18px; }
 
     /* ── Trust strip ── */
     .trust {
@@ -196,19 +199,24 @@
     .step p { font-size: .9rem; }
 
     /* Larissa */
-    .bio { border-radius: 24px; overflow: hidden; background: var(--navy); color: #fff; }
-    .bio-head { display: flex; align-items: center; gap: 16px; padding: 24px 22px 0; }
-    .bio-head img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
-    .bio-head h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
-    .bio-head span { font-size: .78rem; color: rgba(255,255,255,.7); }
-    .bio-body { padding: 18px 22px 24px; }
-    .bio-body p { color: rgba(255,255,255,.82); font-size: .93rem; }
-    .creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .creds span {
-      font-size: .74rem; padding: 5px 11px; border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.9);
+    .bio {
+      border-radius: 24px; overflow: hidden; background: var(--paper); border: 1px solid var(--line);
+      box-shadow: 0 30px 60px -40px rgba(10,32,56,.4);
     }
-    .creds a { color: var(--gold); font-size: .8rem; text-decoration: underline; text-underline-offset: 3px; margin-top: 14px; display: inline-block; }
+    .bio-photo { aspect-ratio: 4 / 3; overflow: hidden; background: #e9e1d4; }
+    .bio-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+    .bio-body { padding: 22px 22px 24px; }
+    .bio-body h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; line-height: 1.2; margin: 10px 0 4px; color: var(--ink); }
+    .bio-role { font-size: .85rem; color: var(--muted); margin-bottom: 14px; }
+    .bio-body p.bio-text { font-size: .95rem; color: var(--ink); }
+    .bio-facts { list-style: none; display: grid; gap: 1px; margin: 18px 0 16px; border-radius: 14px; overflow: hidden; background: var(--line); }
+    .bio-facts li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 14px; background: var(--cream); font-size: .85rem; color: var(--muted); }
+    .bio-facts li strong { color: var(--ink); font-weight: 600; text-align: right; }
+    .bio-link { font-size: .85rem; font-weight: 500; color: var(--navy); text-underline-offset: 3px; }
+    @media (min-width: 900px) {
+      .bio { display: grid; grid-template-columns: 1fr 1.15fr; }
+      .bio-photo { aspect-ratio: auto; }
+    }
 
     /* Reviews */
     .reviews { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 22px 14px; margin: 0 -22px; scrollbar-width: none; }
@@ -332,18 +340,9 @@
     </figure>
 
     <div class="hero-buy">
-      <div class="price-row">
-        <div class="price">R$ 650<small>à vista</small></div>
-        <div class="price-meta"><strong>Pix ou cartão</strong><br />Horário escolhido após o pagamento</div>
-      </div>
-
-      <a class="btn js-checkout" id="hero-cta" data-cta="hero" href="https://buy.stripe.com/bJebJ17oo0zf0PfdtG57W0c">
-        Garantir minha consulta <span class="arrow">→</span>
+      <a class="btn" data-cta="hero" href="#o-que-voce-leva">
+        Conhecer a consulta <span class="arrow">↓</span>
       </a>
-      <div class="pay-note">
-        <span class="chip">Pix</span><span class="chip">Cartão</span><span class="chip">Apple Pay</span>
-        <span>Pagamento seguro via Stripe</span>
-      </div>
     </div>
   </div>
 
@@ -357,27 +356,27 @@
   <section>
     <div class="wrap reveal">
       <span class="eyebrow">Para quem é</span>
-      <h2>Você já conhece o mundo. <em>Morar</em> é outra decisão.</h2>
+      <h2>Você conhece o Canadá como destino. Agora, considera o país como <em>casa</em>.</h2>
       <div class="who">
         <div class="who-item">
           <div class="ico">✈</div>
           <div>
-            <h3>Quem quer sair do "um dia"</h3>
-            <p>Você já pesquisou, já ouviu histórias, e quer saber de forma objetiva se o seu perfil qualifica e por qual programa.</p>
+            <h3>Planos que precisam sair da pesquisa</h3>
+            <p>Você quer avaliar suas possibilidades de morar no Canadá antes de comprometer recursos com uma aplicação.</p>
           </div>
         </div>
         <div class="who-item">
           <div class="ico">◎</div>
           <div>
-            <h3>Quem vai com a família</h3>
-            <p>Cônjuge e filhos entram na estratégia desde o início, e a ordem certa dos passos faz diferença para todos.</p>
+            <h3>Uma decisão que envolve a família</h3>
+            <p>Você precisa entender como as opções de imigração se encaixam nos planos do casal e dos filhos.</p>
           </div>
         </div>
         <div class="who-item">
           <div class="ico">◆</div>
           <div>
-            <h3>Quem não quer errar</h3>
-            <p>Uma aplicação no programa errado custa tempo, taxas e pode deixar histórico de recusa. A consulta vem antes disso.</p>
+            <h3>Critério antes de investir</h3>
+            <p>Você busca uma avaliação profissional do seu perfil para decidir se faz sentido seguir e por onde começar.</p>
           </div>
         </div>
       </div>
@@ -385,7 +384,7 @@
   </section>
 
   <!-- ── O que você leva ── -->
-  <section>
+  <section id="o-que-voce-leva">
     <div class="wrap reveal">
       <span class="eyebrow">O que você leva</span>
       <h2>50 minutos sobre o <em>seu</em> caso, não um roteiro genérico.</h2>
@@ -396,6 +395,20 @@
         <li><span class="n">04</span>Prazos realistas e próximos passos definidos</li>
         <li><span class="n">05</span>Todas as suas dúvidas respondidas pela própria Larissa</li>
       </ul>
+
+      <!-- Primeira aparição do preço: depois de a pessoa entender o que leva -->
+      <div class="price-block" id="preco">
+        <div class="pb-title">Consulta individual com Larissa Castelluber</div>
+        <div class="pb-meta">50 minutos · Online · Em português</div>
+        <div class="price">R$ 650<small>à vista</small></div>
+        <a class="btn js-checkout" data-cta="price_block" href="https://buy.stripe.com/bJebJ17oo0zf0PfdtG57W0c">
+          Garantir minha consulta <span class="arrow">→</span>
+        </a>
+        <div class="pay-note">
+          <span class="chip">Pix</span><span class="chip">Cartão</span><span class="chip">Apple Pay</span>
+          <span>Horário escolhido após o pagamento</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -425,19 +438,20 @@
   <section>
     <div class="wrap reveal">
       <div class="bio">
-        <div class="bio-head">
-          <img src="/img/Larissa-headshot.webp" alt="Larissa Castelluber" width="76" height="76" loading="lazy" />
-          <div>
-            <h3>Larissa Castelluber</h3>
-            <span>Consultora de imigração regulamentada · RCIC</span>
-          </div>
+        <div class="bio-photo">
+          <img src="/img/larissa-smile.webp" alt="Larissa Castelluber" width="1365" height="2048" loading="lazy" />
         </div>
         <div class="bio-body">
-          <p>Você fala diretamente com a Larissa, não com uma assistente. Licenciada pelo CICC, com formação pela UBC em Canadian Immigration Law e experiência em residência permanente, patrocínio, LMIA, study permits e work permits.</p>
-          <div class="creds">
-            <span>RCIC R710678</span><span>CICC</span><span>UBC</span>
-          </div>
-          <a href="https://register.college-ic.ca/Public-Register-EN/Licensee/Profile.aspx?ID=15375" target="_blank" rel="noopener">Confira o registro oficial →</a>
+          <span class="eyebrow">Quem conduz a consulta</span>
+          <h3>Larissa Castelluber</h3>
+          <div class="bio-role">Consultora de imigração regulamentada (RCIC)</div>
+          <p class="bio-text">Você fala diretamente com a Larissa, não com uma assistente.</p>
+          <ul class="bio-facts">
+            <li>Registro <strong>RCIC R710678 · CICC</strong></li>
+            <li>Formação <strong>UBC, Canadian Immigration Law</strong></li>
+            <li>Experiência <strong>PR, patrocínio, LMIA, estudo e trabalho</strong></li>
+          </ul>
+          <a class="bio-link" href="https://register.college-ic.ca/Public-Register-EN/Licensee/Profile.aspx?ID=15375" target="_blank" rel="noopener">Confira o registro oficial no CICC →</a>
         </div>
       </div>
     </div>
@@ -589,18 +603,23 @@
     });
   });
 
-  /* ── Barra fixa: aparece sempre que o botão do topo e o card de preço estão fora da tela ── */
-  var hero = document.getElementById('hero-cta');
+  /* ── Barra fixa: só depois que a pessoa já viu o primeiro bloco de preço,
+        e escondida enquanto um bloco de preço estiver na tela ── */
+  var firstPrice = document.getElementById('preco');
   var bar = document.getElementById('bar');
   var offer = document.getElementById('oferta');
   if ('IntersectionObserver' in window) {
-    var heroGone = false, offerVisible = false;
+    var priceSeen = false, priceVisible = false, offerVisible = false;
     var sync = function () {
-      var on = heroGone && !offerVisible;
+      var on = priceSeen && !priceVisible && !offerVisible;
       bar.classList.toggle('show', on);
       bar.setAttribute('aria-hidden', on ? 'false' : 'true');
     };
-    new IntersectionObserver(function (e) { heroGone = !e[0].isIntersecting; sync(); }).observe(hero);
+    new IntersectionObserver(function (e) {
+      priceVisible = e[0].isIntersecting;
+      if (priceVisible || e[0].boundingClientRect.top < 0) priceSeen = true;
+      sync();
+    }).observe(firstPrice);
     new IntersectionObserver(function (e) { offerVisible = e[0].isIntersecting; sync(); }, { threshold: .25 }).observe(offer);
 
     /* ── Entrada suave das seções ── */
