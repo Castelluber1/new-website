@@ -145,7 +145,8 @@ Both failure modes exist on this site today:
 | `appointments.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
 | `immigration-consultation.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
 | `pt/medicos-brasileiros-canada.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
-| `pt/consulta-confirmada.html` | inline embed (after Stripe payment) | ✅ | ✅ yes — `booking_source: consulta-canada-paga` |
+| `pt/consulta-canada.html` | widget (`initPopupWidget`, paid CAD event) | ✅ | ✅ yes — `booking_source: consulta-canada` |
+| `pt/consulta-confirmada.html` | inline embed (after Stripe payment) — **not in use**, see `purchase` | ✅ | n/a |
 | `pt/consulta-de-imigracao.html` | **plain links only** | ✅ (dead) | ❌ **no — never fired** |
 | `blog/common-law-relationship-...` | plain link | ✗ | ❌ no |
 | `blog/sponsoring-spouse-partner-...` | plain link | ✗ | ❌ no |
@@ -189,20 +190,24 @@ Fires on `/ebook-imigrar-2026` only, on any `a[href*="kiwify.com.br"]` click.
 Also fires Meta `InitiateCheckout` alongside. Already correctly built — do not change.
 
 **Second product, same action (added 2026-11-02):** `/pt/consulta-canada` fires
-`begin_checkout` when a CTA sends the visitor to the Stripe Payment Link for the
-paid consultation. Same user action (start checkout), different product, so the
-product is told apart by `items[].item_id`, never by a new event name.
+`begin_checkout` when a CTA opens the Calendly popup for the paid consultation
+(Calendly takes the CAD card payment). Same user action (start checkout), different
+product, so the product is told apart by `items[].item_id`, never by a new event name.
 
 | Param | Value |
 |---|---|
-| `currency` | `BRL` |
-| `value` | `650` |
+| `currency` | `CAD` |
+| `value` | `175` |
 | `cta_location` | `price_block` / `price_card` / `final_cta` / `sticky` (the hero button only scrolls, no checkout) |
 | `items[]` | `item_id: consulta-imigracao-50min` |
 
 Also fires Meta `InitiateCheckout`. Report ebook vs consultation by filtering on `item_id`.
 
-### `purchase` — CONVERSION (paid consultation)
+### `purchase` — CONVERSION (paid consultation) — **NOT IN USE since 2026-11-02**
+
+> Paused: `/pt/consulta-canada` went back to Calendly (pay + book in one step) because a
+> free secret Calendly event after Stripe could be shared and booked without paying.
+> Re-enable only with server-side Stripe session check + Calendly single-use links.
 
 **Means:** the Stripe payment for the consultation went through and Stripe sent
 the visitor back to `/pt/consulta-confirmada?session_id={CHECKOUT_SESSION_ID}`.
