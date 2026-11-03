@@ -111,28 +111,34 @@
 
     /* ── Top bar ── */
     .top {
-      position: absolute; top: 0; left: 0; right: 0; z-index: 3;
-      padding: calc(14px + env(safe-area-inset-top, 0px)) 22px 14px;
+      max-width: 560px; margin: 0 auto;
+      padding: calc(18px + env(safe-area-inset-top, 0px)) 22px 0;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .top img { height: 34px; width: auto; filter: brightness(0) invert(1); }
-    .top .lang { font-size: .72rem; color: rgba(255,255,255,.85); letter-spacing: .08em; text-transform: uppercase; }
+    .top img { height: 32px; width: auto; }
+    .top .lang { font-size: .7rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
 
-    /* ── Hero ── */
-    .hero { position: relative; background: var(--navy-deep); }
-    .hero-photo { position: relative; height: 30vh; min-height: 220px; max-height: 420px; overflow: hidden; }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
-    .hero-photo::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,32,56,.55) 0%, rgba(10,32,56,0) 26%, rgba(10,32,56,0) 55%, rgba(10,32,56,.92) 100%);
+    /* ── Hero: texto primeiro, foto inteira numa moldura, depois a compra ── */
+    .hero { max-width: 560px; margin: 0 auto; padding: 34px 22px 0; }
+    .hero-text h1 { margin: 12px 0 14px; }
+    .hero-text .sub { font-size: 1rem; line-height: 1.6; }
+    .hero-photo {
+      position: relative; margin: 28px 0 0; aspect-ratio: 4 / 5; overflow: hidden;
+      border-radius: 999px 999px 24px 24px; background: #e9e1d4;
+      box-shadow: 0 30px 60px -34px rgba(10,32,56,.5);
     }
-    .hero-card {
-      position: relative; z-index: 2; margin: -70px 14px 0; padding: 24px 22px 22px;
-      background: var(--cream); border-radius: 24px;
-      box-shadow: 0 24px 60px -24px rgba(10,32,56,.45);
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; transform: scale(1.14); transform-origin: 42% 72%; }
+    @media (min-width: 900px) { .hero-photo img { transform: none; } }
+    .hero-photo figcaption {
+      position: absolute; left: 14px; right: 14px; bottom: 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 10px 14px; border-radius: 14px;
+      background: rgba(255,255,255,.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      font-size: .78rem; color: var(--muted); line-height: 1.3;
     }
-    .hero-card h1 { margin: 10px 0 12px; }
-    .hero-card .sub { font-size: .95rem; line-height: 1.55; margin-bottom: 16px; }
+    .hero-photo figcaption strong { display: block; color: var(--ink); font-size: .88rem; font-weight: 600; }
+    .hero-photo figcaption .stars { color: var(--gold); white-space: nowrap; font-weight: 600; }
+    .hero-buy { margin-top: 22px; }
     .price-row {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
       padding: 12px 0; margin-bottom: 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
@@ -277,11 +283,16 @@
     /* ── Desktop ── */
     @media (min-width: 900px) {
       body { padding-bottom: 0; }
-      .hero { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 640px; }
-      .hero-photo { height: auto; max-height: none; order: 2; }
-      .hero-photo::after { background: linear-gradient(90deg, rgba(10,32,56,.5) 0%, rgba(10,32,56,0) 30%); }
-      .hero-card { margin: 120px -60px 60px 8vw; align-self: center; max-width: 560px; padding: 40px 38px 34px; }
-      h1 { font-size: 2.7rem; }
+      .top { max-width: 1100px; padding-top: 26px; }
+      .hero {
+        max-width: 1100px; padding: 40px 22px 0;
+        display: grid; grid-template-columns: 1.1fr .9fr; column-gap: 64px;
+        grid-template-areas: "text photo" "buy photo"; align-items: end;
+      }
+      .hero-text { grid-area: text; }
+      .hero-buy { grid-area: buy; align-self: start; max-width: 480px; }
+      .hero-photo { grid-area: photo; margin: 0; }
+      h1 { font-size: 2.9rem; }
       .trust { max-width: 760px; margin: 28px auto 0; }
       .wrap { max-width: 760px; }
       .who { grid-template-columns: 1fr 1fr 1fr; }
@@ -305,21 +316,28 @@
 
 <main>
   <!-- ── Hero ── -->
-  <div class="hero" id="hero">
-    <div class="hero-photo">
-      <img src="/img/larissa-cofee.webp" alt="Larissa Castelluber, consultora de imigração RCIC" width="750" height="1125" fetchpriority="high" />
-    </div>
-    <div class="hero-card">
+  <div class="hero">
+    <div class="hero-text">
       <span class="eyebrow">Consulta individual · 50 min</span>
       <h1>Seu plano para morar no <em>Canadá</em> começa com uma conversa estratégica.</h1>
       <p class="sub">50 minutos com a Larissa Castelluber, consultora RCIC licenciada, para saber se o seu perfil qualifica e qual caminho seguir.</p>
+    </div>
 
+    <figure class="hero-photo">
+      <img src="/img/larissa-cofee.webp" alt="Larissa Castelluber, consultora de imigração RCIC" width="750" height="1125" fetchpriority="high" />
+      <figcaption>
+        <span><strong>Larissa Castelluber</strong>RCIC R710678</span>
+        <span class="stars">★ 4.9 Google</span>
+      </figcaption>
+    </figure>
+
+    <div class="hero-buy">
       <div class="price-row">
         <div class="price">R$ 650<small>à vista</small></div>
         <div class="price-meta"><strong>Pix ou cartão</strong><br />Horário escolhido após o pagamento</div>
       </div>
 
-      <a class="btn js-checkout" data-cta="hero" href="https://buy.stripe.com/bJebJ17oo0zf0PfdtG57W0c">
+      <a class="btn js-checkout" id="hero-cta" data-cta="hero" href="https://buy.stripe.com/bJebJ17oo0zf0PfdtG57W0c">
         Garantir minha consulta <span class="arrow">→</span>
       </a>
       <div class="pay-note">
@@ -571,8 +589,8 @@
     });
   });
 
-  /* ── Barra fixa aparece depois do hero ── */
-  var hero = document.getElementById('hero');
+  /* ── Barra fixa: aparece sempre que o botão do topo e o card de preço estão fora da tela ── */
+  var hero = document.getElementById('hero-cta');
   var bar = document.getElementById('bar');
   var offer = document.getElementById('oferta');
   if ('IntersectionObserver' in window) {
