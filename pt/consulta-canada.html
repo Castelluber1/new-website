@@ -167,17 +167,19 @@
     .reveal.in { opacity: 1; transform: none; }
 
     /* Para quem é */
-    .who { display: grid; gap: 12px; margin-top: 6px; }
-    .who-item {
-      display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start;
-      padding: 18px; border-radius: var(--r); background: var(--paper); border: 1px solid var(--line);
+    .who-lead { font-size: 1rem; margin-bottom: 22px; }
+    .who { list-style: none; display: grid; gap: 18px; margin-bottom: 26px; }
+    .who li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; }
+    .who .n { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; color: var(--gold); line-height: 1.2; }
+    .who h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+    .who p { font-size: .92rem; line-height: 1.55; }
+    .paid {
+      padding: 20px 20px 18px; border-radius: var(--r);
+      background: var(--paper); border: 1px solid rgba(200,155,74,.45);
+      box-shadow: 0 20px 40px -32px rgba(10,32,56,.35);
     }
-    .who-item .ico {
-      width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
-      background: rgba(200,155,74,.12); color: var(--gold); font-size: 1.1rem;
-    }
-    .who-item h3 { font-size: .98rem; font-weight: 600; margin-bottom: 3px; color: var(--ink); }
-    .who-item p { font-size: .9rem; line-height: 1.55; }
+    .paid strong { display: block; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .paid p { font-size: .93rem; color: var(--ink); line-height: 1.6; }
 
     /* O que você leva */
     .takeaways { list-style: none; display: grid; gap: 2px; border-radius: var(--r); overflow: hidden; background: var(--line); }
@@ -303,8 +305,7 @@
       h1 { font-size: 2.9rem; }
       .trust { max-width: 760px; margin: 28px auto 0; }
       .wrap { max-width: 760px; }
-      .who { grid-template-columns: 1fr 1fr 1fr; }
-      .who-item { grid-template-columns: 1fr; }
+      .who { grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
       .review { flex-basis: 46%; }
       .bar { display: none; }
       .offer { max-width: 520px; margin: 0 auto; }
@@ -356,29 +357,16 @@
   <section>
     <div class="wrap reveal">
       <span class="eyebrow">Para quem é</span>
-      <h2>Você conhece o Canadá como destino. Agora, considera o país como <em>casa</em>.</h2>
-      <div class="who">
-        <div class="who-item">
-          <div class="ico">✈</div>
-          <div>
-            <h3>Planos que precisam sair da pesquisa</h3>
-            <p>Você quer avaliar suas possibilidades de morar no Canadá antes de comprometer recursos com uma aplicação.</p>
-          </div>
-        </div>
-        <div class="who-item">
-          <div class="ico">◎</div>
-          <div>
-            <h3>Uma decisão que envolve a família</h3>
-            <p>Você precisa entender como as opções de imigração se encaixam nos planos do casal e dos filhos.</p>
-          </div>
-        </div>
-        <div class="who-item">
-          <div class="ico">◆</div>
-          <div>
-            <h3>Critério antes de investir</h3>
-            <p>Você busca uma avaliação profissional do seu perfil para decidir se faz sentido seguir e por onde começar.</p>
-          </div>
-        </div>
+      <h2>Quer morar no Canadá, mas não sabe <em>por onde começar</em>?</h2>
+      <p class="who-lead">Seja do zero ou depois de muita pesquisa, a conversa parte de onde você está.</p>
+      <ol class="who">
+        <li><span class="n">1</span><div><h3>A gente entende o seu perfil</h3><p>Sua formação, seu trabalho, seu inglês e o que você quer do Canadá.</p></div></li>
+        <li><span class="n">2</span><div><h3>Explica o que você precisa saber</h3><p>Quais caminhos existem para alguém como você, em português claro, sem juridiquês.</p></div></li>
+        <li><span class="n">3</span><div><h3>Te entrega os próximos passos</h3><p>Você sai da conversa sabendo o que fazer primeiro.</p></div></li>
+      </ol>
+      <div class="paid">
+        <strong>“Mas é pago?”</strong>
+        <p>É, e funciona como o primeiro passo do seu processo. Se você seguir com a UP, o valor da consulta volta inteiro como desconto no serviço. Quem segue com a gente não paga a conversa duas vezes.</p>
       </div>
     </div>
   </section>
