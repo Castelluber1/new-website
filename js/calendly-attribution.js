@@ -52,10 +52,10 @@
 
 	/**
 	 * GA4 session id, from the per-property cookie _ga_<MEASUREMENT_ID minus G->.
-	 * Format: GS1.1.<sessionId>.<n>.<...> — we want the first numeric segment.
+	 * Formats: GS1.1.<sessionId>.<n>... (old) and GS2.1.s<sessionId>$o<n>... (GA4 since 2025).
 	 */
 	function getSessionId() {
-		var m = document.cookie.match(/_ga_[A-Z0-9]+=GS\d\.\d\.(\d+)/);
+		var m = document.cookie.match(/_ga_[A-Z0-9]+=GS\d\.\d\.s?(\d+)/);
 		return m ? m[1] : null;
 	}
 
