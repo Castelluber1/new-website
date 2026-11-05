@@ -615,7 +615,7 @@
       var guardKey = 'booking_confirmed_fired:' + (uri.split('/').pop() || 'no-uuid');
       if (sessionStorage.getItem(guardKey)) return;
       gtag('event', 'consultation_booked', { booking_source: 'consulta-canada' });
-      if (typeof fbq === 'function') fbq('trackCustom', 'ConsultationBooked', { booking_source: 'consulta-canada' });
+      if (typeof fbq === 'function') fbq('trackCustom', 'ConsultationBooked', { booking_source: 'consulta-canada', value: VALUE, currency: CURRENCY });
       sessionStorage.setItem(guardKey, '1');
     } catch (err) {}
   });
