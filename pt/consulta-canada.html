@@ -268,29 +268,27 @@
     .faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
     .faq details p { padding: 0 0 18px; font-size: .92rem; }
 
-    /* Dúvida antes de agendar */
-    .ask { margin-top: 32px; padding: 24px 20px; border-radius: var(--r); background: var(--paper); border: 1px solid var(--line); }
-    .ask h3 { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; color: var(--ink); line-height: 1.25; }
-    .ask > p { font-size: .9rem; color: var(--muted); margin: 6px 0 16px; }
-    .ask label { display: block; font-size: .8rem; font-weight: 500; color: var(--ink); margin: 12px 0 6px; }
-    .ask input, .ask textarea {
+    /* Contato leve no topo: nome + WhatsApp */
+    .ask { margin-top: 14px; padding: 16px; border-radius: var(--r); background: var(--paper); border: 1px solid var(--line); }
+    .ask p { font-size: .88rem; color: var(--ink); line-height: 1.45; margin-bottom: 12px; }
+    .ask p span { color: var(--muted); }
+    .ask .row { display: grid; gap: 8px; }
+    .ask input {
       width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--cream);
       border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; transition: border-color .15s ease, box-shadow .15s ease;
     }
-    .ask textarea { min-height: 110px; resize: vertical; }
-    .ask input:focus, .ask textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(14,42,71,.12); }
+    .ask input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(14,42,71,.12); }
     .ask .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .ask button {
-      margin-top: 16px; width: 100%; font: inherit; font-weight: 600; font-size: .95rem; color: var(--navy);
-      background: transparent; border: 1.5px solid var(--navy); border-radius: 999px; padding: 14px 18px; cursor: pointer;
+      width: 100%; font: inherit; font-weight: 600; font-size: .92rem; color: var(--navy); background: transparent;
+      border: 1.5px solid var(--navy); border-radius: 999px; padding: 12px 18px; cursor: pointer;
       transition: background .15s ease, color .15s ease, transform .1s ease;
     }
     .ask button:hover { background: var(--navy); color: #fff; }
     .ask button:active { transform: scale(.98); }
     .ask button[disabled] { opacity: .6; cursor: default; }
-    .ask-ok { display: none; text-align: center; padding: 8px 0; }
-    .ask-ok strong { display: block; font-family: var(--serif); font-size: 1.15rem; color: var(--ink); margin-bottom: 6px; }
-    .ask-ok p { font-size: .9rem; color: var(--muted); }
+    .ask-ok { display: none; font-size: .9rem; color: var(--ink); line-height: 1.45; }
+    .ask-ok strong { display: block; font-family: var(--serif); font-size: 1.05rem; margin-bottom: 2px; }
 
     /* Final CTA */
     .final { text-align: center; padding: 72px 0 40px; }
@@ -383,6 +381,18 @@
       <a class="btn" data-cta="hero" href="#o-que-voce-leva">
         Conhecer a consulta <span class="arrow">↓</span>
       </a>
+      <div class="ask" id="contato">
+        <form id="askForm" novalidate>
+          <p>Quer entender se isso funciona para você? <span>Deixe seu nome e WhatsApp e a gente te chama para explicar.</span></p>
+          <div class="row">
+            <input name="name" type="text" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome" required />
+            <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="WhatsApp com DDD" aria-label="WhatsApp com DDD" required />
+            <div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off" /></div>
+            <button type="submit">Quero que me chamem</button>
+          </div>
+        </form>
+        <div class="ask-ok" id="askOk" role="status"><strong>Pronto, você deu o primeiro passo.</strong>A gente te chama no WhatsApp.</div>
+      </div>
     </div>
   </div>
 
@@ -567,26 +577,6 @@
           <p>Não existe caminho fácil. Existe o caminho certo para a sua idade, profissão, idioma e família, e é isso que a consulta define.</p>
         </details>
       </div>
-      <div class="ask" id="duvida">
-        <form id="askForm" novalidate>
-          <h3>Ainda tem uma dúvida antes de agendar?</h3>
-          <p>Escreva aqui. A equipe da UP lê e responde por e-mail ou WhatsApp.</p>
-          <label for="askName">Nome</label>
-          <input id="askName" name="name" type="text" autocomplete="name" required />
-          <label for="askEmail">E-mail</label>
-          <input id="askEmail" name="email" type="email" autocomplete="email" inputmode="email" required />
-          <label for="askPhone">WhatsApp (opcional)</label>
-          <input id="askPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+55 11 99999-9999" />
-          <label for="askMsg">Sua dúvida</label>
-          <textarea id="askMsg" name="message" required></textarea>
-          <div class="hp" aria-hidden="true"><label>Site<input name="website" tabindex="-1" autocomplete="off" /></label></div>
-          <button type="submit">Enviar minha dúvida</button>
-        </form>
-        <div class="ask-ok" id="askOk" role="status">
-          <strong>Recebemos a sua dúvida.</strong>
-          <p>A equipe da UP vai responder pelo contato que você deixou.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -664,31 +654,28 @@
     } catch (err) {}
   });
 
-  /* ── Dúvida antes de agendar → CRM (n8n crm-new-person: cria pessoa + nota e avisa o Kyle por e-mail).
-        Meta: trackCustom ConsultationQuestion (eventos padrão podem ser bloqueados neste domínio). ── */
+  /* ── Contato leve (nome + WhatsApp) → CRM (n8n crm-new-person: cria pessoa + nota e avisa o Kyle por e-mail).
+        Meta: trackCustom ConsultationCallback (eventos padrão podem ser bloqueados neste domínio). ── */
   var askForm = document.getElementById('askForm');
   if (askForm) askForm.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    var f = askForm, name = f.name.value.trim(), email = f.email.value.trim(), msg = f.message.value.trim();
-    if (name.length < 2 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || msg.length < 3) {
-      (name.length < 2 ? f.name : (msg.length < 3 && /@/.test(email) ? f.message : f.email)).focus();
-      f.reportValidity && f.reportValidity();
-      return;
-    }
+    var f = askForm, name = f.name.value.trim(), phone = f.phone.value.trim();
+    if (name.length < 2) { f.name.focus(); return; }
+    if (phone.replace(/\D/g, '').length < 8) { f.phone.focus(); return; }
     var q = new URLSearchParams(location.search);
-    var about = ['Dúvida: ' + msg.replace(/\s*\|\s*/g, ' / ').replace(/\s+/g, ' '),
-                 'Página: consulta-canada',
+    var about = ['Pediu contato pelo WhatsApp: sim',
+                 'Página: consulta-canada (topo)',
                  'Origem: ' + (q.get('utm_source') || 'direto') + (q.get('utm_campaign') ? ' / ' + q.get('utm_campaign') : ''),
                  'Arte: ' + (q.get('utm_id') || '-')].join(' | ');
     f.querySelector('button').disabled = true;
     fetch('https://webhook.upimmigrationconsulting.com/webhook/crm-new-person', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, mode: 'no-cors',
-      body: JSON.stringify({ name: name, email: email, phone: f.phone.value.trim(), website: f.website.value,
-        source: 'lp-consulta-canada-duvida', tags: ['consulta-canada', 'duvida-pre-agendamento'], about: about, page: location.href })
+      body: JSON.stringify({ name: name, phone: phone, website: f.website.value,
+        source: 'lp-consulta-canada-contato', tags: ['consulta-canada', 'pediu-contato'], about: about, page: location.href })
     }).catch(function () {});
     try {
-      gtag('event', 'lead_form_submitted', { method: 'consulta-canada-duvida' });
-      if (typeof fbq === 'function') fbq('trackCustom', 'ConsultationQuestion', { cta_location: 'duvida_form' });
+      gtag('event', 'lead_form_submitted', { method: 'consulta-canada-contato' });
+      if (typeof fbq === 'function') fbq('trackCustom', 'ConsultationCallback', { cta_location: 'hero_contato' });
     } catch (e) {}
     f.style.display = 'none';
     document.getElementById('askOk').style.display = 'block';
