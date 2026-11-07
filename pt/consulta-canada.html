@@ -596,7 +596,8 @@
           currency: CURRENCY, value: VALUE, items: [ITEM],
           cta_location: a.getAttribute('data-cta')
         });
-        if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { currency: CURRENCY, value: VALUE, content_ids: [ITEM.item_id] });
+        /* InitiateCheckout padrão é bloqueado pelo Meta neste domínio (categoria Nationality); custom passa. */
+        if (typeof fbq === 'function') fbq('trackCustom', 'ConsultationCheckout', { currency: CURRENCY, value: VALUE, cta_location: a.getAttribute('data-cta') });
       } catch (e) {}
       if (window.Calendly && typeof Calendly.initPopupWidget === 'function') {
         ev.preventDefault();

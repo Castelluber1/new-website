@@ -145,7 +145,7 @@ Both failure modes exist on this site today:
 | `appointments.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
 | `immigration-consultation.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
 | `pt/medicos-brasileiros-canada.html` | widget (`showPopupWidget`) | ✅ | ✅ yes |
-| `pt/consulta-canada.html` | widget (`initPopupWidget`, paid CAD event) | ✅ | ✅ yes — `booking_source: consulta-canada`. Meta: `trackCustom('ConsultationBooked', {value: 175, currency: 'CAD'})` (value added 2026-11-05), counted by Custom Conversion 2960522510979758 (any page on the domain) |
+| `pt/consulta-canada.html` | widget (`initPopupWidget`, paid CAD event) | ✅ | ✅ yes — `booking_source: consulta-canada`. Meta: `trackCustom('ConsultationBooked', {value: 175, currency: 'CAD'})` (value added 2026-11-05); button click → `trackCustom('ConsultationCheckout')` (standard InitiateCheckout is dropped by Meta on this domain, verified 2026-11-07), counted by Custom Conversion 2960522510979758 (any page on the domain) |
 | `pt/consulta-confirmada.html` | inline embed (after Stripe payment) — **not in use**, see `purchase` | ✅ | n/a |
 | `pt/consulta-de-imigracao.html` | **plain links only** | ✅ (dead) | ❌ **no — never fired** |
 | `blog/common-law-relationship-...` | plain link | ✗ | ❌ no |
