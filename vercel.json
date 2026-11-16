@@ -3,6 +3,468 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt",
+      "permanent": true
+    },
+    {
+      "source": "/contato",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/contato",
+      "permanent": true
+    },
+    {
+      "source": "/contato/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/contato",
+      "permanent": true
+    },
+    {
+      "source": "/servicos",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt",
+      "permanent": true
+    },
+    {
+      "source": "/servicos/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt",
+      "permanent": true
+    },
+    {
+      "source": "/sobre",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/sobre",
+      "permanent": true
+    },
+    {
+      "source": "/sobre/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/sobre",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog",
+      "permanent": true
+    },
+    {
+      "source": "/category/dicas",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog",
+      "permanent": true
+    },
+    {
+      "source": "/category/dicas/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog",
+      "permanent": true
+    },
+    {
+      "source": "/375-mil-pessoas-receberam-cidadania-canadense-em-2024",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/375-mil-pessoas-receberam-cidadania-canadense-em-2024/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/por-que-brasileiros-estao-migrando-para-o-canada-2025",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/como-imigrar-canada-vindo-brasil-2026",
+      "permanent": true
+    },
+    {
+      "source": "/por-que-brasileiros-estao-migrando-para-o-canada-2025/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/como-imigrar-canada-vindo-brasil-2026",
+      "permanent": true
+    },
+    {
+      "source": "/vantagens-de-imigrar-para-o-canada",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/vantagens-de-imigrar-para-o-canada/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/canada-vs-eua-qual-escolher-2025",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/canada-vs-eua-qual-escolher-2025/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/clima-no-canada-o-que-esperar-em-cada-regiao",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/melhores-cidades-para-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/clima-no-canada-o-que-esperar-em-cada-regiao/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/melhores-cidades-para-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/sistema-de-saude-no-canada-guia-para-imigrantes",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/imigrar-canada-com-filhos-custos-escolas-saude",
+      "permanent": true
+    },
+    {
+      "source": "/sistema-de-saude-no-canada-guia-para-imigrantes/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/imigrar-canada-com-filhos-custos-escolas-saude",
+      "permanent": true
+    },
+    {
+      "source": "/educacao-no-canada-para-imigrantes",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/matricular-criancas-escolas-canadenses",
+      "permanent": true
+    },
+    {
+      "source": "/educacao-no-canada-para-imigrantes/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/matricular-criancas-escolas-canadenses",
+      "permanent": true
+    },
+    {
+      "source": "/custo-de-vida-no-canada-2025",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/como-morar-no-canada-guia-brasileiro",
+      "permanent": true
+    },
+    {
+      "source": "/custo-de-vida-no-canada-2025/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/como-morar-no-canada-guia-brasileiro",
+      "permanent": true
+    },
+    {
+      "source": "/seguranca-e-qualidade-de-vida-no-canada-2025",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/seguranca-e-qualidade-de-vida-no-canada-2025/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/cuidadores-canada-2025",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/residencia-permanente/programa-cuidadores",
+      "permanent": true
+    },
+    {
+      "source": "/cuidadores-canada-2025/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/residencia-permanente/programa-cuidadores",
+      "permanent": true
+    },
+    {
+      "source": "/qualidade-de-vida-no-canada-como-e-viver-la",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/qualidade-de-vida-no-canada-como-e-viver-la/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/vale-a-pena-morar-no-canada",
+      "permanent": true
+    },
+    {
+      "source": "/oportunidades-de-trabalho-no-canada",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/trabalhar-no-canada-para-brasileiros",
+      "permanent": true
+    },
+    {
+      "source": "/oportunidades-de-trabalho-no-canada/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/trabalhar-no-canada-para-brasileiros",
+      "permanent": true
+    },
+    {
+      "source": "/como-planejar-sua-imigracao-para-o-canada",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/como-imigrar-canada-vindo-brasil-2026",
+      "permanent": true
+    },
+    {
+      "source": "/como-planejar-sua-imigracao-para-o-canada/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/como-imigrar-canada-vindo-brasil-2026",
+      "permanent": true
+    },
+    {
+      "source": "/as-5-principais-provincias-para-imigrantes-brasileiros-no-canada",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/pnp-por-provincia",
+      "permanent": true
+    },
+    {
+      "source": "/as-5-principais-provincias-para-imigrantes-brasileiros-no-canada/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/pnp-por-provincia",
+      "permanent": true
+    },
+    {
+      "source": "/10-profissoes-em-alta-no-canada-para-imigrantes-brasileiros",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/profissoes-mais-demandadas-canada-2026",
+      "permanent": true
+    },
+    {
+      "source": "/10-profissoes-em-alta-no-canada-para-imigrantes-brasileiros/",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt/blog/profissoes-mais-demandadas-canada-2026",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "(www\\.)?upimmigration\\.com\\.br"
+        }
+      ],
+      "destination": "https://www.upimmigration.ca/pt",
+      "permanent": true
+    },
+    {
       "source": "/work",
       "destination": "/work-permit",
       "permanent": true
@@ -327,7 +789,10 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Vary", "value": "Accept, Accept-Encoding" }
+        {
+          "key": "Vary",
+          "value": "Accept, Accept-Encoding"
+        }
       ]
     }
   ]
