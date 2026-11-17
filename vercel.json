@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/pt/provincial-nominee-program",
+      "destination": "/pt/residencia-permanente/programa-nomeacao-provincial",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {
