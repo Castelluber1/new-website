@@ -13,6 +13,11 @@
       "permanent": true
     },
     {
+      "source": "/pt/consulta-paga",
+      "destination": "https://workflow.upimmigrationconsulting.com/webhook/consulta-agendar-asaas",
+      "permanent": false
+    },
+    {
       "source": "/",
       "has": [
         {
