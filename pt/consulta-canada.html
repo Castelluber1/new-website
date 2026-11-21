@@ -430,7 +430,7 @@
         <div class="pb-title">Consulta individual com Larissa Castelluber</div>
         <div class="pb-meta">50 minutos · Online · Em português</div>
         <div class="price">10x R$ 70<small>sem juros · R$ 700</small></div>
-        <a class="btn js-checkout" data-cta="price_block" href="https://www.asaas.com/c/q0z5lufctwl48wwy">
+        <a class="btn js-checkout" data-cta="price_block" href="/pt/consulta-pagar">
           Garantir minha consulta <span class="arrow">→</span>
         </a>
         <div class="pay-note">
@@ -533,7 +533,7 @@
             <li>Conduzida pela Larissa, RCIC licenciada</li>
           </ul>
           <div class="credit"><span>💡</span><span>Se você contratar a UP depois, o valor da consulta é creditado integralmente na sua aplicação.</span></div>
-          <a class="btn js-checkout" data-cta="price_card" href="https://www.asaas.com/c/q0z5lufctwl48wwy">
+          <a class="btn js-checkout" data-cta="price_card" href="/pt/consulta-pagar">
             Garantir minha consulta <span class="arrow">→</span>
           </a>
           <div class="pay-note"><span>Pague primeiro, depois escolha o horário</span></div>
@@ -585,7 +585,7 @@
         <h2>Seu plano para o Canadá começa com um <em>diagnóstico</em>.</h2>
         <p>Em 50 minutos, a Larissa analisa o seu perfil e te mostra por onde começar.</p>
         <div class="final-price"><strong>10x R$ 70</strong> · sem juros · cartão</div>
-        <a class="btn js-checkout" data-cta="final_cta" href="https://www.asaas.com/c/q0z5lufctwl48wwy">
+        <a class="btn js-checkout" data-cta="final_cta" href="/pt/consulta-pagar">
           Garantir minha consulta <span class="arrow">→</span>
         </a>
         <a class="wa-link" href="https://wa.me/16725881360?text=Vim%20da%20p%C3%A1gina%20da%20consulta%2C%20tenho%20uma%20d%C3%BAvida%20antes%20de%20pagar" target="_blank" rel="noopener">Ficou com alguma dúvida? Fale com a gente no WhatsApp</a>
@@ -603,7 +603,7 @@
 <div class="bar" id="bar" aria-hidden="true">
   <div class="bar-inner">
     <div class="bar-price"><strong>10x R$ 70</strong><span>sem juros</span></div>
-    <a class="btn js-checkout" data-cta="sticky" href="https://www.asaas.com/c/q0z5lufctwl48wwy" tabindex="-1">
+    <a class="btn js-checkout" data-cta="sticky" href="/pt/consulta-pagar" tabindex="-1">
       Garantir consulta <span class="arrow">→</span>
     </a>
   </div>
@@ -615,7 +615,7 @@
   var CURRENCY = 'BRL';
   var ITEM = { item_id: 'consulta-imigracao-50min', item_name: 'Consulta de imigração 50 min', price: VALUE, quantity: 1 };
 
-  /* ── Botões levam ao link de pagamento do Asaas (10x R$ 70). Depois de pagar, o Asaas devolve
+  /* ── Botões levam a /pt/consulta-pagar → n8n cria um checkout do Asaas (10x R$ 70) na hora. Depois de pagar, o Asaas devolve
         a pessoa para o n8n (consulta-agendar-asaas), que confere o pagamento e abre a agenda. ── */
   document.querySelectorAll('.js-checkout').forEach(function (a) {
     a.addEventListener('click', function (ev) {

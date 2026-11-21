@@ -13,6 +13,11 @@
       "permanent": true
     },
     {
+      "source": "/pt/consulta-pagar",
+      "destination": "https://workflow.upimmigrationconsulting.com/webhook/consulta-checkout",
+      "permanent": false
+    },
+    {
       "source": "/pt/consulta-paga",
       "destination": "https://workflow.upimmigrationconsulting.com/webhook/consulta-agendar-asaas",
       "permanent": false
