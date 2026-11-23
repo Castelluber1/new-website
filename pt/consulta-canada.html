@@ -618,7 +618,13 @@
   /* ── Botões levam a /pt/consulta-pagar → página de agendamento up-agenda v2 (horário + Pix/cartão + contrato), desde 23/11.
         Antes: n8n criava um checkout do Asaas (10x R$ 70) na hora. Depois de pagar, o Asaas devolve
         a pessoa para o n8n (consulta-agendar-asaas), que confere o pagamento e abre a agenda. ── */
+  /* Só etiquetas de anúncio (utm_*, fbclid, gclid) seguem para a página de agendamento, senão a venda fica sem origem. */
+  var tags = new URLSearchParams();
+  try {
+    new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0 || k === 'fbclid' || k === 'gclid') tags.set(k, v); });
+  } catch (e) {}
   document.querySelectorAll('.js-checkout').forEach(function (a) {
+    if (tags.toString()) a.href = a.getAttribute('href') + '?' + tags.toString();
     a.addEventListener('click', function (ev) {
       try {
         gtag('event', 'begin_checkout', {
