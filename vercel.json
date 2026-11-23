@@ -14,7 +14,7 @@
     },
     {
       "source": "/pt/consulta-pagar",
-      "destination": "https://workflow.upimmigrationconsulting.com/webhook/consulta-checkout",
+      "destination": "https://up-agenda.vercel.app/index-v2.html",
       "permanent": false
     },
     {
