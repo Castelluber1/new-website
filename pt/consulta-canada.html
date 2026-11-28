@@ -707,5 +707,65 @@
   }
 })();
 </script>
+
+<!-- ── Teste de visitas (27/11/2026, projeto up-melhoria-campanha): separa robô, toque acidental e quem leu e não quis.
+      Grava tempo, rolagem, toque e cliques direto no Home Supa (tabela lp_visitas, só escrita, ninguém de fora lê). Nada aparece para o visitante.
+      O link abaixo é invisível de propósito (armadilha de robô); a página é noindex, então não afeta SEO. ── -->
+<a href="/pt/consulta-canada?hp=1" id="hp-link" rel="nofollow" tabindex="-1" aria-hidden="true"
+   style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Clique aqui para ganhar um bônus</a>
+<script>
+(function () {
+  var URL_API = 'https://hermes-supabase.oaskzv.easypanel.host/rest/v1/lp_visitas';
+  var CHAVE = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzg4OTYxNTMyLCJleHAiOjIxMDQzMjE1MzJ9.3O-afZeipWKoTIaYWIPFSXmeHqQYi0Wsv0c0y7XDo-w';
+  var q; try { q = new URLSearchParams(location.search); } catch (e) { return; }
+  var sid;
+  try { sid = sessionStorage.getItem('lp_sid'); } catch (e) {}
+  if (!sid) {
+    var a = new Uint8Array(12); (window.crypto || window.msCrypto).getRandomValues(a);
+    sid = Array.prototype.map.call(a, function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+    try { sessionStorage.setItem('lp_sid', sid); } catch (e) {}
+  }
+  var s = {
+    sid: sid, pagina: location.pathname,
+    utm_source: q.get('utm_source'), utm_campaign: q.get('utm_campaign'), utm_id: q.get('utm_id'),
+    tem_fbclid: q.has('fbclid'), referrer: document.referrer || null,
+    ua: (navigator.userAgent || '').slice(0, 400),
+    tela: window.innerWidth + 'x' + window.innerHeight,
+    segundos: 0, rolagem_max: 0, tocou: false, clicou_cta: false, enviou_form: false, honeypot: q.get('hp') === '1'
+  };
+  function enviar() {
+    try {
+      fetch(URL_API, { method: 'POST', keepalive: true, body: JSON.stringify(s),
+        headers: { 'Content-Type': 'application/json', apikey: CHAVE, Authorization: 'Bearer ' + CHAVE, Prefer: 'return=minimal' } })
+        .catch(function () {});
+    } catch (e) {}
+  }
+  var marcos = { 3: 1, 6: 1, 10: 1, 20: 1, 30: 1, 60: 1, 120: 1, 300: 1 };
+  setInterval(function () {
+    if (document.visibilityState !== 'visible') return;
+    s.segundos++;
+    if (marcos[s.segundos]) enviar();
+  }, 1000);
+  var faixa = 0;
+  window.addEventListener('scroll', function () {
+    var h = document.documentElement.scrollHeight;
+    var p = Math.min(100, Math.round((window.scrollY + window.innerHeight) / h * 100));
+    if (p > s.rolagem_max) s.rolagem_max = p;
+    var f = Math.floor(s.rolagem_max / 25);
+    if (f > faixa) { faixa = f; enviar(); }
+  }, { passive: true });
+  function toque(ev) { if (ev.isTrusted && !s.tocou) { s.tocou = true; enviar(); } }
+  ['pointerdown', 'touchstart', 'keydown'].forEach(function (t) { window.addEventListener(t, toque, { passive: true }); });
+  document.querySelectorAll('.js-checkout').forEach(function (el) {
+    el.addEventListener('click', function () { s.clicou_cta = true; enviar(); });
+  });
+  var form = document.getElementById('askForm');
+  if (form) form.addEventListener('submit', function () { s.enviou_form = true; enviar(); });
+  document.getElementById('hp-link').addEventListener('click', function () { s.honeypot = true; enviar(); });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') enviar(); });
+  window.addEventListener('pagehide', enviar);
+  enviar();
+})();
+</script>
 </body>
 </html>
